@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.upms.mapper.TQxJsMapper">
+    <resultMap id="BaseResultMap" type="com.andawell.upms.entity.TQxJs">
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="MC" jdbcType="VARCHAR" property="mc"/>
+        <result column="PID" jdbcType="VARCHAR" property="pid"/>
+        <result column="JM" jdbcType="VARCHAR" property="jm"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+    ID, MC, PID, JM
+  </sql>
+
+
+    <select id="selectByPidId"  parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from T_QX_JS
+        where pid = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectIdByPid" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select max(ID) from T_QX_JS  where pid=#{pid,jdbcType=VARCHAR}
+    </select>
+    <select id="selectById" parameterType="java.lang.String" resultType="int">
+    select count(ID) from T_QX_JS  where id=#{id,jdbcType=VARCHAR}
+  </select>
+    <select id="maxFid" resultType="java.lang.Integer">
+    select max(ID) from T_QX_JS  where id like '__'
+</select>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from T_QX_JS
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from T_QX_JS
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+
+    <insert id="insert" parameterType="com.andawell.upms.entity.TQxJs">
+    insert into T_QX_JS (ID, MC, PID, 
+      JM)
+    values (#{id,jdbcType=VARCHAR}, #{mc,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, 
+      #{jm,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.andawell.upms.entity.TQxJs">
+        insert into T_QX_JS
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="mc != null">
+                MC,
+            </if>
+            <if test="pid != null">
+                PID,
+            </if>
+            <if test="jm != null">
+                JM,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="mc != null">
+                #{mc,jdbcType=VARCHAR},
+            </if>
+            <if test="pid != null">
+                #{pid,jdbcType=VARCHAR},
+            </if>
+            <if test="jm != null">
+                #{jm,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.andawell.upms.entity.TQxJs">
+        update T_QX_JS
+        <set>
+            <if test="mc != null">
+                MC = #{mc,jdbcType=VARCHAR},
+            </if>
+            <if test="pid != null">
+                PID = #{pid,jdbcType=VARCHAR},
+            </if>
+            <if test="jm != null">
+                JM = #{jm,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.andawell.upms.entity.TQxJs">
+    update T_QX_JS
+    set MC = #{mc,jdbcType=VARCHAR},
+      PID = #{pid,jdbcType=VARCHAR},
+      JM = #{jm,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

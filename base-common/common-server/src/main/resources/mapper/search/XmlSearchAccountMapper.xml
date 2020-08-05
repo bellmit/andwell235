@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.andawell.search.mapper.XmlSearchAccountMapper">
+    <resultMap id="XmlSearchAccountMap" type="com.andawell.search.entity.XmlSearchAccount">
+        <id column="ID" jdbcType="VARCHAR" property="id" />
+        <result column="MAINID" jdbcType="VARCHAR" property="mainid" />
+        <result column="TABLENAME" jdbcType="VARCHAR" property="tablename" />
+        <result column="REMARKS" jdbcType="VARCHAR" property="remarks" />
+        <result column="ACCOUNTID" jdbcType="VARCHAR" property="accountid" />
+        <result column="CREATE_BY" jdbcType="VARCHAR" property="createBy" />
+        <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="UPDATE_BY" jdbcType="VARCHAR" property="updateBy" />
+        <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+        <result column="DELETE_BY" jdbcType="VARCHAR" property="deleteBy" />
+        <result column="DELETE_TIME" jdbcType="TIMESTAMP" property="deleteTime" />
+        <result column="DEL_FLAG" jdbcType="VARCHAR" property="delFlag" />
+    </resultMap>
+    <resultMap extends="XmlSearchAccountMap" id="ResultMapWithBLOBs" type="com.andawell.search.entity.XmlSearchAccount">
+        <result column="CONTENT" jdbcType="CLOB" property="content" />
+    </resultMap>
+
+    <sql id="queryCondition">
+        <where>
+            acct.del_flag = '0'
+            <if test="query != null">
+                <if test="query.id!=null and query.id.length()>0">
+                    and acct.id = #{query.id}
+                </if>
+                <if test="query.mainId!=null and query.mainId.length()>0">
+                    and acct.mainId = #{query.mainId}
+                </if>
+                <if test="query.tableName!=null and query.tableName.length()>0">
+                    and acct.tableName = #{query.tableName}
+                </if>
+                <if test="query.accountId!=null and query.accountId.length()>0">
+                    and acct.accountId = #{query.accountId}
+                </if>
+            </if>
+        </where>
+    </sql>
+
+    <select id="list" resultMap="XmlSearchAccountMap">
+        select acct.*
+        FROM XML_SEARCH_ACCOUNT acct
+        <include refid="queryCondition"/>
+    </select>
+
+    <insert id="insert" parameterType="com.andawell.search.entity.XmlSearchAccount">
+    insert into XML_SEARCH_ACCOUNT (tableName, content, remarks)
+    values (#{tableName,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR})
+  </insert>
+    <sql id="Base_Column_List">
+    ID, MAINID, TABLENAME, REMARKS, ACCOUNTID, CREATE_BY, CREATE_TIME, UPDATE_BY, UPDATE_TIME, 
+    DELETE_BY, DELETE_TIME, DEL_FLAG
+  </sql>
+    <sql id="Blob_Column_List">
+    CONTENT
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List" />
+        ,
+        <include refid="Blob_Column_List" />
+        from XML_SEARCH_ACCOUNT
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="getList" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List" />
+        ,
+        <include refid="Blob_Column_List" />
+        from XML_SEARCH_ACCOUNT
+    </select>
+
+
+    <select id="selectByTableName"
+            resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List" />
+        ,
+        <include refid="Blob_Column_List" />
+        from XML_SEARCH_ACCOUNT
+        where TABLENAME = #{tableName,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from XML_SEARCH_ACCOUNT
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insertSelective" parameterType="com.andawell.search.entity.XmlSearchAccount">
+        insert into XML_SEARCH_ACCOUNT
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="mainid != null">
+                MAINID,
+            </if>
+            <if test="tablename != null">
+                TABLENAME,
+            </if>
+            <if test="remarks != null">
+                REMARKS,
+            </if>
+            <if test="accountid != null">
+                ACCOUNTID,
+            </if>
+            <if test="createBy != null">
+                CREATE_BY,
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME,
+            </if>
+            <if test="updateBy != null">
+                UPDATE_BY,
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME,
+            </if>
+            <if test="deleteBy != null">
+                DELETE_BY,
+            </if>
+            <if test="deleteTime != null">
+                DELETE_TIME,
+            </if>
+            <if test="delFlag != null">
+                DEL_FLAG,
+            </if>
+            <if test="content != null">
+                CONTENT,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="mainid != null">
+                #{mainid,jdbcType=VARCHAR},
+            </if>
+            <if test="tablename != null">
+                #{tablename,jdbcType=VARCHAR},
+            </if>
+            <if test="remarks != null">
+                #{remarks,jdbcType=VARCHAR},
+            </if>
+            <if test="accountid != null">
+                #{accountid,jdbcType=VARCHAR},
+            </if>
+            <if test="createBy != null">
+                #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null">
+                #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleteBy != null">
+                #{deleteBy,jdbcType=VARCHAR},
+            </if>
+            <if test="deleteTime != null">
+                #{deleteTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="delFlag != null">
+                #{delFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=CLOB},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.andawell.search.entity.XmlSearchAccount">
+        update XML_SEARCH_ACCOUNT
+        <set>
+            <if test="mainid != null">
+                MAINID = #{mainid,jdbcType=VARCHAR},
+            </if>
+            <if test="tablename != null">
+                TABLENAME = #{tablename,jdbcType=VARCHAR},
+            </if>
+            <if test="remarks != null">
+                REMARKS = #{remarks,jdbcType=VARCHAR},
+            </if>
+            <if test="accountid != null">
+                ACCOUNTID = #{accountid,jdbcType=VARCHAR},
+            </if>
+            <if test="createBy != null">
+                CREATE_BY = #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null">
+                UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleteBy != null">
+                DELETE_BY = #{deleteBy,jdbcType=VARCHAR},
+            </if>
+            <if test="deleteTime != null">
+                DELETE_TIME = #{deleteTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="delFlag != null">
+                DEL_FLAG = #{delFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                CONTENT = #{content,jdbcType=CLOB},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.andawell.search.entity.XmlSearchAccount">
+    update XML_SEARCH_ACCOUNT
+    set MAINID = #{mainid,jdbcType=VARCHAR},
+      TABLENAME = #{tablename,jdbcType=VARCHAR},
+      REMARKS = #{remarks,jdbcType=VARCHAR},
+      ACCOUNTID = #{accountid,jdbcType=VARCHAR},
+      CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      DELETE_BY = #{deleteBy,jdbcType=VARCHAR},
+      DELETE_TIME = #{deleteTime,jdbcType=TIMESTAMP},
+      DEL_FLAG = #{delFlag,jdbcType=VARCHAR},
+      CONTENT = #{content,jdbcType=CLOB}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+    <update id="updateByPrimaryKey" parameterType="com.andawell.search.entity.XmlSearchAccount">
+    update XML_SEARCH_ACCOUNT
+    set MAINID = #{mainid,jdbcType=VARCHAR},
+      TABLENAME = #{tablename,jdbcType=VARCHAR},
+      REMARKS = #{remarks,jdbcType=VARCHAR},
+      ACCOUNTID = #{accountid,jdbcType=VARCHAR},
+      CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      DELETE_BY = #{deleteBy,jdbcType=VARCHAR},
+      DELETE_TIME = #{deleteTime,jdbcType=TIMESTAMP},
+      DEL_FLAG = #{delFlag,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

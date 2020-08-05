@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.material.mapper.TTzzCrkMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.material.entity.TTzzCrk">
+    <id column="BH" jdbcType="VARCHAR" property="bh" />
+    <result column="FFDW" jdbcType="VARCHAR" property="ffdw" />
+    <result column="JSDW" jdbcType="VARCHAR" property="jsdw" />
+    <result column="RQ" jdbcType="TIMESTAMP" property="rq" />
+    <result column="WH" jdbcType="VARCHAR" property="wh" />
+    <result column="YJ" jdbcType="VARCHAR" property="yj" />
+    <result column="FFR" jdbcType="VARCHAR" property="ffr" />
+    <result column="JSR" jdbcType="VARCHAR" property="jsr" />
+    <result column="YSFS" jdbcType="VARCHAR" property="ysfs" />
+    <result column="CRKLB" jdbcType="VARCHAR" property="crklb" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    BH, FFDW, JSDW, RQ, WH, YJ, FFR, JSR, YSFS, CRKLB
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_TZZ_CRK
+    where BH = #{bh,jdbcType=VARCHAR}
+  </select>
+    <select id="listBh" resultType="java.lang.String">
+      select BH
+      from T_TZZ_CRK
+      where 1=1
+    </select>
+  <select id="getMaxWh" resultType="java.lang.String">
+    select max (to_number(REVERSE(substr(REVERSE(WH),1,4))))
+    from T_TZZ_CRK
+    where WH like #{wh}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from T_TZZ_CRK
+    where BH = #{bh,jdbcType=VARCHAR}
+  </delete>
+
+
+  <insert id="insertSelective" parameterType="com.andawell.material.entity.TTzzCrk">
+    insert into T_TZZ_CRK
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bh != null">
+        BH,
+      </if>
+      <if test="ffdw != null">
+        FFDW,
+      </if>
+      <if test="jsdw != null">
+        JSDW,
+      </if>
+      <if test="rq != null">
+        RQ,
+      </if>
+      <if test="wh != null">
+        WH,
+      </if>
+      <if test="yj != null">
+        YJ,
+      </if>
+      <if test="ffr != null">
+        FFR,
+      </if>
+      <if test="jsr != null">
+        JSR,
+      </if>
+      <if test="ysfs != null">
+        YSFS,
+      </if>
+      <if test="crklb != null">
+        CRKLB,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bh != null">
+        #{bh,jdbcType=VARCHAR},
+      </if>
+      <if test="ffdw != null">
+        #{ffdw,jdbcType=VARCHAR},
+      </if>
+      <if test="jsdw != null">
+        #{jsdw,jdbcType=VARCHAR},
+      </if>
+      <if test="rq != null">
+        #{rq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wh != null">
+        #{wh,jdbcType=VARCHAR},
+      </if>
+      <if test="yj != null">
+        #{yj,jdbcType=VARCHAR},
+      </if>
+      <if test="ffr != null">
+        #{ffr,jdbcType=VARCHAR},
+      </if>
+      <if test="jsr != null">
+        #{jsr,jdbcType=VARCHAR},
+      </if>
+      <if test="ysfs != null">
+        #{ysfs,jdbcType=VARCHAR},
+      </if>
+      <if test="crklb != null">
+        #{crklb,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.andawell.material.entity.TTzzCrk">
+    update T_TZZ_CRK
+    <set>
+      <if test="ffdw != null">
+        FFDW = #{ffdw,jdbcType=VARCHAR},
+      </if>
+      <if test="jsdw != null">
+        JSDW = #{jsdw,jdbcType=VARCHAR},
+      </if>
+      <if test="rq != null">
+        RQ = #{rq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wh != null">
+        WH = #{wh,jdbcType=VARCHAR},
+      </if>
+      <if test="yj != null">
+        YJ = #{yj,jdbcType=VARCHAR},
+      </if>
+      <if test="ffr != null">
+        FFR = #{ffr,jdbcType=VARCHAR},
+      </if>
+      <if test="jsr != null">
+        JSR = #{jsr,jdbcType=VARCHAR},
+      </if>
+      <if test="ysfs != null">
+        YSFS = #{ysfs,jdbcType=VARCHAR},
+      </if>
+      <if test="crklb != null">
+        CRKLB = #{crklb,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where BH = #{bh,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.material.mapper.TJhJxjhMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.material.entity.TJhJxjh">
+    <id column="JX" jdbcType="VARCHAR" property="jx" />
+    <id column="JH" jdbcType="VARCHAR" property="jh" />
+    <id column="DJAZS" jdbcType="INTEGER" property="djazs" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    JX, JH
+  </sql>
+
+  <delete id="deleteByPrimaryKey">
+    delete from T_JH_JXJH
+    where jx=#{jx,jdbcType=VARCHAR} AND jh=#{jh,jdbcType=VARCHAR}
+  </delete>
+
+    <update id="updatedjazs" parameterType="com.andawell.material.entity.TJhJxjh">
+  update T_JH_JXJH set DJAZS=#{djazs,jdbcType=VARCHAR} where jx=#{jx,jdbcType=VARCHAR} AND jh=#{jh,jdbcType=VARCHAR}
+</update>
+
+  <delete id="delete" parameterType="String">
+    delete from T_JH_JXJH
+    where jx=#{jx,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.andawell.material.entity.TJhJxjh">
+      insert into T_JH_JXJH(JX,JH)
+      values(#{jx,jdbcType=VARCHAR},#{jh,jdbcType=VARCHAR})
+  </insert>
+
+  <insert id="insertAll" parameterType="com.andawell.material.entity.TJhJxjh" useGeneratedKeys="false">
+    insert all
+    <foreach collection="list" item="item" index="index">
+      into T_JH_JXJH( JX, JH)
+      values (
+      #{item.jx,jdbcType=VARCHAR }
+      ,#{item.jh,jdbcType=VARCHAR }
+      )
+    </foreach>
+    select 1 from DUAL
+  </insert>
+
+  <sql id="queryCondition">
+    <where>
+      <if test="jx != null">
+        and JX = #{jx,jdbcType=VARCHAR}
+      </if><if test="jh != null">
+      and JH = #{jh,jdbcType=VARCHAR}
+    </if>
+    </where>
+  </sql>
+  <select id="selectByCount" resultType="java.lang.Integer">
+    select DJAZS from T_JH_JXJH
+    <include refid="queryCondition"></include>
+  </select>
+
+</mapper>

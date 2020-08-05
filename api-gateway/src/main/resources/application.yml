@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: api-gateway
+  profiles:
+    active: $profile.name$
+  main:
+    allow-bean-definition-overriding: true
+logging:
+  config: classpath:logback-base-development.xml

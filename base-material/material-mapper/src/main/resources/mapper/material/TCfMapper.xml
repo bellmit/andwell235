@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.material.mapper.TCfMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.material.entity.TCf">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="LB" jdbcType="VARCHAR" property="lb" />
+    <result column="MC" jdbcType="VARCHAR" property="mc" />
+    <result column="JM" jdbcType="VARCHAR" property="jm" />
+    <result column="ZYLB" jdbcType="VARCHAR" property="zylb" />
+    <result column="BZ" jdbcType="VARCHAR" property="bz" />
+    <result column="ZHMC" jdbcType="VARCHAR" property="zhmc" />
+    <result column="ZH" jdbcType="VARCHAR" property="zh" />
+    <result column="KHYH" jdbcType="VARCHAR" property="khyh" />
+    <result column="GJ" jdbcType="VARCHAR" property="gj" />
+    <result column="CS" jdbcType="VARCHAR" property="cs" />
+    <result column="DZ" jdbcType="VARCHAR" property="dz" />
+    <result column="YB" jdbcType="VARCHAR" property="yb" />
+    <result column="LXR" jdbcType="VARCHAR" property="lxr" />
+    <result column="DH" jdbcType="VARCHAR" property="dh" />
+    <result column="CZ" jdbcType="VARCHAR" property="cz" />
+    <result column="YJ" jdbcType="VARCHAR" property="yj" />
+    <result column="ZS" jdbcType="VARCHAR" property="zs" />
+    <result column="ZSRQ" jdbcType="TIMESTAMP" property="zsrq" />
+    <result column="WXZS" jdbcType="VARCHAR" property="wxzs" />
+    <result column="WXZSRQ" jdbcType="TIMESTAMP" property="wxzsrq" />
+    <result column="BMZZ" jdbcType="VARCHAR" property="bmzz" />
+    <result column="BMKSRQ" jdbcType="TIMESTAMP" property="bmksrq" />
+    <result column="PID" jdbcType="VARCHAR" property="pid" />
+    <result column="ZZHM" jdbcType="VARCHAR" property="zzhm" />
+    <result column="BFRQ" jdbcType="TIMESTAMP" property="bfrq" />
+    <result column="WXZSKSRQ" jdbcType="TIMESTAMP" property="wxzsksrq" />
+    <result column="BMJSRQ" jdbcType="TIMESTAMP" property="bmjsrq" />
+  </resultMap>
+
+
+  <sql id="Base_Column_List">
+    ID, LB, MC, JM, ZYLB, BZ, ZHMC, ZH, KHYH, GJ, CS, DZ, YB, LXR, DH, CZ, YJ, ZS, ZSRQ, 
+    WXZS, WXZSRQ, BMZZ, BMKSRQ, PID, ZZHM, BFRQ, WXZSKSRQ, BMJSRQ
+  </sql>
+
+  <select id="getSqlLiteList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from T_CF
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_CF
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from T_CF
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+
+  <delete id="deleteSqlLiteList">
+    truncate table T_CF
+  </delete>
+
+  <insert id="insert" parameterType="com.andawell.material.entity.TCf">
+    insert into T_CF (ID, LB, MC, JM, 
+      ZYLB, BZ, ZHMC, ZH, 
+      KHYH, GJ, CS, DZ, 
+      YB, LXR, DH, CZ, 
+      YJ, ZS, ZSRQ, WXZS, 
+      WXZSRQ, BMZZ, BMKSRQ, 
+      PID, ZZHM, BFRQ, 
+      WXZSKSRQ, BMJSRQ)
+    values (#{id,jdbcType=VARCHAR}, #{lb,jdbcType=VARCHAR}, #{mc,jdbcType=VARCHAR}, #{jm,jdbcType=VARCHAR}, 
+      #{zylb,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR}, #{zhmc,jdbcType=VARCHAR}, #{zh,jdbcType=VARCHAR}, 
+      #{khyh,jdbcType=VARCHAR}, #{gj,jdbcType=VARCHAR}, #{cs,jdbcType=VARCHAR}, #{dz,jdbcType=VARCHAR}, 
+      #{yb,jdbcType=VARCHAR}, #{lxr,jdbcType=VARCHAR}, #{dh,jdbcType=VARCHAR}, #{cz,jdbcType=VARCHAR}, 
+      #{yj,jdbcType=VARCHAR}, #{zs,jdbcType=VARCHAR}, #{zsrq,jdbcType=TIMESTAMP}, #{wxzs,jdbcType=VARCHAR}, 
+      #{wxzsrq,jdbcType=TIMESTAMP}, #{bmzz,jdbcType=VARCHAR}, #{bmksrq,jdbcType=TIMESTAMP}, 
+      #{pid,jdbcType=VARCHAR}, #{zzhm,jdbcType=VARCHAR}, #{bfrq,jdbcType=TIMESTAMP}, 
+      #{wxzsksrq,jdbcType=TIMESTAMP}, #{bmjsrq,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.andawell.material.entity.TCf">
+    insert into T_CF
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="lb != null">
+        LB,
+      </if>
+      <if test="mc != null">
+        MC,
+      </if>
+      <if test="jm != null">
+        JM,
+      </if>
+      <if test="zylb != null">
+        ZYLB,
+      </if>
+      <if test="bz != null">
+        BZ,
+      </if>
+      <if test="zhmc != null">
+        ZHMC,
+      </if>
+      <if test="zh != null">
+        ZH,
+      </if>
+      <if test="khyh != null">
+        KHYH,
+      </if>
+      <if test="gj != null">
+        GJ,
+      </if>
+      <if test="cs != null">
+        CS,
+      </if>
+      <if test="dz != null">
+        DZ,
+      </if>
+      <if test="yb != null">
+        YB,
+      </if>
+      <if test="lxr != null">
+        LXR,
+      </if>
+      <if test="dh != null">
+        DH,
+      </if>
+      <if test="cz != null">
+        CZ,
+      </if>
+      <if test="yj != null">
+        YJ,
+      </if>
+      <if test="zs != null">
+        ZS,
+      </if>
+      <if test="zsrq != null">
+        ZSRQ,
+      </if>
+      <if test="wxzs != null">
+        WXZS,
+      </if>
+      <if test="wxzsrq != null">
+        WXZSRQ,
+      </if>
+      <if test="bmzz != null">
+        BMZZ,
+      </if>
+      <if test="bmksrq != null">
+        BMKSRQ,
+      </if>
+      <if test="pid != null">
+        PID,
+      </if>
+      <if test="zzhm != null">
+        ZZHM,
+      </if>
+      <if test="bfrq != null">
+        BFRQ,
+      </if>
+      <if test="wxzsksrq != null">
+        WXZSKSRQ,
+      </if>
+      <if test="bmjsrq != null">
+        BMJSRQ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="lb != null">
+        #{lb,jdbcType=VARCHAR},
+      </if>
+      <if test="mc != null">
+        #{mc,jdbcType=VARCHAR},
+      </if>
+      <if test="jm != null">
+        #{jm,jdbcType=VARCHAR},
+      </if>
+      <if test="zylb != null">
+        #{zylb,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null">
+        #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="zhmc != null">
+        #{zhmc,jdbcType=VARCHAR},
+      </if>
+      <if test="zh != null">
+        #{zh,jdbcType=VARCHAR},
+      </if>
+      <if test="khyh != null">
+        #{khyh,jdbcType=VARCHAR},
+      </if>
+      <if test="gj != null">
+        #{gj,jdbcType=VARCHAR},
+      </if>
+      <if test="cs != null">
+        #{cs,jdbcType=VARCHAR},
+      </if>
+      <if test="dz != null">
+        #{dz,jdbcType=VARCHAR},
+      </if>
+      <if test="yb != null">
+        #{yb,jdbcType=VARCHAR},
+      </if>
+      <if test="lxr != null">
+        #{lxr,jdbcType=VARCHAR},
+      </if>
+      <if test="dh != null">
+        #{dh,jdbcType=VARCHAR},
+      </if>
+      <if test="cz != null">
+        #{cz,jdbcType=VARCHAR},
+      </if>
+      <if test="yj != null">
+        #{yj,jdbcType=VARCHAR},
+      </if>
+      <if test="zs != null">
+        #{zs,jdbcType=VARCHAR},
+      </if>
+      <if test="zsrq != null">
+        #{zsrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wxzs != null">
+        #{wxzs,jdbcType=VARCHAR},
+      </if>
+      <if test="wxzsrq != null">
+        #{wxzsrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bmzz != null">
+        #{bmzz,jdbcType=VARCHAR},
+      </if>
+      <if test="bmksrq != null">
+        #{bmksrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="zzhm != null">
+        #{zzhm,jdbcType=VARCHAR},
+      </if>
+      <if test="bfrq != null">
+        #{bfrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wxzsksrq != null">
+        #{wxzsksrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bmjsrq != null">
+        #{bmjsrq,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.andawell.material.entity.TCf">
+    update T_CF
+    <set>
+      <if test="lb != null">
+        LB = #{lb,jdbcType=VARCHAR},
+      </if>
+      <if test="mc != null">
+        MC = #{mc,jdbcType=VARCHAR},
+      </if>
+      <if test="jm != null">
+        JM = #{jm,jdbcType=VARCHAR},
+      </if>
+      <if test="zylb != null">
+        ZYLB = #{zylb,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null">
+        BZ = #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="zhmc != null">
+        ZHMC = #{zhmc,jdbcType=VARCHAR},
+      </if>
+      <if test="zh != null">
+        ZH = #{zh,jdbcType=VARCHAR},
+      </if>
+      <if test="khyh != null">
+        KHYH = #{khyh,jdbcType=VARCHAR},
+      </if>
+      <if test="gj != null">
+        GJ = #{gj,jdbcType=VARCHAR},
+      </if>
+      <if test="cs != null">
+        CS = #{cs,jdbcType=VARCHAR},
+      </if>
+      <if test="dz != null">
+        DZ = #{dz,jdbcType=VARCHAR},
+      </if>
+      <if test="yb != null">
+        YB = #{yb,jdbcType=VARCHAR},
+      </if>
+      <if test="lxr != null">
+        LXR = #{lxr,jdbcType=VARCHAR},
+      </if>
+      <if test="dh != null">
+        DH = #{dh,jdbcType=VARCHAR},
+      </if>
+      <if test="cz != null">
+        CZ = #{cz,jdbcType=VARCHAR},
+      </if>
+      <if test="yj != null">
+        YJ = #{yj,jdbcType=VARCHAR},
+      </if>
+      <if test="zs != null">
+        ZS = #{zs,jdbcType=VARCHAR},
+      </if>
+      <if test="zsrq != null">
+        ZSRQ = #{zsrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wxzs != null">
+        WXZS = #{wxzs,jdbcType=VARCHAR},
+      </if>
+      <if test="wxzsrq != null">
+        WXZSRQ = #{wxzsrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bmzz != null">
+        BMZZ = #{bmzz,jdbcType=VARCHAR},
+      </if>
+      <if test="bmksrq != null">
+        BMKSRQ = #{bmksrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pid != null">
+        PID = #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="zzhm != null">
+        ZZHM = #{zzhm,jdbcType=VARCHAR},
+      </if>
+      <if test="bfrq != null">
+        BFRQ = #{bfrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wxzsksrq != null">
+        WXZSKSRQ = #{wxzsksrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bmjsrq != null">
+        BMJSRQ = #{bmjsrq,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.andawell.material.entity.TCf">
+    update T_CF
+    set LB = #{lb,jdbcType=VARCHAR},
+      MC = #{mc,jdbcType=VARCHAR},
+      JM = #{jm,jdbcType=VARCHAR},
+      ZYLB = #{zylb,jdbcType=VARCHAR},
+      BZ = #{bz,jdbcType=VARCHAR},
+      ZHMC = #{zhmc,jdbcType=VARCHAR},
+      ZH = #{zh,jdbcType=VARCHAR},
+      KHYH = #{khyh,jdbcType=VARCHAR},
+      GJ = #{gj,jdbcType=VARCHAR},
+      CS = #{cs,jdbcType=VARCHAR},
+      DZ = #{dz,jdbcType=VARCHAR},
+      YB = #{yb,jdbcType=VARCHAR},
+      LXR = #{lxr,jdbcType=VARCHAR},
+      DH = #{dh,jdbcType=VARCHAR},
+      CZ = #{cz,jdbcType=VARCHAR},
+      YJ = #{yj,jdbcType=VARCHAR},
+      ZS = #{zs,jdbcType=VARCHAR},
+      ZSRQ = #{zsrq,jdbcType=TIMESTAMP},
+      WXZS = #{wxzs,jdbcType=VARCHAR},
+      WXZSRQ = #{wxzsrq,jdbcType=TIMESTAMP},
+      BMZZ = #{bmzz,jdbcType=VARCHAR},
+      BMKSRQ = #{bmksrq,jdbcType=TIMESTAMP},
+      PID = #{pid,jdbcType=VARCHAR},
+      ZZHM = #{zzhm,jdbcType=VARCHAR},
+      BFRQ = #{bfrq,jdbcType=TIMESTAMP},
+      WXZSKSRQ = #{wxzsksrq,jdbcType=TIMESTAMP},
+      BMJSRQ = #{bmjsrq,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <sql id="queryCondition">
+    <where>
+      <if test="query!=null">
+
+      </if>
+    </where>
+  </sql>
+
+  <select id="getList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from T_CF
+    <include refid="queryCondition"/>
+    where LB = '2001'
+  </select>
+</mapper>

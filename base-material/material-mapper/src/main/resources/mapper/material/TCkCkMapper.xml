@@ -1,0 +1,1803 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.material.mapper.TCkCkMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.material.entity.TCkCk">
+    <id column="DWID" jdbcType="VARCHAR" property="dwid" />
+    <id column="JX" jdbcType="VARCHAR" property="jx" />
+    <id column="JH" jdbcType="VARCHAR" property="jh" />
+    <id column="XH" jdbcType="VARCHAR" property="xh" />
+    <id column="ZL" jdbcType="VARCHAR" property="zl" />
+    <id column="XZ" jdbcType="VARCHAR" property="xz" />
+    <result column="SL" jdbcType="DECIMAL" property="sl" />
+    <result column="DJ" jdbcType="DECIMAL" property="dj" />
+    <result column="ZJ" jdbcType="DECIMAL" property="zj" />
+    <result column="CCRQ" jdbcType="TIMESTAMP" property="ccrq" />
+    <result column="YSRQ" jdbcType="TIMESTAMP" property="ysrq" />
+    <result column="SMZT" jdbcType="VARCHAR" property="smzt" />
+    <result column="RKRQ" jdbcType="TIMESTAMP" property="rkrq" />
+    <result column="ZSMN" jdbcType="DECIMAL" property="zsmn" />
+    <result column="ZSMXS" jdbcType="DECIMAL" property="zsmxs" />
+    <result column="ZSMXH" jdbcType="DECIMAL" property="zsmxh" />
+    <result column="ZSMQL" jdbcType="DECIMAL" property="zsmql" />
+    <result column="ZFXCS" jdbcType="DECIMAL" property="zfxcs" />
+    <result column="YFRQ" jdbcType="TIMESTAMP" property="yfrq" />
+    <result column="ZYFCS" jdbcType="DECIMAL" property="zyfcs" />
+    <result column="YFCS" jdbcType="DECIMAL" property="yfcs" />
+    <result column="FXRQ" jdbcType="TIMESTAMP" property="fxrq" />
+    <result column="FXSMN" jdbcType="DECIMAL" property="fxsmn" />
+    <result column="FXSMXS" jdbcType="DECIMAL" property="fxsmxs" />
+    <result column="FXCS" jdbcType="DECIMAL" property="fxcs" />
+    <result column="SBQXN" jdbcType="DECIMAL" property="sbqxn" />
+    <result column="SBQXXS" jdbcType="DECIMAL" property="sbqxxs" />
+    <result column="BZ" jdbcType="VARCHAR" property="bz" />
+    <result column="ZFXXS" jdbcType="DECIMAL" property="zfxxs" />
+    <result column="BCZFXXS" jdbcType="DECIMAL" property="bczfxxs" />
+    <result column="BCFXXS" jdbcType="DECIMAL" property="bcfxxs" />
+    <result column="ZXHCS" jdbcType="DECIMAL" property="zxhcs" />
+    <result column="BCZXHCS" jdbcType="DECIMAL" property="bczxhcs" />
+    <result column="BCXHCS" jdbcType="DECIMAL" property="bcxhcs" />
+    <result column="ZQLCS" jdbcType="DECIMAL" property="zqlcs" />
+    <result column="BCZQLCS" jdbcType="DECIMAL" property="bczqlcs" />
+    <result column="BCQLCS" jdbcType="DECIMAL" property="bcqlcs" />
+    <result column="DW" jdbcType="VARCHAR" property="dw" />
+    <result column="JWH" jdbcType="VARCHAR" property="jwh" />
+    <result column="GLFS" jdbcType="DECIMAL" property="glfs" />
+    <result column="CKDM" jdbcType="VARCHAR" property="ckdm" />
+    <result column="HL" jdbcType="DECIMAL" property="hl" />
+    <result column="BBZ" jdbcType="DECIMAL" property="bbz" />
+    <result column="FJH" jdbcType="VARCHAR" property="fjh" />
+    <result column="SFRLQ" jdbcType="DECIMAL" property="sfrlq" />
+    <result column="ZRLQ" jdbcType="DECIMAL" property="zrlq" />
+    <result column="ZFANXCS" jdbcType="DECIMAL" property="zfanxcs" />
+    <result column="FANXCS" jdbcType="DECIMAL" property="fanxcs" />
+    <result column="XFRQ" jdbcType="TIMESTAMP" property="xfrq" />
+    <result column="SFQSM" jdbcType="DECIMAL" property="sfqsm" />
+    <result column="SFQSYSM" jdbcType="DECIMAL" property="sfqsysm" />
+    <result column="HCLB" jdbcType="DECIMAL" property="hclb" />
+    <result column="JJ" jdbcType="DECIMAL" property="jj" />
+    <result column="ZYLB" jdbcType="DECIMAL" property="zylb" />
+    <result column="ZGQCS" jdbcType="DECIMAL" property="zgqcs" />
+    <result column="GQCS" jdbcType="DECIMAL" property="gqcs" />
+    <result column="SFQXS" jdbcType="DECIMAL" property="sfqxs" />
+    <result column="YFQX" jdbcType="DECIMAL" property="yfqx" />
+    <result column="JXQN" jdbcType="DECIMAL" property="jxqn" />
+    <result column="JXQXS" jdbcType="DECIMAL" property="jxqxs" />
+    <result column="RFID" jdbcType="VARCHAR" property="rfid" />
+    <result column="YSID" jdbcType="VARCHAR" property="ysid" />
+    <result column="QCLB" jdbcType="VARCHAR" property="qclb" />
+  </resultMap>
+
+
+  <resultMap id="BaseResultMap1" type="com.andawell.material.vo.NewRepertoryCountVO">
+  <result column="JH" jdbcType="VARCHAR" property="jh" />
+  <result column="JHMC" jdbcType="VARCHAR" property="jhmc" />
+  <result column="JX" jdbcType="VARCHAR" property="jx" />
+  <result column="JXMC" jdbcType="VARCHAR" property="jxmc" />
+  <result column="ZLMC" jdbcType="VARCHAR" property="zl" />
+  <result column="DWID" jdbcType="VARCHAR" property="dwid" />
+  <result column="DWMC" jdbcType="VARCHAR" property="sszq" />
+  <result column="SL" jdbcType="VARCHAR" property="sl" />
+</resultMap>
+
+  <resultMap id="BaseResultMap2" type="com.andawell.material.vo.HcShTjVO">
+    <result column="JH" jdbcType="VARCHAR" property="jh" />
+    <result column="JHMC" jdbcType="VARCHAR" property="jhmc" />
+    <result column="JX" jdbcType="VARCHAR" property="jx" />
+    <result column="JXMC" jdbcType="VARCHAR" property="jxmc" />
+    <result column="ZL" jdbcType="VARCHAR" property="zl" />
+    <result column="DWID" jdbcType="VARCHAR" property="dwid" />
+    <result column="SSZQ" jdbcType="VARCHAR" property="sszq" />
+    <result column="SL" jdbcType="DECIMAL" property="sl" />
+  </resultMap>
+  <resultMap id="BaseResultMap3" type="com.andawell.material.vo.BfKcVO">
+    <result column="JH" jdbcType="VARCHAR" property="jh" />
+    <result column="JHMC" jdbcType="VARCHAR" property="jhmc" />
+    <result column="JX" jdbcType="VARCHAR" property="jx" />
+    <result column="JXMC" jdbcType="VARCHAR" property="jxmc" />
+    <result column="ZL" jdbcType="VARCHAR" property="zl" />
+    <result column="DWID" jdbcType="VARCHAR" property="dwid" />
+    <result column="SSZQ" jdbcType="VARCHAR" property="sszq" />
+    <result column="SL" jdbcType="DECIMAL" property="sl" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    DWID, JX, JH, XH, ZL, XZ, SL, DJ, ZJ, CCRQ, YSRQ, SMZT, RKRQ, ZSMN, ZSMXS, ZSMXH, 
+    ZSMQL, ZFXCS, YFRQ, ZYFCS, YFCS, FXRQ, FXSMN, FXSMXS, FXCS, SBQXN, SBQXXS, BZ, ZFXXS, 
+    BCZFXXS, BCFXXS, ZXHCS, BCZXHCS, BCXHCS, ZQLCS, BCZQLCS, BCQLCS, DW, JWH, GLFS, CKDM, 
+    HL, BBZ, FJH, SFRLQ, ZRLQ, ZFANXCS, FANXCS, XFRQ, SFQSM, SFQSYSM, HCLB, JJ, ZYLB, 
+    ZGQCS, GQCS, SFQXS, YFQX, JXQN, JXQXS, RFID, YSID, QCLB
+  </sql>
+
+  <sql id="queryQXKYMX">
+    <where>
+      1=1
+      <if test="query!=null">
+        <if test="query.jx!=null and query.jx.length()>0">
+          and JX= #{query.jx}
+        </if>
+        <if test="query.jh!=null and query.jh.length()>0">
+          and JH = #{query.jh}
+        </if>
+        <if test="query.dwid!=null and query.dwid.length()>0">
+          and dwid like '${query.dwid}%'
+        </if>
+        <if test="query.userId!=null and query.userId.length()>0">
+          and yhid = #{userId}
+        </if>
+      </if>
+      AND LENGTH(DWID)>=4
+    </where>
+  </sql>
+
+
+
+  <sql id="queryQXKYTJ">
+    <where>
+      1=1
+      <if test="query!=null">
+        <if test="query.jx!=null and query.jx.length()>0">
+          and JX= #{query.jx}
+        </if>
+        <if test="query.jh!=null and query.jh.length()>0">
+          and JH = #{query.jh}
+        </if>
+        <if test="query.userId!=null and query.userId.length()>0">
+          and yhid = #{userId}
+        </if>
+      </if>
+    </where>
+  </sql>
+
+  <select id="selectBySumZs" resultType="java.lang.String">
+    select sum(sl) zs from t_ck_ck
+     <include refid="queryQXKYMX"/>
+     and (zl='11' or zl='12')
+  </select>
+
+
+  <select id="selectsHZs" resultType="java.lang.String">
+    select sum(sl) zs from t_ck_crkqd
+    <include refid="querySHTJ"/>
+    and (zl='11' or zl='12')
+  </select>
+
+  <select id="selectbFZs" resultType="java.lang.String">
+   select sum(sl) from T_CK_BFK where zl='23'
+  </select>
+
+  <select id="getSszq" resultType="com.andawell.material.vo.SszqVO">
+     select t.id dwid,t.mc sszq from t_xt_dw t where  id like concat(#{id},'%')
+  </select>
+
+
+  <select id="selectBySumZj" resultType="java.lang.String">
+    select sum(dj) zj from t_ck_ck
+    <include refid="queryQXKYMX"/>
+    and (zl='11' or zl='12')
+  </select>
+
+  <select id="listTJ" resultMap="BaseResultMap1">
+    select * from (
+
+    select
+    a.jh,b.mc jhmc,a.jx,c.mc jxmc,'全新可用' zlmc,d.mc dwmc,sum(a.sl) sl
+    from
+    t_ck_ck a
+    left join t_jh_jh b on a.jh=b.id
+    left join t_jh_jx c on a.jx=c.id
+    left join t_xt_dw d on a.dwid=d.id
+    where (A.zl='11' or A.zl='12')
+    <if test="query!=null">
+      <if test="query.dwid!=null and query.dwid.length()>0">
+        and a.dwid like '${query.dwid}%'
+      </if>
+    </if>
+    and LENGTH(A.DWID)>=4
+    group by a.jh,a.jx,b.mc,c.mc,d.mc)
+    <include refid="queryQXKYTJ"/>
+  </select>
+  <sql id="querySHTJ">
+    <where>
+      1=1
+      <if test="query!=null">
+        <if test="query.jx!=null and query.jx.length()>0">
+         and JX= '${query.jx}'
+        </if>
+        <if test="query.jh!=null and query.jh.length()>0">
+          and JH = '${query.jh}'
+        </if>
+        <if test="query.dwid!=null and query.dwid.length()>0">
+          and dwid like '${query.dwid}%'
+        </if>
+        <if test="query.rq_start!=null and query.rq_start.length()>0">
+          and rkrq&gt;=to_date('${query.rq_start}','yyyy-mm-dd hh24:mi:ss')
+        </if>
+        <if test="query.rq_end!=null and query.rq_end.length()>0">
+          and rkrq&lt;=to_date('${query.rq_end}','yyyy-mm-dd hh24:mi:ss')
+        </if>
+      </if>
+      AND LENGTH(DWID)>=4
+    </where>
+  </sql>
+  <sql id="queryBfTJ">
+    <where>
+      1=1
+      <if test="query!=null">
+        <if test="query.jx!=null and query.jx.length()>0">
+          and JX= '${query.jx}'
+        </if>
+        <if test="query.jh!=null and query.jh.length()>0">
+          and JH = '${query.jh}'
+        </if>
+      </if>
+      AND LENGTH(DWID)>=4
+    </where>
+  </sql>
+  <select id="listBfTJ" resultMap="BaseResultMap3">
+select * from (
+    select b.jx,x.mc jxmc,b.jh,h.mc jhmc,'报废库存' zl,d.mc sszq,b.dwid,sum(b.sl)sl from
+    T_CK_BFK b left join t_jh_jh h on b.jh=h.id left join  t_jh_jx x on b.jx=x.id left join t_xt_dw d on b.dwid=d.id
+    group by b.jx,x.mc,b.jh,h.mc,d.mc,b.dwid)
+    <include refid="queryBfTJ"/>
+  </select>
+
+  <select id="listShTJ" resultMap="BaseResultMap2">
+    select * from (
+    select jx,j.mc jhmc,x.mc jxmc,jh,z.mc zl,dwid,t.mc sszq,sum(q.sl)sl,rkrq from
+    T_CK_CRKQD q left join t_jh_jh j on q.jx=j.id left join t_xt_jldw d on j.dw=d.id left join t_jh_jx x on x.id=q.jx left join t_jh_zl z on q.zl=z.id left join t_xt_dw t
+    on q.dwid=t.id where
+    (q.zl='11' or q.zl='12') and (q.lb like '10%')  group by q.jh,q.jx,x.mc,z.mc,q.dwid,t.mc,q.rkrq,j.mc)
+    <include refid="querySHTJ"/>
+  </select>
+  <select id="listfhTJ" resultMap="BaseResultMap2">
+    select * from (
+    select jx,j.mc jhmc,x.mc jxmc,jh,z.mc zl,dwid,t.mc sszq,sum(q.sl)sl,rkrq from
+    T_CK_CRKQD q left join t_jh_jh j on q.jx=j.id left join t_xt_jldw d on j.dw=d.id left join t_jh_jx x on x.id=q.jx left join t_jh_zl z on q.zl=z.id left join t_xt_dw t
+    on q.dwid=t.id where
+    (q.zl='11' or q.zl='12') and (q.lb like '20%')  group by q.jh,q.jx,x.mc,z.mc,q.dwid,t.mc,q.rkrq,j.mc)
+    <include refid="querySHTJ"/>
+  </select>
+
+  <select id="listMx" resultType="com.andawell.material.vo.NewRepertoryCountMxVO">
+    SELECT * FROM (
+    select
+    a.jx,b.mc jxmc,a.jh,c.mc jhmc,a.xh,f.mc zl,d.mc jldw,a.dj,a.dwid,e.mc sszq,a.rkrq,gz.yhid
+    from
+    t_ck_ck a
+
+    left join t_jh_jx b on a.jx=b.id
+    left join t_jh_jh c on a.jh=c.id
+    left join t_xt_jldw d on c.dw=d.id
+    left join t_xt_dw e on a.dwid=e.id
+    left join t_jh_zl f on a.zl=f.id
+    left join T_Jh_gz gz on gz.jh = a.jh  and gz.jx = a.jx
+
+     where (a.zl='11' or a.zl='12'))
+    <include refid="queryQXKYMX"/>
+  </select>
+
+  <select id="ShMx" resultType="com.andawell.material.vo.HcShMxVO">
+    select jx,j.mc jhmc,x.mc jxmc,jh,xh,zl zlid,z.mc zl,d.mc jldw,dj,dwid,t.mc sszq,rkrq from
+    T_CK_CRKQD q left join t_jh_jh j on q.jx=j.id left join t_xt_jldw d on j.dw=d.id left join
+     t_jh_jx x on x.id=q.jx left join t_jh_zl z on q.zl=z.id left join t_xt_dw t
+    on q.dwid=t.id
+    <include refid="querySHMX"/>
+  </select>
+  <sql id="querySHMX">
+    <where>
+      (q.zl='11' or q.zl='12') and (q.lb like '10%')
+      <if test="query!=null">
+        <if test="query.jx!=null and query.jx.length()>0">
+          and JX= '${query.jx}'
+        </if>
+        <if test="query.jh!=null and query.jh.length()>0">
+          and JH = '${query.jh}'
+        </if>
+        <if test="query.dwid!=null and query.dwid.length()>0">
+          and dwid like '${query.dwid}%'
+        </if>
+        <if test="query.rq_start!=null and query.rq_start.length()>0">
+          and rkrq&gt;=to_date('${query.rq_start}','yyyy-mm-dd hh24:mi:ss')
+        </if>
+        <if test="query.rq_end!=null and query.rq_end.length()>0">
+          and rkrq&lt;=to_date('${query.rq_end}','yyyy-mm-dd hh24:mi:ss')
+        </if>
+      </if>
+      AND LENGTH(DWID)>=4
+    </where>
+  </sql>
+
+  <select id="FhMx" resultType="com.andawell.material.vo.HcFhMxVO">
+    select jx,j.mc jhmc,x.mc jxmc,jh,xh,zl zlid,z.mc zl,d.mc jldw,dj,dwid,t.mc sszq,rq ckrq from
+    T_CK_CRKQD q left join t_jh_jh j on q.jx=j.id left join t_xt_jldw d on j.dw=d.id left join
+    t_jh_jx x on x.id=q.jx left join t_jh_zl z on q.zl=z.id left join t_xt_dw t
+    on q.dwid=t.id
+    <include refid="queryFHMX"/>
+  </select>
+  <sql id="queryFHMX">
+    <where>
+      (q.zl='11' or q.zl='12') and (q.lb like '20%')
+      <if test="query!=null">
+        <if test="query.jx!=null and query.jx.length()>0">
+          and JX= '${query.jx}'
+        </if>
+        <if test="query.jh!=null and query.jh.length()>0">
+          and JH = '${query.jh}'
+        </if>
+        <if test="query.dwid!=null and query.dwid.length()>0">
+          and dwid like '${query.dwid}%'
+        </if>
+        <if test="query.rq_start!=null and query.rq_start.length()>0">
+          and rq&gt;=to_date('${query.rq_start}','yyyy-mm-dd hh24:mi:ss')
+        </if>
+        <if test="query.rq_end!=null and query.rq_end.length()>0">
+          and rq&lt;=to_date('${query.rq_end}','yyyy-mm-dd hh24:mi:ss')
+        </if>
+      </if>
+      AND LENGTH(DWID)>=4
+    </where>
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_CK_CK
+    where DWID = #{dwid,jdbcType=VARCHAR}
+      and JX = #{jx,jdbcType=VARCHAR}
+      and JH = #{jh,jdbcType=VARCHAR}
+      and XH = #{xh,jdbcType=VARCHAR}
+      and ZL = #{zl,jdbcType=VARCHAR}
+      and XZ = #{xz,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getCout"  resultType="com.andawell.material.vo.TCkSyVO">
+  select qx.qxjs,qx.qxxs,dx.dxjs,dx.dxxs,zx.zxjs,zx.zxxs,bf.bfjs,bf.bfxs,dbf.dbfjs,dbf.dbfxs from
+(select sum(sl)qxjs,count(sl) qxxs from t_ck_ck where zl='11' or zl='12') qx,
+(select sum(sl)dxjs,count(sl) dxxs from  T_CK_DX where zl='21' and xz='0') dx,
+(select sum(sl)zxjs,count(sl) zxxs from T_CK_SX where zl='22') zx,
+(select sum(sl)bfjs,count(sl) bfxs from T_CK_BFK where zl='23') bf,
+(select sum(sl)dbfjs,count(sl) dbfxs  from T_CK_DX where zl='24' and xz='0') dbf
+  </select>
+
+  <select id="qxkyCount"  resultType="com.andawell.material.vo.TCkSyVO">
+   select nvl(sum(sl),0)js,nvl(count(sl),0) xs from t_ck_ck where zl='11' or zl='12'
+  </select>
+
+  <select id="dxCount"  resultType="com.andawell.material.vo.TCkSyVO">
+   select nvl(sum(sl),0)js,nvl(count(sl),0) xs from  T_CK_DX where zl='21' and xz='0'
+  </select>
+
+  <select id="zxCount"  resultType="com.andawell.material.vo.TCkSyVO">
+   select nvl(sum(sl),0) js,nvl(count(sl),0) xs from T_CK_SX where zl='22'
+  </select>
+  <select id="hcdbf"  resultType="com.andawell.material.vo.TCkSyVO">
+   select bf.js,bf.xs,dbf.dbfjs,dbf.dbfxs from
+(select nvl(sum(sl),0)js,nvl(count(sl),0) xs from T_CK_BFK where zl='23') bf,
+(select nvl(sum(sl),0)dbfjs,nvl(count(sl),0) dbfxs  from T_CK_DX where zl='24' and xz='0') dbf
+  </select>
+
+
+  <select id="getStatisticDome" resultType="com.andawell.material.vo.StatisticsDomeVO">
+    select jx,jh,sum(sl) as sl from T_CK_CK
+    left join T_XT_DW on T_XT_DW.id = T_CK_CK.DWID
+     where 1=1 and T_CK_CK.DWID  like '${dwid}%'
+    <if test="jx!=null and jx.length()>0">
+      and JX= #{jx}
+    </if>
+    <if test="jh!=null and jh.length()>0">
+      and JH = #{jh}
+    </if>
+
+     and T_XT_DW.pid is not null group by jx,jh
+  </select>
+
+
+
+  <insert id="inserttckck" parameterType="com.andawell.material.entity.TCkC">
+    insert into T_CK_CK
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dwid != null">
+        DWID,
+      </if>
+      <if test="jx != null">
+        JX,
+      </if>
+      <if test="jh != null">
+        JH,
+      </if>
+      <if test="xh != null">
+        XH,
+      </if>
+      <if test="zl != null">
+        ZL,
+      </if>
+      <if test="xz != null">
+        XZ,
+      </if>
+      <if test="sl != null">
+        SL,
+      </if>
+      <if test="dj != null">
+        DJ,
+      </if>
+      <if test="zj != null">
+        ZJ,
+      </if>
+      <if test="ccrq != null">
+        CCRQ,
+      </if>
+      <if test="ysrq != null">
+        YSRQ,
+      </if>
+      <if test="smzt != null">
+        SMZT,
+      </if>
+      <if test="rkrq != null">
+        RKRQ,
+      </if>
+      <if test="zsmn != null">
+        ZSMN,
+      </if>
+      <if test="zsmxs != null">
+        ZSMXS,
+      </if>
+      <if test="zsmxh != null">
+        ZSMXH,
+      </if>
+      <if test="zsmql != null">
+        ZSMQL,
+      </if>
+      <if test="zfxcs != null">
+        ZFXCS,
+      </if>
+      <if test="yfrq != null">
+        YFRQ,
+      </if>
+      <if test="zyfcs != null">
+        ZYFCS,
+      </if>
+      <if test="yfcs != null">
+        YFCS,
+      </if>
+      <if test="fxrq != null">
+        FXRQ,
+      </if>
+      <if test="fxsmn != null">
+        FXSMN,
+      </if>
+      <if test="fxsmxs != null">
+        FXSMXS,
+      </if>
+      <if test="fxcs != null">
+        FXCS,
+      </if>
+      <if test="sbqxn != null">
+        SBQXN,
+      </if>
+      <if test="sbqxxs != null">
+        SBQXXS,
+      </if>
+      <if test="bz != null">
+        BZ,
+      </if>
+      <if test="zfxxs != null">
+        ZFXXS,
+      </if>
+      <if test="bczfxxs != null">
+        BCZFXXS,
+      </if>
+      <if test="bcfxxs != null">
+        BCFXXS,
+      </if>
+      <if test="zxhcs != null">
+        ZXHCS,
+      </if>
+      <if test="bczxhcs != null">
+        BCZXHCS,
+      </if>
+      <if test="bcxhcs != null">
+        BCXHCS,
+      </if>
+      <if test="zqlcs != null">
+        ZQLCS,
+      </if>
+      <if test="bczqlcs != null">
+        BCZQLCS,
+      </if>
+      <if test="bcqlcs != null">
+        BCQLCS,
+      </if>
+      <if test="dw != null">
+        DW,
+      </if>
+      <if test="jwh != null">
+        JWH,
+      </if>
+      <if test="glfs != null">
+        GLFS,
+      </if>
+      <if test="ckdm != null">
+        CKDM,
+      </if>
+      <if test="hl != null">
+        HL,
+      </if>
+      <if test="bbz != null">
+        BBZ,
+      </if>
+      <if test="fjh != null">
+        FJH,
+      </if>
+      <if test="sfrlq != null">
+        SFRLQ,
+      </if>
+      <if test="zrlq != null">
+        ZRLQ,
+      </if>
+      <if test="zfanxcs != null">
+        ZFANXCS,
+      </if>
+      <if test="fanxcs != null">
+        FANXCS,
+      </if>
+      <if test="xfrq != null">
+        XFRQ,
+      </if>
+      <if test="sfqsm != null">
+        SFQSM,
+      </if>
+      <if test="sfqsysm != null">
+        SFQSYSM,
+      </if>
+      <if test="hclb != null">
+        HCLB,
+      </if>
+      <if test="jj != null">
+        JJ,
+      </if>
+      <if test="zylb != null">
+        ZYLB,
+      </if>
+      <if test="zgqcs != null">
+        ZGQCS,
+      </if>
+      <if test="gqcs != null">
+        GQCS,
+      </if>
+      <if test="sfqxs != null">
+        SFQXS,
+      </if>
+      <if test="yfqx != null">
+        YFQX,
+      </if>
+      <if test="jxqn != null">
+        JXQN,
+      </if>
+      <if test="jxqxs != null">
+        JXQXS,
+      </if>
+      <if test="rfid != null">
+        RFID,
+      </if>
+      <if test="ysid != null">
+        YSID,
+      </if>
+      <if test="qclb != null">
+        QCLB,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dwid != null">
+        #{dwid,jdbcType=VARCHAR},
+      </if>
+      <if test="jx != null">
+        #{jx,jdbcType=VARCHAR},
+      </if>
+      <if test="jh != null">
+        #{jh,jdbcType=VARCHAR},
+      </if>
+      <if test="xh != null">
+        #{xh,jdbcType=VARCHAR},
+      </if>
+      <if test="zl != null">
+        #{zl,jdbcType=VARCHAR},
+      </if>
+      <if test="xz != null">
+        #{xz,jdbcType=VARCHAR},
+      </if>
+      <if test="sl != null">
+        #{sl,jdbcType=DECIMAL},
+      </if>
+      <if test="dj != null">
+        #{dj,jdbcType=DECIMAL},
+      </if>
+      <if test="zj != null">
+        #{zj,jdbcType=DECIMAL},
+      </if>
+      <if test="ccrq != null">
+        #{ccrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ysrq != null">
+        #{ysrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="smzt != null">
+        #{smzt,jdbcType=VARCHAR},
+      </if>
+      <if test="rkrq != null">
+        #{rkrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zsmn != null">
+        #{zsmn,jdbcType=DECIMAL},
+      </if>
+      <if test="zsmxs != null">
+        #{zsmxs,jdbcType=DECIMAL},
+      </if>
+      <if test="zsmxh != null">
+        #{zsmxh,jdbcType=DECIMAL},
+      </if>
+      <if test="zsmql != null">
+        #{zsmql,jdbcType=DECIMAL},
+      </if>
+      <if test="zfxcs != null">
+        #{zfxcs,jdbcType=DECIMAL},
+      </if>
+      <if test="yfrq != null">
+        #{yfrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zyfcs != null">
+        #{zyfcs,jdbcType=DECIMAL},
+      </if>
+      <if test="yfcs != null">
+        #{yfcs,jdbcType=DECIMAL},
+      </if>
+      <if test="fxrq != null">
+        #{fxrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fxsmn != null">
+        #{fxsmn,jdbcType=DECIMAL},
+      </if>
+      <if test="fxsmxs != null">
+        #{fxsmxs,jdbcType=DECIMAL},
+      </if>
+      <if test="fxcs != null">
+        #{fxcs,jdbcType=DECIMAL},
+      </if>
+      <if test="sbqxn != null">
+        #{sbqxn,jdbcType=DECIMAL},
+      </if>
+      <if test="sbqxxs != null">
+        #{sbqxxs,jdbcType=DECIMAL},
+      </if>
+      <if test="bz != null">
+        #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="zfxxs != null">
+        #{zfxxs,jdbcType=DECIMAL},
+      </if>
+      <if test="bczfxxs != null">
+        #{bczfxxs,jdbcType=DECIMAL},
+      </if>
+      <if test="bcfxxs != null">
+        #{bcfxxs,jdbcType=DECIMAL},
+      </if>
+      <if test="zxhcs != null">
+        #{zxhcs,jdbcType=DECIMAL},
+      </if>
+      <if test="bczxhcs != null">
+        #{bczxhcs,jdbcType=DECIMAL},
+      </if>
+      <if test="bcxhcs != null">
+        #{bcxhcs,jdbcType=DECIMAL},
+      </if>
+      <if test="zqlcs != null">
+        #{zqlcs,jdbcType=DECIMAL},
+      </if>
+      <if test="bczqlcs != null">
+        #{bczqlcs,jdbcType=DECIMAL},
+      </if>
+      <if test="bcqlcs != null">
+        #{bcqlcs,jdbcType=DECIMAL},
+      </if>
+      <if test="dw != null">
+        #{dw,jdbcType=VARCHAR},
+      </if>
+      <if test="jwh != null">
+        #{jwh,jdbcType=VARCHAR},
+      </if>
+      <if test="glfs != null">
+        #{glfs,jdbcType=DECIMAL},
+      </if>
+      <if test="ckdm != null">
+        #{ckdm,jdbcType=VARCHAR},
+      </if>
+      <if test="hl != null">
+        #{hl,jdbcType=DECIMAL},
+      </if>
+      <if test="bbz != null">
+        #{bbz,jdbcType=DECIMAL},
+      </if>
+      <if test="fjh != null">
+        #{fjh,jdbcType=VARCHAR},
+      </if>
+      <if test="sfrlq != null">
+        #{sfrlq,jdbcType=DECIMAL},
+      </if>
+      <if test="zrlq != null">
+        #{zrlq,jdbcType=DECIMAL},
+      </if>
+      <if test="zfanxcs != null">
+        #{zfanxcs,jdbcType=DECIMAL},
+      </if>
+      <if test="fanxcs != null">
+        #{fanxcs,jdbcType=DECIMAL},
+      </if>
+      <if test="xfrq != null">
+        #{xfrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sfqsm != null">
+        #{sfqsm,jdbcType=DECIMAL},
+      </if>
+      <if test="sfqsysm != null">
+        #{sfqsysm,jdbcType=DECIMAL},
+      </if>
+      <if test="hclb != null">
+        #{hclb,jdbcType=DECIMAL},
+      </if>
+      <if test="jj != null">
+        #{jj,jdbcType=DECIMAL},
+      </if>
+      <if test="zylb != null">
+        #{zylb,jdbcType=DECIMAL},
+      </if>
+      <if test="zgqcs != null">
+        #{zgqcs,jdbcType=DECIMAL},
+      </if>
+      <if test="gqcs != null">
+        #{gqcs,jdbcType=DECIMAL},
+      </if>
+      <if test="sfqxs != null">
+        #{sfqxs,jdbcType=DECIMAL},
+      </if>
+      <if test="yfqx != null">
+        #{yfqx,jdbcType=DECIMAL},
+      </if>
+      <if test="jxqn != null">
+        #{jxqn,jdbcType=DECIMAL},
+      </if>
+      <if test="jxqxs != null">
+        #{jxqxs,jdbcType=DECIMAL},
+      </if>
+      <if test="rfid != null">
+        #{rfid,jdbcType=VARCHAR},
+      </if>
+      <if test="ysid != null">
+        #{ysid,jdbcType=VARCHAR},
+      </if>
+      <if test="qclb != null">
+        #{qclb,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.andawell.material.entity.TCkCk">
+    insert into T_CK_CK
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dwid != null">
+        DWID,
+      </if>
+      <if test="jx != null">
+        JX,
+      </if>
+      <if test="jh != null">
+        JH,
+      </if>
+      <if test="xh != null">
+        XH,
+      </if>
+      <if test="zl != null">
+        ZL,
+      </if>
+      <if test="xz != null">
+        XZ,
+      </if>
+      <if test="sl != null">
+        SL,
+      </if>
+      <if test="dj != null">
+        DJ,
+      </if>
+      <if test="zj != null">
+        ZJ,
+      </if>
+      <if test="ccrq != null">
+        CCRQ,
+      </if>
+      <if test="ysrq != null">
+        YSRQ,
+      </if>
+      <if test="smzt != null">
+        SMZT,
+      </if>
+      <if test="rkrq != null">
+        RKRQ,
+      </if>
+      <if test="zsmn != null">
+        ZSMN,
+      </if>
+      <if test="zsmxs != null">
+        ZSMXS,
+      </if>
+      <if test="zsmxh != null">
+        ZSMXH,
+      </if>
+      <if test="zsmql != null">
+        ZSMQL,
+      </if>
+      <if test="zfxcs != null">
+        ZFXCS,
+      </if>
+      <if test="yfrq != null">
+        YFRQ,
+      </if>
+      <if test="zyfcs != null">
+        ZYFCS,
+      </if>
+      <if test="yfcs != null">
+        YFCS,
+      </if>
+      <if test="fxrq != null">
+        FXRQ,
+      </if>
+      <if test="fxsmn != null">
+        FXSMN,
+      </if>
+      <if test="fxsmxs != null">
+        FXSMXS,
+      </if>
+      <if test="fxcs != null">
+        FXCS,
+      </if>
+      <if test="sbqxn != null">
+        SBQXN,
+      </if>
+      <if test="sbqxxs != null">
+        SBQXXS,
+      </if>
+      <if test="bz != null">
+        BZ,
+      </if>
+      <if test="zfxxs != null">
+        ZFXXS,
+      </if>
+      <if test="bczfxxs != null">
+        BCZFXXS,
+      </if>
+      <if test="bcfxxs != null">
+        BCFXXS,
+      </if>
+      <if test="zxhcs != null">
+        ZXHCS,
+      </if>
+      <if test="bczxhcs != null">
+        BCZXHCS,
+      </if>
+      <if test="bcxhcs != null">
+        BCXHCS,
+      </if>
+      <if test="zqlcs != null">
+        ZQLCS,
+      </if>
+      <if test="bczqlcs != null">
+        BCZQLCS,
+      </if>
+      <if test="bcqlcs != null">
+        BCQLCS,
+      </if>
+      <if test="dw != null">
+        DW,
+      </if>
+      <if test="jwh != null">
+        JWH,
+      </if>
+      <if test="glfs != null">
+        GLFS,
+      </if>
+      <if test="ckdm != null">
+        CKDM,
+      </if>
+      <if test="hl != null">
+        HL,
+      </if>
+      <if test="bbz != null">
+        BBZ,
+      </if>
+      <if test="fjh != null">
+        FJH,
+      </if>
+      <if test="sfrlq != null">
+        SFRLQ,
+      </if>
+      <if test="zrlq != null">
+        ZRLQ,
+      </if>
+      <if test="zfanxcs != null">
+        ZFANXCS,
+      </if>
+      <if test="fanxcs != null">
+        FANXCS,
+      </if>
+      <if test="xfrq != null">
+        XFRQ,
+      </if>
+      <if test="sfqsm != null">
+        SFQSM,
+      </if>
+      <if test="sfqsysm != null">
+        SFQSYSM,
+      </if>
+      <if test="hclb != null">
+        HCLB,
+      </if>
+      <if test="jj != null">
+        JJ,
+      </if>
+      <if test="zylb != null">
+        ZYLB,
+      </if>
+      <if test="zgqcs != null">
+        ZGQCS,
+      </if>
+      <if test="gqcs != null">
+        GQCS,
+      </if>
+      <if test="sfqxs != null">
+        SFQXS,
+      </if>
+      <if test="yfqx != null">
+        YFQX,
+      </if>
+      <if test="jxqn != null">
+        JXQN,
+      </if>
+      <if test="jxqxs != null">
+        JXQXS,
+      </if>
+      <if test="rfid != null">
+        RFID,
+      </if>
+      <if test="ysid != null">
+        YSID,
+      </if>
+      <if test="qclb != null">
+        QCLB,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dwid != null">
+        #{dwid,jdbcType=VARCHAR},
+      </if>
+      <if test="jx != null">
+        #{jx,jdbcType=VARCHAR},
+      </if>
+      <if test="jh != null">
+        #{jh,jdbcType=VARCHAR},
+      </if>
+      <if test="xh != null">
+        #{xh,jdbcType=VARCHAR},
+      </if>
+      <if test="zl != null">
+        #{zl,jdbcType=VARCHAR},
+      </if>
+      <if test="xz != null">
+        #{xz,jdbcType=VARCHAR},
+      </if>
+      <if test="sl != null">
+        #{sl,jdbcType=DECIMAL},
+      </if>
+      <if test="dj != null">
+        #{dj,jdbcType=DECIMAL},
+      </if>
+      <if test="zj != null">
+        #{zj,jdbcType=DECIMAL},
+      </if>
+      <if test="ccrq != null">
+        #{ccrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ysrq != null">
+        #{ysrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="smzt != null">
+        #{smzt,jdbcType=VARCHAR},
+      </if>
+      <if test="rkrq != null">
+        #{rkrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zsmn != null">
+        #{zsmn,jdbcType=DECIMAL},
+      </if>
+      <if test="zsmxs != null">
+        #{zsmxs,jdbcType=DECIMAL},
+      </if>
+      <if test="zsmxh != null">
+        #{zsmxh,jdbcType=DECIMAL},
+      </if>
+      <if test="zsmql != null">
+        #{zsmql,jdbcType=DECIMAL},
+      </if>
+      <if test="zfxcs != null">
+        #{zfxcs,jdbcType=DECIMAL},
+      </if>
+      <if test="yfrq != null">
+        #{yfrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zyfcs != null">
+        #{zyfcs,jdbcType=DECIMAL},
+      </if>
+      <if test="yfcs != null">
+        #{yfcs,jdbcType=DECIMAL},
+      </if>
+      <if test="fxrq != null">
+        #{fxrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fxsmn != null">
+        #{fxsmn,jdbcType=DECIMAL},
+      </if>
+      <if test="fxsmxs != null">
+        #{fxsmxs,jdbcType=DECIMAL},
+      </if>
+      <if test="fxcs != null">
+        #{fxcs,jdbcType=DECIMAL},
+      </if>
+      <if test="sbqxn != null">
+        #{sbqxn,jdbcType=DECIMAL},
+      </if>
+      <if test="sbqxxs != null">
+        #{sbqxxs,jdbcType=DECIMAL},
+      </if>
+      <if test="bz != null">
+        #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="zfxxs != null">
+        #{zfxxs,jdbcType=DECIMAL},
+      </if>
+      <if test="bczfxxs != null">
+        #{bczfxxs,jdbcType=DECIMAL},
+      </if>
+      <if test="bcfxxs != null">
+        #{bcfxxs,jdbcType=DECIMAL},
+      </if>
+      <if test="zxhcs != null">
+        #{zxhcs,jdbcType=DECIMAL},
+      </if>
+      <if test="bczxhcs != null">
+        #{bczxhcs,jdbcType=DECIMAL},
+      </if>
+      <if test="bcxhcs != null">
+        #{bcxhcs,jdbcType=DECIMAL},
+      </if>
+      <if test="zqlcs != null">
+        #{zqlcs,jdbcType=DECIMAL},
+      </if>
+      <if test="bczqlcs != null">
+        #{bczqlcs,jdbcType=DECIMAL},
+      </if>
+      <if test="bcqlcs != null">
+        #{bcqlcs,jdbcType=DECIMAL},
+      </if>
+      <if test="dw != null">
+        #{dw,jdbcType=VARCHAR},
+      </if>
+      <if test="jwh != null">
+        #{jwh,jdbcType=VARCHAR},
+      </if>
+      <if test="glfs != null">
+        #{glfs,jdbcType=DECIMAL},
+      </if>
+      <if test="ckdm != null">
+        #{ckdm,jdbcType=VARCHAR},
+      </if>
+      <if test="hl != null">
+        #{hl,jdbcType=DECIMAL},
+      </if>
+      <if test="bbz != null">
+        #{bbz,jdbcType=DECIMAL},
+      </if>
+      <if test="fjh != null">
+        #{fjh,jdbcType=VARCHAR},
+      </if>
+      <if test="sfrlq != null">
+        #{sfrlq,jdbcType=DECIMAL},
+      </if>
+      <if test="zrlq != null">
+        #{zrlq,jdbcType=DECIMAL},
+      </if>
+      <if test="zfanxcs != null">
+        #{zfanxcs,jdbcType=DECIMAL},
+      </if>
+      <if test="fanxcs != null">
+        #{fanxcs,jdbcType=DECIMAL},
+      </if>
+      <if test="xfrq != null">
+        #{xfrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sfqsm != null">
+        #{sfqsm,jdbcType=DECIMAL},
+      </if>
+      <if test="sfqsysm != null">
+        #{sfqsysm,jdbcType=DECIMAL},
+      </if>
+      <if test="hclb != null">
+        #{hclb,jdbcType=DECIMAL},
+      </if>
+      <if test="jj != null">
+        #{jj,jdbcType=DECIMAL},
+      </if>
+      <if test="zylb != null">
+        #{zylb,jdbcType=DECIMAL},
+      </if>
+      <if test="zgqcs != null">
+        #{zgqcs,jdbcType=DECIMAL},
+      </if>
+      <if test="gqcs != null">
+        #{gqcs,jdbcType=DECIMAL},
+      </if>
+      <if test="sfqxs != null">
+        #{sfqxs,jdbcType=DECIMAL},
+      </if>
+      <if test="yfqx != null">
+        #{yfqx,jdbcType=DECIMAL},
+      </if>
+      <if test="jxqn != null">
+        #{jxqn,jdbcType=DECIMAL},
+      </if>
+      <if test="jxqxs != null">
+        #{jxqxs,jdbcType=DECIMAL},
+      </if>
+      <if test="rfid != null">
+        #{rfid,jdbcType=VARCHAR},
+      </if>
+      <if test="ysid != null">
+        #{ysid,jdbcType=VARCHAR},
+      </if>
+      <if test="qclb != null">
+        #{qclb,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="getPlanList" parameterType="com.andawell.material.query.YFPlanQuery" resultType="com.andawell.material.vo.TCkCkPlanVO">
+    select ROWNUM,DWID,T_CK_CK.JX,T_JH_JX.MC JXMC,JH,XH,T_CK_CK.SL,ZL,T_CK_CK.DJ,
+    CCRQ,YFQX,YFRQ,
+    T_XT_JLDW.MC JLDW,T_JH.MC JHMC,DJ,ZJ,JWH,CKDM,T_JH_ZL.MC ZLMC,
+    ADD_MONTHS(YFRQ,12*YFQX) YFQZ,T_CK_CRKLB.jm
+    from T_CK_CK
+    LEFT JOIN T_JH ON T_JH.ID=T_CK_CK.JH AND T_JH.JX=T_CK_CK.JX
+    LEFT JOIN T_XT_JLDW ON T_XT_JLDW.ID=T_JH.DW
+    LEFT JOIN T_JH_JX ON T_JH_JX.ID=T_CK_CK.JX
+    LEFT JOIN T_JH_ZL ON T_JH_ZL.ID=T_CK_CK.ZL
+    LEFT JOIN T_CK_CRKLB ON T_CK_CK.XZ=T_CK_CK.XZ
+    WHERE 1=1 AND T_CK_CK.XZ=0 AND XH NOT IN (SELECT XH FROM T_CK_YFK WHERE XZ=0)AND T_CK_CK.SL>0
+    <if test="zl != null">
+      <if test="zl=='1'">
+        and T_CK_CK.Zl in('11','12')
+      </if>
+      <if test="zl=='2'">
+        and T_CK_CK.Zl ='21'
+      </if>
+    </if>
+    <if test="jx!=null">
+      and T_CK_CK.jx =${jx}
+    </if>
+    <if test="jh!=null">
+      and T_CK_CK.jh =${jh}
+    </if>
+    <if test="startDate!=null and endDate!=null">
+      and TO_CHAR(ADD_MONTHS(YFRQ,12*YFQX),'YYYY-MM-DD')>'${startDate}'
+      and '${endDate}' > TO_CHAR(ADD_MONTHS(YFRQ,12*YFQX),'YYYY-MM-DD')
+    </if>
+    <if test="startDate!=null and endDate==null">
+      and TO_CHAR(ADD_MONTHS(YFRQ,12*YFQX),'YYYY-MM-DD')>'${startDate}'
+    </if>
+    <if test="startDate==null and endDate!=null">
+      and '${endDate}' > TO_CHAR(ADD_MONTHS(YFRQ,12*YFQX),'YYYY-MM-DD')
+    </if>
+    <if test="jd!=null">
+      and to_char(ADD_MONTHS(YFRQ,12*YFQX),'Q') = ${jd}
+      and to_char(ADD_MONTHS(YFRQ,12*YFQX),'yyyy') = to_char(SYSDATE,'yyyy')
+    </if>
+
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from T_CK_CK
+    where DWID = #{dwid,jdbcType=VARCHAR}
+      and JX = #{jx,jdbcType=VARCHAR}
+      and JH = #{jh,jdbcType=VARCHAR}
+      and XH = #{xh,jdbcType=VARCHAR}
+      and ZL = #{zl,jdbcType=VARCHAR}
+      and XZ = #{xz,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteCkck" parameterType="java.lang.String">
+    delete from t_ck_ck where DWID = #{dwid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.andawell.material.entity.TCkCk">
+    insert into T_CK_CK (DWID, JX, JH, 
+      XH, ZL, XZ, SL, 
+      DJ, ZJ, CCRQ, YSRQ, 
+      SMZT, RKRQ, ZSMN, 
+      ZSMXS, ZSMXH, ZSMQL, 
+      ZFXCS, YFRQ, ZYFCS, 
+      YFCS, FXRQ, FXSMN, 
+      FXSMXS, FXCS, SBQXN, 
+      SBQXXS, BZ, ZFXXS, 
+      BCZFXXS, BCFXXS, ZXHCS, 
+      BCZXHCS, BCXHCS, ZQLCS, 
+      BCZQLCS, BCQLCS, DW, 
+      JWH, GLFS, CKDM, HL, 
+      BBZ, FJH, SFRLQ, ZRLQ, 
+      ZFANXCS, FANXCS, XFRQ, 
+      SFQSM, SFQSYSM, HCLB, 
+      JJ, ZYLB, ZGQCS, GQCS, 
+      SFQXS, YFQX, JXQN, 
+      JXQXS, RFID, YSID, 
+      QCLB)
+    values (#{dwid,jdbcType=VARCHAR}, #{jx,jdbcType=VARCHAR}, #{jh,jdbcType=VARCHAR}, 
+      #{xh,jdbcType=VARCHAR}, #{zl,jdbcType=VARCHAR}, #{xz,jdbcType=VARCHAR}, #{sl,jdbcType=DECIMAL}, 
+      #{dj,jdbcType=DECIMAL}, #{zj,jdbcType=DECIMAL}, #{ccrq,jdbcType=TIMESTAMP}, #{ysrq,jdbcType=TIMESTAMP}, 
+      #{smzt,jdbcType=VARCHAR}, #{rkrq,jdbcType=TIMESTAMP}, #{zsmn,jdbcType=DECIMAL}, 
+      #{zsmxs,jdbcType=DECIMAL}, #{zsmxh,jdbcType=DECIMAL}, #{zsmql,jdbcType=DECIMAL}, 
+      #{zfxcs,jdbcType=DECIMAL}, #{yfrq,jdbcType=TIMESTAMP}, #{zyfcs,jdbcType=DECIMAL}, 
+      #{yfcs,jdbcType=DECIMAL}, #{fxrq,jdbcType=TIMESTAMP}, #{fxsmn,jdbcType=DECIMAL}, 
+      #{fxsmxs,jdbcType=DECIMAL}, #{fxcs,jdbcType=DECIMAL}, #{sbqxn,jdbcType=DECIMAL}, 
+      #{sbqxxs,jdbcType=DECIMAL}, #{bz,jdbcType=VARCHAR}, #{zfxxs,jdbcType=DECIMAL}, 
+      #{bczfxxs,jdbcType=DECIMAL}, #{bcfxxs,jdbcType=DECIMAL}, #{zxhcs,jdbcType=DECIMAL}, 
+      #{bczxhcs,jdbcType=DECIMAL}, #{bcxhcs,jdbcType=DECIMAL}, #{zqlcs,jdbcType=DECIMAL}, 
+      #{bczqlcs,jdbcType=DECIMAL}, #{bcqlcs,jdbcType=DECIMAL}, #{dw,jdbcType=VARCHAR}, 
+      #{jwh,jdbcType=VARCHAR}, #{glfs,jdbcType=DECIMAL}, #{ckdm,jdbcType=VARCHAR}, #{hl,jdbcType=DECIMAL}, 
+      #{bbz,jdbcType=DECIMAL}, #{fjh,jdbcType=VARCHAR}, #{sfrlq,jdbcType=DECIMAL}, #{zrlq,jdbcType=DECIMAL}, 
+      #{zfanxcs,jdbcType=DECIMAL}, #{fanxcs,jdbcType=DECIMAL}, #{xfrq,jdbcType=TIMESTAMP}, 
+      #{sfqsm,jdbcType=DECIMAL}, #{sfqsysm,jdbcType=DECIMAL}, #{hclb,jdbcType=DECIMAL}, 
+      #{jj,jdbcType=DECIMAL}, #{zylb,jdbcType=DECIMAL}, #{zgqcs,jdbcType=DECIMAL}, #{gqcs,jdbcType=DECIMAL}, 
+      #{sfqxs,jdbcType=DECIMAL}, #{yfqx,jdbcType=DECIMAL}, #{jxqn,jdbcType=DECIMAL}, 
+      #{jxqxs,jdbcType=DECIMAL}, #{rfid,jdbcType=VARCHAR}, #{ysid,jdbcType=VARCHAR}, 
+      #{qclb,jdbcType=VARCHAR})
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.andawell.material.entity.TCkCk">
+    update T_CK_CK
+    <set>
+      <if test="sl != null">
+        SL = #{sl,jdbcType=DECIMAL},
+      </if>
+      <if test="dj != null">
+        DJ = #{dj,jdbcType=DECIMAL},
+      </if>
+      <if test="zj != null">
+        ZJ = #{zj,jdbcType=DECIMAL},
+      </if>
+      <if test="ccrq != null">
+        CCRQ = #{ccrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ysrq != null">
+        YSRQ = #{ysrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="smzt != null">
+        SMZT = #{smzt,jdbcType=VARCHAR},
+      </if>
+      <if test="rkrq != null">
+        RKRQ = #{rkrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zsmn != null">
+        ZSMN = #{zsmn,jdbcType=DECIMAL},
+      </if>
+      <if test="zsmxs != null">
+        ZSMXS = #{zsmxs,jdbcType=DECIMAL},
+      </if>
+      <if test="zsmxh != null">
+        ZSMXH = #{zsmxh,jdbcType=DECIMAL},
+      </if>
+      <if test="zsmql != null">
+        ZSMQL = #{zsmql,jdbcType=DECIMAL},
+      </if>
+      <if test="zfxcs != null">
+        ZFXCS = #{zfxcs,jdbcType=DECIMAL},
+      </if>
+      <if test="yfrq != null">
+        YFRQ = #{yfrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zyfcs != null">
+        ZYFCS = #{zyfcs,jdbcType=DECIMAL},
+      </if>
+      <if test="yfcs != null">
+        YFCS = #{yfcs,jdbcType=DECIMAL},
+      </if>
+      <if test="fxrq != null">
+        FXRQ = #{fxrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fxsmn != null">
+        FXSMN = #{fxsmn,jdbcType=DECIMAL},
+      </if>
+      <if test="fxsmxs != null">
+        FXSMXS = #{fxsmxs,jdbcType=DECIMAL},
+      </if>
+      <if test="fxcs != null">
+        FXCS = #{fxcs,jdbcType=DECIMAL},
+      </if>
+      <if test="sbqxn != null">
+        SBQXN = #{sbqxn,jdbcType=DECIMAL},
+      </if>
+      <if test="sbqxxs != null">
+        SBQXXS = #{sbqxxs,jdbcType=DECIMAL},
+      </if>
+      <if test="bz != null">
+        BZ = #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="zfxxs != null">
+        ZFXXS = #{zfxxs,jdbcType=DECIMAL},
+      </if>
+      <if test="bczfxxs != null">
+        BCZFXXS = #{bczfxxs,jdbcType=DECIMAL},
+      </if>
+      <if test="bcfxxs != null">
+        BCFXXS = #{bcfxxs,jdbcType=DECIMAL},
+      </if>
+      <if test="zxhcs != null">
+        ZXHCS = #{zxhcs,jdbcType=DECIMAL},
+      </if>
+      <if test="bczxhcs != null">
+        BCZXHCS = #{bczxhcs,jdbcType=DECIMAL},
+      </if>
+      <if test="bcxhcs != null">
+        BCXHCS = #{bcxhcs,jdbcType=DECIMAL},
+      </if>
+      <if test="zqlcs != null">
+        ZQLCS = #{zqlcs,jdbcType=DECIMAL},
+      </if>
+      <if test="bczqlcs != null">
+        BCZQLCS = #{bczqlcs,jdbcType=DECIMAL},
+      </if>
+      <if test="bcqlcs != null">
+        BCQLCS = #{bcqlcs,jdbcType=DECIMAL},
+      </if>
+      <if test="dw != null">
+        DW = #{dw,jdbcType=VARCHAR},
+      </if>
+      <if test="jwh != null">
+        JWH = #{jwh,jdbcType=VARCHAR},
+      </if>
+      <if test="glfs != null">
+        GLFS = #{glfs,jdbcType=DECIMAL},
+      </if>
+      <if test="ckdm != null">
+        CKDM = #{ckdm,jdbcType=VARCHAR},
+      </if>
+      <if test="hl != null">
+        HL = #{hl,jdbcType=DECIMAL},
+      </if>
+      <if test="bbz != null">
+        BBZ = #{bbz,jdbcType=DECIMAL},
+      </if>
+      <if test="fjh != null">
+        FJH = #{fjh,jdbcType=VARCHAR},
+      </if>
+      <if test="sfrlq != null">
+        SFRLQ = #{sfrlq,jdbcType=DECIMAL},
+      </if>
+      <if test="zrlq != null">
+        ZRLQ = #{zrlq,jdbcType=DECIMAL},
+      </if>
+      <if test="zfanxcs != null">
+        ZFANXCS = #{zfanxcs,jdbcType=DECIMAL},
+      </if>
+      <if test="fanxcs != null">
+        FANXCS = #{fanxcs,jdbcType=DECIMAL},
+      </if>
+      <if test="xfrq != null">
+        XFRQ = #{xfrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sfqsm != null">
+        SFQSM = #{sfqsm,jdbcType=DECIMAL},
+      </if>
+      <if test="sfqsysm != null">
+        SFQSYSM = #{sfqsysm,jdbcType=DECIMAL},
+      </if>
+      <if test="hclb != null">
+        HCLB = #{hclb,jdbcType=DECIMAL},
+      </if>
+      <if test="jj != null">
+        JJ = #{jj,jdbcType=DECIMAL},
+      </if>
+      <if test="zylb != null">
+        ZYLB = #{zylb,jdbcType=DECIMAL},
+      </if>
+      <if test="zgqcs != null">
+        ZGQCS = #{zgqcs,jdbcType=DECIMAL},
+      </if>
+      <if test="gqcs != null">
+        GQCS = #{gqcs,jdbcType=DECIMAL},
+      </if>
+      <if test="sfqxs != null">
+        SFQXS = #{sfqxs,jdbcType=DECIMAL},
+      </if>
+      <if test="yfqx != null">
+        YFQX = #{yfqx,jdbcType=DECIMAL},
+      </if>
+      <if test="jxqn != null">
+        JXQN = #{jxqn,jdbcType=DECIMAL},
+      </if>
+      <if test="jxqxs != null">
+        JXQXS = #{jxqxs,jdbcType=DECIMAL},
+      </if>
+      <if test="rfid != null">
+        RFID = #{rfid,jdbcType=VARCHAR},
+      </if>
+      <if test="ysid != null">
+        YSID = #{ysid,jdbcType=VARCHAR},
+      </if>
+      <if test="qclb != null">
+        QCLB = #{qclb,jdbcType=VARCHAR},
+      </if>
+      <if test="xzs != null">
+        xz = #{xzs,jdbcType=VARCHAR},
+      </if>
+      <if test="xhs != null">
+        xh = #{xhs,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DWID = #{dwid,jdbcType=VARCHAR}
+      and JX = #{jx,jdbcType=VARCHAR}
+      and JH = #{jh,jdbcType=VARCHAR}
+      and XH = #{xh,jdbcType=VARCHAR}
+      and ZL = #{zl,jdbcType=VARCHAR}
+      and XZ = #{xz,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.andawell.material.entity.TCkCk">
+    update T_CK_CK
+    set SL = #{sl,jdbcType=DECIMAL},
+      DJ = #{dj,jdbcType=DECIMAL},
+      ZJ = #{zj,jdbcType=DECIMAL},
+      CCRQ = #{ccrq,jdbcType=TIMESTAMP},
+      YSRQ = #{ysrq,jdbcType=TIMESTAMP},
+      SMZT = #{smzt,jdbcType=VARCHAR},
+      RKRQ = #{rkrq,jdbcType=TIMESTAMP},
+      ZSMN = #{zsmn,jdbcType=DECIMAL},
+      ZSMXS = #{zsmxs,jdbcType=DECIMAL},
+      ZSMXH = #{zsmxh,jdbcType=DECIMAL},
+      ZSMQL = #{zsmql,jdbcType=DECIMAL},
+      ZFXCS = #{zfxcs,jdbcType=DECIMAL},
+      YFRQ = #{yfrq,jdbcType=TIMESTAMP},
+      ZYFCS = #{zyfcs,jdbcType=DECIMAL},
+      YFCS = #{yfcs,jdbcType=DECIMAL},
+      FXRQ = #{fxrq,jdbcType=TIMESTAMP},
+      FXSMN = #{fxsmn,jdbcType=DECIMAL},
+      FXSMXS = #{fxsmxs,jdbcType=DECIMAL},
+      FXCS = #{fxcs,jdbcType=DECIMAL},
+      SBQXN = #{sbqxn,jdbcType=DECIMAL},
+      SBQXXS = #{sbqxxs,jdbcType=DECIMAL},
+      BZ = #{bz,jdbcType=VARCHAR},
+      ZFXXS = #{zfxxs,jdbcType=DECIMAL},
+      BCZFXXS = #{bczfxxs,jdbcType=DECIMAL},
+      BCFXXS = #{bcfxxs,jdbcType=DECIMAL},
+      ZXHCS = #{zxhcs,jdbcType=DECIMAL},
+      BCZXHCS = #{bczxhcs,jdbcType=DECIMAL},
+      BCXHCS = #{bcxhcs,jdbcType=DECIMAL},
+      ZQLCS = #{zqlcs,jdbcType=DECIMAL},
+      BCZQLCS = #{bczqlcs,jdbcType=DECIMAL},
+      BCQLCS = #{bcqlcs,jdbcType=DECIMAL},
+      DW = #{dw,jdbcType=VARCHAR},
+      JWH = #{jwh,jdbcType=VARCHAR},
+      GLFS = #{glfs,jdbcType=DECIMAL},
+      CKDM = #{ckdm,jdbcType=VARCHAR},
+      HL = #{hl,jdbcType=DECIMAL},
+      BBZ = #{bbz,jdbcType=DECIMAL},
+      FJH = #{fjh,jdbcType=VARCHAR},
+      SFRLQ = #{sfrlq,jdbcType=DECIMAL},
+      ZRLQ = #{zrlq,jdbcType=DECIMAL},
+      ZFANXCS = #{zfanxcs,jdbcType=DECIMAL},
+      FANXCS = #{fanxcs,jdbcType=DECIMAL},
+      XFRQ = #{xfrq,jdbcType=TIMESTAMP},
+      SFQSM = #{sfqsm,jdbcType=DECIMAL},
+      SFQSYSM = #{sfqsysm,jdbcType=DECIMAL},
+      HCLB = #{hclb,jdbcType=DECIMAL},
+      JJ = #{jj,jdbcType=DECIMAL},
+      ZYLB = #{zylb,jdbcType=DECIMAL},
+      ZGQCS = #{zgqcs,jdbcType=DECIMAL},
+      GQCS = #{gqcs,jdbcType=DECIMAL},
+      SFQXS = #{sfqxs,jdbcType=DECIMAL},
+      YFQX = #{yfqx,jdbcType=DECIMAL},
+      JXQN = #{jxqn,jdbcType=DECIMAL},
+      JXQXS = #{jxqxs,jdbcType=DECIMAL},
+      RFID = #{rfid,jdbcType=VARCHAR},
+      YSID = #{ysid,jdbcType=VARCHAR},
+      QCLB = #{qclb,jdbcType=VARCHAR}
+    where DWID = #{dwid,jdbcType=VARCHAR}
+      and JX = #{jx,jdbcType=VARCHAR}
+      and JH = #{jh,jdbcType=VARCHAR}
+      and XH = #{xh,jdbcType=VARCHAR}
+      and ZL = #{zl,jdbcType=VARCHAR}
+      and XZ = #{xz,jdbcType=VARCHAR}
+  </update>
+  <update id="updateZB" parameterType="com.andawell.material.query.TCkCkUpdateQuery">
+    update T_CK_CK
+    set QCLB = 2
+    where JX = #{jx,jdbcType=VARCHAR}
+      and JH = #{jh,jdbcType=VARCHAR}
+      and XH = #{xh,jdbcType=VARCHAR}
+      and ZL = #{zl,jdbcType=VARCHAR}
+  </update>
+  <update id="updateZZ" parameterType="com.andawell.material.query.TCkCkUpdateQuery">
+    update T_CK_CK
+    set QCLB = 1
+    where JX = #{jx,jdbcType=VARCHAR}
+      and JH = #{jh,jdbcType=VARCHAR}
+      and XH = #{xh,jdbcType=VARCHAR}
+      and ZL = #{zl,jdbcType=VARCHAR}
+  </update>
+
+
+
+
+  <!--以下都是自己业务逻辑sql-->
+
+  <sql id="queryUpdate">
+    <set>
+      <if test="xz != null">
+        xz = #{xz,jdbcType=VARCHAR},
+      </if>
+      <if test="sl != null">
+        SL = #{sl,jdbcType=DECIMAL},
+      </if>
+      <if test="bz != null">
+        BZ = #{bz,jdbcType=VARCHAR},
+      </if>
+    </set>
+  </sql>
+
+  <sql id="queryCondition">
+    <where>
+    A.xz='0'
+      <if test="query!=null">
+        <if test="query.jx !=null and query.jh !=null">
+          and A.jx like '${query.jx}%' and A.JH like '%${query.jh}%' and A.SL>0 order by a.jh,ADD_MONTHS(A.YFRQ,12*A.YFQX),CCRQ
+        </if>
+      </if>
+    </where>
+  </sql>
+  <sql id="querySelect">
+    <where>
+      <if test="jx != null and jx.length()>0">
+       and  jx= #{jx,jdbcType=VARCHAR}
+      </if>
+      <if test="jh != null and jh.length()>0">
+       and  jh= #{jh,jdbcType=VARCHAR}
+      </if>
+      <if test="xh != null and xh.length()>0">
+       and  xh= #{xh,jdbcType=VARCHAR}
+      </if>
+      <if test="zl != null and zl.length()>0">
+        and  zl=#{zl,jdbcType=VARCHAR}
+      </if>
+      <if test="xz != null and xz.length()>0">
+        and  xz=#{xz,jdbcType=VARCHAR}
+      </if>
+      <if test="zls != null and xzs.length()>0">
+        and zl in
+        <foreach collection="zls" item="zl" index="index" open="(" separator="," close=")">
+          #{zl}
+        </foreach>
+      </if>
+    </where>
+  </sql>
+
+  <select id="libraryList" resultType="com.andawell.material.entity.response.TCkCkBO">
+    SELECT
+    t_Jh_Zl.mc as zlmc,A.fxrq as fxrq,A.xfrq as xfrq,A.hclb,
+    A.ckdm as ckdm,A.XH,C.MC AS jxmc,A.JH,A.SL,A.XZ,A.CCRQ ,
+    A.RKRQ as rkrq,T_JH_JH.MC AS jhmc ,A.dwid ,A.jx as jx,A.zl as zl,T_XT_JLDW.id AS jldw
+    ,T_XT_HCLB.MC AS hclbmc,T_XT_JLDW.MC AS jldwmc,A.YFQX as YFQZ,'' GLFS,
+    jwh,A.dj,A.zj,A.bz,A.hl,
+    CASE WHEN QCLB=1 THEN '周转航材'WHEN QCLB=2 THEN '战备器材'else'其他' end qclbmc
+    FROM T_CK_CK A
+    LEFT JOIN T_JH_JX C ON A.JX=C.ID
+    LEFT JOIN T_JH_JH ON T_JH_JH.ID = A.JH  AND T_JH_JH.ID=A.JH
+    left join T_XT_HCLB on T_XT_HCLB.id=A.Hclb
+    left join t_Jh_Zl on T_JH_ZL.id =A.Zl
+    LEFT JOIN T_XT_JLDW ON T_XT_JLDW.ID=T_JH_JH.DW
+    <include refid="queryCondition"/>
+  </select>
+   <select id="libraryMatchingList" resultType="com.andawell.material.entity.response.TCkCkBO">
+    SELECT
+    t_Jh_Zl.mc as zlmc,A.fxrq as fxrq,A.xfrq as xfrq,A.hclb,
+    A.ckdm as ckdm,A.XH,C.MC AS jxmc,A.JH,A.SL,A.XZ,A.CCRQ ,
+    A.RKRQ as rkrq,T_JH.MC AS jhmc ,A.dwid ,A.jx as jx,A.zl as zl,T_XT_JLDW.id AS jldw
+    ,T_XT_HCLB.MC AS hclbmc,T_XT_JLDW.MC AS jldwmc,A.YFQX as YFQZ,'' GLFS,
+    jwh,
+    CASE WHEN QCLB=1 THEN '周转航材'WHEN QCLB=2 THEN '战备器材'else'其他' end qclbmc
+    FROM T_CK_CK A
+    LEFT JOIN T_JH_JX C ON A.JX=C.ID
+    LEFT JOIN T_JH ON T_JH.ID = A.JH  AND T_JH.JX=A.JX
+    left join T_XT_HCLB on T_XT_HCLB.id=A.Hclb
+    left join t_Jh_Zl on T_JH_ZL.id =A.Zl
+    LEFT JOIN T_XT_JLDW ON T_XT_JLDW.ID=T_JH.DW
+    left join T_JH_JHHH on T_JH_JHHH.THJH=T_JH.id
+    <include refid="queryCondition"/>
+  </select>
+  <select id="selectByDwidAndJxAndJhAndXhAndZl" resultType="com.andawell.material.entity.TCkCk">
+    select
+    <include refid="Base_Column_List" />
+    from T_CK_CK
+    where DWID = #{dwid,jdbcType=VARCHAR}
+    and JX = #{jx,jdbcType=VARCHAR}
+    and JH = #{jh,jdbcType=VARCHAR}
+    and XH = #{xh,jdbcType=VARCHAR}
+    and ZL = #{zl,jdbcType=VARCHAR}
+  </select>
+
+  <select id="select" resultType="com.andawell.material.entity.TCkC">
+    select
+    <include refid="Base_Column_List" />
+    from T_CK_CK
+  </select>
+
+
+  <update id="updateByDwidAndJxAndJhAndXhAndZl">
+ update T_CK_CK
+    <include refid="queryUpdate" />
+    where DWID = #{dwid,jdbcType=VARCHAR}
+      and JX = #{jx,jdbcType=VARCHAR}
+      and JH = #{jh,jdbcType=VARCHAR}
+      and XH = #{xh,jdbcType=VARCHAR}
+      and ZL = #{zl,jdbcType=VARCHAR}
+  </update>
+  <select id="getListByjhjxzl" resultType="com.andawell.material.entity.TCkCk">
+    select
+    <include refid="Base_Column_List" />
+    from T_CK_CK
+    where JX = #{jx,jdbcType=VARCHAR}
+    and JH = #{jh,jdbcType=VARCHAR}
+    and ZL = #{zl,jdbcType=VARCHAR}
+  </select>
+  <select id="getHistoryMessageCountList" resultType="com.andawell.material.vo.HistoryMessageCountVO">
+    SELECT A.JX,T_JH_JX.MC JXMC,JH,T_JH.MC JHMC,T_XT_JLDW.MC JLDW,A.ZSL,ZL,T_JH_ZL.MC ZLMC,HCLB,T_XT_HCLB.MC HCMC,A.ZJ,A.ZJ/ZSL
+    PJJ FROM ( select  JX,JH,SUM(CK.SL)ZSL,ZL,HCLB,SUM(DJ*SL*HL)ZJ
+    from  T_CK_CK_TEMP CK WHERE 1=1 AND SL>0
+    <if test="dcrq != null">
+      and TO_CHAR(dcrq,'yyyy-mm-dd') = #{dcrq,jdbcType=VARCHAR}
+    </if>
+    <if test="jx != null">
+      and jx = #{jx,jdbcType=VARCHAR}
+    </if>
+    GROUP BY JX,JH,ZL,HCLB  ORDER BY JX,JH,HCLB,ZL  )A
+    LEFT JOIN T_JH_JX ON T_JH_JX.ID=A.JX
+    LEFT JOIN T_JH ON T_JH.ID=A.JH AND T_JH.JX=A.JX
+    LEFT JOIN T_XT_JLDW ON T_XT_JLDW.ID=T_JH.DW
+    LEFT JOIN T_JH_ZL ON T_JH_ZL.ID=A.ZL
+    LEFT JOIN T_XT_HCLB ON T_XT_HCLB.ID=A.HCLB
+
+  </select>
+    <select id="getInOutList" resultType="com.andawell.material.vo.KFInOutMessageVO">
+        SELECT t_Ck_Crkqd_Temp.* ,T_JH_JX.mc FROM t_Ck_Crkqd_Temp  left join T_JH_JX
+        on t_Ck_Crkqd_Temp.jx = T_JH_JX.id
+        where 1=1
+        <if test="queryDate!=null">
+          and TO_CHAR(CRKRQ,'yyyy-mm') = '${queryDate}'
+        </if>
+        <if test="jd!=null">
+            and TO_CHAR(CRKRQ,'Q') = '${jd}'
+        </if>
+        <if test="startDate!=null and endDate!=null">
+          and TO_CHAR(CRKRQ,'yyyy-mm-dd')>'${startDate}'
+          and '${endDate}' > TO_CHAR(CRKRQ,'yyyy-mm-dd')
+        </if>
+        <if test="startDate!=null and endDate==null">
+          and TO_CHAR(CRKRQ,'yyyy-mm-dd')>'${startDate}'
+        </if>
+        <if test="startDate==null and endDate!=null">
+          and '${endDate}' > TO_CHAR(CRKRQ,'yyyy-mm-dd')
+        </if>
+      <if test="crklb!=null">
+         and crklb = #{crklb}
+      </if>
+        ORDER BY t_Ck_Crkqd_Temp.BH DESC
+
+    </select>
+
+  <sql id="queryGz">
+    <where>
+      1=1
+      <if test="query!=null">
+        <if test="query.jx!=null and query.jx.length()>0">
+          and JX= #{query.jx}
+        </if>
+        <if test="query.jh!=null and query.jh.length()>0">
+          and JH = #{query.jh}
+        </if>
+        <if test="query.xh!=null and query.xh.length()>0">
+          and XH= #{query.xh}
+        </if>
+        <if test="query.jhmc!=null and query.jhmc.length()>0">
+          and JHMC like "%"+${query.jhmc}+"%"
+        </if>
+      </if>
+    </where>
+  </sql>
+
+    <select id="selectByCount" resultType="java.lang.Integer" parameterType="com.andawell.material.query.TCkCkQuery">
+      select count (T_CK_CK.SL)
+      from T_CK_CK
+      <include refid="querySelect"/>
+    </select>
+
+    <select id="listAllGz" resultType="com.andawell.material.vo.TCkCkVO">
+      select A.*,T_JH_JX.MC JXMC,T_JH_JH.MC JHMC,T_JH_ZL.MC zlmc
+      from T_CK_CK A
+      LEFT JOIN T_JH_JX ON T_JH_JX.ID = A.JX
+      LEFT JOIN T_JH_JH ON T_JH_JH.ID = A.JH
+      LEFT JOIN T_JH_ZL ON T_JH_ZL.ID = A.ZL
+      <include refid="queryGz"/>
+      and (A.JX,A.JH) in (select JX,JH from T_JH_GZ where LX=2)
+    </select>
+
+  <select id="listUserGz" resultType="com.andawell.material.vo.TCkCkVO">
+    select A.*,T_JH_JX.MC JXMC,T_JH_JH.MC JHMC,T_JH_ZL.MC zlmc
+      from T_CK_CK A
+      LEFT JOIN T_JH_JX ON T_JH_JX.ID = A.JX
+      LEFT JOIN T_JH_JH ON T_JH_JH.ID = A.JH
+      LEFT JOIN T_JH_ZL ON T_JH_ZL.ID = A.ZL
+      <include refid="queryGz"/>
+      and (A.JX,A.JH) in (select JX,JH from T_JH_GZ where YHID = #{query.yhid} and LX=1)
+  </select>
+  <select id="getPersonalConcernsStatistics" parameterType="com.andawell.material.query.SummaryQuery"
+          resultType="java.util.Map">
+
+    select
+    a.jh as "jh",b.mc as "jhmc",a.jx as "jx", c.mc as "jxmc",'全新可用' as "zlmc",sum(a.sl)  as "sl"
+    from
+    t_ck_ck a
+    left join t_jh_jh b on a.jh=b.id
+    left join t_jh_jx c on a.jx=c.id
+    left join t_xt_dw d on a.dwid=d.id
+    left join T_Jh_gz gz on gz.jh = a.jh  and gz.jx = a.jx
+    where (A.zl='11' or A.zl='12') and gz.jh is not null
+
+      <if test="jx!=null and jx.length()>0">
+        and JX= #{jx}
+      </if>
+    <if test="userId!=null and userId.length()>0">
+      and gz.YHID= #{userId}
+    </if>
+      <if test="jh!=null and jh.length()>0">
+        and JH = #{jh}
+      </if>
+      <if test="dwid!=null and dwid.length()>0">
+        and dwid like '${dwid}%'
+      </if>
+    group by a.jh,a.jx,b.mc,c.mc
+  </select>
+  <select id="getWarningStatistics" parameterType="com.andawell.material.query.SummaryQuery"
+          resultType="java.util.Map">
+    select T_JH.MC "jhmc",T_JH_JX.MC
+    "jxmc",A.JX as "jx", A.JH as "jh",T_CK_AQKC.AQKC,T_CK_AQKC.dcd,T_CK_AQKC.gsd,A.SL as "sl"
+    FROM  (
+        select T_CK_CK.JX,T_CK_CK.JH,sum(T_CK_CK.SL) SL from T_CK_CK where 1=1
+        <if test="dwid!=null and dwid.length()>0">
+          and dwid like '${dwid}%'
+        </if>
+        group by T_CK_CK.JX,T_CK_CK.JH
+    ) A
+    LEFT JOIN T_JH ON A.JH=T_JH.ID and A.JX=T_JH.JX
+    LEFT JOIN T_JH_JX ON A.JX=T_JH_JX.ID
+    LEFT JOIN T_CK_AQKC ON T_CK_AQKC.JH=A.JH and T_CK_AQKC.JX=A.JX
+    WHERE 1=1 and A.SL between DCD and GSD
+
+    <if test="jx!=null and jx.length()>0">
+      and JX= #{jx}
+    </if>
+    <if test="jh!=null and jh.length()>0">
+      and JH = #{jh}
+    </if>
+    <if test="dwid!=null and dwid.length()>0">
+      and dwid like '${dwid}%'
+    </if>
+  </select>
+
+</mapper>

@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.purchase.mapper.THtMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.purchase.entity.THt">
+    <id column="HTH" jdbcType="VARCHAR" property="hth" />
+    <id column="JHBH" jdbcType="VARCHAR" property="jhbh" />
+    <result column="JX" jdbcType="VARCHAR" property="jx" />
+    <result column="JGLX" jdbcType="VARCHAR" property="jglx" />
+    <result column="QDDD" jdbcType="VARCHAR" property="qddd" />
+    <result column="QDRQ" jdbcType="TIMESTAMP" property="qdrq" />
+    <result column="CGFID" jdbcType="VARCHAR" property="cgfid" />
+    <result column="CJID" jdbcType="VARCHAR" property="cjid" />
+    <result column="JGFID" jdbcType="VARCHAR" property="jgfid" />
+    <result column="DLYJ" jdbcType="VARCHAR" property="dlyj" />
+    <result column="YSFS" jdbcType="VARCHAR" property="ysfs" />
+    <result column="ZJ" jdbcType="VARCHAR" property="zj" />
+    <result column="CJRQ" jdbcType="TIMESTAMP" property="cjrq" />
+    <result column="XGRQ" jdbcType="TIMESTAMP" property="xgrq" />
+    <result column="ND" jdbcType="DECIMAL" property="nd" />
+    <result column="XS" jdbcType="DECIMAL" property="xs" />
+    <result column="JS" jdbcType="DECIMAL" property="js" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    HTH, JHBH, JX, JGLX, QDDD, QDRQ, CGFID, CJID, JGFID, DLYJ, YSFS, ZJ, CJRQ, XGRQ,ND,XS,JS
+  </sql>
+
+
+  <sql id="queryCondition">
+    <where>
+      1=1
+      <if test="query!=null">
+        <if test="query.hth!=null and query.hth.length()>0">
+          and HTH= #{query.hth}
+        </if>
+        <if test="query.jhbh!=null and query.jhbh.length()>0">
+          and JHBH = #{query.jhbh}
+        </if>
+        <if test="query.jx!=null and query.jx.length()>0">
+          and JX= #{query.jx}
+        </if>
+        <if test="query.jglx!=null and query.jglx.length()>0">
+          and JGLX = #{query.jglx}
+        </if>
+        <if test="query.qddd!=null and query.qddd.length()>0">
+          and QDDD= #{query.qddd}
+        </if>
+        <if test="query.cgfid!=null and query.cgfid.length()>0">
+          and CGFID= #{query.cgfid}
+        </if>
+        <if test="query.cjid!=null and query.cjid.length()>0">
+          and CJID = #{query.cjid}
+        </if>
+        <if test="query.jgfid!=null and query.jgfid.length()>0">
+          and JGFID= #{query.jgfid}
+        </if>
+        <if test="query.dlyj!=null and query.dlyj.length()>0">
+          and DLYJ = #{query.dlyj}
+        </if>
+        <if test="query.ysfs!=null and query.ysfs.length()>0">
+          and YSFS= #{query.ysfs}
+        </if>
+        <if test="query.zj!=null and query.zj.length()>0">
+          and ZJ = #{query.zj}
+        </if>
+        <if test="query.cjrq!=null">
+          and CJRQ = #{query.cjrq}
+        </if>
+        <if test="query.xgrq!=null">
+          and XGRQ = #{query.xgrq}
+        </if>
+      </if>
+    </where>
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from T_HT
+    where HTH = #{hth,jdbcType=VARCHAR}
+      and JHBH = #{jhbh,jdbcType=VARCHAR}
+  </select>
+  <select id="listBefore" resultType="com.andawell.purchase.vo.THtVO">
+    select HTH, JHBH, JX, JGLX, QDDD, QDRQ, CGFID, CJID, JGFID, DLYJ, YSFS, ZJ, CJRQ, XGRQ,T_HT.JS,T_HT.XS,ND,
+    T_JH_JX.MC JXMC,T_XT_CGF.DWMC CGFMC,T_CF.MC CJMC,T_XT_JGF.MC JGFMC,T_CK_FYFS.MC YSFSMC
+    from T_HT
+    LEFT JOIN T_JH_JX ON T_JH_JX.ID = T_HT.JX
+    LEFT JOIN T_XT_CGF ON T_XT_CGF.ID = T_HT.CGFID
+    LEFT JOIN T_CF ON T_CF.ID = T_HT.CJID
+    LEFT JOIN T_XT_JGF ON T_XT_JGF.ID = T_HT.JGFID
+    LEFT JOIN T_CK_FYFS ON T_CK_FYFS.ID = T_HT.YSFS
+    <include refid="queryCondition"/>
+    <if test="query!=null">
+      <if test="query.startTime!=null ">
+      and QDRQ &lt; #{query.startTime}
+      </if>
+    </if>
+  </select>
+  <select id="listAfter" resultType="com.andawell.purchase.vo.THtVO">
+    select HTH, JHBH, JX, JGLX, QDDD, QDRQ, CGFID, CJID, JGFID, DLYJ, YSFS, ZJ, CJRQ, XGRQ,T_HT.JS,T_HT.XS,ND
+    ,T_JH_JX.MC JXMC,T_XT_CGF.DWMC CGFMC,T_CF.MC CJMC,T_XT_JGF.MC JGFMC,T_CK_FYFS.MC YSFSMC
+    from T_HT
+    LEFT JOIN T_JH_JX ON T_JH_JX.ID = T_HT.JX
+    LEFT JOIN T_XT_CGF ON T_XT_CGF.ID = T_HT.CGFID
+    LEFT JOIN T_CF ON T_CF.ID = T_HT.CJID
+    LEFT JOIN T_XT_JGF ON T_XT_JGF.ID = T_HT.JGFID
+    LEFT JOIN T_CK_FYFS ON T_CK_FYFS.ID = T_HT.YSFS
+    <include refid="queryCondition"/>
+    <if test="query!=null">
+      <if test="query.startTime!=null and query.endTime!=null">
+        and QDRQ &gt;= #{query.startTime}
+        and QDRQ &lt; #{query.endTime}
+      </if>
+  </if>
+
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from T_HT
+    where HTH = #{hth,jdbcType=VARCHAR}
+      and JHBH = #{jhbh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByJhbh">
+    delete from T_HT
+    where JHBH = #{jhbh}
+  </delete>
+  <insert id="insert" parameterType="com.andawell.purchase.entity.THt">
+    insert into T_HT (HTH, JHBH, JX, 
+      JGLX, QDDD, QDRQ, 
+      CGFID, CJID, JGFID, 
+      DLYJ, YSFS, ZJ, CJRQ, 
+      XGRQ)
+    values (#{hth,jdbcType=VARCHAR}, #{jhbh,jdbcType=VARCHAR}, #{jx,jdbcType=VARCHAR}, 
+      #{jglx,jdbcType=VARCHAR}, #{qddd,jdbcType=VARCHAR}, #{qdrq,jdbcType=TIMESTAMP}, 
+      #{cgfid,jdbcType=VARCHAR}, #{cjid,jdbcType=VARCHAR}, #{jgfid,jdbcType=VARCHAR}, 
+      #{dlyj,jdbcType=VARCHAR}, #{ysfs,jdbcType=VARCHAR}, #{zj,jdbcType=VARCHAR}, #{cjrq,jdbcType=TIMESTAMP}, 
+      #{xgrq,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.andawell.purchase.entity.THt">
+    insert into T_HT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="hth != null">
+        HTH,
+      </if>
+      <if test="jhbh != null">
+        JHBH,
+      </if>
+      <if test="jx != null">
+        JX,
+      </if>
+      <if test="jglx != null">
+        JGLX,
+      </if>
+      <if test="qddd != null">
+        QDDD,
+      </if>
+      <if test="qdrq != null">
+        QDRQ,
+      </if>
+      <if test="cgfid != null">
+        CGFID,
+      </if>
+      <if test="cjid != null">
+        CJID,
+      </if>
+      <if test="jgfid != null">
+        JGFID,
+      </if>
+      <if test="dlyj != null">
+        DLYJ,
+      </if>
+      <if test="ysfs != null">
+        YSFS,
+      </if>
+      <if test="zj != null">
+        ZJ,
+      </if>
+      <if test="cjrq != null">
+        CJRQ,
+      </if>
+      <if test="xgrq != null">
+        XGRQ,
+      </if>
+      <if test="nd != null">
+        ND,
+      </if>
+      <if test="xs != null">
+        XS,
+      </if>
+      <if test="js != null">
+        JS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="hth != null">
+        #{hth,jdbcType=VARCHAR},
+      </if>
+      <if test="jhbh != null">
+        #{jhbh,jdbcType=VARCHAR},
+      </if>
+      <if test="jx != null">
+        #{jx,jdbcType=VARCHAR},
+      </if>
+      <if test="jglx != null">
+        #{jglx,jdbcType=VARCHAR},
+      </if>
+      <if test="qddd != null">
+        #{qddd,jdbcType=VARCHAR},
+      </if>
+      <if test="qdrq != null">
+        #{qdrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cgfid != null">
+        #{cgfid,jdbcType=VARCHAR},
+      </if>
+      <if test="cjid != null">
+        #{cjid,jdbcType=VARCHAR},
+      </if>
+      <if test="jgfid != null">
+        #{jgfid,jdbcType=VARCHAR},
+      </if>
+      <if test="dlyj != null">
+        #{dlyj,jdbcType=VARCHAR},
+      </if>
+      <if test="ysfs != null">
+        #{ysfs,jdbcType=VARCHAR},
+      </if>
+      <if test="zj != null">
+        #{zj,jdbcType=VARCHAR},
+      </if>
+      <if test="cjrq != null">
+        #{cjrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="xgrq != null">
+        #{xgrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nd != null">
+        #{nd,jdbcType=DECIMAL},
+      </if>
+      <if test="xs != null">
+        #{xs,jdbcType=DECIMAL},
+      </if>
+      <if test="js != null">
+        #{js,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.andawell.purchase.entity.THt">
+    update T_HT
+    <set>
+      <if test="jx != null">
+        JX = #{jx,jdbcType=VARCHAR},
+      </if>
+      <if test="jglx != null">
+        JGLX = #{jglx,jdbcType=VARCHAR},
+      </if>
+      <if test="qddd != null">
+        QDDD = #{qddd,jdbcType=VARCHAR},
+      </if>
+      <if test="qdrq != null">
+        QDRQ = #{qdrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cgfid != null">
+        CGFID = #{cgfid,jdbcType=VARCHAR},
+      </if>
+      <if test="cjid != null">
+        CJID = #{cjid,jdbcType=VARCHAR},
+      </if>
+      <if test="jgfid != null">
+        JGFID = #{jgfid,jdbcType=VARCHAR},
+      </if>
+      <if test="dlyj != null">
+        DLYJ = #{dlyj,jdbcType=VARCHAR},
+      </if>
+      <if test="ysfs != null">
+        YSFS = #{ysfs,jdbcType=VARCHAR},
+      </if>
+      <if test="zj != null">
+        ZJ = #{zj,jdbcType=VARCHAR},
+      </if>
+      <if test="cjrq != null">
+        CJRQ = #{cjrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="xgrq != null">
+        XGRQ = #{xgrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nd != null">
+        ND = #{nd,jdbcType=DECIMAL},
+      </if>
+      <if test="js != null">
+        JS = #{js,jdbcType=DECIMAL},
+      </if>
+      <if test="xs != null">
+        XS = #{xs,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where HTH = #{hth,jdbcType=VARCHAR}
+      and JHBH = #{jhbh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.andawell.purchase.entity.THt">
+    update T_HT
+    set JX = #{jx,jdbcType=VARCHAR},
+      JGLX = #{jglx,jdbcType=VARCHAR},
+      QDDD = #{qddd,jdbcType=VARCHAR},
+      QDRQ = #{qdrq,jdbcType=TIMESTAMP},
+      CGFID = #{cgfid,jdbcType=VARCHAR},
+      CJID = #{cjid,jdbcType=VARCHAR},
+      JGFID = #{jgfid,jdbcType=VARCHAR},
+      DLYJ = #{dlyj,jdbcType=VARCHAR},
+      YSFS = #{ysfs,jdbcType=VARCHAR},
+      ZJ = #{zj,jdbcType=VARCHAR},
+      CJRQ = #{cjrq,jdbcType=TIMESTAMP},
+      XGRQ = #{xgrq,jdbcType=TIMESTAMP},
+       ND = #{nd,jdbcType=VARCHAR}
+    where HTH = #{hth,jdbcType=VARCHAR}
+      and JHBH = #{jhbh,jdbcType=VARCHAR}
+  </update>
+</mapper>

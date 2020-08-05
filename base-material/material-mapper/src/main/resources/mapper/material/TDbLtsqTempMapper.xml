@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.material.mapper.TDbLtsqTempMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.material.entity.TDbLtsqTemp">
+    <id column="LTSQDH" jdbcType="VARCHAR" property="ltsqdh" />
+    <result column="SQDW" jdbcType="VARCHAR" property="sqdw" />
+    <result column="JX" jdbcType="VARCHAR" property="jx" />
+    <result column="SQLB" jdbcType="DECIMAL" property="sqlb" />
+    <result column="XS" jdbcType="DECIMAL" property="xs" />
+    <result column="ND" jdbcType="DECIMAL" property="nd" />
+    <result column="JD" jdbcType="DECIMAL" property="jd" />
+    <result column="RQ" jdbcType="TIMESTAMP" property="rq" />
+    <result column="SQR" jdbcType="VARCHAR" property="sqr" />
+    <result column="DATACL" jdbcType="DECIMAL" property="datacl" />
+    <result column="JSDW" jdbcType="VARCHAR" property="jsdw" />
+    <result column="JSR" jdbcType="VARCHAR" property="jsr" />
+    <result column="LXDH" jdbcType="VARCHAR" property="lxdh" />
+    <result column="SCZT" jdbcType="VARCHAR" property="sczt" />
+    <result column="CLZT" jdbcType="VARCHAR" property="clzt" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    LTSQDH, SQDW, JX, SQLB, XS, ND, JD, RQ, SQR, DATACL, JSDW, JSR, LXDH, SCZT, CLZT
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_DB_LTSQ_TEMP
+    where LTSQDH = #{ltsqdh,jdbcType=VARCHAR}
+  </select>
+    <select id="getList" resultType="com.andawell.material.entity.TDbLtsqTemp">
+      select
+      <include refid="Base_Column_List"/>
+      from T_DB_LTSQ_TEMP
+      <include refid="tDbLtsqQuery"/>
+    </select>
+  <sql id="tDbLtsqQuery">
+    <where>
+      1=1
+      <if test="query!=null">
+        <if test="query.ltsqdh!=null">
+          and T_DB_LTSQ_TEMP.ltsqdh = #{query.ltsqdh}
+        </if>
+        <if test="query.ltsqdhs != null ">
+          and T_DB_LTSQ_TEMP.ltsqdh in
+          <foreach collection="query.ltsqdhs" item="ltsqdh" index="index" open="(" close=")" separator=",">
+            #{ltsqdh}
+          </foreach>
+        </if>
+      </if>
+    </where>
+  </sql>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from T_DB_LTSQ_TEMP
+    where LTSQDH = #{ltsqdh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteAll">
+    delete from T_DB_LTSQ_TEMP
+  </delete>
+
+  <insert id="insert" parameterType="com.andawell.material.entity.TDbLtsqTemp">
+    insert into T_DB_LTSQ_TEMP (LTSQDH, SQDW, JX, 
+      SQLB, XS, ND, JD, 
+      RQ, SQR, DATACL, 
+      JSDW, JSR, LXDH, SCZT, 
+      CLZT)
+    values (#{ltsqdh,jdbcType=VARCHAR}, #{sqdw,jdbcType=VARCHAR}, #{jx,jdbcType=VARCHAR}, 
+      #{sqlb,jdbcType=DECIMAL}, #{xs,jdbcType=DECIMAL}, #{nd,jdbcType=DECIMAL}, #{jd,jdbcType=DECIMAL}, 
+      #{rq,jdbcType=TIMESTAMP}, #{sqr,jdbcType=VARCHAR}, #{datacl,jdbcType=DECIMAL}, 
+      #{jsdw,jdbcType=VARCHAR}, #{jsr,jdbcType=VARCHAR}, #{lxdh,jdbcType=VARCHAR}, #{sczt,jdbcType=VARCHAR}, 
+      #{clzt,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.andawell.material.entity.TDbLtsqTemp">
+    insert into T_DB_LTSQ_TEMP
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ltsqdh != null">
+        LTSQDH,
+      </if>
+      <if test="sqdw != null">
+        SQDW,
+      </if>
+      <if test="jx != null">
+        JX,
+      </if>
+      <if test="sqlb != null">
+        SQLB,
+      </if>
+      <if test="xs != null">
+        XS,
+      </if>
+      <if test="nd != null">
+        ND,
+      </if>
+      <if test="jd != null">
+        JD,
+      </if>
+      <if test="rq != null">
+        RQ,
+      </if>
+      <if test="sqr != null">
+        SQR,
+      </if>
+      <if test="datacl != null">
+        DATACL,
+      </if>
+      <if test="jsdw != null">
+        JSDW,
+      </if>
+      <if test="jsr != null">
+        JSR,
+      </if>
+      <if test="lxdh != null">
+        LXDH,
+      </if>
+      <if test="sczt != null">
+        SCZT,
+      </if>
+      <if test="clzt != null">
+        CLZT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ltsqdh != null">
+        #{ltsqdh,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdw != null">
+        #{sqdw,jdbcType=VARCHAR},
+      </if>
+      <if test="jx != null">
+        #{jx,jdbcType=VARCHAR},
+      </if>
+      <if test="sqlb != null">
+        #{sqlb,jdbcType=DECIMAL},
+      </if>
+      <if test="xs != null">
+        #{xs,jdbcType=DECIMAL},
+      </if>
+      <if test="nd != null">
+        #{nd,jdbcType=DECIMAL},
+      </if>
+      <if test="jd != null">
+        #{jd,jdbcType=DECIMAL},
+      </if>
+      <if test="rq != null">
+        #{rq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sqr != null">
+        #{sqr,jdbcType=VARCHAR},
+      </if>
+      <if test="datacl != null">
+        #{datacl,jdbcType=DECIMAL},
+      </if>
+      <if test="jsdw != null">
+        #{jsdw,jdbcType=VARCHAR},
+      </if>
+      <if test="jsr != null">
+        #{jsr,jdbcType=VARCHAR},
+      </if>
+      <if test="lxdh != null">
+        #{lxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="sczt != null">
+        #{sczt,jdbcType=VARCHAR},
+      </if>
+      <if test="clzt != null">
+        #{clzt,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.andawell.material.entity.TDbLtsqTemp">
+    update T_DB_LTSQ_TEMP
+    <set>
+      <if test="sqdw != null">
+        SQDW = #{sqdw,jdbcType=VARCHAR},
+      </if>
+      <if test="jx != null">
+        JX = #{jx,jdbcType=VARCHAR},
+      </if>
+      <if test="sqlb != null">
+        SQLB = #{sqlb,jdbcType=DECIMAL},
+      </if>
+      <if test="xs != null">
+        XS = #{xs,jdbcType=DECIMAL},
+      </if>
+      <if test="nd != null">
+        ND = #{nd,jdbcType=DECIMAL},
+      </if>
+      <if test="jd != null">
+        JD = #{jd,jdbcType=DECIMAL},
+      </if>
+      <if test="rq != null">
+        RQ = #{rq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sqr != null">
+        SQR = #{sqr,jdbcType=VARCHAR},
+      </if>
+      <if test="datacl != null">
+        DATACL = #{datacl,jdbcType=DECIMAL},
+      </if>
+      <if test="jsdw != null">
+        JSDW = #{jsdw,jdbcType=VARCHAR},
+      </if>
+      <if test="jsr != null">
+        JSR = #{jsr,jdbcType=VARCHAR},
+      </if>
+      <if test="lxdh != null">
+        LXDH = #{lxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="sczt != null">
+        SCZT = #{sczt,jdbcType=VARCHAR},
+      </if>
+      <if test="clzt != null">
+        CLZT = #{clzt,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where LTSQDH = #{ltsqdh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.andawell.material.entity.TDbLtsqTemp">
+    update T_DB_LTSQ_TEMP
+    set SQDW = #{sqdw,jdbcType=VARCHAR},
+      JX = #{jx,jdbcType=VARCHAR},
+      SQLB = #{sqlb,jdbcType=DECIMAL},
+      XS = #{xs,jdbcType=DECIMAL},
+      ND = #{nd,jdbcType=DECIMAL},
+      JD = #{jd,jdbcType=DECIMAL},
+      RQ = #{rq,jdbcType=TIMESTAMP},
+      SQR = #{sqr,jdbcType=VARCHAR},
+      DATACL = #{datacl,jdbcType=DECIMAL},
+      JSDW = #{jsdw,jdbcType=VARCHAR},
+      JSR = #{jsr,jdbcType=VARCHAR},
+      LXDH = #{lxdh,jdbcType=VARCHAR},
+      SCZT = #{sczt,jdbcType=VARCHAR},
+      CLZT = #{clzt,jdbcType=VARCHAR}
+    where LTSQDH = #{ltsqdh,jdbcType=VARCHAR}
+  </update>
+</mapper>

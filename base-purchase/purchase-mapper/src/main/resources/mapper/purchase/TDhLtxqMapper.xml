@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.purchase.mapper.TDhLtxqMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.purchase.entity.TDhLtxq">
+    <id column="BH" jdbcType="VARCHAR" property="bh" />
+    <id column="DWID" jdbcType="VARCHAR" property="dwid" />
+    <id column="JX" jdbcType="VARCHAR" property="jx" />
+    <id column="JH" jdbcType="VARCHAR" property="jh" />
+    <id column="QCLX" jdbcType="VARCHAR" property="qclx" />
+    <result column="CJRQ" jdbcType="TIMESTAMP" property="cjrq" />
+    <result column="SQSL" jdbcType="DECIMAL" property="sqsl" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    BH, DWID, T_DH_LTXQ.JX, T_DH_LTXQ.JH, QCLX, CJRQ, SQSL
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_DH_LTXQ
+    where BH = #{bh,jdbcType=VARCHAR}
+      and DWID = #{dwid,jdbcType=VARCHAR}
+      and JX = #{jx,jdbcType=VARCHAR}
+      and JH = #{jh,jdbcType=VARCHAR}
+  </select>
+  <select id="getList" parameterType="com.andawell.purchase.query.TDhLtxqQuery"
+          resultType="com.andawell.purchase.vo.TDhLtxqVO">
+    select
+    T_DH_LTXQ.DWID as dwmc,
+    T_JH_JH.MC  as jhmc,
+    T_DH_LTXQ.jh as jh,
+    T_XT_QCLX.QC_MC as qclx,
+    t_Xt_Jldw.mc as jldw,
+    t_jh_JX.mc   as jxmc,
+    T_CG_ML_QD.CJ as cj,
+    T_CG_ML_QD.DJ as dj,
+    T_CG_ML_QD.JG_LX as jglx,
+    T_CG_ML_QD.JG_YY as jgyj
+    from T_DH_LTXQ
+
+    left join T_CG_ML_QD on T_DH_LTXQ.JH = T_DH_LTXQ.JH and T_CG_ML_QD.jx = T_DH_LTXQ.jx
+    and T_CG_ML_QD.ML_BH = '11'
+
+    LEFT JOIN T_JH_JH ON T_DH_LTXQ.JH = T_JH_JH.ID
+    LEFT JOIN T_JH_JX ON T_DH_LTXQ.JX = T_JH_JX.ID
+    LEFT JOIN T_XT_QCLX on T_CG_ML_QD.QC_LX = T_CG_ML_QD.QC_LX
+
+    LEFT JOIN T_XT_JLDW ON T_JH_JH.DW = T_XT_JLDW.ID
+    <include refid="queryCondition" />
+  </select>
+  <sql id="queryCondition">
+    <where>
+      1=1
+      <if test="bh!=null and bh.length()>0">
+        and T_DH_LTXQ.BH = #{bh,jdbcType=VARCHAR}
+      </if>
+      <if test="jx!=null and jx.length()>0">
+        and T_DH_LTXQ.JX like #{jx,jdbcType=VARCHAR}
+      </if>
+      <if test="jh!=null and jh.length()>0">
+        and T_DH_LTXQ.JH like #{jh,jdbcType=VARCHAR}
+      </if>
+
+    </where>
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from T_DH_LTXQ
+    where BH = #{bh,jdbcType=VARCHAR}
+      and DWID = #{dwid,jdbcType=VARCHAR}
+      and JX = #{jx,jdbcType=VARCHAR}
+      and JH = #{jh,jdbcType=VARCHAR}
+  </delete>
+    <delete id="deleteByBh">
+      delete from T_DH_LTXQ
+      where BH = #{bh}
+    </delete>
+    <insert id="insert" parameterType="com.andawell.purchase.entity.TDhLtxq">
+    insert into T_DH_LTXQ (BH, DWID, JX, 
+      JH, QCLX, CJRQ, SQSL
+      )
+    values (#{bh,jdbcType=VARCHAR}, #{dwid,jdbcType=VARCHAR}, #{jx,jdbcType=VARCHAR}, 
+      #{jh,jdbcType=VARCHAR}, #{qclx,jdbcType=VARCHAR}, #{cjrq,jdbcType=TIMESTAMP}, #{sqsl,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.andawell.purchase.entity.TDhLtxq">
+    insert into T_DH_LTXQ
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bh != null">
+        BH,
+      </if>
+      <if test="dwid != null">
+        DWID,
+      </if>
+      <if test="jx != null">
+        JX,
+      </if>
+      <if test="jh != null">
+        JH,
+      </if>
+      <if test="qclx != null">
+        QCLX,
+      </if>
+      <if test="cjrq != null">
+        CJRQ,
+      </if>
+      <if test="sqsl != null">
+        SQSL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bh != null">
+        #{bh,jdbcType=VARCHAR},
+      </if>
+      <if test="dwid != null">
+        #{dwid,jdbcType=VARCHAR},
+      </if>
+      <if test="jx != null">
+        #{jx,jdbcType=VARCHAR},
+      </if>
+      <if test="jh != null">
+        #{jh,jdbcType=VARCHAR},
+      </if>
+      <if test="qclx != null">
+        #{qclx,jdbcType=VARCHAR},
+      </if>
+      <if test="cjrq != null">
+        #{cjrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sqsl != null">
+        #{sqsl,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.andawell.purchase.entity.TDhLtxq">
+    update T_DH_LTXQ
+    <set>
+      <if test="cjrq != null">
+        CJRQ = #{cjrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sqsl != null">
+        SQSL = #{sqsl,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where BH = #{bh,jdbcType=VARCHAR}
+      and DWID = #{dwid,jdbcType=VARCHAR}
+      and JX = #{jx,jdbcType=VARCHAR}
+      and JH = #{jh,jdbcType=VARCHAR}
+      and QCLX = #{qclx,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.andawell.purchase.entity.TDhLtxq">
+    update T_DH_LTXQ
+    set CJRQ = #{cjrq,jdbcType=TIMESTAMP},
+      SQSL = #{sqsl,jdbcType=DECIMAL}
+    where BH = #{bh,jdbcType=VARCHAR}
+      and DWID = #{dwid,jdbcType=VARCHAR}
+      and JX = #{jx,jdbcType=VARCHAR}
+      and JH = #{jh,jdbcType=VARCHAR}
+      and QCLX = #{qclx,jdbcType=VARCHAR}
+  </update>
+</mapper>

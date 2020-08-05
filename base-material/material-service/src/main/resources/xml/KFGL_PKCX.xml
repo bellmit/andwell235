@@ -1,0 +1,146 @@
+<tableList describe="盘库查询" xmlName="KFGL_PKCX">
+  <table>
+    <tableInfo>
+      <caption>盘库查询</caption>
+      <tableName>V_CK_CK</tableName>
+      <sql>select X.JX,C.MC JXMC,X.JH,B.MC JHMC,D.MC JLDW,X.XH,X.SL,CASE WHEN X.SL&gt;0 THEN &apos;盘亏&apos; when X.SL&lt;0 then &apos;盘盈&apos; else &apos;&apos; end PDJG  from (
+      SELECT jx,jh,xh,sum(KCsl)sl FROM (  
+      SELECT * FROM (
+      select substr(jx,0,2)jx,jh,xh,sum(sl) KCsl from t_ck_ck_temp where sl&gt;0 group by substr(jx,0,2),jh,xh order by jh,xh
+      )CK1
+
+      UNION ALL(
+      SELECT substr(jx,0,2)jx,JH,XH,SUM(1*SL) RKSL FROM T_ck_crkqd 
+      where CXSGIN=0 AND LB IN(&apos;1001&apos;,&apos;1002&apos;,&apos;1003&apos;,&apos;1004&apos;,&apos;1006&apos;,&apos;1007&apos;,&apos;1013&apos;,&apos;1014&apos;) GROUP BY substr(jx,0,2),JH,XH 
+      )
+
+      UNION ALL(
+      SELECT substr(jx,0,2)jx,JH,XH,SUM(-1*SL) RKSL FROM T_ck_crkqd 
+      where   CXSGIN=0 AND LB IN(&apos;2001&apos;,&apos;2002&apos;,&apos;2003&apos;,&apos;2005&apos;,&apos;2010&apos;,&apos;2011&apos;,&apos;2013&apos;,&apos;2014&apos;) GROUP BY substr(jx,0,2),JH,XH 
+      )
+
+      UNION ALL(
+       select substr(jx,0,2)jx,jh,xh,sum(-1*sl) QMsl from t_ck_ck where sl&gt;0 group by substr(jx,0,2),jh,xh 
+      )
+      )a group by jx,jh,xh HAVING sum(KCsl)&lt;&gt;0
+      order by jx,jh,xh
+      )X
+      LEFT JOIN  T_JH B ON X.JX=B.JX AND X.JH=B.ID
+      LEFT JOIN T_JH_JX C ON X.JX=C.ID
+      LEFT JOIN T_XT_JLDW D ON B.DW=D.ID
+      ORDER BY JX,JH,XH</sql>
+    </tableInfo>
+    <tableConfig>
+      <tableColumns>
+        <tableHeader>
+          <prop>jxmc</prop>
+          <align>center</align>
+          <label>机型</label>
+          <width>85</width>
+          <minWidth>30</minWidth>
+          <filters>true</filters>
+          <fixed>false</fixed>
+          <sortable>true</sortable>
+          <isEdit>true</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>string</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>jhmc</prop>
+          <align>center</align>
+          <label>名称</label>
+          <width>135</width>
+          <minWidth>30</minWidth>
+          <filters>true</filters>
+          <fixed>false</fixed>
+          <sortable>true</sortable>
+          <isEdit>true</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>string</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>jh</prop>
+          <align>center</align>
+          <label>件号</label>
+          <width>126</width>
+          <minWidth>30</minWidth>
+          <filters>true</filters>
+          <fixed>false</fixed>
+          <sortable>true</sortable>
+          <isEdit>true</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>string</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>xh</prop>
+          <align>left</align>
+          <label>序号</label>
+          <width>220</width>
+          <minWidth>30</minWidth>
+          <filters>true</filters>
+          <fixed>false</fixed>
+          <sortable>true</sortable>
+          <isEdit>true</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>string</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>dw</prop>
+          <align>center</align>
+          <label>单位</label>
+          <width>67</width>
+          <minWidth>30</minWidth>
+          <filters>true</filters>
+          <fixed>false</fixed>
+          <sortable>true</sortable>
+          <isEdit>true</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>string</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>sl</prop>
+          <align>center</align>
+          <label>数量</label>
+          <width>80</width>
+          <minWidth>30</minWidth>
+          <filters>true</filters>
+          <fixed>false</fixed>
+          <sortable>true</sortable>
+          <isEdit>true</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>integer</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableOptions>
+          <modelName>盘库查询</modelName>
+          <type>table</type>
+          <index>true</index>
+          <mutiSelect>false</mutiSelect>
+          <initTable>true</initTable>
+          <pagination>true</pagination>
+          <border>true</border>
+          <stripe>true</stripe>
+          <loading>false</loading>
+          <height>290</height>
+        </tableOptions>
+      </tableColumns>
+    </tableConfig>
+  </table>
+</tableList>

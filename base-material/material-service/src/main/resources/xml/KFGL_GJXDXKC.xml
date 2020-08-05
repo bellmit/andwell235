@@ -1,0 +1,98 @@
+  <tableList describe="库房管理各机型待修库统计" xmlName="KFGL_GJXDXKC">
+  <table>
+    <tableInfo>
+      <caption>各机型待修库存统计</caption>
+      <tableName>T_CK_DX</tableName>
+      <sql>
+        SELECT COUNT(*)XIC,HCLB,T_XT_HCLB.MC LBMC,JX,T_JH_JX.MC JXMC,SUM(ZS) ZS FROM (
+        SELECT JX,SUM(SL)ZS,JH,HCLB FROM T_CK_DX
+        WHERE 1=1 AND XZ=0
+        GROUP BY JX,JH,HCLB
+        )A
+        LEFT JOIN T_JH_JX ON T_JH_JX.ID=A.JX
+        LEFT JOIN T_XT_HCLB ON T_XT_HCLB.ID=HCLB
+        GROUP BY HCLB,T_XT_HCLB.MC,JX,T_JH_JX.MC order by JX </sql>
+    </tableInfo>
+    <tableConfig>
+      <tableColumns>
+        <tableHeader>
+          <prop>lbmc</prop>
+          <align>center</align>
+          <label>类别</label>
+          <width>100</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>string</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>jxmc</prop>
+          <align>center</align>
+          <label>机型</label>
+          <width>120</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>string</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>zs</prop>
+          <align>center</align>
+          <label>件数</label>
+          <width>100</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>integer</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>rkrq</prop>
+          <align>center</align>
+          <label>入库日期</label>
+          <width>150</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>false</show>
+          <condition>equal</condition>
+          <fieldType>date</fieldType>
+          <parent>false</parent>
+          <isInner>true</isInner>
+        </tableHeader>
+        <tableOptions>
+          <modelName>各机型待修库存统计</modelName>
+          <type>table</type>
+          <index>true</index>
+          <mutiSelect>false</mutiSelect>
+          <initTable>true</initTable>
+          <pagination>true</pagination>
+          <border>true</border>
+          <stripe>true</stripe>
+          <loading>false</loading>
+          <height>290</height>
+        </tableOptions>
+      </tableColumns>
+    </tableConfig>
+  </table>
+</tableList>

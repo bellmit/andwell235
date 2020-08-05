@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.material.mapper.TJkJxMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.material.entity.TJkJx">
+    <id column="XBDH" jdbcType="VARCHAR" property="xbdh" />
+    <result column="XH" jdbcType="VARCHAR" property="xh" />
+    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="JXMC" jdbcType="VARCHAR" property="jxmc" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    XBDH, XH, ID, JXMC
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_JK_JX
+    where XBDH = #{xbdh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from T_JK_JX
+    where XBDH = #{xbdh,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.andawell.material.entity.TJkJx">
+    insert into T_JK_JX (XBDH, XH, ID, 
+      JXMC)
+    values (#{xbdh,jdbcType=VARCHAR}, #{xh,jdbcType=VARCHAR}, #{id,jdbcType=VARCHAR}, 
+      #{jxmc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.andawell.material.entity.TJkJx">
+    insert into T_JK_JX
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="xbdh != null">
+        XBDH,
+      </if>
+      <if test="xh != null">
+        XH,
+      </if>
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="jxmc != null">
+        JXMC,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="xbdh != null">
+        #{xbdh,jdbcType=VARCHAR},
+      </if>
+      <if test="xh != null">
+        #{xh,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="jxmc != null">
+        #{jxmc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.andawell.material.entity.TJkJx">
+    update T_JK_JX
+    <set>
+      <if test="xh != null">
+        XH = #{xh,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null">
+        ID = #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="jxmc != null">
+        JXMC = #{jxmc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where XBDH = #{xbdh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.andawell.material.entity.TJkJx">
+    update T_JK_JX
+    set XH = #{xh,jdbcType=VARCHAR},
+      ID = #{id,jdbcType=VARCHAR},
+      JXMC = #{jxmc,jdbcType=VARCHAR}
+    where XBDH = #{xbdh,jdbcType=VARCHAR}
+  </update>
+</mapper>

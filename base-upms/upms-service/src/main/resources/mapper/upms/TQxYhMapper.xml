@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.upms.mapper.TQxYhMapper">
+    <resultMap id="BaseResultMap" type="com.andawell.upms.entity.TQxYh">
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="YHM" jdbcType="VARCHAR" property="yhm"/>
+        <result column="DLM" jdbcType="VARCHAR" property="dlm"/>
+        <result column="DLMM" jdbcType="VARCHAR" property="dlmm"/>
+        <result column="DW" jdbcType="VARCHAR" property="dw"/>
+        <result column="ZW" jdbcType="VARCHAR" property="zw"/>
+        <result column="JB" jdbcType="VARCHAR" property="jb"/>
+        <result column="JX" jdbcType="VARCHAR" property="jx"/>
+        <result column="CSRQ" jdbcType="TIMESTAMP" property="csrq"/>
+        <result column="RWRQ" jdbcType="TIMESTAMP" property="rwrq"/>
+        <result column="ZZMM" jdbcType="VARCHAR" property="zzmm"/>
+        <result column="RDTRQ" jdbcType="TIMESTAMP" property="rdtrq"/>
+        <result column="JS" jdbcType="VARCHAR" property="js"/>
+        <result column="CJSJ" jdbcType="TIMESTAMP" property="cjsj"/>
+        <result column="XGSJ" jdbcType="TIMESTAMP" property="xgsj"/>
+        <result column="SPQX" jdbcType="VARCHAR" property="spqx"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+    ID, YHM, DLM, DLMM, DW, ZW, JB, JX, CSRQ, RWRQ, ZZMM, RDTRQ, JS, CJSJ, XGSJ, SPQX
+  </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from T_QX_YH
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+
+
+    <sql id="queryCondition">
+        <where>
+            1=1
+            <if test="query!=null">
+                <if test="query.id!=null and query.id.length()>0">
+                    and id = #{query.id}
+                </if>
+                <if test="query.yhm!=null and query.yhm.length()>0">
+                    and YHM = #{query.yhm}
+                </if>
+                <if test="query.dlm!=null and query.dlm.length()>0">
+                    and DLM = #{query.dlm}
+                </if>
+            </if>
+        </where>
+    </sql>
+
+    <select id="list" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from T_QX_YH
+        <include refid="queryCondition"/>
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from T_QX_YH
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+
+    <insert id="insert" parameterType="com.andawell.upms.entity.TQxYh">
+    insert into T_QX_YH (ID, YHM, DLM, 
+      DLMM, DW, ZW, JB, 
+      JX, CSRQ, RWRQ, 
+      ZZMM, RDTRQ, JS, 
+      CJSJ, XGSJ, SPQX
+      )
+    values (#{id,jdbcType=VARCHAR}, #{yhm,jdbcType=VARCHAR}, #{dlm,jdbcType=VARCHAR}, 
+      #{dlmm,jdbcType=VARCHAR}, #{dw,jdbcType=VARCHAR}, #{zw,jdbcType=VARCHAR}, #{jb,jdbcType=VARCHAR}, 
+      #{jx,jdbcType=VARCHAR}, #{csrq,jdbcType=TIMESTAMP}, #{rwrq,jdbcType=TIMESTAMP}, 
+      #{zzmm,jdbcType=VARCHAR}, #{rdtrq,jdbcType=TIMESTAMP}, #{js,jdbcType=VARCHAR}, 
+      #{cjsj,jdbcType=TIMESTAMP}, #{xgsj,jdbcType=TIMESTAMP}, #{spqx,jdbcType=VARCHAR}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.andawell.upms.entity.TQxYh">
+        insert into T_QX_YH
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="yhm != null">
+                YHM,
+            </if>
+            <if test="dlm != null">
+                DLM,
+            </if>
+            <if test="dlmm != null">
+                DLMM,
+            </if>
+            <if test="dw != null">
+                DW,
+            </if>
+            <if test="zw != null">
+                ZW,
+            </if>
+            <if test="jb != null">
+                JB,
+            </if>
+            <if test="jx != null">
+                JX,
+            </if>
+            <if test="csrq != null">
+                CSRQ,
+            </if>
+            <if test="rwrq != null">
+                RWRQ,
+            </if>
+            <if test="zzmm != null">
+                ZZMM,
+            </if>
+            <if test="rdtrq != null">
+                RDTRQ,
+            </if>
+            <if test="js != null">
+                JS,
+            </if>
+            <if test="cjsj != null">
+                CJSJ,
+            </if>
+            <if test="xgsj != null">
+                XGSJ,
+            </if>
+            <if test="spqx != null">
+                SPQX,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="yhm != null">
+                #{yhm,jdbcType=VARCHAR},
+            </if>
+            <if test="dlm != null">
+                #{dlm,jdbcType=VARCHAR},
+            </if>
+            <if test="dlmm != null">
+                #{dlmm,jdbcType=VARCHAR},
+            </if>
+            <if test="dw != null">
+                #{dw,jdbcType=VARCHAR},
+            </if>
+            <if test="zw != null">
+                #{zw,jdbcType=VARCHAR},
+            </if>
+            <if test="jb != null">
+                #{jb,jdbcType=VARCHAR},
+            </if>
+            <if test="jx != null">
+                #{jx,jdbcType=VARCHAR},
+            </if>
+            <if test="csrq != null">
+                #{csrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="rwrq != null">
+                #{rwrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="zzmm != null">
+                #{zzmm,jdbcType=VARCHAR},
+            </if>
+            <if test="rdtrq != null">
+                #{rdtrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="js != null">
+                #{js,jdbcType=VARCHAR},
+            </if>
+            <if test="cjsj != null">
+                #{cjsj,jdbcType=TIMESTAMP},
+            </if>
+            <if test="xgsj != null">
+                #{xgsj,jdbcType=TIMESTAMP},
+            </if>
+            <if test="spqx != null">
+                #{spqx,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.andawell.upms.entity.TQxYh">
+        update T_QX_YH
+        <set>
+            <if test="yhm != null">
+                YHM = #{yhm,jdbcType=VARCHAR},
+            </if>
+            <if test="dlm != null">
+                DLM = #{dlm,jdbcType=VARCHAR},
+            </if>
+            <if test="dlmm != null">
+                DLMM = #{dlmm,jdbcType=VARCHAR},
+            </if>
+            <if test="dw != null">
+                DW = #{dw,jdbcType=VARCHAR},
+            </if>
+            <if test="zw != null">
+                ZW = #{zw,jdbcType=VARCHAR},
+            </if>
+            <if test="jb != null">
+                JB = #{jb,jdbcType=VARCHAR},
+            </if>
+            <if test="jx != null">
+                JX = #{jx,jdbcType=VARCHAR},
+            </if>
+            <if test="csrq != null">
+                CSRQ = #{csrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="rwrq != null">
+                RWRQ = #{rwrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="zzmm != null">
+                ZZMM = #{zzmm,jdbcType=VARCHAR},
+            </if>
+            <if test="rdtrq != null">
+                RDTRQ = #{rdtrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="js != null">
+                JS = #{js,jdbcType=VARCHAR},
+            </if>
+            <if test="cjsj != null">
+                CJSJ = #{cjsj,jdbcType=TIMESTAMP},
+            </if>
+            <if test="xgsj != null">
+                XGSJ = #{xgsj,jdbcType=TIMESTAMP},
+            </if>
+            <if test="spqx != null">
+                SPQX = #{spqx,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.andawell.upms.entity.TQxYh">
+    update T_QX_YH
+    set YHM = #{yhm,jdbcType=VARCHAR},
+      DLM = #{dlm,jdbcType=VARCHAR},
+      DLMM = #{dlmm,jdbcType=VARCHAR},
+      DW = #{dw,jdbcType=VARCHAR},
+      ZW = #{zw,jdbcType=VARCHAR},
+      JB = #{jb,jdbcType=VARCHAR},
+      JX = #{jx,jdbcType=VARCHAR},
+      CSRQ = #{csrq,jdbcType=TIMESTAMP},
+      RWRQ = #{rwrq,jdbcType=TIMESTAMP},
+      ZZMM = #{zzmm,jdbcType=VARCHAR},
+      RDTRQ = #{rdtrq,jdbcType=TIMESTAMP},
+      JS = #{js,jdbcType=VARCHAR},
+      CJSJ = #{cjsj,jdbcType=TIMESTAMP},
+      XGSJ = #{xgsj,jdbcType=TIMESTAMP},
+      SPQX = #{spqx,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+
+    <select id="DlmPc" parameterType="java.lang.String" resultType="int">
+    select count(*) from T_QX_YH where DLM=#{dlm,jdbcType=VARCHAR}
+  </select>
+
+    <select id="maxId" resultType="java.lang.String">
+    select max(ID) from T_QX_YH where ID like '${dw}___'
+  </select>
+
+
+</mapper>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.purchase.mapper.TCgMlMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.purchase.entity.TCgMl">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="ML_BH" jdbcType="VARCHAR" property="mlBh" />
+    <result column="ML_BB" jdbcType="VARCHAR" property="mlBb" />
+    <result column="ML_ZB" jdbcType="DECIMAL" property="mlZb" />
+    <result column="ML_FB_RQ" jdbcType="TIMESTAMP" property="mlFbRq" />
+    <result column="ML_XG_RQ" jdbcType="TIMESTAMP" property="mlXgRq" />
+    <result column="ML_BB_DW" jdbcType="VARCHAR" property="mlBbDw" />
+    <result column="ML_SM" jdbcType="VARCHAR" property="mlSm" />
+    <result column="STATUS" jdbcType="DECIMAL" property="status" />
+    <result column="CJRQ" jdbcType="TIMESTAMP" property="cjrq" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    ID, ML_BH, ML_BB, ML_ZB, ML_FB_RQ, ML_XG_RQ, ML_BB_DW, ML_SM, STATUS, CJRQ
+  </sql>
+    <update id="sxStatus">
+    update T_CG_ML set STATUS = 2 where STATUS=1
+  </update>
+<select id="isEdit" resultType="java.lang.Integer">
+select count(*) from T_CG_ML where STATUS=3
+</select>
+
+    <update id="updateXgrqByMlbh" parameterType="java.lang.String">
+        update T_CG_ML set ML_XG_RQ=to_timestamp(to_char(sysdate,'YYYY-MM-DD HH24:MI:SS'),'YYYY-MM-DD HH24:MI:SS')
+         where ML_BH = #{mlbh,jdbcType=VARCHAR}
+    </update>
+
+    <update id="fbStatusById" parameterType="java.lang.Integer">
+  update T_CG_ML set STATUS = 1, ML_FB_RQ=to_timestamp(to_char(sysdate,&apos;YYYY-MM-DD HH24:MI:SS&apos;),&apos;YYYY-MM-DD HH24:MI:SS&apos;) where ID= #{id,jdbcType=DECIMAL}
+</update>
+    <select id="selectStatusById" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+          select STATUS from T_CG_ML where ID= #{id,jdbcType=DECIMAL}
+    </select>
+    <select id="selectId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+          select count(*) from T_CG_ML where ID= #{id,jdbcType=DECIMAL}
+    </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from T_CG_ML
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+
+  <select id="listMlBhByStatus" resultType="java.lang.String">
+    select ML_BH
+    from T_CG_ML
+    where STATUS=#{status,jdbcType=DECIMAL}
+  </select>
+    <select id="getMaxMlBh" resultType="java.lang.String">
+        select max (to_number(substr(ML_BH,4,6)))
+        from T_CG_ML
+        where 1=1
+    </select>
+    <select id="getMaxMlZb" resultType="java.lang.String">
+        select max (ML_ZB)
+        from T_CG_ML
+        where ML_BB=#{mlBb}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from T_CG_ML
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+    <insert id="insert" parameterType="com.andawell.purchase.entity.TCgMl">
+    insert into T_CG_ML (ID, ML_BH, ML_BB, 
+      ML_ZB, ML_FB_RQ, ML_XG_RQ, 
+      ML_BB_DW, ML_SM, STATUS, 
+      CJRQ)
+    values (null , #{mlBh,jdbcType=VARCHAR}, #{mlBb,jdbcType=VARCHAR},
+      #{mlZb,jdbcType=DECIMAL}, #{mlFbRq,jdbcType=TIMESTAMP}, #{mlXgRq,jdbcType=TIMESTAMP}, 
+      #{mlBbDw,jdbcType=VARCHAR}, #{mlSm,jdbcType=VARCHAR}, #{status,jdbcType=DECIMAL}, 
+      #{cjrq,jdbcType=TIMESTAMP})
+  </insert>
+    <insert id="insertSelective" parameterType="com.andawell.purchase.entity.TCgMl">
+        insert into T_CG_ML
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="mlBh != null">
+                ML_BH,
+            </if>
+            <if test="mlBb != null">
+                ML_BB,
+            </if>
+            <if test="mlZb != null">
+                ML_ZB,
+            </if>
+            <if test="mlFbRq != null">
+                ML_FB_RQ,
+            </if>
+            <if test="mlXgRq != null">
+                ML_XG_RQ,
+            </if>
+            <if test="mlBbDw != null">
+                ML_BB_DW,
+            </if>
+            <if test="mlSm != null">
+                ML_SM,
+            </if>
+            <if test="status != null">
+                STATUS,
+            </if>
+            <if test="cjrq != null">
+                CJRQ,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="mlBh != null">
+                #{mlBh,jdbcType=VARCHAR},
+            </if>
+            <if test="mlBb != null">
+                #{mlBb,jdbcType=VARCHAR},
+            </if>
+            <if test="mlZb != null">
+                #{mlZb,jdbcType=DECIMAL},
+            </if>
+            <if test="mlFbRq != null">
+                #{mlFbRq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="mlXgRq != null">
+                #{mlXgRq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="mlBbDw != null">
+                #{mlBbDw,jdbcType=VARCHAR},
+            </if>
+            <if test="mlSm != null">
+                #{mlSm,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=DECIMAL},
+            </if>
+            <if test="cjrq != null">
+                #{cjrq,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.andawell.purchase.entity.TCgMl">
+        update T_CG_ML
+        <set>
+            <if test="mlBh != null">
+                ML_BH = #{mlBh,jdbcType=VARCHAR},
+            </if>
+            <if test="mlBb != null">
+                ML_BB = #{mlBb,jdbcType=VARCHAR},
+            </if>
+            <if test="mlZb != null">
+                ML_ZB = #{mlZb,jdbcType=DECIMAL},
+            </if>
+            <if test="mlFbRq != null">
+                ML_FB_RQ = #{mlFbRq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="mlXgRq != null">
+                ML_XG_RQ = #{mlXgRq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="mlBbDw != null">
+                ML_BB_DW = #{mlBbDw,jdbcType=VARCHAR},
+            </if>
+            <if test="mlSm != null">
+                ML_SM = #{mlSm,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                STATUS = #{status,jdbcType=DECIMAL},
+            </if>
+            <if test="cjrq != null">
+                CJRQ = #{cjrq,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=DECIMAL}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.andawell.purchase.entity.TCgMl">
+    update T_CG_ML
+    set ML_BH = #{mlBh,jdbcType=VARCHAR},
+      ML_BB = #{mlBb,jdbcType=VARCHAR},
+      ML_ZB = #{mlZb,jdbcType=DECIMAL},
+      ML_FB_RQ = #{mlFbRq,jdbcType=TIMESTAMP},
+      ML_XG_RQ = #{mlXgRq,jdbcType=TIMESTAMP},
+      ML_BB_DW = #{mlBbDw,jdbcType=VARCHAR},
+      ML_SM = #{mlSm,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=DECIMAL},
+      CJRQ = #{cjrq,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

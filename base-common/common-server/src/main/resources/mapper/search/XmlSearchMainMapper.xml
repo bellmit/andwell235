@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.andawell.search.mapper.XmlSearchMainMapper">
+    <resultMap id="XmlSearchMainMap" type="com.andawell.search.entity.XmlSearchMain">
+    </resultMap>
+
+    <sql id="queryCondition">
+        <where>
+            1=1
+            <if test="query != null">
+                <if test="query.id!=null and query.id.length()>0">
+                    and main.id = #{query.id}
+                </if>
+                <if test="query.tableName!=null and query.tableName.length()>0">
+                    and main.tableName = #{query.tableName}
+                </if>
+            </if>
+        </where>
+    </sql>
+
+    <select id="list" resultMap="XmlSearchMainMap">
+        select ID,TABLENAME,CONTENT,REMARKS
+        FROM XML_SEARCH_MAIN main
+        <include refid="queryCondition"/>
+    </select>
+</mapper>

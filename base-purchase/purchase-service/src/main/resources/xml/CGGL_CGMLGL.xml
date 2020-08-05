@@ -1,0 +1,360 @@
+<tableList describe="采购管理采购目录管理" xmlName = "CGGL_CGMLGL">
+    <table>
+        <tableInfo>
+            <caption>采购目录查询</caption>
+            <tableName>T_CG_ML</tableName>
+            <sql>SELECT ID, ML_BH MLBH,ML_BB MLBB,ML_ZB MLZB,ML_FB_RQ MLFBRQ,ML_XG_RQ MLXGRQ,ML_BB_DW MLBBDW,ML_SM MLSM,CJRQ,STATUS STATUSID,
+                (case when STATUS=1 then '生效'  when STATUS=2 then '无效' when STATUS=3 then '修订中' when STATUS=4 then '删除' end) as STATUS
+                FROM T_CG_ML WHERE STATUS!=4 order by id desc</sql>
+        </tableInfo>
+        <tableConfig>
+            <tableColumns>
+                <tableOptions>
+                    <modelName>采购目录查询</modelName>
+                    <type>table</type>
+                    <!-- 是否开启复选框 -->
+                    <mutiSelect>false</mutiSelect>
+                    <!-- 表格下标 -->
+                    <index>true</index>
+                    <!-- 初始化表格 -->
+                    <initTable>true</initTable>
+                    <!-- 表格边框 -->
+                    <border>true</border>
+                    <!-- 是否加载 -->
+                    <loading>false</loading>
+                    <!-- 表格条纹 -->
+                    <stripe>true</stripe>
+                    <!-- 表格分页 -->
+                    <pagination>true</pagination>
+                    <!-- 开启分页 -->
+                    <height>29</height>
+                </tableOptions>
+
+                <tableHeader>
+                    <!-- 标签 -->
+                    <label>状态代码</label>
+                    <!-- 唯一标识 -->
+                    <prop>statusid</prop>
+                    <!-- 宽度 -->
+                    <width>120</width>
+                    <!-- 是否居中 -->
+                    <align>center</align>
+                    <!-- 是否固定列 -->
+                    <fixed>false</fixed>
+                    <!-- 是否过滤 -->
+                    <filters>fasle</filters>
+                    <!-- 最小列宽 -->
+                    <minWidth>30</minWidth>
+                    <!-- 列是否排序 -->
+                    <sortable>false</sortable>
+                    <!-- 是否可编辑 -->
+                    <isEdit>false</isEdit>
+                    <!-- 编辑类型 -->
+                    <editType>input</editType>
+                    <!-- 列类型 -->
+                    <fieldType>integer</fieldType>
+                    <!-- 查询方式 -->
+                    <condition>equal</condition>
+                    <show>false</show>
+                    <parent>false</parent>
+                </tableHeader>
+
+                <tableHeader>
+                    <!-- 标签 -->
+                    <label>自增id</label>
+                    <!-- 唯一标识 -->
+                    <prop>id</prop>
+                    <!-- 宽度 -->
+                    <width>120</width>
+                    <!-- 是否居中 -->
+                    <align>center</align>
+                    <!-- 是否固定列 -->
+                    <fixed>false</fixed>
+                    <!-- 是否过滤 -->
+                    <filters>fasle</filters>
+                    <!-- 最小列宽 -->
+                    <minWidth>30</minWidth>
+                    <!-- 列是否排序 -->
+                    <sortable>false</sortable>
+                    <!-- 是否可编辑 -->
+                    <isEdit>false</isEdit>
+                    <!-- 编辑类型 -->
+                    <editType>input</editType>
+                    <!-- 列类型 -->
+                    <fieldType>integer</fieldType>
+                    <!-- 查询方式 -->
+                    <condition>equal</condition>
+                    <show>false</show>
+                    <parent>false</parent>
+                </tableHeader>
+
+                <tableHeader>
+                    <!-- 标签 -->
+                    <label>目录编号</label>
+                    <!-- 唯一标识 -->
+                    <prop>mlbh</prop>
+                    <!-- 宽度 -->
+                    <width>120</width>
+                    <!-- 是否居中 -->
+                    <align>center</align>
+                    <!-- 是否固定列 -->
+                    <fixed>false</fixed>
+                    <!-- 是否过滤 -->
+                    <filters>fasle</filters>
+                    <!-- 最小列宽 -->
+                    <minWidth>30</minWidth>
+                    <!-- 列是否排序 -->
+                    <sortable>false</sortable>
+                    <!-- 是否可编辑 -->
+                    <isEdit>false</isEdit>
+                    <!-- 编辑类型 -->
+                    <editType>input</editType>
+                    <!-- 列类型 -->
+                    <fieldType>string</fieldType>
+                    <!-- 查询方式 -->
+                    <condition>equal</condition>
+                    <show>true</show>
+                    <parent>false</parent>
+                </tableHeader>
+
+                <tableHeader>
+                    <!-- 标签 -->
+                    <label>目录版本</label>
+                    <!-- 唯一标识 -->
+                    <prop>mlbb</prop>
+                    <!-- 宽度 -->
+                    <width>120</width>
+                    <!-- 是否居中 -->
+                    <align>center</align>
+                    <!-- 是否固定列 -->
+                    <fixed>false</fixed>
+                    <!-- 是否过滤 -->
+                    <filters>fasle</filters>
+                    <!-- 最小列宽 -->
+                    <minWidth>30</minWidth>
+                    <!-- 列是否排序 -->
+                    <sortable>false</sortable>
+                    <!-- 是否可编辑 -->
+                    <isEdit>false</isEdit>
+                    <!-- 编辑类型 -->
+                    <editType>input</editType>
+                    <!-- 列类型 -->
+                    <fieldType>string</fieldType>
+                    <!-- 查询方式 -->
+                    <condition>equal</condition>
+                    <show>true</show>
+                    <parent>false</parent>
+                </tableHeader>
+
+                <tableHeader>
+                    <!-- 标签 -->
+                    <label>目录子版本</label>
+                    <!-- 唯一标识 -->
+                    <prop>mlzb</prop>
+                    <!-- 宽度 -->
+                    <width>120</width>
+                    <!-- 是否居中 -->
+                    <align>center</align>
+                    <!-- 是否固定列 -->
+                    <fixed>false</fixed>
+                    <!-- 是否过滤 -->
+                    <filters>fasle</filters>
+                    <!-- 最小列宽 -->
+                    <minWidth>30</minWidth>
+                    <!-- 列是否排序 -->
+                    <sortable>false</sortable>
+                    <!-- 是否可编辑 -->
+                    <isEdit>false</isEdit>
+                    <!-- 编辑类型 -->
+                    <editType>input</editType>
+                    <!-- 列类型 -->
+                    <fieldType>integer</fieldType>
+                    <!-- 查询方式 -->
+                    <condition>equal</condition>
+                    <show>true</show>
+                    <parent>false</parent>
+                </tableHeader>
+
+                <tableHeader>
+                    <!-- 标签 -->
+                    <label>目录发布日期</label>
+                    <!-- 唯一标识 -->
+                    <prop>mlfbrq</prop>
+                    <!-- 宽度 -->
+                    <width>180</width>
+                    <!-- 是否居中 -->
+                    <align>center</align>
+                    <!-- 是否固定列 -->
+                    <fixed>false</fixed>
+                    <!-- 是否过滤 -->
+                    <filters>fasle</filters>
+                    <!-- 最小列宽 -->
+                    <minWidth>30</minWidth>
+                    <!-- 列是否排序 -->
+                    <sortable>false</sortable>
+                    <!-- 是否可编辑 -->
+                    <isEdit>false</isEdit>
+                    <!-- 编辑类型 -->
+                    <editType>input</editType>
+                    <!-- 列类型 -->
+                    <fieldType>date</fieldType>
+                    <!-- 查询方式 -->
+                    <condition>equal</condition>
+                    <show>true</show>
+                    <parent>false</parent>
+                </tableHeader>
+
+                <tableHeader>
+                    <!-- 标签 -->
+                    <label>目录修改日期</label>
+                    <!-- 唯一标识 -->
+                    <prop>mlxgrq</prop>
+                    <!-- 宽度 -->
+                    <width>150</width>
+                    <!-- 是否居中 -->
+                    <align>center</align>
+                    <!-- 是否固定列 -->
+                    <fixed>false</fixed>
+                    <!-- 是否过滤 -->
+                    <filters>fasle</filters>
+                    <!-- 最小列宽 -->
+                    <minWidth>30</minWidth>
+                    <!-- 列是否排序 -->
+                    <sortable>false</sortable>
+                    <!-- 是否可编辑 -->
+                    <isEdit>false</isEdit>
+                    <!-- 编辑类型 -->
+                    <editType>input</editType>
+                    <!-- 列类型 -->
+                    <fieldType>date</fieldType>
+                    <!-- 查询方式 -->
+                    <condition>equal</condition>
+                    <show>true</show>
+                    <parent>false</parent>
+                </tableHeader>
+
+                <tableHeader>
+                    <!-- 标签 -->
+                    <label>目录颁布单位</label>
+                    <!-- 唯一标识 -->
+                    <prop>mlbbdw</prop>
+                    <!-- 宽度 -->
+                    <width>120</width>
+                    <!-- 是否居中 -->
+                    <align>center</align>
+                    <!-- 是否固定列 -->
+                    <fixed>false</fixed>
+                    <!-- 是否过滤 -->
+                    <filters>fasle</filters>
+                    <!-- 最小列宽 -->
+                    <minWidth>30</minWidth>
+                    <!-- 列是否排序 -->
+                    <sortable>false</sortable>
+                    <!-- 是否可编辑 -->
+                    <isEdit>false</isEdit>
+                    <!-- 编辑类型 -->
+                    <editType>input</editType>
+                    <!-- 列类型 -->
+                    <fieldType>string</fieldType>
+                    <!-- 查询方式 -->
+                    <condition>equal</condition>
+                    <show>true</show>
+                    <parent>false</parent>
+                </tableHeader>
+
+                <tableHeader>
+                    <!-- 标签 -->
+                    <label>目录说明</label>
+                    <!-- 唯一标识 -->
+                    <prop>mlsm</prop>
+                    <!-- 宽度 -->
+                    <width>150</width>
+                    <!-- 是否居中 -->
+                    <align>center</align>
+                    <!-- 是否固定列 -->
+                    <fixed>false</fixed>
+                    <!-- 是否过滤 -->
+                    <filters>fasle</filters>
+                    <!-- 最小列宽 -->
+                    <minWidth>30</minWidth>
+                    <!-- 列是否排序 -->
+                    <sortable>false</sortable>
+                    <!-- 是否可编辑 -->
+                    <isEdit>false</isEdit>
+                    <!-- 编辑类型 -->
+                    <editType>input</editType>
+                    <!-- 列类型 -->
+                    <fieldType>string</fieldType>
+                    <!-- 查询方式 -->
+                    <condition>equal</condition>
+                    <show>true</show>
+                    <parent>false</parent>
+                </tableHeader>
+
+                <tableHeader>
+                    <!-- 标签 -->
+                    <label>目录状态</label>
+                    <!-- 唯一标识 -->
+                    <prop>status</prop>
+                    <!-- 宽度 -->
+                    <width>120</width>
+                    <!-- 是否居中 -->
+                    <align>center</align>
+                    <!-- 是否固定列 -->
+                    <fixed>false</fixed>
+                    <!-- 是否过滤 -->
+                    <filters>fasle</filters>
+                    <!-- 最小列宽 -->
+                    <minWidth>30</minWidth>
+                    <!-- 列是否排序 -->
+                    <sortable>false</sortable>
+                    <!-- 是否可编辑 -->
+                    <isEdit>false</isEdit>
+                    <!-- 编辑类型 -->
+                    <editType>input</editType>
+                    <!-- 列类型 -->
+                    <fieldType>string</fieldType>
+                    <!-- 查询方式 -->
+                    <condition>equal</condition>
+                    <show>true</show>
+                    <parent>false</parent>
+                </tableHeader>
+
+                <tableHeader>
+                    <!-- 标签 -->
+                    <label>创建日期</label>
+                    <!-- 唯一标识 -->
+                    <prop>cjrq</prop>
+                    <!-- 宽度 -->
+                    <width>180</width>
+                    <!-- 是否居中 -->
+                    <align>center</align>
+                    <!-- 是否固定列 -->
+                    <fixed>false</fixed>
+                    <!-- 是否过滤 -->
+                    <filters>fasle</filters>
+                    <!-- 最小列宽 -->
+                    <minWidth>30</minWidth>
+                    <!-- 列是否排序 -->
+                    <sortable>false</sortable>
+                    <!-- 是否可编辑 -->
+                    <isEdit>false</isEdit>
+                    <!-- 编辑类型 -->
+                    <editType>input</editType>
+                    <!-- 列类型 -->
+                    <fieldType>date</fieldType>
+                    <!-- 查询方式 -->
+                    <condition>equal</condition>
+                    <show>true</show>
+                    <parent>false</parent>
+                </tableHeader>
+
+
+
+            </tableColumns>
+
+        </tableConfig>
+    </table>
+
+
+</tableList>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.material.mapper.PKCXMapper">
+    <select id="list" parameterType="com.andawell.material.query.PKCXQuery" resultType="com.andawell.material.entity.PKCX">
+		select X.JX,C.MC JXMC,X.JH,B.MC JHMC,D.MC JLDW,X.XH,X.SL,
+		CASE WHEN X.SL>0 THEN '盘亏' when X.SL &lt; 0 then '盘盈' else '' end PDJG  from (
+		SELECT jx,jh,xh,sum(KCsl)sl FROM (
+		SELECT * FROM (
+		select substr(jx,0,2)jx,jh,xh,sum(sl) KCsl from t_ck_ck_temp
+		where dcrq=to_date(#{pkcxQuery.dcrq,jdbcType=VARCHAR},'yyyy-mm-dd hh24:mi:ss')
+		and sl>0
+		group by substr(jx,0,2),jh,xh
+		order by jh,xh
+		)CK1
+		UNION ALL(
+		SELECT substr(jx,0,2)jx,JH,XH,SUM(1*SL) RKSL FROM T_ck_crkqd
+		where  RKRQ > TO_DATE(#{pkcxQuery.dcrq,jdbcType=VARCHAR},'yyyy-mm-dd hh24:mi:ss')
+		AND CXSGIN=0 AND LB IN('1001','1002','1003','1004','1006','1007','1013','1014')
+		GROUP BY substr(jx,0,2),JH,XH
+		)
+		UNION ALL(
+		SELECT substr(jx,0,2)jx,JH,XH,SUM(-1*SL) RKSL FROM T_ck_crkqd
+		where  RKRQ > TO_DATE(#{pkcxQuery.dcrq,jdbcType=VARCHAR},'yyyy-mm-dd hh24:mi:ss')
+		AND CXSGIN=0 AND LB IN('2001','2002','2003','2005','2010','2011','2013','2014')
+		GROUP BY substr(jx,0,2),JH,XH
+		)
+		UNION ALL(
+		select substr(jx,0,2)jx,jh,xh,sum(-1*sl) QMsl from t_ck_ck where sl>0 group by substr(jx,0,2),jh,xh
+		)
+		)a group by jx,jh,xh HAVING sum(KCsl) &lt;> 0
+		order by jx,jh,xh
+		)X
+		LEFT JOIN  T_JH B ON X.JX=B.JX AND X.JH=B.ID
+		LEFT JOIN T_JH_JX C ON X.JX=C.ID
+		LEFT JOIN T_XT_JLDW D ON B.DW=D.ID
+		ORDER BY JX,JH,XH
+    </select>
+</mapper>

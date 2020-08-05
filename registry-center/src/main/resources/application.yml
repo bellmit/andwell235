@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: registry-center
+  profiles:
+    active: $profile.name$
+  freemarker:
+    prefer-file-system-access: false

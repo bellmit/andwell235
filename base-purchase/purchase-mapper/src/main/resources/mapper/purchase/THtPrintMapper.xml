@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.purchase.mapper.THtPrintMapper">
+
+    <select id="select" resultType="com.andawell.purchase.dto.htprint.THtPrintDTO" parameterType="map">
+        SELECT
+        T_HT.Hth,T_HT.JHBH,T_HT.Qddd,T_HT.QDRQ,t_ht.ysfs ysfs,T_HT.Dlyj htyj,T_HT.Jglx ,T_HT.nd,
+        T_XT_JGF.Mc jgfmc,T_XT_JGF.Dz jgfdz,T_XT_JGF.Yb jgfyb,T_XT_JGF.Dh jgfdh ,
+        T_XT_CGF.Dwmc cgfmc,T_XT_CGF.Dz cgfdz,T_XT_CGF.Dh cgfdh,T_XT_CGF.Khmc cgfkhmc,T_XT_CGF.Khyh cgfkhyh,
+        T_XT_CGF.Yhzh cgfyhzh,
+        T_CF.Mc cfmc,T_CF.Dz cfdz,T_CF.Dh cfdh,T_CF.Zhmc cfkhmc ,T_CF.Khyh cfkhyh,T_CF.Zh cfyhzh,T_CF.Jm cfjc
+        FROM T_HT
+        LEFT JOIN T_XT_JGF ON T_XT_JGF.ID = T_HT.JGFID
+        LEFT JOIN T_XT_CGF ON T_XT_CGF.ID = T_HT.CGFID
+        LEFT JOIN T_CF ON T_CF.ID = T_HT.CJID
+        where T_HT.hth = #{hth,jdbcType=VARCHAR} and T_HT.jhbh = #{jhbh,jdbcType=VARCHAR}
+    </select>
+
+    <select id="qdList" resultType="map" parameterType="map">
+        select T_JH_JX.MC JXMC,T_JH_JH.MC JHMC,T_HT_QD.JH ,to_char(T_HT_QD.Sl) SL,to_char(T_HT_QD.ZJ) zj,
+        T_HT_QD.BZ,to_char(T_HT_QD.ZJ/T_HT_QD.Sl) dj,t_ht_qd.jfjd,T_XT_JLDW.MC jldw from t_ht_qd
+        LEFT JOIN T_JH_JX ON T_JH_JX.ID = T_HT_QD.JX
+        LEFT JOIN T_JH_JH ON T_JH_JH.ID = T_HT_QD.JH
+        LEFT JOIN T_XT_JLDW ON T_JH_JH.DW = T_XT_JLDW.ID
+         where hth = #{hth,jdbcType=VARCHAR} and jhbh = #{jhbh,jdbcType=VARCHAR}
+    </select>
+
+    <select id="info" resultType="com.andawell.purchase.dto.htprint.THtInfoDTO" parameterType="map">
+        select count(*) zts,sum(sl) zsl,round(sum(ZJ),2) zje from t_ht_qd
+         where hth = #{hth,jdbcType=VARCHAR} and jhbh = #{jhbh,jdbcType=VARCHAR}
+
+    </select>
+
+
+</mapper>

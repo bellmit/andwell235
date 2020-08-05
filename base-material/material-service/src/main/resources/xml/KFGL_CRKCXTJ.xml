@@ -1,0 +1,136 @@
+<tableList describe="库房管理出入库查询统计" xmlName="KFGL_CRKCXTJ">
+  <table>
+    <tableInfo>
+      <caption>出入库查询统计</caption>
+      <tableName>T_CK_CRKQD</tableName>
+      <sql>SELECT T_JH_JX.MC JXMC,T_JH_ZL.MC ZLMC,J.ZL, XCI,JC,ZJE,J.LB,T_CK_CRKLB.MC LBMC  FROM( 
+SELECT JX,  ZL, SUM(SL) JC, SUM(JE) ZJE,LB FROM (
+SELECT JX,ZL, SL, JH ,ZJ*HL AS JE,LB FROM T_CK_CRKQD WHERE 1=1 AND CXSGIN=0) A
+GROUP BY JX, ZL,LB)J
+LEFT JOIN( 
+SELECT JX, ZL, SUM(XC)XCI,LB  FROM (
+SELECT JX, ZL,JH, 1 XC,LB   FROM (
+SELECT JX,ZL,  JH,LB  FROM T_CK_CRKQD WHERE 1=1 AND CXSGIN=0) A
+GROUP BY JX, ZL,JH,LB)B
+GROUP BY JX,ZL,LB
+)X ON J.JX=X.JX AND J.ZL=X.ZL AND J.LB=X.LB
+LEFT JOIN T_JH_JX ON T_JH_JX.ID=J.JX  
+LEFT JOIN T_JH_ZL ON T_JH_ZL.ID=J.ZL
+LEFT JOIN T_CK_CRKLB ON T_CK_CRKLB.ID=J.LB
+ORDER BY LB,JXMC,ZL</sql>
+    </tableInfo>
+    <tableConfig>
+      <tableColumns>
+        <tableHeader>
+          <prop>jxmc</prop>
+          <align>center</align>
+          <label>机型</label>
+          <width>120</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>string</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>lbmc</prop>
+          <align>center</align>
+          <label>出入库类别</label>
+          <width>120</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>string</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>zlmc</prop>
+          <align>center</align>
+          <label>质量</label>
+          <width>120</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>string</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>jc</prop>
+          <align>center</align>
+          <label>件次</label>
+          <width>120</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>integer</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>zje</prop>
+          <align>right</align>
+          <label>总价(元)</label>
+          <width>120</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>integer</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>rkrq</prop>
+          <align>center</align>
+          <label>日期</label>
+          <width>150</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>false</show>
+          <condition>equal</condition>
+          <fieldType>date</fieldType>
+          <parent>false</parent>
+          <isInner>true</isInner>
+        </tableHeader>
+        <tableOptions>
+          <modelName>出入库查询统计</modelName>
+          <type>table</type>
+          <index>true</index>
+          <mutiSelect>false</mutiSelect>
+          <initTable>true</initTable>
+          <pagination>true</pagination>
+          <border>true</border>
+          <stripe>true</stripe>
+          <loading>false</loading>
+          <height>290</height>
+        </tableOptions>
+      </tableColumns>
+    </tableConfig>
+  </table>
+</tableList>

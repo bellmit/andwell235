@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.andawell.upms.mapper.LogInfoMapper">
+    <resultMap id="logInfoResultMap" type="com.andawell.upms.entity.LogInfo">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="operation" property="operation" jdbcType="VARCHAR"/>
+        <result column="type" property="type" jdbcType="VARCHAR"/>
+        <result column="time" property="time" jdbcType="INTEGER"/>
+        <result column="method" property="method" jdbcType="VARCHAR"/>
+        <result column="params" property="params" jdbcType="VARCHAR"/>
+        <result column="request_uri" property="requestUri" jdbcType="VARCHAR"/>
+        <result column="ip" property="ip" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="auth_flag" property="authFlag" jdbcType="VARCHAR"/>
+        <result column="return_value" property="returnValue" jdbcType="VARCHAR"/>
+        <result column="exception_code" property="exceptionCode" jdbcType="VARCHAR"/>
+        <result column="exception_detail" property="exceptionDetail" jdbcType="VARCHAR"/>
+        <result column="execute_status" property="status" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="queryCondition">
+        <where>
+            del_flag = '1'
+            <if test="query!=null">
+                <if test="query.username!=null and query.username.length()>0">
+                    and username = #{query.username}
+                </if>
+                <if test="query.nameLike!=null and query.nameLike.length()>0">
+                    and name like '%${query.nameLike}%'
+                </if>
+                <if test="query.type!=null and query.type.length()>0">
+                    and type = #{query.type}
+                </if>
+                <if test="query.startTime!=null">
+                    and create_time &gt;= #{query.startTime}
+                </if>
+                <if test="query.endTime!=null">
+                    and create_time &lt;= #{query.endTime}
+                </if>
+            </if>
+            ORDER BY create_time desc
+        </where>
+    </sql>
+    <select id="list" resultMap="logInfoResultMap">
+        select * from SYS_LOG
+        <include refid="queryCondition"/>
+    </select>
+    <select id="detail" resultMap="logInfoResultMap">
+        select * from SYS_LOG where id = #{id} and del_flag='1'
+    </select>
+    <insert id="insert" parameterType="com.andawell.upms.entity.LogInfo">
+        insert into SYS_LOG (
+        username,name,operation,type,time,method,params,ip,request_uri,return_value,create_time,del_flag,auth_flag,
+        exception_code,exception_detail,execute_status)
+        values (
+        #{username,jdbcType=VARCHAR},
+        #{name,jdbcType=VARCHAR},
+        #{operation,jdbcType=VARCHAR},
+        #{type,jdbcType=VARCHAR},
+        #{time,jdbcType=INTEGER},
+        #{method,jdbcType=VARCHAR},
+        #{params,jdbcType=VARCHAR},
+        #{ip,jdbcType=VARCHAR},
+        #{requestUri,jdbcType=VARCHAR},
+        #{returnValue,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP},
+        '1',
+        #{authFlag,jdbcType=VARCHAR},
+        #{exceptionCode,jdbcType=VARCHAR},
+        #{exceptionDetail,jdbcType=VARCHAR},
+        #{status,jdbcType=VARCHAR}
+        )
+    </insert>
+    <update id="update" parameterType="com.andawell.upms.entity.LogInfo">
+        update SYS_LOG set
+        username=#{username,jdbcType=VARCHAR},
+        operation=#{operation,jdbcType=VARCHAR},
+        type=#{type,jdbcType=VARCHAR},
+        name=#{name,jdbcType=VARCHAR},
+        request_uri=#{requestUri,jdbcType=VARCHAR}
+        method=#{method,jdbcType=VARCHAR},
+        params=#{params,jdbcType=VARCHAR},
+        time=#{time,jdbcType=INTEGER},
+        create_time=#{createTime,jdbcType=TIMESTAMP},
+        auth_flag=#{authFlag,jdbcType=VARCHAR}
+        return_value=#{returnValue,jdbcType=VARCHAR}
+        exception_code=#{exceptionCode,jdbcType=VARCHAR}
+        exception_detail=#{exceptionDetail,jdbcType=VARCHAR}
+        execute_status=#{status,jdbcType=VARCHAR}
+        where id=#{id} and del_flag='1'
+    </update>
+    <update id="delete" parameterType="com.andawell.upms.entity.LogInfo">
+        update SYS_LOG set
+        del_flag='0',
+        where id=#{id} and del_flag='1'
+    </update>
+
+</mapper>

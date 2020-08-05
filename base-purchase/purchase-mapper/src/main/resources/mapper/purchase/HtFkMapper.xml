@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.purchase.mapper.HtFkMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.purchase.entity.HtFk">
+    <id column="HTH" jdbcType="VARCHAR" property="hth" />
+    <id column="FKBH" jdbcType="VARCHAR" property="fkbh" />
+    <result column="HKJG" jdbcType="VARCHAR" property="hkjg" />
+    <result column="FKRQ" jdbcType="TIMESTAMP" property="fkrq" />
+    <result column="YBDL" jdbcType="VARCHAR" property="ybdl" />
+    <result column="BZ" jdbcType="VARCHAR" property="bz" />
+  </resultMap>
+
+  <sql id="queryCondition">
+    <where>
+      1=1
+      <if test="query!=null">
+        <if test="query.yj!=null and query.yj.length()>0">
+          and A.YJ= #{query.yj}
+        </if>
+        <if test="query.cjid!=null and query.cjid.length()>0">
+          and CJID= #{query.cjid}
+        </if>
+        <if test="query.cjmc!=null and query.cjmc.length()>0">
+          and CJMC LIKE '%${query.cjmc}%'
+        </if>
+        <if test="query.status!=null">
+          and STATUS= #{query.status}
+        </if>
+      </if>
+    </where>
+  </sql>
+
+  <sql id="queryConditionFk">
+    <where>
+      1=1 and  (select count(1) from  ht_fk_qd where RKB= A.bh)&lt;1
+      <if test="query!=null">
+        <if test="query.yj!=null and query.yj.length()>0">
+          and A.YJ= #{query.yj}
+        </if>
+        <if test="query.cjid!=null and query.cjid.length()>0">
+          and CJID= #{query.cjid}
+        </if>
+        <if test="query.cjmc!=null and query.cjmc.length()>0">
+          and CJMC LIKE '%${query.cjmc}%'
+        </if>
+        <if test="query.status!=null">
+          and STATUS= #{query.status}
+        </if>
+      </if>
+    </where>
+  </sql>
+
+  <sql id="Base_Column_List">
+    HTH, FKBH, HKJG, FKRQ, YBDL, BZ
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HT_FK
+    where HTH = #{hth,jdbcType=VARCHAR}
+      and FKBH = #{fkbh,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectMaxFkbh" resultType="java.lang.String">
+     select max(fkbh) from HT_FK
+  </select>
+
+  <select id="listHtFkck" resultType="com.andawell.purchase.vo.THtFkVO">
+    select A.YJ,T_HT.CJID,T_HT.JHBH,A.BH as RKDH, A.WH as HTWH,T_CF.MC as CJMC
+    ,A.RQ as RKRQ,T_HT.STATUS,
+    (select fkbh from ht_fk_qd where 1=1 and ht_fk_qd.rkb= A.bh and rownum =1) as fkbh,
+    B.RKXS,B.RKJS,B.ZJ
+    from T_CK_CRK A
+    LEFT JOIN T_HT ON T_HT.HTH=A.YJ
+    LEFT JOIN T_CF ON T_CF.ID=T_HT.CJID
+    LEFT JOIN (select T_CK_CRK.YJ,T_CK_CRK.BH,count(T_CK_CRKQD.JH) as RKXS
+    ,sum(T_CK_CRKQD.Sl) as RKJS,sum(T_CK_CRKQD.ZJ) as ZJ
+    FROM T_CK_CRKQD
+    LEFT JOIN T_CK_CRK ON T_CK_CRKQD.BH=T_CK_CRK.BH AND T_CK_CRKQD.DWID=T_CK_CRK.DWID
+    GROUP BY T_CK_CRK.YJ,T_CK_CRK.BH) B ON A.YJ=B.YJ AND A.BH=B.BH
+    <include refid="queryCondition"/>
+  </select>
+
+    <select id="listHtFk" resultType="com.andawell.purchase.vo.THtFkVO">
+
+      select A.YJ,T_HT.CJID,T_HT.JHBH,A.BH as RKDH, A.WH as HTWH,T_CF.MC as CJMC
+      ,A.RQ as RKRQ,T_HT.STATUS, B.RKXS,B.RKJS,B.ZJ
+      from T_CK_CRK A
+      LEFT JOIN T_HT ON T_HT.HTH=A.YJ
+      LEFT JOIN T_CF ON T_CF.ID=T_HT.CJID
+      LEFT JOIN (select T_CK_CRK.YJ,T_CK_CRK.BH,count(T_CK_CRKQD.JH) as RKXS
+      ,sum(T_CK_CRKQD.Sl) as RKJS,sum(T_CK_CRKQD.ZJ) as ZJ
+      FROM T_CK_CRKQD
+      LEFT JOIN T_CK_CRK ON T_CK_CRKQD.BH=T_CK_CRK.BH AND T_CK_CRKQD.DWID=T_CK_CRK.DWID
+      GROUP BY T_CK_CRK.YJ,T_CK_CRK.BH) B ON A.YJ=B.YJ AND A.BH=B.BH
+        <include refid="queryConditionFk"/>
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from HT_FK
+    where HTH = #{hth,jdbcType=VARCHAR}
+      and FKBH = #{fkbh,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.andawell.purchase.entity.HtFk">
+    insert into HT_FK (HTH, FKBH, HKJG, 
+      FKRQ, YBDL, BZ)
+    values (#{hth,jdbcType=VARCHAR}, #{fkbh,jdbcType=VARCHAR}, #{hkjg,jdbcType=VARCHAR}, 
+      #{fkrq,jdbcType=TIMESTAMP}, #{ybdl,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.andawell.purchase.entity.HtFk">
+    insert into HT_FK
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="hth != null">
+        HTH,
+      </if>
+      <if test="fkbh != null">
+        FKBH,
+      </if>
+      <if test="hkjg != null">
+        HKJG,
+      </if>
+      <if test="fkrq != null">
+        FKRQ,
+      </if>
+      <if test="ybdl != null">
+        YBDL,
+      </if>
+      <if test="bz != null">
+        BZ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="hth != null">
+        #{hth,jdbcType=VARCHAR},
+      </if>
+      <if test="fkbh != null">
+        #{fkbh,jdbcType=VARCHAR},
+      </if>
+      <if test="hkjg != null">
+        #{hkjg,jdbcType=VARCHAR},
+      </if>
+      <if test="fkrq != null">
+        #{fkrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ybdl != null">
+        #{ybdl,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null">
+        #{bz,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.andawell.purchase.entity.HtFk">
+    update HT_FK
+    <set>
+      <if test="hkjg != null">
+        HKJG = #{hkjg,jdbcType=VARCHAR},
+      </if>
+      <if test="fkrq != null">
+        FKRQ = #{fkrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ybdl != null">
+        YBDL = #{ybdl,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null">
+        BZ = #{bz,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where HTH = #{hth,jdbcType=VARCHAR}
+      and FKBH = #{fkbh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.andawell.purchase.entity.HtFk">
+    update HT_FK
+    set HKJG = #{hkjg,jdbcType=VARCHAR},
+      FKRQ = #{fkrq,jdbcType=TIMESTAMP},
+      YBDL = #{ybdl,jdbcType=VARCHAR},
+      BZ = #{bz,jdbcType=VARCHAR}
+    where HTH = #{hth,jdbcType=VARCHAR}
+      and FKBH = #{fkbh,jdbcType=VARCHAR}
+  </update>
+</mapper>

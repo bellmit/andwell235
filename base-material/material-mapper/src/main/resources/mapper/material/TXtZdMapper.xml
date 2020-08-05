@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.material.mapper.TXtZdMapper">
+    <resultMap id="BaseResultMap" type="com.andawell.material.entity.TXtZd">
+        <id column="DWID" jdbcType="DECIMAL" property="dwid"/>
+        <id column="ZDID" jdbcType="DECIMAL" property="zdid"/>
+        <result column="MC" jdbcType="VARCHAR" property="mc"/>
+        <result column="YX" jdbcType="VARCHAR" property="yx"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    DWID, ZDID, MC, YX
+    </sql>
+    <sql id="queryCondition">
+        <where>
+            <if test="query!=null">
+                <if test="query.DWID!=null and query.DWID.length()>0">
+                    and sa.DWID = #{query.id}
+                </if>
+            </if>
+        </where>
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from T_XT_ZD
+        where DWID = #{dwid,jdbcType=DECIMAL}
+        and ZDID = #{zdid,jdbcType=DECIMAL}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from T_XT_ZD
+    where DWID = #{dwid,jdbcType=DECIMAL}
+      and ZDID = #{zdid,jdbcType=DECIMAL}
+  </delete>
+    <insert id="insert" parameterType="com.andawell.material.entity.TXtZd">
+    insert into T_XT_ZD (DWID, ZDID, MC, 
+      YX)
+    values (#{dwid,jdbcType=DECIMAL}, #{zdid,jdbcType=DECIMAL}, #{mc,jdbcType=VARCHAR}, 
+      #{yx,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.andawell.material.entity.TXtZd">
+        insert into T_XT_ZD
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="dwid != null">
+                DWID,
+            </if>
+            <if test="zdid != null">
+                ZDID,
+            </if>
+            <if test="mc != null">
+                MC,
+            </if>
+            <if test="yx != null">
+                YX,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="dwid != null">
+                #{dwid,jdbcType=DECIMAL},
+            </if>
+            <if test="zdid != null">
+                #{zdid,jdbcType=DECIMAL},
+            </if>
+            <if test="mc != null">
+                #{mc,jdbcType=VARCHAR},
+            </if>
+            <if test="yx != null">
+                #{yx,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.andawell.material.entity.TXtZd">
+        update T_XT_ZD
+        <set>
+            <if test="mc != null">
+                MC = #{mc,jdbcType=VARCHAR},
+            </if>
+            <if test="yx != null">
+                YX = #{yx,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where DWID = #{dwid,jdbcType=DECIMAL}
+        and ZDID = #{zdid,jdbcType=DECIMAL}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.andawell.material.entity.TXtZd">
+    update T_XT_ZD
+    set MC = #{mc,jdbcType=VARCHAR},
+      YX = #{yx,jdbcType=VARCHAR}
+    where DWID = #{dwid,jdbcType=DECIMAL}
+      and ZDID = #{zdid,jdbcType=DECIMAL}
+  </update>
+
+    <select id="list" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from T_XT_ZD sa
+        <include refid="queryCondition"/>
+    </select>
+</mapper>

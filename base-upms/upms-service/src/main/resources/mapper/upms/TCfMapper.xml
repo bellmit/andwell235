@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.upms.mapper.TCfMapper">
+    <resultMap id="BaseResultMap" type="com.andawell.upms.entity.TCf">
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="LB" jdbcType="VARCHAR" property="lb"/>
+        <result column="MC" jdbcType="VARCHAR" property="mc"/>
+        <result column="JM" jdbcType="VARCHAR" property="jm"/>
+        <result column="ZYLB" jdbcType="VARCHAR" property="zylb"/>
+        <result column="BZ" jdbcType="VARCHAR" property="bz"/>
+        <result column="ZHMC" jdbcType="VARCHAR" property="zhmc"/>
+        <result column="ZH" jdbcType="VARCHAR" property="zh"/>
+        <result column="KHYH" jdbcType="VARCHAR" property="khyh"/>
+        <result column="GJ" jdbcType="VARCHAR" property="gj"/>
+        <result column="CS" jdbcType="VARCHAR" property="cs"/>
+        <result column="DZ" jdbcType="VARCHAR" property="dz"/>
+        <result column="YB" jdbcType="VARCHAR" property="yb"/>
+        <result column="LXR" jdbcType="VARCHAR" property="lxr"/>
+        <result column="DH" jdbcType="VARCHAR" property="dh"/>
+        <result column="CZ" jdbcType="VARCHAR" property="cz"/>
+        <result column="YJ" jdbcType="VARCHAR" property="yj"/>
+        <result column="ZS" jdbcType="VARCHAR" property="zs"/>
+        <result column="ZSRQ" jdbcType="TIMESTAMP" property="zsrq"/>
+        <result column="WXZS" jdbcType="VARCHAR" property="wxzs"/>
+        <result column="WXZSRQ" jdbcType="TIMESTAMP" property="wxzsrq"/>
+        <result column="BMZZ" jdbcType="VARCHAR" property="bmzz"/>
+        <result column="BMKSRQ" jdbcType="TIMESTAMP" property="bmksrq"/>
+        <result column="PID" jdbcType="VARCHAR" property="pid"/>
+        <result column="ZZHM" jdbcType="VARCHAR" property="zzhm"/>
+        <result column="BFRQ" jdbcType="TIMESTAMP" property="bfrq"/>
+        <result column="WXZSKSRQ" jdbcType="TIMESTAMP" property="wxzsksrq"/>
+        <result column="BMJSRQ" jdbcType="TIMESTAMP" property="bmjsrq"/>
+        <result column="JGDW" jdbcType="VARCHAR" property="jgdw"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    ID, LB, MC, JM, ZYLB, BZ, ZHMC, ZH, KHYH, GJ, CS, DZ, YB, LXR, DH, CZ, YJ, ZS, ZSRQ,
+    WXZS, WXZSRQ, BMZZ, BMKSRQ, PID, ZZHM, BFRQ, WXZSKSRQ, BMJSRQ,JGDW
+  </sql>
+
+    <sql id="queryCondition">
+        <where>
+            1=1
+            <if test="query!=null">
+                <if test="query.id!=null and query.id.length()>0">
+                    and ID= #{query.id}
+                </if>
+                <if test="query.lb!=null and query.lb.length()>0">
+                    and LB like '${query.lb}%'
+                </if>
+                <if test="query.mc!=null and query.mc.length()>0">
+                    and MC= #{query.mc}
+                </if>
+                <if test="query.jm!=null and query.jm.length()>0">
+                    and JM= #{query.jm}
+                </if>
+                <if test="query.zylb!=null and query.zylb.length()>0">
+                    and ZYLB = #{query.zylb}
+                </if>
+                <if test="query.bz!=null and query.bz.length()>0">
+                    and BZ= #{query.bz}
+                </if>
+                <if test="query.zhmc!=null and query.zhmc.length()>0">
+                    and ZHMC = #{query.zhmc}
+                </if>
+                <if test="query.zh!=null and query.id.length()>0">
+                    and ZH= #{query.zh}
+                </if>
+                <if test="query.khyh!=null and query.khyh.length()>0">
+                    and KHYH = #{query.khyh}
+                </if>
+                <if test="query.gj!=null and query.gj.length()>0">
+                    and GJ= #{query.gj}
+                </if>
+                <if test="query.cs!=null and query.cs.length()>0">
+                    and CS = #{query.cs}
+                </if>
+                <if test="query.dz!=null and query.dz.length()>0">
+                    and DZ = #{query.dz}
+                </if>
+                <if test="query.yb!=null and query.yb.length()>0">
+                    and YB= #{query.yb}
+                </if>
+                <if test="query.lxr!=null and query.lxr.length()>0">
+                    and LXR= #{query.lxr}
+                </if>
+                <if test="query.dh!=null and query.dh.length()>0">
+                    and DH = #{query.dh}
+                </if>
+                <if test="query.cz!=null and query.cz.length()>0">
+                    and CZ= #{query.cz}
+                </if>
+                <if test="query.yj!=null and query.yj.length()>0">
+                    and YJ = #{query.yj}
+                </if>
+                <if test="query.zs!=null and query.zs.length()>0">
+                    and ZS= #{query.zs}
+                </if>
+                <if test="query.zsrq!=null">
+                    and ZSRQ = #{query.zsrq}
+                </if>
+                <if test="query.wxzs!=null and query.wxzs.length()>0">
+                    and WXZS= #{query.wxzs}
+                </if>
+                <if test="query.wxzsrq!=null">
+                    and WXZSRQ = #{query.wxzsrq}
+                </if>
+                <if test="query.bmzz!=null and query.bmzz.length()>0">
+                    and BMZZ= #{query.bmzz}
+                </if>
+                <if test="query.bmksrq!=null">
+                    and BMKSRQ = #{query.bmksrq}
+                </if>
+                <if test="query.pid!=null and query.pid.length()>0">
+                    and PID = #{query.pid}
+                </if>
+                <if test="query.zzhm!=null and query.zzhm.length()>0">
+                    and ZZHM= #{query.zzhm}
+                </if>
+                <if test="query.bfrq!=null">
+                    and BFRQ = #{query.bfrq}
+                </if>
+                <if test="query.wxzsksrq!=null">
+                    and WXZSKSRQ = #{query.wxzsksrq}
+                </if>
+                <if test="query.bmjsrq!=null">
+                    and BMJSRQ = #{query.bmjsrq}
+                </if>
+                <if test="query.jgdw!=null and query.jgdw.length()>0">
+                    and JGDW= #{query.jgdw}
+                </if>
+            </if>
+        </where>
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultType="com.andawell.upms.entity.TCf">
+        select
+        <include refid="Base_Column_List"/>
+        from T_CF
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getCzMaxId" resultType="java.lang.String">
+    select Max(substr(id,2))
+    from t_cf t
+    where ID like 'M%'
+  </select>
+
+    <select id="getCxMaxId" resultType="java.lang.String">
+    select Max(substr(id,2))
+    from t_cf t
+    where ID like 'R%'
+  </select>
+
+    <select id="list" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from T_CF
+        <include refid="queryCondition"/>
+    </select>
+
+    <select id="listId" resultType="java.lang.String">
+    select ID
+    from T_CF
+    where 1=1
+  </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from T_CF
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+
+    <insert id="insertSelective" parameterType="com.andawell.upms.entity.TCf">
+        insert into T_CF
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="lb != null">
+                LB,
+            </if>
+            <if test="mc != null">
+                MC,
+            </if>
+            <if test="jm != null">
+                JM,
+            </if>
+            <if test="zylb != null">
+                ZYLB,
+            </if>
+            <if test="bz != null">
+                BZ,
+            </if>
+            <if test="zhmc != null">
+                ZHMC,
+            </if>
+            <if test="zh != null">
+                ZH,
+            </if>
+            <if test="khyh != null">
+                KHYH,
+            </if>
+            <if test="gj != null">
+                GJ,
+            </if>
+            <if test="cs != null">
+                CS,
+            </if>
+            <if test="dz != null">
+                DZ,
+            </if>
+            <if test="yb != null">
+                YB,
+            </if>
+            <if test="lxr != null">
+                LXR,
+            </if>
+            <if test="dh != null">
+                DH,
+            </if>
+            <if test="cz != null">
+                CZ,
+            </if>
+            <if test="yj != null">
+                YJ,
+            </if>
+            <if test="zs != null">
+                ZS,
+            </if>
+            <if test="zsrq != null">
+                ZSRQ,
+            </if>
+            <if test="wxzs != null">
+                WXZS,
+            </if>
+            <if test="wxzsrq != null">
+                WXZSRQ,
+            </if>
+            <if test="bmzz != null">
+                BMZZ,
+            </if>
+            <if test="bmksrq != null">
+                BMKSRQ,
+            </if>
+            <if test="pid != null">
+                PID,
+            </if>
+            <if test="zzhm != null">
+                ZZHM,
+            </if>
+            <if test="bfrq != null">
+                BFRQ,
+            </if>
+            <if test="wxzsksrq != null">
+                WXZSKSRQ,
+            </if>
+            <if test="bmjsrq != null">
+                BMJSRQ,
+            </if>
+            <if test="jgdw != null">
+                JGDW,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="lb != null">
+                #{lb,jdbcType=VARCHAR},
+            </if>
+            <if test="mc != null">
+                #{mc,jdbcType=VARCHAR},
+            </if>
+            <if test="jm != null">
+                #{jm,jdbcType=VARCHAR},
+            </if>
+            <if test="zylb != null">
+                #{zylb,jdbcType=VARCHAR},
+            </if>
+            <if test="bz != null">
+                #{bz,jdbcType=VARCHAR},
+            </if>
+            <if test="zhmc != null">
+                #{zhmc,jdbcType=VARCHAR},
+            </if>
+            <if test="zh != null">
+                #{zh,jdbcType=VARCHAR},
+            </if>
+            <if test="khyh != null">
+                #{khyh,jdbcType=VARCHAR},
+            </if>
+            <if test="gj != null">
+                #{gj,jdbcType=VARCHAR},
+            </if>
+            <if test="cs != null">
+                #{cs,jdbcType=VARCHAR},
+            </if>
+            <if test="dz != null">
+                #{dz,jdbcType=VARCHAR},
+            </if>
+            <if test="yb != null">
+                #{yb,jdbcType=VARCHAR},
+            </if>
+            <if test="lxr != null">
+                #{lxr,jdbcType=VARCHAR},
+            </if>
+            <if test="dh != null">
+                #{dh,jdbcType=VARCHAR},
+            </if>
+            <if test="cz != null">
+                #{cz,jdbcType=VARCHAR},
+            </if>
+            <if test="yj != null">
+                #{yj,jdbcType=VARCHAR},
+            </if>
+            <if test="zs != null">
+                #{zs,jdbcType=VARCHAR},
+            </if>
+            <if test="zsrq != null">
+                #{zsrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="wxzs != null">
+                #{wxzs,jdbcType=VARCHAR},
+            </if>
+            <if test="wxzsrq != null">
+                #{wxzsrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="bmzz != null">
+                #{bmzz,jdbcType=VARCHAR},
+            </if>
+            <if test="bmksrq != null">
+                #{bmksrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="pid != null">
+                #{pid,jdbcType=VARCHAR},
+            </if>
+            <if test="zzhm != null">
+                #{zzhm,jdbcType=VARCHAR},
+            </if>
+            <if test="bfrq != null">
+                #{bfrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="wxzsksrq != null">
+                #{wxzsksrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="bmjsrq != null">
+                #{bmjsrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="jgdw != null">
+                #{jgdw,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <insert id="insertAll" parameterType="com.andawell.upms.entity.TCf" useGeneratedKeys="false">
+        insert all
+        <foreach collection="list" item="item" index="index">
+            into T_CF(ID,JM,MC,DZ,DH,ZHMC,KHYH,ZH,LB,JGDW)
+            values (
+            #{item.id,jdbcType=VARCHAR }
+            ,#{item.jm,jdbcType=VARCHAR }
+            ,#{item.mc,jdbcType=VARCHAR }
+            ,#{item.dz,jdbcType=VARCHAR }
+            ,#{item.dh,jdbcType=VARCHAR }
+            ,#{item.zhmc,jdbcType=VARCHAR }
+            ,#{item.khyh,jdbcType=VARCHAR }
+            ,#{item.zh,jdbcType=VARCHAR }
+            ,#{item.lb,jdbcType=VARCHAR }
+            ,#{item.jgdw,jdbcType=VARCHAR }
+            )
+        </foreach>
+        select 1 from DUAL
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.andawell.upms.entity.TCf">
+        update T_CF
+        <set>
+            <if test="lb != null">
+                LB = #{lb,jdbcType=VARCHAR},
+            </if>
+            <if test="mc != null">
+                MC = #{mc,jdbcType=VARCHAR},
+            </if>
+            <if test="jm != null">
+                JM = #{jm,jdbcType=VARCHAR},
+            </if>
+            <if test="zylb != null">
+                ZYLB = #{zylb,jdbcType=VARCHAR},
+            </if>
+            <if test="bz != null">
+                BZ = #{bz,jdbcType=VARCHAR},
+            </if>
+            <if test="zhmc != null">
+                ZHMC = #{zhmc,jdbcType=VARCHAR},
+            </if>
+            <if test="zh != null">
+                ZH = #{zh,jdbcType=VARCHAR},
+            </if>
+            <if test="khyh != null">
+                KHYH = #{khyh,jdbcType=VARCHAR},
+            </if>
+            <if test="gj != null">
+                GJ = #{gj,jdbcType=VARCHAR},
+            </if>
+            <if test="cs != null">
+                CS = #{cs,jdbcType=VARCHAR},
+            </if>
+            <if test="dz != null">
+                DZ = #{dz,jdbcType=VARCHAR},
+            </if>
+            <if test="yb != null">
+                YB = #{yb,jdbcType=VARCHAR},
+            </if>
+            <if test="lxr != null">
+                LXR = #{lxr,jdbcType=VARCHAR},
+            </if>
+            <if test="dh != null">
+                DH = #{dh,jdbcType=VARCHAR},
+            </if>
+            <if test="cz != null">
+                CZ = #{cz,jdbcType=VARCHAR},
+            </if>
+            <if test="yj != null">
+                YJ = #{yj,jdbcType=VARCHAR},
+            </if>
+            <if test="zs != null">
+                ZS = #{zs,jdbcType=VARCHAR},
+            </if>
+            <if test="zsrq != null">
+                ZSRQ = #{zsrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="wxzs != null">
+                WXZS = #{wxzs,jdbcType=VARCHAR},
+            </if>
+            <if test="wxzsrq != null">
+                WXZSRQ = #{wxzsrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="bmzz != null">
+                BMZZ = #{bmzz,jdbcType=VARCHAR},
+            </if>
+            <if test="bmksrq != null">
+                BMKSRQ = #{bmksrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="pid != null">
+                PID = #{pid,jdbcType=VARCHAR},
+            </if>
+            <if test="zzhm != null">
+                ZZHM = #{zzhm,jdbcType=VARCHAR},
+            </if>
+            <if test="bfrq != null">
+                BFRQ = #{bfrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="wxzsksrq != null">
+                WXZSKSRQ = #{wxzsksrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="bmjsrq != null">
+                BMJSRQ = #{bmjsrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="jgdw != null">
+                JGDW = #{jgdw,jdbcType=VARCHAR}
+            </if>
+        </set>
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+
+</mapper>

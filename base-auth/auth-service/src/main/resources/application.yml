@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: auth-service
+  profiles:
+    active: $profile.name$
+logging:
+  config: classpath:logback-base-development.xml
+  #config: classpath:logback-${spring.profiles.active}.xml
+mybatis:
+  mapper-locations: classpath:mapper/*/*Mapper.xml
+  config-location: classpath:mybatis-config.xml
+pagehelper:
+  autoDialect: true
+  closeConn: false
+  reasonable: true
+#swagger公共信息
+swagger:
+  host: api-gateway:9001
+  title:  Swagger UI API
+  description: 基于RFID的框架
+  version: 1.0
+  license: may by andawell
+  licenseUrl: https://baidu.com/
+  terms-of-service-url: https://baidu.com/
+  contact:
+    name: andawell
+    email: 123456@andawell.com
+    url: https://baidu.com/
+  authorization:
+    name: Authorization
+    auth-regex: ^.*$
+    authorization-scope-list:
+      - scope: server
+        description: server all
+    token-url-list:
+      - http://api-gateway:9001/auth/oauth/token
+

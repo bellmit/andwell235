@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.material.mapper.TWxNlMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.material.entity.TWxNl">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="JX" jdbcType="VARCHAR" property="jx" />
+    <result column="JH" jdbcType="VARCHAR" property="jh" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    ID, JX, JH
+  </sql>
+
+  <select id="selectMaxId" resultType="java.lang.Integer">
+    select 
+    MAX(ID)
+    from T_WX_NL
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from T_WX_NL
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <select id="selectWxNl" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from T_WX_NL
+    where JX = #{jxId,jdbcType=VARCHAR} and JH = #{jhId,jdbcType=VARCHAR}
+  </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from T_WX_NL
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+
+  <insert id="insert" parameterType="com.andawell.material.entity.TWxNl">
+    insert into T_WX_NL (ID, JX, JH)
+    values (#{id,jdbcType=DECIMAL}, #{jx,jdbcType=VARCHAR}, #{jh,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.andawell.material.entity.TWxNl">
+    insert into T_WX_NL
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="jx != null">
+        JX,
+      </if>
+      <if test="jh != null">
+        JH,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="jx != null">
+        #{jx,jdbcType=VARCHAR},
+      </if>
+      <if test="jh != null">
+        #{jh,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.andawell.material.entity.TWxNl">
+    update T_WX_NL
+    <set>
+      <if test="jx != null">
+        JX = #{jx,jdbcType=VARCHAR},
+      </if>
+      <if test="jh != null">
+        JH = #{jh,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.andawell.material.entity.TWxNl">
+    update T_WX_NL
+    set JX = #{jx,jdbcType=VARCHAR},
+      JH = #{jh,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+
+
+  <sql id="queryCondition">
+    <where>
+      <if test="query!=null">
+        <if test="query.ids != null">
+          and T_WX_NL.ID in
+          <foreach collection="query.ids" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+          </foreach>
+        </if>
+      </if>
+    </where>
+  </sql>
+
+  <select id="selectByQuery" resultType="com.andawell.material.entity.TWxNl">
+    select
+    <include refid="Base_Column_List" />
+    from T_WX_NL
+    <include refid="queryCondition"/>
+  </select>
+
+
+</mapper>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.upms.mapper.TXtZdMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.upms.entity.TXtZd">
+    <id column="DWID" jdbcType="DECIMAL" property="dwid" />
+    <id column="ZDID" jdbcType="DECIMAL" property="zdid" />
+    <result column="MC" jdbcType="VARCHAR" property="mc" />
+    <result column="YX" jdbcType="VARCHAR" property="yx" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    DWID, ZDID, MC, YX
+  </sql>
+
+  <sql id="queryCondition">
+    <where>
+      1=1
+      <if test="query!=null">
+        <if test="query.dwid !=null and query.dwid.length()>0">
+          and DWID= #{query.dwid}
+        </if>
+        <if test="query.zdid !=null and query.zdid.length()>0">
+          and ZDID = #{query.zdid}
+        </if>
+        <if test="query.mc !=null and query.mc.length()>0">
+          and MC= #{query.mc}
+        </if>
+        <if test="query.yx !=null and query.yx.length()>0">
+          and YX = #{query.yx}
+        </if>
+      </if>
+    </where>
+  </sql>
+  <select id="list" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from T_XT_ZD
+    <include refid="queryCondition"/>
+  </select>
+
+  <select id="getMaxZdid" parameterType="java.lang.String" resultType="java.lang.String">
+    select MAX (to_number(ZDID))
+    from T_XT_ZD
+    where DWID=#{dwid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from T_XT_ZD
+    where DWID = #{dwid,jdbcType=DECIMAL}
+      and ZDID = #{zdid,jdbcType=DECIMAL}
+  </delete>
+
+  <insert id="insert" parameterType="com.andawell.upms.entity.TXtZd">
+    insert into T_XT_ZD (DWID, ZDID, MC, 
+      YX)
+    values (#{dwid,jdbcType=DECIMAL}, #{zdid,jdbcType=DECIMAL}, #{mc,jdbcType=VARCHAR}, 
+      #{yx,jdbcType=VARCHAR})
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.andawell.upms.entity.TXtZd">
+    insert into T_XT_ZD
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dwid != null">
+        DWID,
+      </if>
+      <if test="zdid != null">
+        ZDID,
+      </if>
+      <if test="mc != null">
+        MC,
+      </if>
+      <if test="yx != null">
+        YX,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dwid != null">
+        #{dwid,jdbcType=DECIMAL},
+      </if>
+      <if test="zdid != null">
+        #{zdid,jdbcType=DECIMAL},
+      </if>
+      <if test="mc != null">
+        #{mc,jdbcType=VARCHAR},
+      </if>
+      <if test="yx != null">
+        #{yx,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.andawell.upms.entity.TXtZd">
+    update T_XT_ZD
+    <set>
+      <if test="mc != null">
+        MC = #{mc,jdbcType=VARCHAR},
+      </if>
+      <if test="yx != null">
+        YX = #{yx,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DWID = #{dwid,jdbcType=DECIMAL}
+      and ZDID = #{zdid,jdbcType=DECIMAL}
+  </update>
+
+</mapper>

@@ -1,0 +1,193 @@
+<tableList describe="库房管理5年消耗统计" xmlName="KFGL_WNXH">
+  <table>
+    <tableInfo>
+      <caption>5年消耗统计</caption>
+      <tableName>T_CK_CRKQD</tableName>
+      <sql>SELECT JX.MC JXMC,A.JH,JH.MC JHMC,DW.MC JLDW,NVL(SLA,0)SLA,NVL(SLB,0)SLB,NVL(SLC,0)SLC,NVL(SLD,0)SLD,NVL(SLE,0)SLE,NVL(KCSL,0)KCSL FROM (
+SELECT JH,JX FROM T_CK_CRKQD WHERE LB IN (2001,2002) AND RKRQ BETWEEN TO_DATE(&apos;2013-1-1&apos;,&apos;YYYY-MM-DD&apos;) AND TO_DATE(&apos;2018-1-1&apos;,&apos;YYYY-MM-DD&apos;) GROUP BY JX,JH
+)A
+LEFT JOIN (
+     SELECT JX,JH,SUM(SL) SLA FROM T_CK_CRKQD WHERE LB IN (2001,2002) AND TO_CHAR(RKRQ,&apos;YYYY&apos;)=&apos;2015&apos; GROUP BY JX,JH
+)XHA ON A.JX=XHA.JX AND A.JH=XHA.JH
+LEFT JOIN (
+     SELECT JX,JH,SUM(SL) SLB FROM T_CK_CRKQD WHERE LB IN (2001,2002) AND TO_CHAR(RKRQ,&apos;YYYY&apos;)=&apos;2016&apos; GROUP BY JX,JH
+)XHB ON A.JX=XHB.JX AND A.JH=XHB.JH
+LEFT JOIN (
+     SELECT JX,JH,SUM(SL) SLC FROM T_CK_CRKQD WHERE LB IN (2001,2002) AND TO_CHAR(RKRQ,&apos;YYYY&apos;)=&apos;2017&apos; GROUP BY JX,JH
+)XHC ON A.JX=XHC.JX AND A.JH=XHC.JH
+LEFT JOIN (
+     SELECT JX,JH,SUM(SL) SLD FROM T_CK_CRKQD WHERE LB IN (2001,2002) AND TO_CHAR(RKRQ,&apos;YYYY&apos;)=&apos;2018&apos; GROUP BY JX,JH
+)XHD ON A.JX=XHD.JX AND A.JH=XHD.JH
+LEFT JOIN (
+     SELECT JX,JH,SUM(SL) SLE FROM T_CK_CRKQD WHERE LB IN (2001,2002) AND TO_CHAR(RKRQ,&apos;YYYY&apos;)=&apos;2019&apos; GROUP BY JX,JH
+)XHE ON A.JX=XHE.JX AND A.JH=XHE.JH
+LEFT JOIN (
+     SELECT JX,JH,SUM(SL) KCSL FROM T_CK_CK   GROUP BY JX,JH
+)KC ON A.JX=KC.JX AND A.JH=KC.JH
+LEFT JOIN T_JH_JX JX ON A.JX=JX.ID
+LEFT JOIN T_JH JH ON A.JX=JH.JX AND A.JH=JH.ID
+LEFT JOIN T_XT_JLDW DW ON JH.DW=DW.ID
+ORDER BY A.JX,A.JH</sql>
+    </tableInfo>
+    <tableConfig>
+      <tableColumns>
+        <tableHeader>
+          <prop>jh</prop>
+          <align>center</align>
+          <label>件号</label>
+          <width>100</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>true</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>string</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>jxmc</prop>
+          <align>center</align>
+          <label>件号名称</label>
+          <width>100</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>true</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>string</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>dw</prop>
+          <align>center</align>
+          <label>单位</label>
+          <width>100</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>true</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>integer</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>dynxh</prop>
+          <align>center</align>
+          <label>2016</label>
+          <width>100</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>true</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>integer</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>denxh</prop>
+          <align>center</align>
+          <label>2017</label>
+          <width>100</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>true</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>integer</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>dsnxh</prop>
+          <align>center</align>
+          <label>2018</label>
+          <width>100</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>true</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>integer</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>dsnxh</prop>
+          <align>center</align>
+          <label>2019</label>
+          <width>100</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>true</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>integer</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>dwnxh</prop>
+          <align>center</align>
+          <label>2020</label>
+          <width>100</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>true</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>integer</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>dqkc</prop>
+          <align>center</align>
+          <label>当前库存</label>
+          <width>100</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>true</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>integer</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableOptions>
+          <modelName>5年消耗统计</modelName>
+          <type>table</type>
+          <index>true</index>
+          <mutiSelect>false</mutiSelect>
+          <initTable>true</initTable>
+          <pagination>true</pagination>
+          <border>true</border>
+          <stripe>true</stripe>
+          <loading>false</loading>
+          <height>290</height>
+        </tableOptions>
+      </tableColumns>
+    </tableConfig>
+  </table>
+</tableList>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.purchase.mapper.TDhLtxqTempMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.purchase.entity.TDhLtxqTemp">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="BM" jdbcType="VARCHAR" property="bm" />
+    <result column="JXMC" jdbcType="VARCHAR" property="jxmc" />
+    <result column="QCMC" jdbcType="VARCHAR" property="qcmc" />
+    <result column="QCXH" jdbcType="VARCHAR" property="qcxh" />
+    <result column="QCLXMC" jdbcType="VARCHAR" property="qclxmc" />
+    <result column="DW" jdbcType="VARCHAR" property="dw" />
+    <result column="SQSL" jdbcType="DECIMAL" property="sqsl" />
+    <result column="BH" jdbcType="VARCHAR" property="bh" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, BM, JXMC, QCMC, QCXH, QCLXMC, DW, SQSL, BH
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_DH_LTXQ_TEMP
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <select id="getList" parameterType= "com.andawell.purchase.query.TDhLtxqTempQuery"
+          resultType="com.andawell.purchase.vo.TDhLtxqTempVO">
+      select t_dh_ltxq_temp.*,
+      V_DW.ID as dwid,
+      t_dh_ltxq_temp.QCXH as jh,
+      T_JH_JX.ID as jx
+      from t_dh_ltxq_temp
+      left join V_DW  on t_dh_ltxq_temp.bm = V_DW.MC
+      left join T_JH_JX on t_dh_ltxq_temp.JXMC = T_JH_JX.MC
+    <include refid="queryCondition" />
+  </select>
+  <sql id="queryCondition">
+    <where>
+      1=1
+      <if test="bh!=null and bh.length()>0">
+        and t_dh_ltxq_temp.BH = #{bh,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from T_DH_LTXQ_TEMP
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteBybh" parameterType="java.lang.String">
+    delete from T_DH_LTXQ_TEMP
+    where BH = #{bh,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.andawell.purchase.entity.TDhLtxqTemp">
+    insert into T_DH_LTXQ_TEMP (ID, BM, JXMC, 
+      QCMC, QCXH,QCLXMC, DW, SQSL,
+      BH)
+    values (#{id,jdbcType=DECIMAL}, #{bm,jdbcType=VARCHAR}, #{jxmc,jdbcType=VARCHAR}, 
+      #{qcmc,jdbcType=VARCHAR}, #{qcxh,jdbcType=VARCHAR},
+      , #{qclxmc,jdbcType=VARCHAR}, #{dw,jdbcType=VARCHAR}, #{sqsl,jdbcType=DECIMAL},
+      #{bh,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.andawell.purchase.entity.TDhLtxqTemp">
+    insert into T_DH_LTXQ_TEMP
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="bm != null">
+        BM,
+      </if>
+      <if test="jxmc != null">
+        JXMC,
+      </if>
+      <if test="qcmc != null">
+        QCMC,
+      </if>
+      <if test="qcxh != null">
+        QCXH,
+      </if>
+      <if test="qclxmc != null">
+        QCLXMC,
+      </if>
+      <if test="dw != null">
+        DW,
+      </if>
+      <if test="sqsl != null">
+        SQSL,
+      </if>
+      <if test="bh != null">
+        BH,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="bm != null">
+        #{bm,jdbcType=VARCHAR},
+      </if>
+      <if test="jxmc != null">
+        #{jxmc,jdbcType=VARCHAR},
+      </if>
+      <if test="qcmc != null">
+        #{qcmc,jdbcType=VARCHAR},
+      </if>
+      <if test="qcxh != null">
+        #{qcxh,jdbcType=VARCHAR},
+      </if>
+      <if test="qclxmc!= null">
+        #{qclxmc,jdbcType=VARCHAR},
+      </if>
+      <if test="dw != null">
+        #{dw,jdbcType=VARCHAR},
+      </if>
+      <if test="sqsl != null">
+        #{sqsl,jdbcType=DECIMAL},
+      </if>
+      <if test="bh != null">
+        #{bh,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.andawell.purchase.entity.TDhLtxqTemp">
+    update T_DH_LTXQ_TEMP
+    <set>
+      <if test="bm != null">
+        BM = #{bm,jdbcType=VARCHAR},
+      </if>
+      <if test="jxmc != null">
+        JXMC = #{jxmc,jdbcType=VARCHAR},
+      </if>
+      <if test="qcmc != null">
+        QCMC = #{qcmc,jdbcType=VARCHAR},
+      </if>
+      <if test="qcxh != null">
+        QCXH = #{qcxh,jdbcType=VARCHAR},
+      </if>
+      <if test="qclxmc != null">
+        QCLXMC = #{qclxmc,jdbcType=VARCHAR},
+      </if>
+      <if test="dw != null">
+        DW = #{dw,jdbcType=VARCHAR},
+      </if>
+      <if test="sqsl != null">
+        SQSL = #{sqsl,jdbcType=DECIMAL},
+      </if>
+      <if test="bh != null">
+        BH = #{bh,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.andawell.purchase.entity.TDhLtxqTemp">
+    update T_DH_LTXQ_TEMP
+    set BM = #{bm,jdbcType=VARCHAR},
+      JXMC = #{jxmc,jdbcType=VARCHAR},
+      QCMC = #{qcmc,jdbcType=VARCHAR},
+      QCXH = #{qcxh,jdbcType=VARCHAR},
+      QCLXMC = #{qcxlmc,jdbcType=VARCHAR},
+      DW = #{dw,jdbcType=VARCHAR},
+      SQSL = #{sqsl,jdbcType=DECIMAL},
+      BH = #{bh,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

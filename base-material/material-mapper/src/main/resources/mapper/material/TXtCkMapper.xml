@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.material.mapper.TXtCkMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.material.entity.TXtCk">
+    <id column="DWID" jdbcType="VARCHAR" property="dwid" />
+    <id column="CKID" jdbcType="VARCHAR" property="ckid" />
+    <result column="MC" jdbcType="VARCHAR" property="mc" />
+    <result column="LX" jdbcType="DECIMAL" property="lx" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    DWID, CKID, MC, LX
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_XT_CK
+    where DWID = #{dwid,jdbcType=VARCHAR}
+      and CKID = #{ckid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from T_XT_CK
+    where DWID = #{dwid,jdbcType=VARCHAR}
+      and CKID = #{ckid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.andawell.material.entity.TXtCk">
+    insert into T_XT_CK (DWID, CKID, MC, 
+      LX)
+    values (#{dwid,jdbcType=VARCHAR}, #{ckid,jdbcType=VARCHAR}, #{mc,jdbcType=VARCHAR}, 
+      #{lx,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.andawell.material.entity.TXtCk">
+    insert into T_XT_CK
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dwid != null">
+        DWID,
+      </if>
+      <if test="ckid != null">
+        CKID,
+      </if>
+      <if test="mc != null">
+        MC,
+      </if>
+      <if test="lx != null">
+        LX,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dwid != null">
+        #{dwid,jdbcType=VARCHAR},
+      </if>
+      <if test="ckid != null">
+        #{ckid,jdbcType=VARCHAR},
+      </if>
+      <if test="mc != null">
+        #{mc,jdbcType=VARCHAR},
+      </if>
+      <if test="lx != null">
+        #{lx,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.andawell.material.entity.TXtCk">
+    update T_XT_CK
+    <set>
+      <if test="mc != null">
+        MC = #{mc,jdbcType=VARCHAR},
+      </if>
+      <if test="lx != null">
+        LX = #{lx,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where DWID = #{dwid,jdbcType=VARCHAR}
+      and CKID = #{ckid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.andawell.material.entity.TXtCk">
+    update T_XT_CK
+    set MC = #{mc,jdbcType=VARCHAR},
+      LX = #{lx,jdbcType=DECIMAL}
+    where DWID = #{dwid,jdbcType=VARCHAR}
+      and CKID = #{ckid,jdbcType=VARCHAR}
+  </update>
+  <select id="list" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" />  from T_XT_CK
+    <include refid="queryCondition"/>
+    </select>
+
+  <sql id="queryCondition">
+    <where>
+      1=1
+      <if test="query!=null">
+        <if test="query.dwid!=null and query.dwid.length()>0">
+          and T_XT_CK.DWID = like '%${query.dwid}%'
+        </if>
+        <if test="query.ckid!=null and query.ckid.length()>0">
+          and T_XT_CK.CKID like '%${query.ckid}%'
+        </if>
+        <if test="query.mc!=null and query.mc.length()>0">
+          and T_XT_CK.MC like '%${query.mc}%'
+        </if>
+        <if test="query.lx!=null and query.lx.length()>0">
+          and T_XT_CK.LX like '%${query.lx}%'
+        </if>
+        <if test="query.ckids != null">
+          and T_XT_CK.CKID in
+          <foreach collection="query.ckids" item="ckid" index="index" open="(" close=")" separator=",">
+            #{ckid}
+          </foreach>
+        </if>
+      </if>
+    </where>
+  </sql>
+</mapper>

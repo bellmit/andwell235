@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.material.mapper.TDbZqdbMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.material.entity.TDbZqdb">
+    <id column="DBDH" jdbcType="VARCHAR" property="dbdh" />
+    <result column="SQDH" jdbcType="VARCHAR" property="sqdh" />
+    <result column="WH" jdbcType="VARCHAR" property="wh" />
+    <result column="YSFS" jdbcType="DECIMAL" property="ysfs" />
+    <result column="JX" jdbcType="VARCHAR" property="jx" />
+    <result column="FFDW" jdbcType="DECIMAL" property="ffdw" />
+    <result column="JSDW" jdbcType="DECIMAL" property="jsdw" />
+    <result column="ZT" jdbcType="DECIMAL" property="zt" />
+    <result column="RQ" jdbcType="TIMESTAMP" property="rq" />
+    <result column="BZ" jdbcType="VARCHAR" property="bz" />
+    <result column="BZW" jdbcType="DECIMAL" property="bzw" />
+    <result column="DBLX" jdbcType="DECIMAL" property="dblx" />
+    <result column="PRINT" jdbcType="DECIMAL" property="print" />
+    <result column="DBLB" jdbcType="DECIMAL" property="dblb" />
+    <result column="DBBH" jdbcType="VARCHAR" property="dbbh" />
+    <result column="XFZT" jdbcType="VARCHAR" property="xfzt" />
+    <result column="CLZT" jdbcType="VARCHAR" property="clzt" />
+    <result column="CSZT" jdbcType="VARCHAR" property="cszt" />
+    <result column="SJRQ" jdbcType="TIMESTAMP" property="sjrq" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    DBDH, SQDH, WH, YSFS, JX, FFDW, JSDW, ZT, RQ, BZ, BZW, DBLX, PRINT, DBLB, DBBH, XFZT, 
+    CLZT, CSZT, SJRQ
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_DB_ZQDB
+    where DBDH = #{dbdh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from T_DB_ZQDB
+    where DBDH = #{dbdh,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.andawell.material.entity.TDbZqdb">
+    insert into T_DB_ZQDB (DBDH, SQDH, WH, 
+      YSFS, JX, FFDW, JSDW, 
+      ZT, RQ, BZ, BZW, 
+      DBLX, PRINT, DBLB, 
+      DBBH, XFZT, CLZT, CSZT, 
+      SJRQ)
+    values (#{dbdh,jdbcType=VARCHAR}, #{sqdh,jdbcType=VARCHAR}, #{wh,jdbcType=VARCHAR}, 
+      #{ysfs,jdbcType=DECIMAL}, #{jx,jdbcType=VARCHAR}, #{ffdw,jdbcType=DECIMAL}, #{jsdw,jdbcType=DECIMAL}, 
+      #{zt,jdbcType=DECIMAL}, #{rq,jdbcType=TIMESTAMP}, #{bz,jdbcType=VARCHAR}, #{bzw,jdbcType=DECIMAL}, 
+      #{dblx,jdbcType=DECIMAL}, #{print,jdbcType=DECIMAL}, #{dblb,jdbcType=DECIMAL}, 
+      #{dbbh,jdbcType=VARCHAR}, #{xfzt,jdbcType=VARCHAR}, #{clzt,jdbcType=VARCHAR}, #{cszt,jdbcType=VARCHAR}, 
+      #{sjrq,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.andawell.material.entity.TDbZqdb">
+    insert into T_DB_ZQDB
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dbdh != null">
+        DBDH,
+      </if>
+      <if test="sqdh != null">
+        SQDH,
+      </if>
+      <if test="wh != null">
+        WH,
+      </if>
+      <if test="ysfs != null">
+        YSFS,
+      </if>
+      <if test="jx != null">
+        JX,
+      </if>
+      <if test="ffdw != null">
+        FFDW,
+      </if>
+      <if test="jsdw != null">
+        JSDW,
+      </if>
+      <if test="zt != null">
+        ZT,
+      </if>
+      <if test="rq != null">
+        RQ,
+      </if>
+      <if test="bz != null">
+        BZ,
+      </if>
+      <if test="bzw != null">
+        BZW,
+      </if>
+      <if test="dblx != null">
+        DBLX,
+      </if>
+      <if test="print != null">
+        PRINT,
+      </if>
+      <if test="dblb != null">
+        DBLB,
+      </if>
+      <if test="dbbh != null">
+        DBBH,
+      </if>
+      <if test="xfzt != null">
+        XFZT,
+      </if>
+      <if test="clzt != null">
+        CLZT,
+      </if>
+      <if test="cszt != null">
+        CSZT,
+      </if>
+      <if test="sjrq != null">
+        SJRQ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dbdh != null">
+        #{dbdh,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdh != null">
+        #{sqdh,jdbcType=VARCHAR},
+      </if>
+      <if test="wh != null">
+        #{wh,jdbcType=VARCHAR},
+      </if>
+      <if test="ysfs != null">
+        #{ysfs,jdbcType=DECIMAL},
+      </if>
+      <if test="jx != null">
+        #{jx,jdbcType=VARCHAR},
+      </if>
+      <if test="ffdw != null">
+        #{ffdw,jdbcType=DECIMAL},
+      </if>
+      <if test="jsdw != null">
+        #{jsdw,jdbcType=DECIMAL},
+      </if>
+      <if test="zt != null">
+        #{zt,jdbcType=DECIMAL},
+      </if>
+      <if test="rq != null">
+        #{rq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bz != null">
+        #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="bzw != null">
+        #{bzw,jdbcType=DECIMAL},
+      </if>
+      <if test="dblx != null">
+        #{dblx,jdbcType=DECIMAL},
+      </if>
+      <if test="print != null">
+        #{print,jdbcType=DECIMAL},
+      </if>
+      <if test="dblb != null">
+        #{dblb,jdbcType=DECIMAL},
+      </if>
+      <if test="dbbh != null">
+        #{dbbh,jdbcType=VARCHAR},
+      </if>
+      <if test="xfzt != null">
+        #{xfzt,jdbcType=VARCHAR},
+      </if>
+      <if test="clzt != null">
+        #{clzt,jdbcType=VARCHAR},
+      </if>
+      <if test="cszt != null">
+        #{cszt,jdbcType=VARCHAR},
+      </if>
+      <if test="sjrq != null">
+        #{sjrq,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="selectByNew" resultType="com.andawell.material.entity.TDbZqdb">
+    select   DBDH, SQDH, WH, YSFS, JX, FFDW, JSDW, ZT, RQ, BZ, BZW, DBLX, PRINT, DBLB, DBBH, XFZT,
+    CLZT, CSZT from
+    (select  DBDH, SQDH, WH, YSFS, JX, FFDW, JSDW, ZT, RQ, BZ, BZW, DBLX, PRINT, DBLB, DBBH, XFZT,
+    CLZT, CSZT from T_DB_ZQDB where 1=1
+    <if test='number != null and type == "1"' >
+      and DBBH like '${number}%'
+    </if>
+    <if test='number != null and type == "2"'>
+      and DBDH like '${number}%'
+    </if>
+    order by RQ desc
+    )
+    where rownum=1
+  </select>
+    <select id="list" resultType="com.andawell.material.entity.TDbZqdb">
+      select
+      <include refid="Base_Column_List" />
+      from T_DB_ZQDB
+    </select>
+
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.andawell.material.entity.TDbZqdb">
+    update T_DB_ZQDB
+    <set>
+      <if test="sqdh != null">
+        SQDH = #{sqdh,jdbcType=VARCHAR},
+      </if>
+      <if test="wh != null">
+        WH = #{wh,jdbcType=VARCHAR},
+      </if>
+      <if test="ysfs != null">
+        YSFS = #{ysfs,jdbcType=DECIMAL},
+      </if>
+      <if test="jx != null">
+        JX = #{jx,jdbcType=VARCHAR},
+      </if>
+      <if test="ffdw != null">
+        FFDW = #{ffdw,jdbcType=DECIMAL},
+      </if>
+      <if test="jsdw != null">
+        JSDW = #{jsdw,jdbcType=DECIMAL},
+      </if>
+      <if test="zt != null">
+        ZT = #{zt,jdbcType=DECIMAL},
+      </if>
+      <if test="rq != null">
+        RQ = #{rq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bz != null">
+        BZ = #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="bzw != null">
+        BZW = #{bzw,jdbcType=DECIMAL},
+      </if>
+      <if test="dblx != null">
+        DBLX = #{dblx,jdbcType=DECIMAL},
+      </if>
+      <if test="print != null">
+        PRINT = #{print,jdbcType=DECIMAL},
+      </if>
+      <if test="dblb != null">
+        DBLB = #{dblb,jdbcType=DECIMAL},
+      </if>
+      <if test="dbbh != null">
+        DBBH = #{dbbh,jdbcType=VARCHAR},
+      </if>
+      <if test="xfzt != null">
+        XFZT = #{xfzt,jdbcType=VARCHAR},
+      </if>
+      <if test="clzt != null">
+        CLZT = #{clzt,jdbcType=VARCHAR},
+      </if>
+      <if test="cszt != null">
+        CSZT = #{cszt,jdbcType=VARCHAR},
+      </if>
+      <if test="sjrq != null">
+        SJRQ = #{sjrq,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where DBDH = #{dbdh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.andawell.material.entity.TDbZqdb">
+    update T_DB_ZQDB
+    set SQDH = #{sqdh,jdbcType=VARCHAR},
+      WH = #{wh,jdbcType=VARCHAR},
+      YSFS = #{ysfs,jdbcType=DECIMAL},
+      JX = #{jx,jdbcType=VARCHAR},
+      FFDW = #{ffdw,jdbcType=DECIMAL},
+      JSDW = #{jsdw,jdbcType=DECIMAL},
+      ZT = #{zt,jdbcType=DECIMAL},
+      RQ = #{rq,jdbcType=TIMESTAMP},
+      BZ = #{bz,jdbcType=VARCHAR},
+      BZW = #{bzw,jdbcType=DECIMAL},
+      DBLX = #{dblx,jdbcType=DECIMAL},
+      PRINT = #{print,jdbcType=DECIMAL},
+      DBLB = #{dblb,jdbcType=DECIMAL},
+      DBBH = #{dbbh,jdbcType=VARCHAR},
+      XFZT = #{xfzt,jdbcType=VARCHAR},
+      CLZT = #{clzt,jdbcType=VARCHAR},
+      CSZT = #{cszt,jdbcType=VARCHAR},
+      SJRQ = #{sjrq,jdbcType=TIMESTAMP}
+    where DBDH = #{dbdh,jdbcType=VARCHAR}
+  </update>
+</mapper>

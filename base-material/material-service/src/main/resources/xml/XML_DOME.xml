@@ -1,0 +1,68 @@
+<tableList describe="XML dome" xmlName = "XML_DOME">
+  <table>
+    <tableInfo>
+      <caption>xml demo</caption>
+      <tableName>tableName</tableName>
+      <sql>业务查询(sql语句)</sql>
+    </tableInfo>
+    <tableConfig>
+      <tableColumns>
+        <tableHeader>
+          <!-- 标签 -->
+          <label>列名</label>
+          <!-- 唯一标识 -->
+          <prop>唯一标识</prop>
+          <!-- 宽度 -->
+          <width>120</width>
+          <!-- 是否居中 -->
+          <align>center</align>
+          <!-- 是否固定列 -->
+          <fixed>false</fixed>
+          <!-- 是否过滤 -->
+          <filters>fasle</filters>
+          <!-- 最小列宽 -->
+          <minWidth>30</minWidth>
+          <!-- 列是否排序 -->
+          <sortable>false</sortable>
+          <!-- 是否可编辑 -->
+          <isEdit>false</isEdit>
+          <!-- 编辑类型 -->
+          <editType>input</editType>
+          <!-- 列类型 -->
+          <fieldType>integer</fieldType>
+          <!-- 是否显示 -->
+          <show>true</show>
+          <!-- 查询方式  -->
+          <condition>equal</condition>
+          <!-- 是否存在父级表头 -->
+          <parent>false</parent>
+          <!-- 是否为子查询条件 -->
+          <isInner>true</isInner>
+          <!-- 日期格式化 年月日：yyyy-MM-dd  时分秒：yyyy-MM-dd HH:mm:ss" -->
+          <dateFormat>yyyy-MM-dd</dateFormat>
+        </tableHeader>
+        <tableOptions>
+          <modelName>采购目录清单列表</modelName>
+          <!-- table表格 -->
+          <type>table</type>
+          <!-- 计数  默认从1开始 -->
+          <index>true</index>
+          <!-- 选择框 true是打开 false是关闭 -->
+          <mutiSelect>false</mutiSelect>
+          <!-- 初始化表格 -->
+          <initTable>true</initTable>
+          <!-- 分页是否展示  false不展示 true展示 -->
+          <pagination>false</pagination>
+          <!-- 边框  true展示  false不展示 -->
+          <border>true</border>
+          <!-- 边框  true展示  false不展示 -->
+          <stripe>是否为斑马纹 table  true false</stripe>
+          <!-- loading加载等待 true是打开   false是关闭 -->
+          <loading>false</loading>
+          <!-- 高度 默认是px -->
+          <height>200</height>
+        </tableOptions>
+      </tableColumns>
+    </tableConfig>
+  </table>
+</tableList>

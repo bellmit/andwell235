@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.upms.mapper.TXtDwMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.upms.entity.TXtDw">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="MC" jdbcType="VARCHAR" property="mc" />
+    <result column="JC" jdbcType="VARCHAR" property="jc" />
+    <result column="FH" jdbcType="VARCHAR" property="fh" />
+    <result column="LXDZ" jdbcType="VARCHAR" property="lxdz" />
+    <result column="DSN" jdbcType="VARCHAR" property="dsn" />
+    <result column="USERNAME" jdbcType="VARCHAR" property="username" />
+    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    <result column="IP" jdbcType="VARCHAR" property="ip" />
+    <result column="ISTRANS" jdbcType="DECIMAL" property="istrans" />
+    <result column="LX" jdbcType="VARCHAR" property="lx" />
+    <result column="EJM" jdbcType="VARCHAR" property="ejm" />
+    <result column="PID" jdbcType="VARCHAR" property="pid" />
+  </resultMap>
+
+
+  <sql id="queryCondition">
+    <where>
+      1=1
+      <if test="query!=null">
+        <if test="query.id!=null and query.id.length()>0">
+          and ID= #{query.id}
+        </if>
+        <if test="query.pid!=null and query.pid.length()>0">
+          and PID = #{query.pid}
+        </if>
+        <if test="query.mc!=null and query.mc.length()>0">
+          and MC= #{query.mc}
+        </if>
+        <if test="query.ejm!=null and query.ejm.length()>0">
+          and EJM = #{query.ejm}
+        </if>
+        <if test="query.fh!=null and query.fh.length()>0">
+          and FH= #{query.fh}
+        </if>
+        <if test="query.jc!=null and query.jc.length()>0">
+          and JC = #{query.jc}
+        </if>
+        <if test="query.lx!=null and query.lx.length()>0">
+          and LX= #{query.lx}
+        </if>
+        <if test="query.lxdz!=null and query.lxdz.length()>0">
+          and LXDZ = #{query.lxdz}
+        </if>
+        <if test="query.dsn!=null and query.dsn.length()>0">
+          and DSN= #{query.dsn}
+        </if>
+        <if test="query.ip!=null and query.ip.length()>0">
+          and IP = #{query.ip}
+        </if>
+        <if test="query.istrans!=null and query.istrans.length()>0">
+          and ISTRANS= #{query.istrans}
+        </if>
+        <if test="query.username!=null and query.username.length()>0">
+          and USERNAME = #{query.username}
+        </if>
+        <if test="query.password!=null and query.password.length()>0">
+          and PASSWORD = #{query.password}
+        </if>
+
+      </if>
+    </where>
+  </sql>
+
+  <sql id="Base_Column_List">
+    ID, MC, JC, FH, LXDZ, DSN, USERNAME, PASSWORD, IP, ISTRANS, LX, EJM, PID
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_XT_DW
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="list"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"></include>
+    from T_XT_DW
+    <include refid="queryCondition"></include>
+  </select>
+
+  <select id="getMaxByPid" parameterType="java.lang.String" resultType="java.lang.String">
+    select MAX (to_number(ID))
+    from T_XT_DW
+    where PID=#{pid}
+  </select>
+
+    <select id="getMax2LengthId" resultType="java.lang.String">
+      select max (to_number(ID))
+      from T_XT_DW
+      where PID is null
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from T_XT_DW
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.andawell.upms.entity.TXtDw">
+    insert into T_XT_DW (ID, MC, JC, FH, 
+      LXDZ, DSN, USERNAME, 
+      PASSWORD, IP, ISTRANS, 
+      LX, EJM, PID)
+    values (#{id,jdbcType=VARCHAR}, #{mc,jdbcType=VARCHAR}, #{jc,jdbcType=VARCHAR}, #{fh,jdbcType=VARCHAR}, 
+      #{lxdz,jdbcType=VARCHAR}, #{dsn,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, #{istrans,jdbcType=DECIMAL}, 
+      #{lx,jdbcType=VARCHAR}, #{ejm,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.andawell.upms.entity.TXtDw">
+    insert into T_XT_DW
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="mc != null">
+        MC,
+      </if>
+      <if test="jc != null">
+        JC,
+      </if>
+      <if test="fh != null">
+        FH,
+      </if>
+      <if test="lxdz != null">
+        LXDZ,
+      </if>
+      <if test="dsn != null">
+        DSN,
+      </if>
+      <if test="username != null">
+        USERNAME,
+      </if>
+      <if test="password != null">
+        PASSWORD,
+      </if>
+      <if test="ip != null">
+        IP,
+      </if>
+      <if test="istrans != null">
+        ISTRANS,
+      </if>
+      <if test="lx != null">
+        LX,
+      </if>
+      <if test="ejm != null">
+        EJM,
+      </if>
+      <if test="pid != null">
+        PID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="mc != null">
+        #{mc,jdbcType=VARCHAR},
+      </if>
+      <if test="jc != null">
+        #{jc,jdbcType=VARCHAR},
+      </if>
+      <if test="fh != null">
+        #{fh,jdbcType=VARCHAR},
+      </if>
+      <if test="lxdz != null">
+        #{lxdz,jdbcType=VARCHAR},
+      </if>
+      <if test="dsn != null">
+        #{dsn,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="istrans != null">
+        #{istrans,jdbcType=DECIMAL},
+      </if>
+      <if test="lx != null">
+        #{lx,jdbcType=VARCHAR},
+      </if>
+      <if test="ejm != null">
+        #{ejm,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.andawell.upms.entity.TXtDw">
+    update T_XT_DW
+    <set>
+      <if test="mc != null">
+        MC = #{mc,jdbcType=VARCHAR},
+      </if>
+      <if test="jc != null">
+        JC = #{jc,jdbcType=VARCHAR},
+      </if>
+      <if test="fh != null">
+        FH = #{fh,jdbcType=VARCHAR},
+      </if>
+      <if test="lxdz != null">
+        LXDZ = #{lxdz,jdbcType=VARCHAR},
+      </if>
+      <if test="dsn != null">
+        DSN = #{dsn,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        USERNAME = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        IP = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="istrans != null">
+        ISTRANS = #{istrans,jdbcType=DECIMAL},
+      </if>
+      <if test="lx != null">
+        LX = #{lx,jdbcType=VARCHAR},
+      </if>
+      <if test="ejm != null">
+        EJM = #{ejm,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        PID = #{pid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

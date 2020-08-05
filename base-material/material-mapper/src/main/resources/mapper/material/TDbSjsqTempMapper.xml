@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.material.mapper.TDbSjsqTempMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.material.entity.TDbSjsqTemp">
+    <id column="SQDH" jdbcType="VARCHAR" property="sqdh" />
+    <result column="DBDH" jdbcType="VARCHAR" property="dbdh" />
+    <result column="JX" jdbcType="VARCHAR" property="jx" />
+    <result column="CLZT" jdbcType="VARCHAR" property="clzt" />
+    <result column="SQR" jdbcType="VARCHAR" property="sqr" />
+    <result column="RQ" jdbcType="TIMESTAMP" property="rq" />
+    <result column="DBBH" jdbcType="DECIMAL" property="dbbh" />
+    <result column="SQDW" jdbcType="VARCHAR" property="sqdw" />
+    <result column="XFZT" jdbcType="VARCHAR" property="xfzt" />
+    <result column="DBLX" jdbcType="VARCHAR" property="dblx" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    SQDH, DBDH, JX, CLZT, SQR, RQ, DBBH, SQDW, XFZT, DBLX
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_DB_SJSQ_TEMP
+    where SQDH = #{sqdh,jdbcType=VARCHAR}
+  </select>
+    <select id="getLiset" resultType="com.andawell.material.entity.TDbSjsqTemp">
+      select
+      <include refid="Base_Column_List" />
+      from T_DB_SJSQ_TEMP
+      <include refid="tDbLtsqQuery"/>
+    </select>
+  <sql id="tDbLtsqQuery">
+    <where>
+      1=1
+      <if test="query!=null">
+        <if test="query.ltsqdh!=null">
+          and T_DB_SJSQ_TEMP.sqdh = #{query.ltsqdh}
+        </if>
+        <if test="query.ltsqdhs != null ">
+          and T_DB_SJSQ_TEMP.sqdh in
+          <foreach collection="query.ltsqdhs" item="ltsqdh" index="index" open="(" close=")" separator=",">
+            #{ltsqdh}
+          </foreach>
+        </if>
+      </if>
+    </where>
+  </sql>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from T_DB_SJSQ_TEMP
+    where SQDH = #{sqdh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteAll">
+    delete from T_DB_SJSQ_TEMP
+  </delete>
+
+  <insert id="insert" parameterType="com.andawell.material.entity.TDbSjsqTemp">
+    insert into T_DB_SJSQ_TEMP (SQDH, DBDH, JX, 
+      CLZT, SQR, RQ, DBBH, 
+      SQDW, XFZT, DBLX)
+    values (#{sqdh,jdbcType=VARCHAR}, #{dbdh,jdbcType=VARCHAR}, #{jx,jdbcType=VARCHAR}, 
+      #{clzt,jdbcType=VARCHAR}, #{sqr,jdbcType=VARCHAR}, #{rq,jdbcType=TIMESTAMP}, #{dbbh,jdbcType=DECIMAL}, 
+      #{sqdw,jdbcType=VARCHAR}, #{xfzt,jdbcType=VARCHAR}, #{dblx,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.andawell.material.entity.TDbSjsqTemp">
+    insert into T_DB_SJSQ_TEMP
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sqdh != null">
+        SQDH,
+      </if>
+      <if test="dbdh != null">
+        DBDH,
+      </if>
+      <if test="jx != null">
+        JX,
+      </if>
+      <if test="clzt != null">
+        CLZT,
+      </if>
+      <if test="sqr != null">
+        SQR,
+      </if>
+      <if test="rq != null">
+        RQ,
+      </if>
+      <if test="dbbh != null">
+        DBBH,
+      </if>
+      <if test="sqdw != null">
+        SQDW,
+      </if>
+      <if test="xfzt != null">
+        XFZT,
+      </if>
+      <if test="dblx != null">
+        DBLX,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sqdh != null">
+        #{sqdh,jdbcType=VARCHAR},
+      </if>
+      <if test="dbdh != null">
+        #{dbdh,jdbcType=VARCHAR},
+      </if>
+      <if test="jx != null">
+        #{jx,jdbcType=VARCHAR},
+      </if>
+      <if test="clzt != null">
+        #{clzt,jdbcType=VARCHAR},
+      </if>
+      <if test="sqr != null">
+        #{sqr,jdbcType=VARCHAR},
+      </if>
+      <if test="rq != null">
+        #{rq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dbbh != null">
+        #{dbbh,jdbcType=DECIMAL},
+      </if>
+      <if test="sqdw != null">
+        #{sqdw,jdbcType=VARCHAR},
+      </if>
+      <if test="xfzt != null">
+        #{xfzt,jdbcType=VARCHAR},
+      </if>
+      <if test="dblx != null">
+        #{dblx,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.andawell.material.entity.TDbSjsqTemp">
+    update T_DB_SJSQ_TEMP
+    <set>
+      <if test="dbdh != null">
+        DBDH = #{dbdh,jdbcType=VARCHAR},
+      </if>
+      <if test="jx != null">
+        JX = #{jx,jdbcType=VARCHAR},
+      </if>
+      <if test="clzt != null">
+        CLZT = #{clzt,jdbcType=VARCHAR},
+      </if>
+      <if test="sqr != null">
+        SQR = #{sqr,jdbcType=VARCHAR},
+      </if>
+      <if test="rq != null">
+        RQ = #{rq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dbbh != null">
+        DBBH = #{dbbh,jdbcType=DECIMAL},
+      </if>
+      <if test="sqdw != null">
+        SQDW = #{sqdw,jdbcType=VARCHAR},
+      </if>
+      <if test="xfzt != null">
+        XFZT = #{xfzt,jdbcType=VARCHAR},
+      </if>
+      <if test="dblx != null">
+        DBLX = #{dblx,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SQDH = #{sqdh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.andawell.material.entity.TDbSjsqTemp">
+    update T_DB_SJSQ_TEMP
+    set DBDH = #{dbdh,jdbcType=VARCHAR},
+      JX = #{jx,jdbcType=VARCHAR},
+      CLZT = #{clzt,jdbcType=VARCHAR},
+      SQR = #{sqr,jdbcType=VARCHAR},
+      RQ = #{rq,jdbcType=TIMESTAMP},
+      DBBH = #{dbbh,jdbcType=DECIMAL},
+      SQDW = #{sqdw,jdbcType=VARCHAR},
+      XFZT = #{xfzt,jdbcType=VARCHAR},
+      DBLX = #{dblx,jdbcType=VARCHAR}
+    where SQDH = #{sqdh,jdbcType=VARCHAR}
+  </update>
+</mapper>

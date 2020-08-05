@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.upms.mapper.TXtJgfMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.upms.entity.TXtJgf">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="MC" jdbcType="VARCHAR" property="mc" />
+    <result column="DZ" jdbcType="VARCHAR" property="dz" />
+    <result column="YB" jdbcType="VARCHAR" property="yb" />
+    <result column="DH" jdbcType="VARCHAR" property="dh" />
+  </resultMap>
+
+
+  <sql id="Base_Column_List">
+    ID, MC, DZ, YB, DH
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_XT_JGF
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="getMaxId" resultType="java.lang.String">
+    select max (to_number(substr (id,3)))
+    from T_XT_JGF
+    where 1=1
+  </select>
+  <select id="listMc" resultType="java.lang.String">
+    select ID,MC
+    from T_XT_JGF
+    where MC=#{mc}
+  </select>
+    <select id="list" resultType="com.andawell.upms.entity.TXtJgf">
+      select ID,MC
+      from T_XT_JGF
+      where 1=1
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from T_XT_JGF
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.andawell.upms.entity.TXtJgf">
+    insert into T_XT_JGF (ID, MC, DZ, YB, 
+      DH)
+    values (#{id,jdbcType=VARCHAR}, #{mc,jdbcType=VARCHAR}, #{dz,jdbcType=VARCHAR}, #{yb,jdbcType=VARCHAR}, 
+      #{dh,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.andawell.upms.entity.TXtJgf">
+    insert into T_XT_JGF
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="mc != null">
+        MC,
+      </if>
+      <if test="dz != null">
+        DZ,
+      </if>
+      <if test="yb != null">
+        YB,
+      </if>
+      <if test="dh != null">
+        DH,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="mc != null">
+        #{mc,jdbcType=VARCHAR},
+      </if>
+      <if test="dz != null">
+        #{dz,jdbcType=VARCHAR},
+      </if>
+      <if test="yb != null">
+        #{yb,jdbcType=VARCHAR},
+      </if>
+      <if test="dh != null">
+        #{dh,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.andawell.upms.entity.TXtJgf">
+    update T_XT_JGF
+    <set>
+      <if test="mc != null">
+        MC = #{mc,jdbcType=VARCHAR},
+      </if>
+      <if test="dz != null">
+        DZ = #{dz,jdbcType=VARCHAR},
+      </if>
+      <if test="yb != null">
+        YB = #{yb,jdbcType=VARCHAR},
+      </if>
+      <if test="dh != null">
+        DH = #{dh,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.andawell.upms.entity.TXtJgf">
+    update T_XT_JGF
+    set MC = #{mc,jdbcType=VARCHAR},
+      DZ = #{dz,jdbcType=VARCHAR},
+      YB = #{yb,jdbcType=VARCHAR},
+      DH = #{dh,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

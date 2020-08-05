@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.upms.mapper.TXtZdfjMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.upms.entity.TXtZdfj">
+    <result column="DWID" jdbcType="VARCHAR" property="dwid" />
+    <result column="ZDID" jdbcType="VARCHAR" property="zdid" />
+    <result column="MC" jdbcType="VARCHAR" property="mc" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    DWID, ZDID, MC
+  </sql>
+
+  <sql id="queryCondition">
+    <where>
+      1=1
+      <if test="query!=null">
+        <if test="query.dwid!=null and query.dwid.length()>0">
+          and DWID= #{query.dwid}
+        </if>
+        <if test="query.zdid!=null and query.zdid.length()>0">
+          and ZDID = #{query.zdid}
+        </if>
+        <if test="query.mc!=null and query.mc.length()>0">
+          and MC= #{query.mc}
+        </if>
+      </if>
+    </where>
+  </sql>
+    <update id="update">
+      update T_XT_ZDFJ set MC=#{zdfjDTO.xmc}
+      where DWID =#{zdfjDTO.dwid}
+      and ZDID =#{zdfjDTO.zdid}
+      and MC= #{zdfjDTO.ymc}
+    </update>
+
+    <select id="list" resultMap="BaseResultMap">
+     select
+     <include refid="Base_Column_List"/>
+     from T_XT_ZDFJ
+     <include refid="queryCondition"/>
+  </select>
+
+  <select id="getMaxMc" resultType="java.lang.String">
+    select MAX (to_number(MC))
+    from T_XT_ZDFJ
+    WHERE 1=1
+  </select>
+
+  <insert id="insert" parameterType="com.andawell.upms.entity.TXtZdfj">
+    insert into T_XT_ZDFJ (DWID, ZDID, MC
+      )
+    values (#{dwid,jdbcType=VARCHAR}, #{zdid,jdbcType=VARCHAR}, #{mc,jdbcType=VARCHAR}
+      )
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.andawell.upms.entity.TXtZdfj">
+    insert into T_XT_ZDFJ
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dwid != null">
+        DWID,
+      </if>
+      <if test="zdid != null">
+        ZDID,
+      </if>
+      <if test="mc != null">
+        MC,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dwid != null">
+        #{dwid,jdbcType=VARCHAR},
+      </if>
+      <if test="zdid != null">
+        #{zdid,jdbcType=VARCHAR},
+      </if>
+      <if test="mc != null">
+        #{mc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <delete id="delete" parameterType="java.lang.String">
+    delete from T_XT_ZDFJ
+    where MC=#{mc}
+  </delete>
+</mapper>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.material.mapper.TJhWxlxMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.material.entity.TJhWxlx">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="MC" jdbcType="VARCHAR" property="mc" />
+    <result column="JM" jdbcType="VARCHAR" property="jm" />
+  </resultMap>
+
+  <select id="getSqlLiteList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from T_JH_WXLX
+  </select>
+  <sql id="Base_Column_List">
+    ID, MC, JM
+  </sql>
+  <delete id="deleteSqlLiteList">
+    truncate table T_JH_WXLX
+  </delete>
+
+  <select id="getMaxId" resultType="java.lang.String">
+    select max (to_number(ID))
+    from T_JH_WXLX
+    where 1=1
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_JH_WXLX
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+    <select id="getByMc" resultType="com.andawell.material.entity.TJhWxlx">
+      select ID,MC
+      from T_JH_WXLX
+      where MC=#{mc}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from T_JH_WXLX
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.andawell.material.entity.TJhWxlx">
+    insert into T_JH_WXLX (ID, MC, JM)
+    values (#{id,jdbcType=VARCHAR}, #{mc,jdbcType=VARCHAR}, #{jm,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.andawell.material.entity.TJhWxlx">
+    insert into T_JH_WXLX
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="mc != null">
+        MC,
+      </if>
+      <if test="jm != null">
+        JM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="mc != null">
+        #{mc,jdbcType=VARCHAR},
+      </if>
+      <if test="jm != null">
+        #{jm,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.andawell.material.entity.TJhWxlx">
+    update T_JH_WXLX
+    <set>
+      <if test="mc != null">
+        MC = #{mc,jdbcType=VARCHAR},
+      </if>
+      <if test="jm != null">
+        JM = #{jm,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.andawell.material.entity.TJhWxlx">
+    update T_JH_WXLX
+    set MC = #{mc,jdbcType=VARCHAR},
+      JM = #{jm,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

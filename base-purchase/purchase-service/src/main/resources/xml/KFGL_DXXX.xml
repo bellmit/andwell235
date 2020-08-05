@@ -1,0 +1,4220 @@
+<tableList describe="待修信息综合查询" xmlName = "KFGL_DXXX">
+<table>
+<tableInfo>
+  <caption>待修信息综合查询</caption>
+  <tableName>T_CK_CRKQD</tableName>
+  <sql>select T_XT_JLDW.mc as dw,BH,JH,T_JH.MC as JHMC,XH,A.JX,A.Sl,A.ZL,A.Jwh,A.Ccrq,a.ysrq,a.zsmn,a.zsmxs,a.zfxcs,a.fxcs FANXCS,a.fxrq,a.zjsj,a.zjdw,a.zjr
+   ,a.cjsj,a.cjdw,a.cjr,a.pgr,a.bz,CKDM,T_JH_JX.MC AS JXMC, to_char(A.RKRQ,'YYYY-MM-DD')RKRQ ,ADD_MONTHS(A.YFRQ,12*A.YFQX) YFQZ,
+A.YJ,to_char(A.YFRQ,'YYYY-MM-DD')YFRQ,A.YFQX,A.HCLB,T_XT_HCLB.MC HCLBMC,V_DW.MC CXDWMC,A.FJH,A.GZXX,CASE WHEN A.PFZT=0 THEN '未批复' when a.pfzt=1
+ then '已批复' else '其它'end PFMC,SBBH,SBRQ,JZRQ,SCCJ,SYSJ,T_XT_ZD.MC ZDMC
+from T_CK_DX A
+left join  T_JH on T_JH.id=A.Jh AND T_JH.JX=A.JX
+left join T_JH_JX on T_JH_JX.id=A.jx
+left join T_XT_HCLB ON T_XT_HCLB.ID=A.HCLB 
+left join T_XT_JLDW on T_XT_JLDW.ID = T_JH.DW 
+LEFT JOIN V_DW ON V_DW.ID=A.CXDW
+LEFT JOIN T_XT_ZDFJ ON T_XT_ZDFJ.DWID=A.DWID AND T_XT_ZDFJ.MC=A.FJH
+LEFT JOIN T_XT_ZD ON T_XT_ZD.DWID=T_XT_ZDFJ.DWID AND T_XT_ZD.ZDID=T_XT_ZDFJ.ZDID
+where 1=1 and A.xz='0' ORDER BY A.JX</sql>
+</tableInfo>
+<tableConfig>
+  <tableColumns>
+   <tableOptions>
+	  <modelName>待修信息综合查询</modelName>
+	  <type>table</type>
+	  <!-- 是否开启复选框 -->
+	  <mutiSelect>false</mutiSelect>
+	  <!-- 表格下标 -->
+	  <index>true</index>
+	  <!-- 初始化表格 -->
+	  <initTable>true</initTable>
+	  <!-- 表格边框 -->
+	  <border>true</border>
+	  <!-- 是否加载 -->
+	  <loading>false</loading>
+	  <!-- 表格条纹 -->
+	  <stripe>true</stripe>
+	  <!-- 表格分页 -->
+	  <pagination>true</pagination>
+	  <!-- 开启分页 -->
+	  <height>290</height>
+  </tableOptions>
+  <!--
+    <serialNumber>
+      <label>序号</label>
+      <width>60px</width>
+      <align>center</align>
+      <fixed>left</fixed>
+      <prop>dataIndex</prop>
+      <dataIndex>dataIndex</dataIndex>
+      <show>true</show>
+    </serialNumber> -->
+	<tableHeader>
+		<!-- 标签 -->
+		<label>上报编号</label>
+		<!-- 唯一标识 -->
+		<prop>sbbh</prop>
+		<!-- 宽度 -->
+		<width>220</width>
+		<!-- 是否居中 -->
+		 <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>  
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>  
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+	</tableHeader>
+    <tableHeader>
+		<!-- 标签 -->
+		<label>上报日期</label>
+		<!-- 唯一标识 -->
+		<prop>sbrq</prop>
+		<!-- 宽度 -->
+		<width>180</width>
+		<!-- 是否居中 -->
+		 <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>  
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>  
+		<!-- 列类型 -->
+		<fieldType>date</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+	</tableHeader>
+	<tableHeader>
+		<label>截止日期</label>
+		<!-- 唯一标识 -->
+		<prop>jzrq</prop>
+		<!-- 宽度 -->
+		<width>180</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>date</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		<show>true</show>
+		
+		<parent>false</parent>
+    </tableHeader>
+	<tableHeader>
+		<label>批复状态</label>
+		<!-- 唯一标识 -->
+		<prop>pfmc</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		<show>true</show>
+		
+		<parent>false</parent>
+    </tableHeader>
+    <tableHeader>
+		<!-- 标签 -->
+		<label>库存单位</label>
+		<!-- 唯一标识 -->
+		<prop>ckdm</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		 <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>  
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>  
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+	</tableHeader>
+    <tableHeader>
+		<!-- 标签 -->
+		<label>使用时间</label>
+		<!-- 唯一标识 -->
+		<prop>sysj</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		 <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>  
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>  
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+	</tableHeader>
+	<tableHeader>
+		<label>机型</label>
+		<!-- 唯一标识 -->
+		<prop>jxmc</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		<show>true</show>
+		
+		<parent>false</parent>
+    </tableHeader>
+  
+   <tableHeader>
+		<label>名称</label>
+		<!-- 唯一标识 -->
+		<prop>jhmc</prop>
+		<!-- 宽度 -->
+		<width>150</width>
+		<!-- 是否居中 -->
+		  <align>left</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+	
+   <tableHeader>
+		<label>件号</label>
+		<!-- 唯一标识 -->
+		<prop>jh</prop>
+		<!-- 宽度 -->
+		<width>180</width>
+		<!-- 是否居中 -->
+		  <align>left</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+	
+   <tableHeader>
+		<label>序号</label>
+		<!-- 唯一标识 -->
+		<prop>xh</prop>
+		<!-- 宽度 -->
+		<width>220</width>
+		<!-- 是否居中 -->
+		  <align>left</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+   <tableHeader>
+		<label>生产厂家</label>
+		<!-- 唯一标识 -->
+		<prop>sccj</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+   <tableHeader>
+		<label>退休单位</label>
+		<!-- 唯一标识 -->
+		<prop>cxdwmc</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+   <tableHeader>
+		<label>飞机号</label>
+		<!-- 唯一标识 -->
+		<prop>fjh</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+   <tableHeader>
+		<label>飞机中队</label>
+		<!-- 唯一标识 -->
+		<prop>zdmc</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+   <tableHeader>
+		<label>故障信息</label>
+		<!-- 唯一标识 -->
+		<prop>gzxx</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+   <tableHeader>
+		<label>数量</label>
+		<!-- 唯一标识 -->
+		<prop>sl</prop>
+		<!-- 宽度 -->
+		<width>80</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+   <tableHeader>
+		<label>单价</label>
+		<!-- 唯一标识 -->
+		<prop></prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>right</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+   <tableHeader>
+		<label>总价</label>
+		<!-- 唯一标识 -->
+		<prop></prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>right</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+   <tableHeader>
+		<label>币种</label>
+		<!-- 唯一标识 -->
+		<prop></prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+   <tableHeader>
+		<label>原汇率</label>
+		<!-- 唯一标识 -->
+		<prop></prop>
+		<!-- 宽度 -->
+		<width>90</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+   <tableHeader>
+		<label>新汇率</label>
+		<!-- 唯一标识 -->
+		<prop></prop>
+		<!-- 宽度 -->
+		<width>90</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+
+   <tableHeader>
+		<label>质量</label>
+		<!-- 唯一标识 -->
+		<prop>zl</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>   
+	<tableHeader>
+		<label>架位号</label>
+		<!-- 唯一标识 -->
+		<prop>jwh</prop>
+		<!-- 宽度 -->
+		<width>90</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+	<tableHeader>
+		<label>出厂日期</label>
+		<!-- 唯一标识 -->
+		<prop>ccrq</prop>
+		<!-- 宽度 -->
+		<width>150</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>date</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+   <tableHeader>
+		<label>验收日期</label>
+		<!-- 唯一标识 -->
+		<prop>ysrq</prop>
+		<!-- 宽度 -->
+		<width>150</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>date</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+	
+	
+	
+   
+   <tableHeader>
+		<label>入库日期</label>
+		<!-- 唯一标识 -->
+		<prop>rkrq</prop>
+		<!-- 宽度 -->
+		<width>150</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>date</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+   <tableHeader>
+		<label>剩余飞行小时</label>
+		<!-- 唯一标识 -->
+		<prop></prop>
+		<!-- 宽度 -->
+		<width>180</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+   <tableHeader>
+		<label>油封日期</label>
+		<!-- 唯一标识 -->
+		<prop>yfrq</prop>
+		<!-- 宽度 -->
+		<width>150</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>date</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+   <tableHeader>
+		<label>油封期止</label>
+		<!-- 唯一标识 -->
+		<prop>yfqz</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>date</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+   <tableHeader>
+		<label>航材类别</label>
+		<!-- 唯一标识 -->
+		<prop>hclbmc</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>date</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+   <tableHeader>
+		<label>总寿命:年</label>
+		<!-- 唯一标识 -->
+		<prop>zsmn</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+   <tableHeader>
+		<label>总寿命:小时</label>
+		<!-- 唯一标识 -->
+		<prop>zsmxs</prop>
+		<!-- 宽度 -->
+		<width>150</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+   <tableHeader>
+		<label>首翻日历期</label>
+		<!-- 唯一标识 -->
+		<prop></prop>
+		<!-- 宽度 -->
+		<width>150</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+   <tableHeader>
+		<label>总日历期</label>
+		<!-- 唯一标识 -->
+		<prop></prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+   <tableHeader>
+		<label>总翻修次数</label>
+		<!-- 唯一标识 -->
+		<prop>zfanxcs</prop>
+		<!-- 宽度 -->
+		<width>150</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+   <tableHeader>
+		<label>翻修次数</label>
+		<!-- 唯一标识 -->
+		<prop>fanxcs</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+   <tableHeader>
+		<label>翻修日期</label>
+		<!-- 唯一标识 -->
+		<prop>fxrq</prop>
+		<!-- 宽度 -->
+		<width>180</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>date</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+   <tableHeader>
+		<label>首翻期寿命</label>
+		<!-- 唯一标识 -->
+		<prop></prop>
+		<!-- 宽度 -->
+		<width>150</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+   <tableHeader>
+		<label>首翻期剩余寿命</label>
+		<!-- 唯一标识 -->
+		<prop></prop>
+		<!-- 宽度 -->
+		<width>210</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+   <tableHeader>
+		<label>首翻期小时</label>
+		<!-- 唯一标识 -->
+		<prop></prop>
+		<!-- 宽度 -->
+		<width>150</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+   <tableHeader>
+		<label>总供气次数</label>
+		<!-- 唯一标识 -->
+		<prop></prop>
+		<!-- 宽度 -->
+		<width>150</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+   <tableHeader>
+		<label>供气次数</label>
+		<!-- 唯一标识 -->
+		<prop></prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+   <tableHeader>
+		<label>装机时间</label>
+		<!-- 唯一标识 -->
+		<prop>zjsj</prop>
+		<!-- 宽度 -->
+		<width>180</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>date</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition> 
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+	
+   <tableHeader>
+		<label>装机单位</label>
+		<!-- 唯一标识 -->
+		<prop>zjdw</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+   <tableHeader>
+		<label>装机人</label>
+		<!-- 唯一标识 -->
+		<prop>zjr</prop>
+		<!-- 宽度 -->
+		<width>90</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+   <tableHeader>
+		<label>拆机时间</label>
+		<!-- 唯一标识 -->
+		<prop>cjsj</prop>
+		<!-- 宽度 -->
+		<width>180</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>date</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+	
+   <tableHeader>
+		<label>拆机单位</label>
+		<!-- 唯一标识 -->
+		<prop>cjdw</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+   <tableHeader>
+		<label>拆机人</label>
+		<!-- 唯一标识 -->
+		<prop>cjr</prop>
+		<!-- 宽度 -->
+		<width>90</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+	
+   <tableHeader>
+		<label>排故人</label>
+		<!-- 唯一标识 -->
+		<prop>pgr</prop>
+		<!-- 宽度 -->
+		<width>90</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+	
+   <tableHeader>
+		<label>备注</label>
+		<!-- 唯一标识 -->
+		<prop>bz</prop>
+		<!-- 宽度 -->
+		<width>240</width>
+		<!-- 是否居中 -->
+		  <align>left</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+	</tableHeader>
+   <tableHeader>
+		<label>机型</label>
+		<!-- 唯一标识 -->
+		<prop>jx</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>false</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+   
+  <!--  
+    <tableAction>
+      <label>操作</label>
+      <width>1500px</width>
+      <fixed>right</fixed>
+      <prop>action</prop>
+      <show>true</show>
+    </tableAction>
+    -->
+  </tableColumns>
+
+</tableConfig>
+</table>
+<table>
+<tableInfo>
+  <caption>送修信息综合查询</caption>
+  <tableName>T_CK_DX</tableName>
+  <sql>SELECT JH,T_JH.MC JHMC,T_XT_JLDW.MC JLDW,XH,FJH,ZL,A.JX,T_JH_JX.MC JXMC,CKDM,T_XT_CK.MC CKMC,FHD,CXDW,V_DW.MC CXDWMC,SXRQ,SXLB,
+  T_SX_LB.MC SXLBMC,HTBH,A.SL,ZYLB,GZYY,JXQN,JXQXS,T_XT_HCLB.MC HCMC,CASE WHEN A.PFZT=0 THEN '未批复' when a.pfzt=1 then '已批复' else '其它'end PFMC,
+  SBBH,SBRQ,JZRQ,SCCJ,SYSJ 
+FROM T_CK_SX A
+left join  T_JH on T_JH.id=A.Jh AND T_JH.JX=A.JX
+left join T_JH_JX on T_JH_JX.id=A.jx
+left join T_XT_HCLB ON T_XT_HCLB.ID=A.HCLB 
+left join T_XT_JLDW on T_XT_JLDW.ID = T_JH.DW 
+LEFT JOIN T_XT_CK ON T_XT_CK.DWID=A.DWID AND T_XT_CK.CKID=A.CKDM
+LEFT JOIN V_DW ON V_DW.ID=A.CXDW
+LEFT JOIN T_SX_LB ON T_SX_LB.ID=A.SXLB
+where 1=1 and A.SL>0 AND A.XZ=0 ORDER BY A.JX</sql>
+</tableInfo>
+<tableConfig>
+  <tableColumns>
+   <tableOptions>
+	  <modelName>待修信息综合查询</modelName>
+	  <type>table</type>
+	  <!-- 是否开启复选框 -->
+	  <mutiSelect>false</mutiSelect>
+	  <!-- 表格下标 -->
+	  <index>true</index>
+	  <!-- 初始化表格 -->
+	  <initTable>true</initTable>
+	  <!-- 表格边框 -->
+	  <border>true</border>
+	  <!-- 是否加载 -->
+	  <loading>false</loading>
+	  <!-- 表格条纹 -->
+	  <stripe>true</stripe>
+	  <!-- 表格分页 -->
+	  <pagination>true</pagination>
+	  <!-- 开启分页 -->
+	  <height>290</height>
+  </tableOptions>
+     <tableHeader>
+		<label>上报编号</label>
+		<!-- 唯一标识 -->
+		<prop>sbbh</prop>
+		<!-- 宽度 -->
+		<width>220</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>上报日期</label>
+		<!-- 唯一标识 -->
+		<prop>sbrq</prop>
+		<!-- 宽度 -->
+		<width>150</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>date</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>截止日期</label>
+		<!-- 唯一标识 -->
+		<prop>jzrq</prop>
+		<!-- 宽度 -->
+		<width>150</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>date</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>批复状态</label>
+		<!-- 唯一标识 -->
+		<prop>pfmc</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>库存单位</label>
+		<!-- 唯一标识 -->
+		<prop>ckdm</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>机型</label>
+		<!-- 唯一标识 -->
+		<prop>jxmc</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>名称</label>
+		<!-- 唯一标识 -->
+		<prop>jhmc</prop>
+		<!-- 宽度 -->
+		<width>150</width>
+		<!-- 是否居中 -->
+		  <align>left</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>件号</label>
+		<!-- 唯一标识 -->
+		<prop>jh</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>left</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>计量单位</label>
+		<!-- 唯一标识 -->
+		<prop>jldw</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>序号</label>
+		<!-- 唯一标识 -->
+		<prop>xh</prop>
+		<!-- 宽度 -->
+		<width>220</width>
+		<!-- 是否居中 -->
+		  <align>left</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>生产厂家</label>
+		<!-- 唯一标识 -->
+		<prop>sccj</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>使用时间</label>
+		<!-- 唯一标识 -->
+		<prop>sysj</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>飞机号</label>
+		<!-- 唯一标识 -->
+		<prop>fjh</prop>
+		<!-- 宽度 -->
+		<width>90</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>故障原因</label>
+		<!-- 唯一标识 -->
+		<prop>gzyy</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>数量</label>
+		<!-- 唯一标识 -->
+		<prop>sl</prop>
+		<!-- 宽度 -->
+		<width>80</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>承修单位</label>
+		<!-- 唯一标识 -->
+		<prop>cxdwmc</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>送修类别</label>
+		<!-- 唯一标识 -->
+		<prop>sxlbmc</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>送修日期</label>
+		<!-- 唯一标识 -->
+		<prop>sxrq</prop>
+		<!-- 宽度 -->
+		<width>150</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>date</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>合同编号</label>
+		<!-- 唯一标识 -->
+		<prop>htbh</prop>
+		<!-- 宽度 -->
+		<width>220</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>航材类别</label>
+		<!-- 唯一标识 -->
+		<prop>hcmc</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>间修期年</label>
+		<!-- 唯一标识 -->
+		<prop>jxqn</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>间修期小时</label>
+		<!-- 唯一标识 -->
+		<prop>jxqxs</prop>
+		<!-- 宽度 -->
+		<width>150</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>jx</label>
+		<!-- 唯一标识 -->
+		<prop>jx</prop>
+		<!-- 宽度 -->
+		<width>150</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>false</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+  
+  </tableColumns>
+</tableConfig>
+</table>
+<table>
+<tableInfo>
+  <caption>综合查询</caption>
+  <tableName>T_CK_DX1</tableName>
+  <sql>select T_XT_JLDW.mc as dw,A.BH,A.JH,T_JH.MC as JHMC,A.XH,A.JX,A.Sl DXSL, to_char(A.RKRQ,'YYYY-MM-DD')DXRKRQ,B.SL SXSL,to_char(B.SXRQ,'YYYY-MM-DD')SXRQ,
+  C.SL XFSL,to_char(C.RKRQ,'YYYY-MM-DD') XFRKRQ,to_char(C.XFRQ,'YYYY-MM-DD')XFRQ,D.SL DBFSL,D.RQ DBFRQ,A.CKDM,T_JH_JX.MC AS JXMC,ADD_MONTHS(A.YFRQ,12*A.YFQX) YFQZ,
+A.YJ,to_char(A.YFRQ,'YYYY-MM-DD')YFRQ,A.YFQX,A.HCLB,T_XT_HCLB.MC HCLBMC,V_DW.MC CXDWMC,A.FJH,A.GZXX,
+CASE WHEN D.XZ=0 THEN '待报废' WHEN A.XZ=0 THEN '待修中' WHEN B.XZ=0 AND B.SL>0 THEN '已送修' WHEN B.XZ=1 THEN '已退修' when C.XZ=0 THEN '已返回'else '其他' end HCZT,A.SCCJ,A.SYSJ,
+  c.bzz bzmc,a.zl,C.Hl,a.jwh,a.ccrq,a.ysrq,a.bz
+from T_CK_DX A
+left join  T_JH on T_JH.id=A.Jh AND T_JH.JX=A.JX
+left join T_JH_JX on T_JH_JX.id=A.jx
+left join T_XT_HCLB ON T_XT_HCLB.ID=A.HCLB 
+left join T_XT_JLDW on T_XT_JLDW.ID = T_JH.DW 
+LEFT JOIN V_DW ON V_DW.ID=A.CXDW
+LEFT JOIN T_CK_SX B ON B.JH=A.JH AND B.JX=A.JX AND B.XH=A.XH AND A.BH=B.DXBH
+LEFT JOIN T_CK_XF C on C.JH=A.JH AND C.JX=A.JX AND C.XH=A.XH AND A.BH=C.DXBH
+LEFT JOIN T_CK_DXZBF D on D.JH=A.JH AND D.JX=A.JX AND D.XH=A.XH 
+where 1=1 ORDER BY A.JX,A.JH,A.XH</sql>
+</tableInfo>
+<tableConfig>
+  <tableColumns>
+   <tableOptions>
+	  <modelName>综合查询</modelName>
+	  <type>table</type>
+	  <!-- 是否开启复选框 -->
+	  <mutiSelect>false</mutiSelect>
+	  <!-- 表格下标 -->
+	  <index>true</index>
+	  <!-- 初始化表格 -->
+	  <initTable>true</initTable>
+	  <!-- 表格边框 -->
+	  <border>true</border>
+	  <!-- 是否加载 -->
+	  <loading>false</loading>
+	  <!-- 表格条纹 -->
+	  <stripe>true</stripe>
+	  <!-- 表格分页 -->
+	  <pagination>true</pagination>
+	  <!-- 开启分页 -->
+	  <height>290</height>
+  </tableOptions>
+     <tableHeader>
+		<label>库存单位</label>
+		<!-- 唯一标识 -->
+		<prop>ckdm</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>承修单位</label>
+		<!-- 唯一标识 -->
+		<prop>cxdwmc</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>航材状态</label>
+		<!-- 唯一标识 -->
+		<prop>hczt</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>机型</label>
+		<!-- 唯一标识 -->
+		<prop>jxmc</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader> 
+	<tableHeader>
+		<label>机型</label>
+		<!-- 唯一标识 -->
+		<prop>jx</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>false</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>名称</label>
+		<!-- 唯一标识 -->
+		<prop>jhmc</prop>
+		<!-- 宽度 -->
+		<width>150</width>
+		<!-- 是否居中 -->
+		  <align>left</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>件号</label>
+		<!-- 唯一标识 -->
+		<prop>jh</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>left</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>序号</label>
+		<!-- 唯一标识 -->
+		<prop>xh</prop>
+		<!-- 宽度 -->
+		<width>220</width>
+		<!-- 是否居中 -->
+		  <align>left</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>生产厂家</label>
+		<!-- 唯一标识 -->
+		<prop>sccj</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>使用时间</label>
+		<!-- 唯一标识 -->
+		<prop>sysj</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>date</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>飞机号</label>
+		<!-- 唯一标识 -->
+		<prop>fjh</prop>
+		<!-- 宽度 -->
+		<width>90</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>故障信息</label>
+		<!-- 唯一标识 -->
+		<prop>gzxx</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>待修数量</label>
+		<!-- 唯一标识 -->
+		<prop>dxsl</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>待修入库日期</label>
+		<!-- 唯一标识 -->
+		<prop>dxrkrq</prop>
+		<!-- 宽度 -->
+		<width>180</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>date</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>送修数量</label>
+		<!-- 唯一标识 -->
+		<prop>sxsl</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>送修日期</label>
+		<!-- 唯一标识 -->
+		<prop>sxrq</prop>
+		<!-- 宽度 -->
+		<width>150</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>date</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>修复数量</label>
+		<!-- 唯一标识 -->
+		<prop>xfsl</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>修复入库日期</label>
+		<!-- 唯一标识 -->
+		<prop>xfrkrq</prop>
+		<!-- 宽度 -->
+		<width>180</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>date</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>修复日期</label>
+		<!-- 唯一标识 -->
+		<prop>xfrq</prop>
+		<!-- 宽度 -->
+		<width>150</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>date</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>待报废数</label>
+		<!-- 唯一标识 -->
+		<prop>dbfsl</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>待报废日期</label>
+		<!-- 唯一标识 -->
+		<prop>dbfrq</prop>
+		<!-- 宽度 -->
+		<width>150</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>date</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>单价</label>
+		<!-- 唯一标识 -->
+		<prop>dj</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>right</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>总价</label>
+		<!-- 唯一标识 -->
+		<prop>zj</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>right</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>币种</label>
+		<!-- 唯一标识 -->
+		<prop>bzmc</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>原汇率</label>
+		<!-- 唯一标识 -->
+		<prop>hl</prop>
+		<!-- 宽度 -->
+		<width>90</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+	</tableHeader>
+     <tableHeader>
+		<label>新汇率</label>
+		<!-- 唯一标识 -->
+		<prop>newhl</prop>
+		<!-- 宽度 -->
+		<width>90</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>质量</label>
+		<!-- 唯一标识 -->
+		<prop>zl</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>架位号</label>
+		<!-- 唯一标识 -->
+		<prop>jwh</prop>
+		<!-- 宽度 -->
+		<width>90</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>出厂日期</label>
+		<!-- 唯一标识 -->
+		<prop>ccrq</prop>
+		<!-- 宽度 -->
+		<width>180</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>date</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>验收日期</label>
+		<!-- 唯一标识 -->
+		<prop>ysrq</prop>
+		<!-- 宽度 -->
+		<width>220</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>date</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+	
+     <tableHeader>
+		<label>剩余飞行小时</label>
+		<!-- 唯一标识 -->
+		<prop>syxs</prop>
+		<!-- 宽度 -->
+		<width>180</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>油封日期</label>
+		<!-- 唯一标识 -->
+		<prop>yfrq</prop>
+		<!-- 宽度 -->
+		<width>150</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>date</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>油封期止</label>
+		<!-- 唯一标识 -->
+		<prop>yfqz</prop>
+		<!-- 宽度 -->
+		<width>220</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>date</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>航材类别</label>
+		<!-- 唯一标识 -->
+		<prop>hclbmc</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>油封日期</label>
+		<!-- 唯一标识 -->
+		<prop>yfrq</prop>
+		<!-- 宽度 -->
+		<width>150</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>date</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>总寿命：年</label>
+		<!-- 唯一标识 -->
+		<prop>zsmn</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>总寿命小时</label>
+		<!-- 唯一标识 -->
+		<prop>zsmxs</prop>
+		<!-- 宽度 -->
+		<width>150</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>首翻日历期</label>
+		<!-- 唯一标识 -->
+		<prop>sfrlq</prop>
+		<!-- 宽度 -->
+		<width>150</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>date</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>总日历期</label>
+		<!-- 唯一标识 -->
+		<prop>zrlq</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>date</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>总翻修次数</label>
+		<!-- 唯一标识 -->
+		<prop>zfanxcs</prop>
+		<!-- 宽度 -->
+		<width>150</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>翻修次数</label>
+		<!-- 唯一标识 -->
+		<prop>fanxcs</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>首翻期寿命</label>
+		<!-- 唯一标识 -->
+		<prop>sfqsm</prop>
+		<!-- 宽度 -->
+		<width>150</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>首翻期剩余寿命</label>
+		<!-- 唯一标识 -->
+		<prop>sfqsysm</prop>
+		<!-- 宽度 -->
+		<width>210</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>首翻期小时</label>
+		<!-- 唯一标识 -->
+		<prop>sfqxs</prop>
+		<!-- 宽度 -->
+		<width>150</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>总供气次数</label>
+		<!-- 唯一标识 -->
+		<prop>zgqcs</prop>
+		<!-- 宽度 -->
+		<width>150</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>供气次数</label>
+		<!-- 唯一标识 -->
+		<prop>gqcs</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>备注</label>
+		<!-- 唯一标识 -->
+		<prop>bz</prop>
+		<!-- 宽度 -->
+		<width>220</width>
+		<!-- 是否居中 -->
+		  <align>left</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+	
+  </tableColumns>
+</tableConfig>
+</table>
+<table>
+<tableInfo>
+  <caption>报废信息查询</caption>
+  <tableName>T_CK_BFK</tableName>
+  <sql>SELECT A.JX,JH,XH,BFYJ,BFYY,RKRQ,TZS,CKDM,ZL,A.SL,HCLB,BFRQ,T_XT_JLDW.mc as JLdw,T_JH_JX.MC AS JXMC,T_JH.MC JHMC,T_XT_HCLB.MC HCLBMC FROM T_CK_BFK A
+left join  T_JH on T_JH.id=A.Jh AND T_JH.JX=A.JX
+left join T_JH_JX on T_JH_JX.id=A.jx
+left join T_XT_HCLB ON T_XT_HCLB.ID=A.HCLB 
+left join T_XT_JLDW on T_XT_JLDW.ID = T_JH.DW where 1=1 AND A.SL>0 ORDER BY A.JX</sql>
+</tableInfo>
+<tableConfig>
+  <tableColumns>
+   <tableOptions>
+	  <modelName>报废信息查询</modelName>
+	  <type>table</type>
+	  <!-- 是否开启复选框 -->
+	  <mutiSelect>false</mutiSelect>
+	  <!-- 表格下标 -->
+	  <index>true</index>
+	  <!-- 初始化表格 -->
+	  <initTable>true</initTable>
+	  <!-- 表格边框 -->
+	  <border>true</border>
+	  <!-- 是否加载 -->
+	  <loading>false</loading>
+	  <!-- 表格条纹 -->
+	  <stripe>true</stripe>
+	  <!-- 表格分页 -->
+	  <pagination>true</pagination>
+	  <!-- 开启分页 -->
+	  <height>290</height>
+  </tableOptions>
+  
+     <tableHeader>
+		<label>库存单位</label>
+		<!-- 唯一标识 -->
+		<prop>ckdm</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>机型</label>
+		<!-- 唯一标识 -->
+		<prop>jxmc</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>名称</label>
+		<!-- 唯一标识 -->
+		<prop>jhmc</prop>
+		<!-- 宽度 -->
+		<width>150</width>
+		<!-- 是否居中 -->
+		  <align>left</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+	
+     <tableHeader>
+		<label>件号</label>
+		<!-- 唯一标识 -->
+		<prop>jh</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>left</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>计量单位</label>
+		<!-- 唯一标识 -->
+		<prop>jldw</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>序号</label>
+		<!-- 唯一标识 -->
+		<prop>xh</prop>
+		<!-- 宽度 -->
+		<width>220</width>
+		<!-- 是否居中 -->
+		  <align>left</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>数量</label>
+		<!-- 唯一标识 -->
+		<prop>sl</prop>
+		<!-- 宽度 -->
+		<width>80</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>integer</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>报废原因</label>
+		<!-- 唯一标识 -->
+		<prop>bfyy</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>报废依据</label>
+		<!-- 唯一标识 -->
+		<prop>bfyj</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>入库日期</label>
+		<!-- 唯一标识 -->
+		<prop>rkrq</prop>
+		<!-- 宽度 -->
+		<width>150</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>date</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>报废日期</label>
+		<!-- 唯一标识 -->
+		<prop>bfrq</prop>
+		<!-- 宽度 -->
+		<width>150</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>date</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>航材类别</label>
+		<!-- 唯一标识 -->
+		<prop>hclbmc</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>true</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+     <tableHeader>
+		<label>jx</label>
+		<!-- 唯一标识 -->
+		<prop>jx</prop>
+		<!-- 宽度 -->
+		<width>120</width>
+		<!-- 是否居中 -->
+		  <align>center</align>
+		<!-- 是否固定列 -->
+		<fixed>false</fixed>
+		<!-- 是否过滤 -->
+		<filters>false</filters>
+		<!-- 最小列宽 -->
+		<minWidth>30</minWidth>
+		<!-- 列是否排序 -->
+		<sortable>false</sortable>
+		<!-- 是否可编辑 -->
+		<isEdit>false</isEdit>    
+		<!-- 编辑类型 -->
+		<editType>input</editType>
+		<!-- 列类型 -->
+		<fieldType>string</fieldType>
+		<!-- 查询方式 -->
+		<condition>equal</condition>
+		
+		<show>false</show>
+		
+		<parent>false</parent>
+  
+    </tableHeader>
+ </tableColumns>
+</tableConfig>
+</table>
+</tableList>

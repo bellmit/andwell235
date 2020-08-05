@@ -1,0 +1,124 @@
+<tableList describe="战备器材标准" xmlName="ZBQC_BZ">
+  <table>
+    <tableInfo>
+      <caption>战备器材标准</caption>
+      <tableName>MASTER</tableName>
+      <sql>SELECT
+        A.*,B.MC JXMC,e.mc jhmc,f.mc jldw
+        FROM T_ZB_BZ A
+        LEFT JOIN T_JH_JX B ON  A.JX=B.ID
+        LEFT JOIN T_JH C ON A.JH=C.ID AND A.JX=C.JX
+        LEFT JOIN T_XT_JLDW D ON C.DW=D.ID
+        left join t_jh_jh E on a.jh=e.id
+        left join T_XT_JLDW F on e.dw=f.id
+
+        WHERE 1=1 ORDER BY A.JX,JH     </sql>
+    </tableInfo>
+    <tableConfig>
+      <tableColumns>
+        <tableHeader>
+          <prop>dwid</prop>
+          <align>center</align>
+          <label>单位id</label>
+          <width>120</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>jx</prop>
+          <align>center</align>
+          <label>机型</label>
+          <width>120</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>jh</prop>
+          <align>left</align>
+          <label>件号</label>
+          <width>150</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>jhmc</prop>
+          <align>left</align>
+          <label>件号名称</label>
+          <width>120</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>jldw</prop>
+          <align>center</align>
+          <label>计量单位</label>
+          <width>80</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>sl</prop>
+          <align>center</align>
+          <label>数量</label>
+          <width>80</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <parent>false</parent>
+        </tableHeader>
+        <tableOptions>
+          <modelName>战备器材标准</modelName>
+          <type>table</type>
+          <index>true</index>
+          <mutiSelect>false</mutiSelect>
+          <initTable>true</initTable>
+          <pagination>false</pagination>
+          <border>true</border>
+          <stripe>false</stripe>
+          <loading>false</loading>
+          <height>200</height>
+        </tableOptions>
+      </tableColumns>
+    </tableConfig>
+  </table>
+</tableList>

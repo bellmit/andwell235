@@ -1,0 +1,147 @@
+<tableList describe="战备库存标准预警" xmlName="ZBBZ_YJ">
+  <table>
+    <tableInfo>
+      <caption>战备库存标准预警</caption>
+      <tableName>MASTER</tableName>
+      <sql>SELECT A.DWID,A.JX,A.JH,B.MC JXMC,C.MC JHMC,D.MC JLDW,A.BZSL,A.KCSL,    CASE WHEN BZSL=0 THEN &apos;非标准&apos;  WHEN BZSL&gt;0 AND BZSL&lt;KCSL THEN &apos;超出标准&apos; when BZSL&gt;0 AND BZSL&gt;KCSL THEN &apos;不足标准&apos; when BZSL&gt;0 AND BZSL=KCSL THEN &apos;=标准&apos; else &apos;&apos;end bz
+        FROM (    SELECT A.DWID,A.JX,A.JH,A.SL BZSL,NVL(CK.SL,0) KCSL FROM T_ZB_BZ A
+        LEFT JOIN V_CK_ZB CK ON A.JX=CK.JX AND A.JH=CK.JH UNION
+        SELECT DWID,A.JX,A.JH,0 BZSL,A.SL KCSL  FROM V_CK_ZB A
+        WHERE (JX,JH)NOT IN (SELECT JX,JH FROM T_ZB_BZ) )A
+        LEFT JOIN T_JH_JX B ON  A.JX=B.ID
+        LEFT JOIN T_JH_JH C ON A.JH=C.ID
+        LEFT JOIN T_XT_JLDW D ON C.DW=D.ID
+        LEFT JOIN V_CK_ZB CK ON A.JX=CK.JX AND A.JH=CK.JH
+        WHERE 1=1 ORDER BY A.BZSL,A.JX,A.JH</sql>
+    </tableInfo>
+    <tableConfig>
+      <tableColumns>
+
+        <tableHeader>
+          <prop>jxmc</prop>
+          <align>center</align>
+          <label>机型</label>
+          <width>120</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>string</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>jh</prop>
+          <align>left</align>
+          <label>件号</label>
+          <width>150</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>string</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>jhmc</prop>
+          <align>left</align>
+          <label>名称</label>
+          <width>120</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>string</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>jldw</prop>
+          <align>center</align>
+          <label>单位</label>
+          <width>80</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>string</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>bzsl</prop>
+          <align>center</align>
+          <label>战备标准数</label>
+          <width>120</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>string</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>kcsl</prop>
+          <align>center</align>
+          <label>战备库存数</label>
+          <width>120</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>string</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>bz</prop>
+          <align>center</align>
+          <label>类型</label>
+          <width>120</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>string</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableOptions>
+          <modelName>战备库存标准预警</modelName>
+          <type>table</type>
+          <index>true</index>
+          <mutiSelect>false</mutiSelect>
+          <initTable>true</initTable>
+          <pagination>false</pagination>
+          <border>true</border>
+          <stripe>false</stripe>
+          <loading>false</loading>
+          <height>200</height>
+        </tableOptions>
+      </tableColumns>
+    </tableConfig>
+  </table>
+</tableList>

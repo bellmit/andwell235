@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.material.mapper.TCkBfkMapper">
+    <resultMap id="BaseResultMap" type="com.andawell.material.entity.TCkBfk">
+        <id column="BH" jdbcType="VARCHAR" property="bh"/>
+        <id column="JH" jdbcType="VARCHAR" property="jh"/>
+        <id column="XH" jdbcType="VARCHAR" property="xh"/>
+        <id column="JX" jdbcType="VARCHAR" property="jx"/>
+        <id column="DWID" jdbcType="VARCHAR" property="dwid"/>
+        <result column="BFDW" jdbcType="VARCHAR" property="bfdw"/>
+        <result column="BFRQ" jdbcType="TIMESTAMP" property="bfrq"/>
+        <result column="BFYJ" jdbcType="VARCHAR" property="bfyj"/>
+        <result column="BFYY" jdbcType="VARCHAR" property="bfyy"/>
+        <result column="BZ" jdbcType="VARCHAR" property="bz"/>
+        <result column="JWH" jdbcType="VARCHAR" property="jwh"/>
+        <result column="RKRQ" jdbcType="TIMESTAMP" property="rkrq"/>
+        <result column="SPR" jdbcType="VARCHAR" property="spr"/>
+        <result column="TZS" jdbcType="DECIMAL" property="tzs"/>
+        <result column="CKDM" jdbcType="VARCHAR" property="ckdm"/>
+        <result column="ZL" jdbcType="VARCHAR" property="zl"/>
+        <result column="DXBH" jdbcType="VARCHAR" property="dxbh"/>
+        <result column="SL" jdbcType="DECIMAL" property="sl"/>
+        <result column="XZ" jdbcType="VARCHAR" property="xz"/>
+        <result column="HCLB" jdbcType="DECIMAL" property="hclb"/>
+        <result column="PZDW" jdbcType="VARCHAR" property="pzdw"/>
+        <result column="JXQN" jdbcType="DECIMAL" property="jxqn"/>
+        <result column="JXQXS" jdbcType="DECIMAL" property="jxqxs"/>
+        <result column="RFID" jdbcType="VARCHAR" property="rfid"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    T_CK_BFK.BH, T_CK_BFK.JH, T_CK_BFK.XH, T_CK_BFK.JX, T_CK_BFK.DWID, T_CK_BFK.BFDW, T_CK_BFK.BFRQ, T_CK_BFK.BFYJ, T_CK_BFK.BFYY,
+    T_CK_BFK.BZ, T_CK_BFK.JWH, T_CK_BFK.RKRQ, T_CK_BFK.SPR, T_CK_BFK.TZS, T_CK_BFK.CKDM, T_CK_BFK.ZL,
+    T_CK_BFK.DXBH, T_CK_BFK.SL, T_CK_BFK.XZ, T_CK_BFK.HCLB, T_CK_BFK.PZDW, T_CK_BFK.JXQN, T_CK_BFK.JXQXS, T_CK_BFK.RFID
+  </sql>
+
+    <sql id="queryBFKYMX">
+        <where>
+            1=1
+            <if test="query!=null">
+                <if test="query.jx!=null and query.jx.length()>0">
+                    and JX= '${query.jx}'
+                </if>
+                <if test="query.jh!=null and query.jh.length()>0">
+                    and JH = '${query.jh}'
+                </if>
+                <if test="query.dwid!=null and query.dwid.length()>0">
+                    and dwid like '${query.dwid}%'
+                </if>
+            </if>
+            AND LENGTH(DWID)>=4
+        </where>
+    </sql>
+    <select id="listMx" resultType="com.andawell.material.vo.ScrapKcMxVO">
+        select * from (
+        select A.JX,B.MC JXMC,a.jh,c.mc jhmc,a.xh,f.mc zl,d.mc jldw,a.dwid,e.mc sszq,a.Bfyy,a.bfrq
+        from T_CK_BFK A
+        LEFT JOIN T_JH_JX B ON A.JX=B.ID
+        left join t_jh_jh c on a.jh=c.id
+        left join t_xt_jldw d on c.dw=d.id
+        left join t_xt_dw e on a.dwid=e.id
+        left join t_jh_zl f on a.zl=f.id)
+        <include refid="queryBFKYMX"/>
+  </select>
+
+
+    <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from T_CK_BFK
+        where BH = #{bh,jdbcType=VARCHAR}
+        and JH = #{jh,jdbcType=VARCHAR}
+        and XH = #{xh,jdbcType=VARCHAR}
+        and JX = #{jx,jdbcType=VARCHAR}
+        and DWID = #{dwid,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectByCondition" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from T_CK_BFK
+        where JH = #{jh,jdbcType=VARCHAR}
+        and XH = #{xh,jdbcType=VARCHAR}
+        and JX = #{jx,jdbcType=VARCHAR}
+        and DWID = #{dwid,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from T_CK_BFK
+    where BH = #{bh,jdbcType=VARCHAR}
+      and JH = #{jh,jdbcType=VARCHAR}
+      and XH = #{xh,jdbcType=VARCHAR}
+      and JX = #{jx,jdbcType=VARCHAR}
+      and DWID = #{dwid,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.andawell.material.entity.TCkBfk">
+    insert into T_CK_BFK (BH, JH, XH, JX, 
+      DWID, BFDW, BFRQ, 
+      BFYJ, BFYY, BZ, JWH, 
+      RKRQ, SPR, TZS, CKDM, 
+      ZL, DXBH, SL, XZ, 
+      HCLB, PZDW, JXQN, JXQXS, 
+      RFID)
+    values (#{bh,jdbcType=VARCHAR}, #{jh,jdbcType=VARCHAR}, #{xh,jdbcType=VARCHAR}, #{jx,jdbcType=VARCHAR}, 
+      #{dwid,jdbcType=VARCHAR}, #{bfdw,jdbcType=VARCHAR}, #{bfrq,jdbcType=TIMESTAMP}, 
+      #{bfyj,jdbcType=VARCHAR}, #{bfyy,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR}, #{jwh,jdbcType=VARCHAR}, 
+      #{rkrq,jdbcType=TIMESTAMP}, #{spr,jdbcType=VARCHAR}, #{tzs,jdbcType=DECIMAL}, #{ckdm,jdbcType=VARCHAR}, 
+      #{zl,jdbcType=VARCHAR}, #{dxbh,jdbcType=VARCHAR}, #{sl,jdbcType=DECIMAL}, #{xz,jdbcType=VARCHAR}, 
+      #{hclb,jdbcType=DECIMAL}, #{pzdw,jdbcType=VARCHAR}, #{jxqn,jdbcType=DECIMAL}, #{jxqxs,jdbcType=DECIMAL}, 
+      #{rfid,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.andawell.material.entity.TCkBfk">
+        insert into T_CK_BFK
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="bh != null">
+                BH,
+            </if>
+            <if test="jh != null">
+                JH,
+            </if>
+            <if test="xh != null">
+                XH,
+            </if>
+            <if test="jx != null">
+                JX,
+            </if>
+            <if test="dwid != null">
+                DWID,
+            </if>
+            <if test="bfdw != null">
+                BFDW,
+            </if>
+            <if test="bfrq != null">
+                BFRQ,
+            </if>
+            <if test="bfyj != null">
+                BFYJ,
+            </if>
+            <if test="bfyy != null">
+                BFYY,
+            </if>
+            <if test="bz != null">
+                BZ,
+            </if>
+            <if test="jwh != null">
+                JWH,
+            </if>
+            <if test="rkrq != null">
+                RKRQ,
+            </if>
+            <if test="spr != null">
+                SPR,
+            </if>
+            <if test="tzs != null">
+                TZS,
+            </if>
+            <if test="ckdm != null">
+                CKDM,
+            </if>
+            <if test="zl != null">
+                ZL,
+            </if>
+            <if test="dxbh != null">
+                DXBH,
+            </if>
+            <if test="sl != null">
+                SL,
+            </if>
+            <if test="xz != null">
+                XZ,
+            </if>
+            <if test="hclb != null">
+                HCLB,
+            </if>
+            <if test="pzdw != null">
+                PZDW,
+            </if>
+            <if test="jxqn != null">
+                JXQN,
+            </if>
+            <if test="jxqxs != null">
+                JXQXS,
+            </if>
+            <if test="rfid != null">
+                RFID,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="bh != null">
+                #{bh,jdbcType=VARCHAR},
+            </if>
+            <if test="jh != null">
+                #{jh,jdbcType=VARCHAR},
+            </if>
+            <if test="xh != null">
+                #{xh,jdbcType=VARCHAR},
+            </if>
+            <if test="jx != null">
+                #{jx,jdbcType=VARCHAR},
+            </if>
+            <if test="dwid != null">
+                #{dwid,jdbcType=VARCHAR},
+            </if>
+            <if test="bfdw != null">
+                #{bfdw,jdbcType=VARCHAR},
+            </if>
+            <if test="bfrq != null">
+                #{bfrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="bfyj != null">
+                #{bfyj,jdbcType=VARCHAR},
+            </if>
+            <if test="bfyy != null">
+                #{bfyy,jdbcType=VARCHAR},
+            </if>
+            <if test="bz != null">
+                #{bz,jdbcType=VARCHAR},
+            </if>
+            <if test="jwh != null">
+                #{jwh,jdbcType=VARCHAR},
+            </if>
+            <if test="rkrq != null">
+                #{rkrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="spr != null">
+                #{spr,jdbcType=VARCHAR},
+            </if>
+            <if test="tzs != null">
+                #{tzs,jdbcType=DECIMAL},
+            </if>
+            <if test="ckdm != null">
+                #{ckdm,jdbcType=VARCHAR},
+            </if>
+            <if test="zl != null">
+                #{zl,jdbcType=VARCHAR},
+            </if>
+            <if test="dxbh != null">
+                #{dxbh,jdbcType=VARCHAR},
+            </if>
+            <if test="sl != null">
+                #{sl,jdbcType=DECIMAL},
+            </if>
+            <if test="xz != null">
+                #{xz,jdbcType=VARCHAR},
+            </if>
+            <if test="hclb != null">
+                #{hclb,jdbcType=DECIMAL},
+            </if>
+            <if test="pzdw != null">
+                #{pzdw,jdbcType=VARCHAR},
+            </if>
+            <if test="jxqn != null">
+                #{jxqn,jdbcType=DECIMAL},
+            </if>
+            <if test="jxqxs != null">
+                #{jxqxs,jdbcType=DECIMAL},
+            </if>
+            <if test="rfid != null">
+                #{rfid,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.andawell.material.entity.TCkBfk">
+        update T_CK_BFK
+        <set>
+            <if test="bfdw != null">
+                BFDW = #{bfdw,jdbcType=VARCHAR},
+            </if>
+            <if test="bfrq != null">
+                BFRQ = #{bfrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="bfyj != null">
+                BFYJ = #{bfyj,jdbcType=VARCHAR},
+            </if>
+            <if test="bfyy != null">
+                BFYY = #{bfyy,jdbcType=VARCHAR},
+            </if>
+            <if test="bz != null">
+                BZ = #{bz,jdbcType=VARCHAR},
+            </if>
+            <if test="jwh != null">
+                JWH = #{jwh,jdbcType=VARCHAR},
+            </if>
+            <if test="rkrq != null">
+                RKRQ = #{rkrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="spr != null">
+                SPR = #{spr,jdbcType=VARCHAR},
+            </if>
+            <if test="tzs != null">
+                TZS = #{tzs,jdbcType=DECIMAL},
+            </if>
+            <if test="ckdm != null">
+                CKDM = #{ckdm,jdbcType=VARCHAR},
+            </if>
+            <if test="zl != null">
+                ZL = #{zl,jdbcType=VARCHAR},
+            </if>
+            <if test="dxbh != null">
+                DXBH = #{dxbh,jdbcType=VARCHAR},
+            </if>
+            <if test="sl != null">
+                SL = #{sl,jdbcType=DECIMAL},
+            </if>
+            <if test="xz != null">
+                XZ = #{xz,jdbcType=VARCHAR},
+            </if>
+            <if test="hclb != null">
+                HCLB = #{hclb,jdbcType=DECIMAL},
+            </if>
+            <if test="pzdw != null">
+                PZDW = #{pzdw,jdbcType=VARCHAR},
+            </if>
+            <if test="jxqn != null">
+                JXQN = #{jxqn,jdbcType=DECIMAL},
+            </if>
+            <if test="jxqxs != null">
+                JXQXS = #{jxqxs,jdbcType=DECIMAL},
+            </if>
+            <if test="rfid != null">
+                RFID = #{rfid,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where BH = #{bh,jdbcType=VARCHAR}
+        and JH = #{jh,jdbcType=VARCHAR}
+        and XH = #{xh,jdbcType=VARCHAR}
+        and JX = #{jx,jdbcType=VARCHAR}
+        and DWID = #{dwid,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.andawell.material.entity.TCkBfk">
+    update T_CK_BFK
+    set BFDW = #{bfdw,jdbcType=VARCHAR},
+      BFRQ = #{bfrq,jdbcType=TIMESTAMP},
+      BFYJ = #{bfyj,jdbcType=VARCHAR},
+      BFYY = #{bfyy,jdbcType=VARCHAR},
+      BZ = #{bz,jdbcType=VARCHAR},
+      JWH = #{jwh,jdbcType=VARCHAR},
+      RKRQ = #{rkrq,jdbcType=TIMESTAMP},
+      SPR = #{spr,jdbcType=VARCHAR},
+      TZS = #{tzs,jdbcType=DECIMAL},
+      CKDM = #{ckdm,jdbcType=VARCHAR},
+      ZL = #{zl,jdbcType=VARCHAR},
+      DXBH = #{dxbh,jdbcType=VARCHAR},
+      SL = #{sl,jdbcType=DECIMAL},
+      XZ = #{xz,jdbcType=VARCHAR},
+      HCLB = #{hclb,jdbcType=DECIMAL},
+      PZDW = #{pzdw,jdbcType=VARCHAR},
+      JXQN = #{jxqn,jdbcType=DECIMAL},
+      JXQXS = #{jxqxs,jdbcType=DECIMAL},
+      RFID = #{rfid,jdbcType=VARCHAR}
+    where BH = #{bh,jdbcType=VARCHAR}
+      and JH = #{jh,jdbcType=VARCHAR}
+      and XH = #{xh,jdbcType=VARCHAR}
+      and JX = #{jx,jdbcType=VARCHAR}
+      and DWID = #{dwid,jdbcType=VARCHAR}
+  </update>
+    <!--以下是逻辑sql-->
+    <sql id="queryCondition">
+        <where>
+            1 = 1
+            and T_CK_BFK.sl &gt; 0
+            <if test="query!=null">
+                <if test="query.jx!=null">
+                    and T_CK_BFK.JX = #{query.jx,jdbcType=VARCHAR}
+                </if>
+                <if test="query.startTime !=null and query.endTime !=null">
+                    and T_CK_BFK.rkrq between to_date('${query.startTime}','yyyy/MM/dd') and
+                    to_date('${query.endTime}','yyyy/MM/dd')
+                </if>
+            </if>
+        </where>
+    </sql>
+    <select id="outnoundList" resultType="com.andawell.material.vo.TCkBfkVO">
+        select
+        T_CK_BFK.BH as bh,
+        T_CK_BFK.Sl as sl,
+        T_CK_BFK.XH as xh,
+        T_CK_BFK.JH as jh,
+        T_JH.mc as jhmc,
+        T_JH.MC as JLDWMC,
+        T_JH.Id as JLDW,
+        T_JH_JX.mc as jxmc,
+        T_CK_BFK.JX as jx,
+        T_CK_BFK.CKDM as ckdm,
+        T_CK_BFK.RKRQ as RKRQ,
+        T_CK_BFK.DXBH as DXBH,
+        T_CK_BFK.HCLB as hclb,
+        T_CK_BFK.BFYY as bfyy,
+        T_CK_BFK.JXQN as JXQN,
+        T_CK_BFK.JXQXS as JXQXS,
+        T_CK_BFK.PZDW as PZDW,
+        T_CK_BFK.zl as zl,
+        T_CK_BFK.dwid as dwid
+        from T_CK_BFK
+        left join T_JH on T_JH.id=T_CK_BFK.Jh AND T_JH.JX=T_CK_BFK.JX
+        left join T_JH_JX on T_JH_JX.id=T_CK_BFK.jx
+        LEFT JOIN T_XT_JLDW ON T_XT_JLDW.ID=T_JH.DW
+        <include refid="queryCondition"/>
+    </select>
+    <select id="getStatistics" resultType="com.andawell.material.vo.TCkBfkVO">
+        select T_CK_BFK.jx as jx,T_CK_BFK.jh as jh,T_JH_JH.mc as jhmc ,T_JH_JX.mc as jxmc
+        from  T_CK_BFK
+        left join T_JH_JH on T_JH_JH.ID=T_CK_BFK.JH
+        left join T_JH_JX on T_JH_JX.id=T_CK_BFK.jx
+        where  T_CK_BFK.dwid  like '${qeury.dwid}%'
+        <if test="query.jx != null">
+            and T_CK_BFK.JX = #{query.jx,jdbcType=VARCHAR}
+        </if>
+        <if test="query.jh != null">
+            and T_CK_BFK.JH = #{query.jh,jdbcType=VARCHAR}
+        </if>
+        <if test="query.rq_start!=null and query.rq_start.length()>0">
+            and T_CK_BFK.rkrq&gt;=to_date('${query.rq_start}','yyyy-mm-dd hh24:mi:ss')
+        </if>
+        <if test="query.rq_end!=null and query.rq_end.length()>0">
+            and T_CK_BFK.rkrq&lt;=to_date('${query.rq_end}','yyyy-mm-dd hh24:mi:ss')
+        </if>
+        group by T_CK_BFK.jx,T_CK_BFK.jh
+    </select>
+    <select id="getRepairedStatistics" resultType="java.lang.Integer">
+        select sum(t_ck_dx.sl)
+        from  T_CK_BFK
+        where
+         dwid  like '${qeury.dwid}%'
+        <if test="query.jx != null">
+            and T_CK_BFK.JX = #{query.jx,jdbcType=VARCHAR}
+        </if>
+        <if test="query.jh != null">
+            and T_CK_BFK.JH = #{query.jh,jdbcType=VARCHAR}
+        </if>
+    </select>
+</mapper>

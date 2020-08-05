@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.material.mapper.TCkFyfsMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.material.entity.TCkFyfs">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="MC" jdbcType="VARCHAR" property="mc" />
+    <result column="JM" jdbcType="VARCHAR" property="jm" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, MC, JM
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_CK_FYFS
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getSqlLiteList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from T_CK_FYFS
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from T_CK_FYFS
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.andawell.material.entity.TCkFyfs">
+    insert into T_CK_FYFS (ID, MC, JM)
+    values (#{id,jdbcType=VARCHAR}, #{mc,jdbcType=VARCHAR}, #{jm,jdbcType=VARCHAR})
+  </insert>
+
+  <delete id="deleteSqlLiteList">
+    truncate table T_CK_FYFS
+  </delete>
+
+
+  <insert id="insertSelective" parameterType="com.andawell.material.entity.TCkFyfs">
+    insert into T_CK_FYFS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="mc != null">
+        MC,
+      </if>
+      <if test="jm != null">
+        JM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="mc != null">
+        #{mc,jdbcType=VARCHAR},
+      </if>
+      <if test="jm != null">
+        #{jm,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.andawell.material.entity.TCkFyfs">
+    update T_CK_FYFS
+    <set>
+      <if test="mc != null">
+        MC = #{mc,jdbcType=VARCHAR},
+      </if>
+      <if test="jm != null">
+        JM = #{jm,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.andawell.material.entity.TCkFyfs">
+    update T_CK_FYFS
+    set MC = #{mc,jdbcType=VARCHAR},
+      JM = #{jm,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="list" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from T_CK_FYFS where 1=1 order by to_number(ID)
+    </select>
+
+    <select id="getMaxId" resultType="java.lang.String">
+      select MAX (to_number(ID))
+    from T_CK_FYFS
+    where 1=1
+    </select>
+    <select id="getByMc" resultType="com.andawell.material.entity.TCkFyfs">
+      select ID,MC
+      from T_CK_FYFS
+      where MC=#{mc}
+    </select>
+</mapper>

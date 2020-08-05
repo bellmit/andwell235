@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.upms.mapper.TQxJxMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.upms.entity.TQxJx">
+    <id column="JS" jdbcType="VARCHAR" property="js" />
+    <id column="JX" jdbcType="VARCHAR" property="jx" />
+  </resultMap>
+
+
+  <sql id="Base_Column_List">
+    JS, JX
+  </sql>
+
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from T_QX_JX
+    where  JS = #{js,jdbcType=VARCHAR} and JX = #{jx,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteAllByJs">
+    delete from T_QX_JX where JS = #{js,jdbcType=VARCHAR}
+  </delete>
+
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from T_QX_JX
+    where JS = #{js,jdbcType=VARCHAR}
+      and JX = #{jx,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.andawell.upms.entity.TQxJx">
+    insert into T_QX_JX (JS, JX)
+    values (#{js,jdbcType=VARCHAR}, #{jx,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.andawell.upms.entity.TQxJx">
+    insert into T_QX_JX
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="js != null">
+        JS,
+      </if>
+      <if test="jx != null">
+        JX,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="js != null">
+        #{js,jdbcType=VARCHAR},
+      </if>
+      <if test="jx != null">
+        #{jx,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+
+  <sql id="queryCondition">
+    <where>
+      1 = 1
+      <if test="query!=null">
+        <if test="query.JS!=null">
+          and T_QX_JX.JS = #{query.js,jdbcType=VARCHAR}
+        </if>
+      </if>
+    </where>
+  </sql>
+
+  <select id="selectByQuery" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from
+    T_QX_JX
+    <include refid="queryCondition"/>
+  </select>
+
+</mapper>

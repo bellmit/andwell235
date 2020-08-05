@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.upms.mapper.TQxJsqxMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.upms.entity.TQxJsqx">
+    <id column="JS" jdbcType="VARCHAR" property="js" />
+    <id column="ZY" jdbcType="VARCHAR" property="zy" />
+    <result column="QX" jdbcType="VARCHAR" property="qx" />
+  </resultMap>
+
+
+  <select id="list" resultType="java.lang.String">
+
+    select
+    ZY
+    from T_QX_JSQX
+    <include refid="queryCondition"/>
+  </select>
+
+  <sql id="queryCondition">
+    <where>
+      1=1
+      <if test="query!=null">
+        <if test="query.js!=null and query.js.length()>0">
+          and T_QX_JSQX.JS = '${query.js}'
+        </if>
+        <if test="query.zy!=null and query.zy.length()>0">
+          and T_QX_JSQX.ZY like '%${query.zy}%'
+        </if>
+        <if test="query.qx!=null and query.qx.length()>0">
+          and T_QX_JSQX.QX like '%${query.qx}%'
+        </if>
+      </if>
+    </where>
+  </sql>
+
+
+<delete id="deleteByJs" parameterType="java.lang.String">
+    delete  from t_qx_jsqx where js=#{js,jdbcType=VARCHAR}
+</delete>
+
+
+
+
+
+  <sql id="Base_Column_List">
+    JS, ZY, QX
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_QX_JSQX
+    where JS = #{js,jdbcType=VARCHAR}
+      and ZY = #{zy,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from T_QX_JSQX
+    where JS = #{js,jdbcType=VARCHAR}
+      and ZY = #{zy,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.andawell.upms.entity.TQxJsqx">
+    insert into T_QX_JSQX (JS, ZY, QX)
+    values (#{js,jdbcType=VARCHAR}, #{zy,jdbcType=VARCHAR}, #{qx,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.andawell.upms.entity.TQxJsqx">
+    insert into T_QX_JSQX
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="js != null">
+        JS,
+      </if>
+      <if test="zy != null">
+        ZY,
+      </if>
+      <if test="qx != null">
+        QX,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="js != null">
+        #{js,jdbcType=VARCHAR},
+      </if>
+      <if test="zy != null">
+        #{zy,jdbcType=VARCHAR},
+      </if>
+      <if test="qx != null">
+        #{qx,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.andawell.upms.entity.TQxJsqx">
+    update T_QX_JSQX
+    <set>
+      <if test="qx != null">
+        QX = #{qx,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where JS = #{js,jdbcType=VARCHAR}
+      and ZY = #{zy,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.andawell.upms.entity.TQxJsqx">
+    update T_QX_JSQX
+    set QX = #{qx,jdbcType=VARCHAR}
+    where JS = #{js,jdbcType=VARCHAR}
+      and ZY = #{zy,jdbcType=VARCHAR}
+  </update>
+
+
+
+
+
+</mapper>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.material.mapper.TCfLbMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.material.entity.TCfLb">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="MC" jdbcType="VARCHAR" property="mc" />
+    <result column="JM" jdbcType="VARCHAR" property="jm" />
+    <result column="PID" jdbcType="VARCHAR" property="pid" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    ID, MC, JM, PID
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_CF_LB
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getSqlLiteList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from T_CF_LB
+  </select>
+
+
+  <delete id="deleteSqlLiteList">
+    truncate table T_CF_LB
+  </delete>
+
+
+  <select id="get2LengthId" resultType="java.lang.String">
+    select ID
+    from T_CF_LB
+    where length (ID)=2
+  </select>
+  <select id="getMaxID" resultType="java.lang.String">
+    select max (to_number(ID))
+    from T_CF_LB
+    where ID like '${id}__'
+  </select>
+    <select id="list" resultType="com.andawell.material.entity.TCfLb">
+      select ID,MC,PID
+      from T_CF_LB
+      where 1=1
+    </select>
+  <select id="getByMc" resultType="com.andawell.material.entity.TCfLb">
+    select ID,MC,PID
+    from T_CF_LB
+    where MC = #{mc}
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from T_CF_LB
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.andawell.material.entity.TCfLb">
+    insert into T_CF_LB (ID, MC, JM, PID)
+    values (#{id,jdbcType=VARCHAR}, #{mc,jdbcType=VARCHAR}, #{jm,jdbcType=VARCHAR},#{pid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.andawell.material.entity.TCfLb">
+    insert into T_CF_LB
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="mc != null">
+        MC,
+      </if>
+      <if test="jm != null">
+        JM,
+      </if>
+      <if test="pid != null">
+        PID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="mc != null">
+        #{mc,jdbcType=VARCHAR},
+      </if>
+      <if test="jm != null">
+        #{jm,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.andawell.material.entity.TCfLb">
+    update T_CF_LB
+    <set>
+      <if test="mc != null">
+        MC = #{mc,jdbcType=VARCHAR},
+      </if>
+      <if test="jm != null">
+        JM = #{jm,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        PID = #{pid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.andawell.material.entity.TCfLb">
+    update T_CF_LB
+    set MC = #{mc,jdbcType=VARCHAR},
+      JM = #{jm,jdbcType=VARCHAR},
+      PID = #{pid,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

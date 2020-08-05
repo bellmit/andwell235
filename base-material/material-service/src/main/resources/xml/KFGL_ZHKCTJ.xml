@@ -1,0 +1,574 @@
+<tableList describe="库房管理综合库存统计" xmlName="KFGL_ZHKCTJ">
+  <table>
+    <tableInfo>
+      <caption>综合库存统计上表</caption>
+      <tableName>T_JH</tableName>
+      <sql>SELECT JX,JXMC, JH, JHMC,MCE,JLDW,TDQXSL,CKQXSL,TDKYSL,CKKYSL, TDDXSL,CKDXSL,ZXSL,BFSL,WDSL,DHSL, TDQXSL+CKQXSL+TDKYSL+CKKYSL+TDDXSL+CKDXSL+ZXSL HJSL FROM (
+SELECT J.JX,JX.MC JXMC, J.JH, JH.MC JHMC,JH.MCE,JLDW.MC JLDW,NVL(TDQXSL,0)TDQXSL,NVL(CKQXSL,0)CKQXSL, NVL(TDKYSL,0)TDKYSL,NVL(CKKYSL,0)CKKYSL, NVL(TDDXSL,0)TDDXSL,NVL(CKDXSL,0)CKDXSL, NVL(ZXSL,0)ZXSL, NVL(BFSL,0)BFSL,NVL(WDSL,0)WDSL,NVL(DHSL,0)DHSL FROM ( 
+SELECT DISTINCT JX,JH FROM (
+SELECT  JX,JH FROM T_CK_CK WHERE SL &gt; 0
+UNION ALL
+SELECT  JX,JH FROM T_CK_DX WHERE XZ=&apos;0&apos;
+)J)J
+LEFT JOIN (
+  SELECT JX,JH,SUM(SL) AS TDQXSL FROM T_CK_CK 
+  LEFT JOIN T_XT_DW ON T_XT_DW.ID=T_CK_CK.DWID
+  WHERE ZL=&apos;11&apos;AND T_XT_DW.LX=&apos;30&apos;  GROUP BY JX,JH
+)TDQX
+ON J.JX=TDQX.JX AND J.JH=TDQX.JH
+LEFT JOIN (
+  SELECT JX,JH,SUM(SL) AS CKQXSL FROM T_CK_CK 
+  LEFT JOIN T_XT_DW ON T_XT_DW.ID=T_CK_CK.DWID
+  WHERE ZL=&apos;11&apos;AND T_XT_DW.LX=&apos;40&apos;  GROUP BY JX,JH
+)CKQX
+ON J.JX=CKQX.JX AND J.JH=CKQX.JH
+LEFT JOIN(
+  SELECT JX,JH,SUM(SL) AS TDKYSL FROM T_CK_CK
+  LEFT JOIN T_XT_DW ON T_XT_DW.ID=T_CK_CK.DWID
+ WHERE ZL=&apos;12&apos; AND T_XT_DW.LX=&apos;30&apos; GROUP BY JX,JH
+)TDKY
+ON J.JX=TDKY.JX AND J.JH=TDKY.JH
+LEFT JOIN(
+  SELECT JX,JH,SUM(SL) AS CKKYSL FROM T_CK_CK
+  LEFT JOIN T_XT_DW ON T_XT_DW.ID=T_CK_CK.DWID
+ WHERE ZL=&apos;12&apos;AND T_XT_DW.LX=&apos;40&apos; GROUP BY JX,JH
+)CKKY
+ON J.JX=CKKY.JX AND J.JH=CKKY.JH
+LEFT JOIN(
+  SELECT JX,JH, SUM(SL) AS TDDXSL 
+  FROM T_CK_DX 
+  LEFT JOIN T_XT_DW ON T_XT_DW.ID=T_CK_DX.DWID
+  WHERE XZ=&apos;0&apos; AND  T_XT_DW.LX=&apos;30&apos; GROUP BY JX,JH
+)TDDX
+ON J.JX=TDDX.JX AND J.JH=TDDX.JH
+LEFT JOIN(
+  SELECT JX,JH, SUM(SL) AS CKDXSL 
+  FROM T_CK_DX 
+  LEFT JOIN T_XT_DW ON T_XT_DW.ID=T_CK_DX.DWID
+  WHERE XZ=&apos;0&apos; AND  T_XT_DW.LX=&apos;40&apos; GROUP BY JX,JH
+)CKDX
+ON J.JX=CKDX.JX AND J.JH=CKDX.JH
+LEFT JOIN(
+  SELECT JX,JH, SUM(SL) AS ZXSL FROM T_CK_SX WHERE XZ=&apos;0&apos; GROUP BY JX,JH
+)ZX
+ON J.JX=ZX.JX AND J.JH=ZX.JH
+LEFT JOIN (
+SELECT JX,JH,SUM(SL)AS BFSL FROM T_CK_BFK WHERE XZ=&apos;0&apos; GROUP BY JX,JH
+)BF
+ON J.JX=BF.JX AND J.JH=BF.JH
+LEFT JOIN (
+SELECT JX,JH,SUM(DHSL-YDSL)AS WDSL FROM T_HT_DHQD WHERE XZ=&apos;0&apos; GROUP BY JX,JH
+)WDSL
+ON J.JX=WDSL.JX AND J.JH=WDSL.JH
+LEFT JOIN (
+SELECT JX,JH,SUM(DHSL)AS DHSL FROM T_HT_DHQD WHERE XZ=&apos;0&apos; GROUP BY JX,JH
+)DHSL
+ON J.JX=DHSL.JX AND J.JH=DHSL.JH
+LEFT JOIN(
+  SELECT ID,JX,MC,MCE, DW FROM T_JH 
+)JH
+ON J.JH=JH.ID AND J.JX=JH.JX
+LEFT JOIN(
+  SELECT ID,MC FROM T_XT_JLDW
+)JLDW
+ON JLDW.ID=JH.DW
+LEFT JOIN(
+  SELECT ID,MC FROM T_JH_JX 
+)JX
+ON J.JX=JX.ID)FI
+WHERE 1=1
+</sql>
+    </tableInfo>
+    <tableConfig>
+      <tableColumns>
+        <tableHeader>
+          <prop>jx</prop>
+          <align>center</align>
+          <label>机型</label>
+          <width>120</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>false</show>
+          <condition>equal</condition>
+          <fieldType>string</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>jxmc</prop>
+          <align>center</align>
+          <label>机型名称</label>
+          <width>120</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>string</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>jhmc</prop>
+          <align>center</align>
+          <label>名称</label>
+          <width>120</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>string</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>jh</prop>
+          <align>center</align>
+          <label>件号</label>
+          <width>170</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>string</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>jldw</prop>
+          <align>center</align>
+          <label>计量单位</label>
+          <width>80</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>integer</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>tdqxsl</prop>
+          <align>center</align>
+          <label>部队全新</label>
+          <width>100</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>integer</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>ckqxsl</prop>
+          <align>center</align>
+          <label>全新</label>
+          <width>100</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>integer</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>tdkysl</prop>
+          <align>center</align>
+          <label>部队可用</label>
+          <width>100</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>integer</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>ckkysl</prop>
+          <align>center</align>
+          <label>可用</label>
+          <width>100</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>integer</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>tddxsl</prop>
+          <align>center</align>
+          <label>部队待修</label>
+          <width>100</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>integer</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>ckdxsl</prop>
+          <align>center</align>
+          <label>待修</label>
+          <width>100</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>string</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>zxsl</prop>
+          <align>center</align>
+          <label>在修</label>
+          <width>100</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>string</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>bfsl</prop>
+          <align>center</align>
+          <label>报废</label>
+          <width>100</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>string</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>wdsl</prop>
+          <align>center</align>
+          <label>未到</label>
+          <width>100</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>integer</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>dhsl</prop>
+          <align>center</align>
+          <label>订货</label>
+          <width>100</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>integer</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>hjsl</prop>
+          <align>center</align>
+          <label>总库存量</label>
+          <width>100</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>integer</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableOptions>
+          <modelName>综合库存统计上表</modelName>
+          <type>table</type>
+          <index>true</index>
+          <mutiSelect>false</mutiSelect>
+          <initTable>true</initTable>
+          <pagination>true</pagination>
+          <border>true</border>
+          <stripe>true</stripe>
+          <loading>false</loading>
+          <height>290</height>
+        </tableOptions>
+      </tableColumns>
+    </tableConfig>
+  </table>
+  <table>
+    <tableInfo>
+      <caption>综合库存统计下表</caption>
+      <tableName>T_HT_DHQD</tableName>
+      <sql>
+    SELECT A.JX,JH,XH,ZL,SL,DJ,LB,T_JH.MC JHMC,T_XT_JLDW.MC JLDW,T_JH_ZL.MC ZLMC,BBZ,T_XT_BZLB.MC BZMC,T_JH.ZYLX FROM (
+SELECT JX,JH,XH,ZL,SL,DJ,&apos;库存&apos;LB,BBZ from T_CK_CK
+UNION
+SELECT JX,JH,XH,ZL,SL,0 DJ,&apos;待修&apos;LB,1 BBZ from T_CK_DX
+UNION
+SELECT JX,JH,XH,ZL,SL,0 DJ,&apos;报废&apos;LB,1 BBZ from T_CK_BFk
+UNION
+SELECT JX,JH,XH,ZL,SL,0 DJ,&apos;在修&apos;LB,1 BBZ from T_CK_SX
+UNION
+SELECT JX,JH,&apos;&apos;XH,&apos;11&apos;ZL,DHSL SL,DJ,&apos;合同订货&apos;LB,TO_NUMBER(BZLB)BBZ from T_HT_DHQD
+UNION
+SELECT JX,JH,&apos;&apos;XH,&apos;11&apos;ZL,DHSL-YDSL SL,DJ,&apos;合同未到&apos;LB,TO_NUMBER(BZLB)BBZ  from T_HT_DHQD
+)A
+LEFT JOIN T_JH ON T_JH.JX=A.JX AND T_JH.ID=A.JH
+LEFT JOIN T_XT_JLDW ON T_XT_JLDW.ID=T_JH.DW
+LEFT JOIN T_JH_ZL ON T_JH_ZL.ID=A.ZL
+LEFT JOIN T_XT_BZLB ON T_XT_BZLB.ID=BBZ
+WHERE 1=1 AND SL&gt;0
+</sql>
+    </tableInfo>
+    <tableConfig>
+      <tableColumns>
+        <tableHeader>
+          <prop>jhmc</prop>
+          <align>center</align>
+          <label>件号名称</label>
+          <width>120</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>string</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>jh</prop>
+          <align>center</align>
+          <label>件号</label>
+          <width>170</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>string</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>jldw</prop>
+          <align>center</align>
+          <label>单位</label>
+          <width>100</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>string</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>zylx</prop>
+          <align>center</align>
+          <label>专业类型</label>
+          <width>100</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>integer</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>xh</prop>
+          <align>left</align>
+          <label>序号</label>
+          <width>220</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>string</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>dj</prop>
+          <align>center</align>
+          <label>单价</label>
+          <width>100</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>string</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>bzmc</prop>
+          <align>center</align>
+          <label>币种</label>
+          <width>120</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>string</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>zlmc</prop>
+          <align>center</align>
+          <label>质量</label>
+          <width>100</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>string</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>sl</prop>
+          <align>center</align>
+          <label>数量</label>
+          <width>80</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>integer</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>lb</prop>
+          <align>center</align>
+          <label>类别</label>
+          <width>100</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>true</show>
+          <condition>equal</condition>
+          <fieldType>integer</fieldType>
+          <parent>false</parent>
+        </tableHeader>
+        <tableHeader>
+          <prop>rkrq</prop>
+          <align>center</align>
+          <label>日期</label>
+          <width>100</width>
+          <minWidth>30</minWidth>
+          <filters>false</filters>
+          <fixed>false</fixed>
+          <sortable>false</sortable>
+          <isEdit>false</isEdit>
+          <editType>input</editType>
+          <show>false</show>
+          <condition>equal</condition>
+          <fieldType>date</fieldType>
+          <parent>false</parent>
+          <isInner>true</isInner>
+        </tableHeader>
+        <tableOptions>
+          <modelName>综合库存统计下表</modelName>
+          <type>table</type>
+          <index>true</index>
+          <mutiSelect>false</mutiSelect>
+          <initTable>true</initTable>
+          <pagination>true</pagination>
+          <border>true</border>
+          <stripe>true</stripe>
+          <loading>false</loading>
+          <height>290</height>
+        </tableOptions>
+      </tableColumns>
+    </tableConfig>
+  </table>
+</tableList>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.purchase.mapper.TDhJhMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.purchase.entity.TDhJh">
+    <id column="BH" jdbcType="VARCHAR" property="bh" />
+    <result column="JHMC" jdbcType="VARCHAR" property="jhmc" />
+    <result column="JHNF" jdbcType="VARCHAR" property="jhnf" />
+    <result column="JHSM" jdbcType="VARCHAR" property="jhsm" />
+    <result column="CJRQ" jdbcType="TIMESTAMP" property="cjrq" />
+    <result column="XGRQ" jdbcType="TIMESTAMP" property="xgrq" />
+    <result column="STATUS" jdbcType="DECIMAL" property="status" />
+  </resultMap>
+
+  <sql id="queryCondition">
+    <where>
+      1=1
+      <if test="query!=null">
+        <if test="query.bh!=null and query.bh.length()>0">
+          and T_DH_JH.BH= #{query.bh}
+        </if>
+        <if test="query.jhmc!=null and query.jhmc.length()>0">
+          and T_DH_JH.JHMC= #{query.jhmc}
+        </if>
+        <if test="query.jhnf!=null and query.jhnf.length()>0">
+          and T_DH_JH.JHNF = #{query.jhnf}
+        </if>
+        <if test="query.jhsm!=null and query.jhsm.length()>0">
+          and T_DH_JH.JHSM= #{query.jhsm}
+        </if>
+        <if test="query.cjrq!=null">
+          and T_DH_JH.CJRQ= #{query.cjrq}
+        </if>
+        <if test="query.xgrq!=null">
+          and T_DH_JH.XGRQ = #{query.xgrq}
+        </if>
+        <if test="query.status!=null">
+          and T_DH_JH.STATUS= #{query.status}
+        </if>
+      </if>
+    </where>
+  </sql>
+
+  <sql id="Base_Column_List">
+    BH, JHMC, JHNF, JHSM, CJRQ, XGRQ, STATUS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_DH_JH
+    where BH = #{bh,jdbcType=VARCHAR}
+  </select>
+    <select id="listJhbh" resultType="com.andawell.purchase.vo.TDhJhVO">
+      select
+      <include refid="Base_Column_List"/>
+      from T_DH_JH
+      <include refid="queryCondition"/>
+    </select>
+    <select id="selectByBusinessNew"
+            resultType="com.andawell.purchase.entity.TDhJh">
+
+           select   BH, JHMC, JHNF, JHSM, CJRQ, XGRQ, STATUS from
+        (select  BH, JHMC, JHNF, JHSM, CJRQ, XGRQ, STATUS from t_dh_jh where 1=1
+
+
+            and BH like '%${number}%'
+
+        order by CJRQ desc )
+        where rownum=1
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from T_DH_JH
+    where BH = #{bh,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.andawell.purchase.entity.TDhJh">
+    insert into T_DH_JH (BH, JHMC, JHNF, 
+      JHSM, CJRQ, XGRQ, 
+      STATUS)
+    values (#{bh,jdbcType=VARCHAR}, #{jhmc,jdbcType=VARCHAR}, #{jhnf,jdbcType=VARCHAR}, 
+      #{jhsm,jdbcType=VARCHAR}, #{cjrq,jdbcType=TIMESTAMP}, #{xgrq,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.andawell.purchase.entity.TDhJh">
+    insert into T_DH_JH
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bh != null">
+        BH,
+      </if>
+      <if test="jhmc != null">
+        JHMC,
+      </if>
+      <if test="jhnf != null">
+        JHNF,
+      </if>
+      <if test="jhsm != null">
+        JHSM,
+      </if>
+      <if test="cjrq != null">
+        CJRQ,
+      </if>
+      <if test="xgrq != null">
+        XGRQ,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bh != null">
+        #{bh,jdbcType=VARCHAR},
+      </if>
+      <if test="jhmc != null">
+        #{jhmc,jdbcType=VARCHAR},
+      </if>
+      <if test="jhnf != null">
+        #{jhnf,jdbcType=VARCHAR},
+      </if>
+      <if test="jhsm != null">
+        #{jhsm,jdbcType=VARCHAR},
+      </if>
+      <if test="cjrq != null">
+        #{cjrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="xgrq != null">
+        #{xgrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.andawell.purchase.entity.TDhJh">
+    update T_DH_JH
+    <set>
+      <if test="jhmc != null">
+        JHMC = #{jhmc,jdbcType=VARCHAR},
+      </if>
+      <if test="jhnf != null">
+        JHNF = #{jhnf,jdbcType=VARCHAR},
+      </if>
+      <if test="jhsm != null">
+        JHSM = #{jhsm,jdbcType=VARCHAR},
+      </if>
+      <if test="cjrq != null">
+        CJRQ = #{cjrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="xgrq != null">
+        XGRQ = #{xgrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where BH = #{bh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.andawell.purchase.entity.TDhJh">
+    update T_DH_JH
+    set JHMC = #{jhmc,jdbcType=VARCHAR},
+      JHNF = #{jhnf,jdbcType=VARCHAR},
+      JHSM = #{jhsm,jdbcType=VARCHAR},
+      CJRQ = #{cjrq,jdbcType=TIMESTAMP},
+      XGRQ = #{xgrq,jdbcType=TIMESTAMP},
+      STATUS = #{status,jdbcType=DECIMAL}
+    where BH = #{bh,jdbcType=VARCHAR}
+  </update>
+</mapper>

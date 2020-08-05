@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.material.mapper.TTzzCkMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.material.entity.TTzzCk">
+    <id column="JH" jdbcType="VARCHAR" property="jh" />
+    <id column="XH" jdbcType="VARCHAR" property="xh" />
+    <result column="SL" jdbcType="DECIMAL" property="sl" />
+    <result column="DJ" jdbcType="DECIMAL" property="dj" />
+    <result column="ZJ" jdbcType="DECIMAL" property="zj" />
+    <result column="CCRQ" jdbcType="TIMESTAMP" property="ccrq" />
+    <result column="RKRQ" jdbcType="TIMESTAMP" property="rkrq" />
+    <result column="CJH" jdbcType="VARCHAR" property="cjh" />
+    <result column="FDJH" jdbcType="VARCHAR" property="fdjh" />
+    <result column="CKDM" jdbcType="VARCHAR" property="ckdm" />
+    <result column="JWH" jdbcType="VARCHAR" property="jwh" />
+    <result column="BZ" jdbcType="VARCHAR" property="bz" />
+    <result column="DWID" jdbcType="VARCHAR" property="dwid" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    JH, XH, SL, DJ, ZJ, CCRQ, RKRQ, CJH, FDJH, CKDM, JWH, BZ, DWID
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_TZZ_CK
+    where JH = #{jh,jdbcType=VARCHAR}
+      and XH = #{xh,jdbcType=VARCHAR}
+  </select>
+    <select id="listJhAndXh" resultType="java.lang.String">
+      select JH||'+'||XH
+      from T_TZZ_CK
+      where 1=1
+    </select>
+  <select id="getSl" resultType="java.lang.String">
+    select SL
+    from T_TZZ_CK
+    where JH=#{jh}
+    and XH=#{xh}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from T_TZZ_CK
+    where JH = #{jh,jdbcType=VARCHAR}
+      and XH = #{xh,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.andawell.material.entity.TTzzCk">
+    insert into T_TZZ_CK (JH, XH, SL, DJ, 
+      ZJ, CCRQ, RKRQ, 
+      CJH, FDJH, CKDM, JWH, 
+      BZ, DWID)
+    values (#{jh,jdbcType=VARCHAR}, #{xh,jdbcType=VARCHAR}, #{sl,jdbcType=DECIMAL}, #{dj,jdbcType=DECIMAL}, 
+      #{zj,jdbcType=DECIMAL}, #{ccrq,jdbcType=TIMESTAMP}, #{rkrq,jdbcType=TIMESTAMP}, 
+      #{cjh,jdbcType=VARCHAR}, #{fdjh,jdbcType=VARCHAR}, #{ckdm,jdbcType=VARCHAR}, #{jwh,jdbcType=VARCHAR}, 
+      #{bz,jdbcType=VARCHAR}, #{dwid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.andawell.material.entity.TTzzCk">
+    insert into T_TZZ_CK
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="jh != null">
+        JH,
+      </if>
+      <if test="xh != null">
+        XH,
+      </if>
+      <if test="sl != null">
+        SL,
+      </if>
+      <if test="dj != null">
+        DJ,
+      </if>
+      <if test="zj != null">
+        ZJ,
+      </if>
+      <if test="ccrq != null">
+        CCRQ,
+      </if>
+      <if test="rkrq != null">
+        RKRQ,
+      </if>
+      <if test="cjh != null">
+        CJH,
+      </if>
+      <if test="fdjh != null">
+        FDJH,
+      </if>
+      <if test="ckdm != null">
+        CKDM,
+      </if>
+      <if test="jwh != null">
+        JWH,
+      </if>
+      <if test="bz != null">
+        BZ,
+      </if>
+      <if test="dwid != null">
+        DWID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="jh != null">
+        #{jh,jdbcType=VARCHAR},
+      </if>
+      <if test="xh != null">
+        #{xh,jdbcType=VARCHAR},
+      </if>
+      <if test="sl != null">
+        #{sl,jdbcType=DECIMAL},
+      </if>
+      <if test="dj != null">
+        #{dj,jdbcType=DECIMAL},
+      </if>
+      <if test="zj != null">
+        #{zj,jdbcType=DECIMAL},
+      </if>
+      <if test="ccrq != null">
+        #{ccrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rkrq != null">
+        #{rkrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cjh != null">
+        #{cjh,jdbcType=VARCHAR},
+      </if>
+      <if test="fdjh != null">
+        #{fdjh,jdbcType=VARCHAR},
+      </if>
+      <if test="ckdm != null">
+        #{ckdm,jdbcType=VARCHAR},
+      </if>
+      <if test="jwh != null">
+        #{jwh,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null">
+        #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="dwid != null">
+        #{dwid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <insert id="insertAll" parameterType="com.andawell.material.entity.TTzzCk" useGeneratedKeys="false">
+    insert all
+    <foreach collection="list" item="tTzzCk" index="index">
+      into T_TZZ_CK(JH, XH,SL,DJ,ZJ,CCRQ,CJH,FDJH,BZ)
+      values (
+      #{tTzzCk.jh,jdbcType=VARCHAR}
+      ,#{tTzzCk.xh,jdbcType=VARCHAR}
+      ,#{tTzzCk.sl,jdbcType=DECIMAL}
+      ,#{tTzzCk.dj,jdbcType=DECIMAL}
+      ,#{tTzzCk.zj,jdbcType=DECIMAL}
+      ,#{tTzzCk.ccrq,jdbcType=TIMESTAMP}
+      ,#{tTzzCk.cjh,jdbcType=VARCHAR}
+      ,#{tTzzCk.fdjh,jdbcType=VARCHAR}
+      ,#{tTzzCk.bz,jdbcType=VARCHAR}
+      )
+    </foreach>
+    select 1 from DUAL
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.andawell.material.entity.TTzzCk">
+    update T_TZZ_CK
+    <set>
+      <if test="sl != null">
+        SL = #{sl,jdbcType=DECIMAL},
+      </if>
+      <if test="dj != null">
+        DJ = #{dj,jdbcType=DECIMAL},
+      </if>
+      <if test="zj != null">
+        ZJ = #{zj,jdbcType=DECIMAL},
+      </if>
+      <if test="ccrq != null">
+        CCRQ = #{ccrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rkrq != null">
+        RKRQ = #{rkrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cjh != null">
+        CJH = #{cjh,jdbcType=VARCHAR},
+      </if>
+      <if test="fdjh != null">
+        FDJH = #{fdjh,jdbcType=VARCHAR},
+      </if>
+      <if test="ckdm != null">
+        CKDM = #{ckdm,jdbcType=VARCHAR},
+      </if>
+      <if test="jwh != null">
+        JWH = #{jwh,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null">
+        BZ = #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="dwid != null">
+        DWID = #{dwid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where JH = #{jh,jdbcType=VARCHAR}
+      and XH = #{xh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.andawell.material.entity.TTzzCk">
+    update T_TZZ_CK
+    set SL = #{sl,jdbcType=DECIMAL},
+      DJ = #{dj,jdbcType=DECIMAL},
+      ZJ = #{zj,jdbcType=DECIMAL},
+      CCRQ = #{ccrq,jdbcType=TIMESTAMP},
+      RKRQ = #{rkrq,jdbcType=TIMESTAMP},
+      CJH = #{cjh,jdbcType=VARCHAR},
+      FDJH = #{fdjh,jdbcType=VARCHAR},
+      CKDM = #{ckdm,jdbcType=VARCHAR},
+      JWH = #{jwh,jdbcType=VARCHAR},
+      BZ = #{bz,jdbcType=VARCHAR},
+      DWID = #{dwid,jdbcType=VARCHAR}
+    where JH = #{jh,jdbcType=VARCHAR}
+      and XH = #{xh,jdbcType=VARCHAR}
+  </update>
+</mapper>

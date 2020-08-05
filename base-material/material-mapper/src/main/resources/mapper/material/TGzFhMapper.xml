@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.material.mapper.TGzFhMapper">
+    <resultMap id="BaseResultMap" type="com.andawell.material.entity.TGzFh">
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
+        <id column="JX" jdbcType="VARCHAR" property="jx"/>
+        <result column="ZL" jdbcType="VARCHAR" property="zl"/>
+        <result column="RQ" jdbcType="TIMESTAMP" property="rq"/>
+        <result column="SHDW" jdbcType="VARCHAR" property="shdw"/>
+        <result column="FHR" jdbcType="VARCHAR" property="fhr"/>
+        <result column="THR" jdbcType="VARCHAR" property="thr"/>
+        <result column="BZ" jdbcType="VARCHAR" property="bz"/>
+        <result column="YSFS" jdbcType="DECIMAL" property="ysfs"/>
+        <result column="YDH" jdbcType="VARCHAR" property="ydh"/>
+        <result column="FYR" jdbcType="VARCHAR" property="fyr"/>
+        <result column="FHRQ" jdbcType="TIMESTAMP" property="fhrq"/>
+        <result column="ZT" jdbcType="DECIMAL" property="zt"/>
+        <result column="XS" jdbcType="DECIMAL" property="xs"/>
+        <result column="CKWH" jdbcType="VARCHAR" property="ckwh"/>
+        <result column="BH" jdbcType="VARCHAR" property="bh"/>
+        <result column="CYDW" jdbcType="VARCHAR" property="cydw"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <select id="maxId" resultType="java.lang.String">
+   select max(ID) from T_GZ_FH
+  </select>
+    <insert id="insertSelective" parameterType="com.andawell.material.entity.TGzFh">
+        insert into T_GZ_FH
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="jx != null">
+                JX,
+            </if>
+            <if test="zl != null">
+                ZL,
+            </if>
+            <if test="shdw != null">
+                SHDW,
+            </if>
+            <if test="fhr != null">
+                FHR,
+            </if>
+            <if test="bz != null">
+                BZ,
+            </if>
+            <if test="ysfs != null">
+                YSFS,
+            </if>
+
+            <if test="fhrq != null">
+                FHRQ,
+            </if>
+            <if test="zt != null">
+                ZT,
+            </if>
+            <if test="xs != null">
+                XS,
+            </if>
+            <if test="ckwh != null">
+                CKWH,
+            </if>
+            <if test="bh != null">
+                BH,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="jx != null">
+                #{jx,jdbcType=VARCHAR},
+            </if>
+            <if test="zl != null">
+                #{zl,jdbcType=OTHER},
+            </if>
+
+            <if test="shdw != null">
+                #{shdw,jdbcType=VARCHAR},
+            </if>
+            <if test="fhr != null">
+                #{fhr,jdbcType=VARCHAR},
+            </if>
+
+            <if test="bz != null">
+                #{bz,jdbcType=OTHER},
+            </if>
+            <if test="ysfs != null">
+                #{ysfs,jdbcType=DECIMAL},
+            </if>
+
+
+            <if test="fhrq != null">
+                #{fhrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="zt != null">
+                #{zt,jdbcType=DECIMAL},
+            </if>
+            <if test="xs != null">
+                #{xs,jdbcType=DECIMAL},
+            </if>
+            <if test="ckwh != null">
+                #{ckwh,jdbcType=OTHER},
+            </if>
+            <if test="bh != null">
+                #{bh,jdbcType=OTHER},
+            </if>
+
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="com.andawell.material.entity.TGzFh">
+    update T_GZ_FH
+    set ZT = 3
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

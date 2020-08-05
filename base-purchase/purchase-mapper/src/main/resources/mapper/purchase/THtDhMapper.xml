@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.purchase.mapper.THtDhMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.purchase.entity.THtDh">
+    <id column="HTBH" jdbcType="VARCHAR" property="htbh" />
+    <result column="QDRQ" jdbcType="TIMESTAMP" property="qdrq" />
+    <result column="CGFDB" jdbcType="VARCHAR" property="cgfdb" />
+    <result column="JSDBS" jdbcType="VARCHAR" property="jsdbs" />
+    <result column="ZC" jdbcType="VARCHAR" property="zc" />
+    <result column="JDS" jdbcType="VARCHAR" property="jds" />
+    <result column="JDSLXDH" jdbcType="VARCHAR" property="jdslxdh" />
+    <result column="JDSDBQZ" jdbcType="VARCHAR" property="jdsdbqz" />
+    <result column="CZF" jdbcType="VARCHAR" property="czf" />
+    <result column="ZHMC" jdbcType="VARCHAR" property="zhmc" />
+    <result column="ZH" jdbcType="VARCHAR" property="zh" />
+    <result column="KHYH" jdbcType="VARCHAR" property="khyh" />
+    <result column="CZFLXDH" jdbcType="VARCHAR" property="czflxdh" />
+    <result column="CZFDBQZ" jdbcType="VARCHAR" property="czfdbqz" />
+    <result column="CGF" jdbcType="VARCHAR" property="cgf" />
+    <result column="YZBM" jdbcType="VARCHAR" property="yzbm" />
+    <result column="CGFDBQZ" jdbcType="VARCHAR" property="cgfdbqz" />
+    <result column="CGFLXDH" jdbcType="VARCHAR" property="cgflxdh" />
+    <result column="TXDZ" jdbcType="VARCHAR" property="txdz" />
+    <result column="YSFS" jdbcType="VARCHAR" property="ysfs" />
+    <result column="JHDD" jdbcType="VARCHAR" property="jhdd" />
+    <result column="SHDZ" jdbcType="VARCHAR" property="shdz" />
+    <result column="SHR" jdbcType="VARCHAR" property="shr" />
+    <result column="SHLXR" jdbcType="VARCHAR" property="shlxr" />
+    <result column="SHLXDH" jdbcType="VARCHAR" property="shlxdh" />
+    <result column="JX" jdbcType="VARCHAR" property="jx" />
+    <result column="GB" jdbcType="VARCHAR" property="gb" />
+    <result column="JHBH" jdbcType="VARCHAR" property="jhbh" />
+    <result column="LB" jdbcType="VARCHAR" property="lb" />
+    <result column="FKZT" jdbcType="VARCHAR" property="fkzt" />
+    <result column="CJRQ" jdbcType="TIMESTAMP" property="cjrq" />
+    <result column="JHLX" jdbcType="VARCHAR" property="jhlx" />
+    <result column="HTLX" jdbcType="DECIMAL" property="htlx" />
+    <result column="CJLX" jdbcType="DECIMAL" property="cjlx" />
+    <result column="CGFS" jdbcType="DECIMAL" property="cgfs" />
+    <result column="FKLB" jdbcType="DECIMAL" property="fklb" />
+    <result column="HTND" jdbcType="DECIMAL" property="htnd" />
+  </resultMap>
+
+
+  <sql id="Base_Column_List">
+    HTBH, QDRQ, CGFDB, JSDBS, ZC, JDS, JDSLXDH, JDSDBQZ, CZF, ZHMC, ZH, KHYH, CZFLXDH, 
+    CZFDBQZ, CGF, YZBM, CGFDBQZ, CGFLXDH, TXDZ, YSFS, JHDD, SHDZ, SHR, SHLXR, SHLXDH, 
+    JX, GB, JHBH, LB, FKZT, CJRQ, JHLX, HTLX, CJLX, CGFS, FKLB, HTND
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_HT_DH
+    where HTBH = #{htbh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from T_HT_DH
+    where HTBH = #{htbh,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.andawell.purchase.entity.THtDh">
+    insert into T_HT_DH (HTBH, QDRQ, CGFDB, 
+      JSDBS, ZC, JDS, JDSLXDH, 
+      JDSDBQZ, CZF, ZHMC, 
+      ZH, KHYH, CZFLXDH, 
+      CZFDBQZ, CGF, YZBM, 
+      CGFDBQZ, CGFLXDH, TXDZ, 
+      YSFS, JHDD, SHDZ, SHR, 
+      SHLXR, SHLXDH, JX, 
+      GB, JHBH, LB, FKZT, 
+      CJRQ, JHLX, HTLX, 
+      CJLX, CGFS, FKLB, HTND
+      )
+    values (#{htbh,jdbcType=VARCHAR}, #{qdrq,jdbcType=TIMESTAMP}, #{cgfdb,jdbcType=VARCHAR}, 
+      #{jsdbs,jdbcType=VARCHAR}, #{zc,jdbcType=VARCHAR}, #{jds,jdbcType=VARCHAR}, #{jdslxdh,jdbcType=VARCHAR}, 
+      #{jdsdbqz,jdbcType=VARCHAR}, #{czf,jdbcType=VARCHAR}, #{zhmc,jdbcType=VARCHAR}, 
+      #{zh,jdbcType=VARCHAR}, #{khyh,jdbcType=VARCHAR}, #{czflxdh,jdbcType=VARCHAR}, 
+      #{czfdbqz,jdbcType=VARCHAR}, #{cgf,jdbcType=VARCHAR}, #{yzbm,jdbcType=VARCHAR}, 
+      #{cgfdbqz,jdbcType=VARCHAR}, #{cgflxdh,jdbcType=VARCHAR}, #{txdz,jdbcType=VARCHAR}, 
+      #{ysfs,jdbcType=VARCHAR}, #{jhdd,jdbcType=VARCHAR}, #{shdz,jdbcType=VARCHAR}, #{shr,jdbcType=VARCHAR}, 
+      #{shlxr,jdbcType=VARCHAR}, #{shlxdh,jdbcType=VARCHAR}, #{jx,jdbcType=VARCHAR}, 
+      #{gb,jdbcType=VARCHAR}, #{jhbh,jdbcType=VARCHAR}, #{lb,jdbcType=VARCHAR}, #{fkzt,jdbcType=VARCHAR}, 
+      #{cjrq,jdbcType=TIMESTAMP}, #{jhlx,jdbcType=VARCHAR}, #{htlx,jdbcType=DECIMAL}, 
+      #{cjlx,jdbcType=DECIMAL}, #{cgfs,jdbcType=DECIMAL}, #{fklb,jdbcType=DECIMAL}, #{htnd,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.andawell.purchase.entity.THtDh">
+    insert into T_HT_DH
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="htbh != null">
+        HTBH,
+      </if>
+      <if test="qdrq != null">
+        QDRQ,
+      </if>
+      <if test="cgfdb != null">
+        CGFDB,
+      </if>
+      <if test="jsdbs != null">
+        JSDBS,
+      </if>
+      <if test="zc != null">
+        ZC,
+      </if>
+      <if test="jds != null">
+        JDS,
+      </if>
+      <if test="jdslxdh != null">
+        JDSLXDH,
+      </if>
+      <if test="jdsdbqz != null">
+        JDSDBQZ,
+      </if>
+      <if test="czf != null">
+        CZF,
+      </if>
+      <if test="zhmc != null">
+        ZHMC,
+      </if>
+      <if test="zh != null">
+        ZH,
+      </if>
+      <if test="khyh != null">
+        KHYH,
+      </if>
+      <if test="czflxdh != null">
+        CZFLXDH,
+      </if>
+      <if test="czfdbqz != null">
+        CZFDBQZ,
+      </if>
+      <if test="cgf != null">
+        CGF,
+      </if>
+      <if test="yzbm != null">
+        YZBM,
+      </if>
+      <if test="cgfdbqz != null">
+        CGFDBQZ,
+      </if>
+      <if test="cgflxdh != null">
+        CGFLXDH,
+      </if>
+      <if test="txdz != null">
+        TXDZ,
+      </if>
+      <if test="ysfs != null">
+        YSFS,
+      </if>
+      <if test="jhdd != null">
+        JHDD,
+      </if>
+      <if test="shdz != null">
+        SHDZ,
+      </if>
+      <if test="shlxr != null">
+        SHLXR,
+      </if>
+      <if test="shlxdh != null">
+        SHLXDH,
+      </if>
+      <if test="jx != null">
+        JX,
+      </if>
+      <if test="gb != null">
+        GB,
+      </if>
+      <if test="jhbh != null">
+        JHBH,
+      </if>
+      <if test="lb != null">
+        LB,
+      </if>
+      <if test="fkzt != null">
+        FKZT,
+      </if>
+      <if test="cjrq != null">
+        CJRQ,
+      </if>
+      <if test="jhlx != null">
+        JHLX,
+      </if>
+      <if test="htlx != null">
+        HTLX,
+      </if>
+      <if test="cjlx != null">
+        CJLX,
+      </if>
+      <if test="cgfs != null">
+        CGFS,
+      </if>
+      <if test="fklb != null">
+        FKLB,
+      </if>
+      <if test="htnd != null">
+        HTND,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="htbh != null">
+        #{htbh,jdbcType=VARCHAR},
+      </if>
+      <if test="qdrq != null">
+        #{qdrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cgfdb != null">
+        #{cgfdb,jdbcType=VARCHAR},
+      </if>
+      <if test="jsdbs != null">
+        #{jsdbs,jdbcType=VARCHAR},
+      </if>
+      <if test="zc != null">
+        #{zc,jdbcType=VARCHAR},
+      </if>
+      <if test="jds != null">
+        #{jds,jdbcType=VARCHAR},
+      </if>
+      <if test="jdslxdh != null">
+        #{jdslxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="jdsdbqz != null">
+        #{jdsdbqz,jdbcType=VARCHAR},
+      </if>
+      <if test="czf != null">
+        #{czf,jdbcType=VARCHAR},
+      </if>
+      <if test="zhmc != null">
+        #{zhmc,jdbcType=VARCHAR},
+      </if>
+      <if test="zh != null">
+        #{zh,jdbcType=VARCHAR},
+      </if>
+      <if test="khyh != null">
+        #{khyh,jdbcType=VARCHAR},
+      </if>
+      <if test="czflxdh != null">
+        #{czflxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="czfdbqz != null">
+        #{czfdbqz,jdbcType=VARCHAR},
+      </if>
+      <if test="cgf != null">
+        #{cgf,jdbcType=VARCHAR},
+      </if>
+      <if test="yzbm != null">
+        #{yzbm,jdbcType=VARCHAR},
+      </if>
+      <if test="cgfdbqz != null">
+        #{cgfdbqz,jdbcType=VARCHAR},
+      </if>
+      <if test="cgflxdh != null">
+        #{cgflxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="txdz != null">
+        #{txdz,jdbcType=VARCHAR},
+      </if>
+      <if test="ysfs != null">
+        #{ysfs,jdbcType=VARCHAR},
+      </if>
+      <if test="jhdd != null">
+        #{jhdd,jdbcType=VARCHAR},
+      </if>
+      <if test="shdz != null">
+        #{shdz,jdbcType=VARCHAR},
+      </if>
+      <if test="shlxr != null">
+        #{shlxr,jdbcType=VARCHAR},
+      </if>
+      <if test="shlxdh != null">
+        #{shlxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="jx != null">
+        #{jx,jdbcType=VARCHAR},
+      </if>
+      <if test="gb != null">
+        #{gb,jdbcType=VARCHAR},
+      </if>
+      <if test="jhbh != null">
+        #{jhbh,jdbcType=VARCHAR},
+      </if>
+      <if test="lb != null">
+        #{lb,jdbcType=VARCHAR},
+      </if>
+      <if test="fkzt != null">
+        #{fkzt,jdbcType=VARCHAR},
+      </if>
+      <if test="cjrq != null">
+        #{cjrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jhlx != null">
+        #{jhlx,jdbcType=VARCHAR},
+      </if>
+      <if test="htlx != null">
+        #{htlx,jdbcType=DECIMAL},
+      </if>
+      <if test="cjlx != null">
+        #{cjlx,jdbcType=DECIMAL},
+      </if>
+      <if test="cgfs != null">
+        #{cgfs,jdbcType=DECIMAL},
+      </if>
+      <if test="fklb != null">
+        #{fklb,jdbcType=DECIMAL},
+      </if>
+      <if test="htnd != null">
+        #{htnd,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+
+
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.andawell.purchase.entity.THtDh">
+    update T_HT_DH
+    <set>
+      <if test="qdrq != null">
+        QDRQ = #{qdrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cgfdb != null">
+        CGFDB = #{cgfdb,jdbcType=VARCHAR},
+      </if>
+      <if test="jsdbs != null">
+        JSDBS = #{jsdbs,jdbcType=VARCHAR},
+      </if>
+      <if test="zc != null">
+        ZC = #{zc,jdbcType=VARCHAR},
+      </if>
+      <if test="jds != null">
+        JDS = #{jds,jdbcType=VARCHAR},
+      </if>
+      <if test="jdslxdh != null">
+        JDSLXDH = #{jdslxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="jdsdbqz != null">
+        JDSDBQZ = #{jdsdbqz,jdbcType=VARCHAR},
+      </if>
+      <if test="czf != null">
+        CZF = #{czf,jdbcType=VARCHAR},
+      </if>
+      <if test="zhmc != null">
+        ZHMC = #{zhmc,jdbcType=VARCHAR},
+      </if>
+      <if test="zh != null">
+        ZH = #{zh,jdbcType=VARCHAR},
+      </if>
+      <if test="khyh != null">
+        KHYH = #{khyh,jdbcType=VARCHAR},
+      </if>
+      <if test="czflxdh != null">
+        CZFLXDH = #{czflxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="czfdbqz != null">
+        CZFDBQZ = #{czfdbqz,jdbcType=VARCHAR},
+      </if>
+      <if test="cgf != null">
+        CGF = #{cgf,jdbcType=VARCHAR},
+      </if>
+      <if test="yzbm != null">
+        YZBM = #{yzbm,jdbcType=VARCHAR},
+      </if>
+      <if test="cgfdbqz != null">
+        CGFDBQZ = #{cgfdbqz,jdbcType=VARCHAR},
+      </if>
+      <if test="cgflxdh != null">
+        CGFLXDH = #{cgflxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="txdz != null">
+        TXDZ = #{txdz,jdbcType=VARCHAR},
+      </if>
+      <if test="ysfs != null">
+        YSFS = #{ysfs,jdbcType=VARCHAR},
+      </if>
+      <if test="jhdd != null">
+        JHDD = #{jhdd,jdbcType=VARCHAR},
+      </if>
+      <if test="shdz != null">
+        SHDZ = #{shdz,jdbcType=VARCHAR},
+      </if>
+      <if test="shr != null">
+        SHR = #{shr,jdbcType=VARCHAR},
+      </if>
+      <if test="shlxr != null">
+        SHLXR = #{shlxr,jdbcType=VARCHAR},
+      </if>
+      <if test="shlxdh != null">
+        SHLXDH = #{shlxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="jx != null">
+        JX = #{jx,jdbcType=VARCHAR},
+      </if>
+      <if test="gb != null">
+        GB = #{gb,jdbcType=VARCHAR},
+      </if>
+      <if test="jhbh != null">
+        JHBH = #{jhbh,jdbcType=VARCHAR},
+      </if>
+      <if test="lb != null">
+        LB = #{lb,jdbcType=VARCHAR},
+      </if>
+      <if test="fkzt != null">
+        FKZT = #{fkzt,jdbcType=VARCHAR},
+      </if>
+      <if test="cjrq != null">
+        CJRQ = #{cjrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jhlx != null">
+        JHLX = #{jhlx,jdbcType=VARCHAR},
+      </if>
+      <if test="htlx != null">
+        HTLX = #{htlx,jdbcType=DECIMAL},
+      </if>
+      <if test="cjlx != null">
+        CJLX = #{cjlx,jdbcType=DECIMAL},
+      </if>
+      <if test="cgfs != null">
+        CGFS = #{cgfs,jdbcType=DECIMAL},
+      </if>
+      <if test="fklb != null">
+        FKLB = #{fklb,jdbcType=DECIMAL},
+      </if>
+      <if test="htnd != null">
+        HTND = #{htnd,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where HTBH = #{htbh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.andawell.purchase.entity.THtDh">
+    update T_HT_DH
+    set QDRQ = #{qdrq,jdbcType=TIMESTAMP},
+      CGFDB = #{cgfdb,jdbcType=VARCHAR},
+      JSDBS = #{jsdbs,jdbcType=VARCHAR},
+      ZC = #{zc,jdbcType=VARCHAR},
+      JDS = #{jds,jdbcType=VARCHAR},
+      JDSLXDH = #{jdslxdh,jdbcType=VARCHAR},
+      JDSDBQZ = #{jdsdbqz,jdbcType=VARCHAR},
+      CZF = #{czf,jdbcType=VARCHAR},
+      ZHMC = #{zhmc,jdbcType=VARCHAR},
+      ZH = #{zh,jdbcType=VARCHAR},
+      KHYH = #{khyh,jdbcType=VARCHAR},
+      CZFLXDH = #{czflxdh,jdbcType=VARCHAR},
+      CZFDBQZ = #{czfdbqz,jdbcType=VARCHAR},
+      CGF = #{cgf,jdbcType=VARCHAR},
+      YZBM = #{yzbm,jdbcType=VARCHAR},
+      CGFDBQZ = #{cgfdbqz,jdbcType=VARCHAR},
+      CGFLXDH = #{cgflxdh,jdbcType=VARCHAR},
+      TXDZ = #{txdz,jdbcType=VARCHAR},
+      YSFS = #{ysfs,jdbcType=VARCHAR},
+      JHDD = #{jhdd,jdbcType=VARCHAR},
+      SHDZ = #{shdz,jdbcType=VARCHAR},
+      SHR = #{shr,jdbcType=VARCHAR},
+      SHLXR = #{shlxr,jdbcType=VARCHAR},
+      SHLXDH = #{shlxdh,jdbcType=VARCHAR},
+      JX = #{jx,jdbcType=VARCHAR},
+      GB = #{gb,jdbcType=VARCHAR},
+      JHBH = #{jhbh,jdbcType=VARCHAR},
+      LB = #{lb,jdbcType=VARCHAR},
+      FKZT = #{fkzt,jdbcType=VARCHAR},
+      CJRQ = #{cjrq,jdbcType=TIMESTAMP},
+      JHLX = #{jhlx,jdbcType=VARCHAR},
+      HTLX = #{htlx,jdbcType=DECIMAL},
+      CJLX = #{cjlx,jdbcType=DECIMAL},
+      CGFS = #{cgfs,jdbcType=DECIMAL},
+      FKLB = #{fklb,jdbcType=DECIMAL},
+      HTND = #{htnd,jdbcType=DECIMAL}
+    where HTBH = #{htbh,jdbcType=VARCHAR}
+  </update>
+</mapper>

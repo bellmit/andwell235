@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.material.mapper.TJhMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.material.entity.TJh">
+    <result column="JX" jdbcType="VARCHAR" property="jx" />
+    <result column="JXMC" jdbcType="VARCHAR" property="jxmc" />
+    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="ZJH" jdbcType="VARCHAR" property="zjh" />
+    <result column="MC" jdbcType="VARCHAR" property="mc" />
+    <result column="MCE" jdbcType="VARCHAR" property="mce" />
+    <result column="DW" jdbcType="VARCHAR" property="dw" />
+    <result column="ZYLX" jdbcType="VARCHAR" property="zylx" />
+    <result column="ZYX" jdbcType="VARCHAR" property="zyx" />
+    <result column="SWZ" jdbcType="VARCHAR" property="swz" />
+    <result column="BPZ" jdbcType="VARCHAR" property="bpz" />
+    <result column="GLFS" jdbcType="VARCHAR" property="glfs" />
+    <result column="JZBZ" jdbcType="VARCHAR" property="jzbz" />
+    <result column="WXP" jdbcType="VARCHAR" property="wxp" />
+    <result column="SYFZ" jdbcType="VARCHAR" property="syfz" />
+    <result column="CCFZ" jdbcType="VARCHAR" property="ccfz" />
+    <result column="YFJE" jdbcType="DECIMAL" property="yfje" />
+    <result column="DJAZS" jdbcType="DECIMAL" property="djazs" />
+    <result column="JLDW" jdbcType="VARCHAR" property="jldw" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.andawell.material.entity.TJh">
+    <result column="PSWZ" jdbcType="BLOB" property="pswz" />
+    <result column="PBPZ" jdbcType="BLOB" property="pbpz" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    JX, JXMC, ID, ZJH, MC, MCE, DW, ZYLX, ZYX, SWZ, BPZ, GLFS, JZBZ, WXP, SYFZ, CCFZ, 
+    YFJE, DJAZS, JLDW
+  </sql>
+  <sql id="Blob_Column_List">
+    PSWZ, PBPZ
+  </sql>
+    <insert id="insert" parameterType="com.andawell.material.entity.TJh">
+    insert into T_JH (JX, JXMC, ID, 
+      ZJH, MC, MCE, DW, 
+      ZYLX, ZYX, SWZ, BPZ, 
+      GLFS, JZBZ, WXP, SYFZ, 
+      CCFZ, YFJE, DJAZS, 
+      JLDW, PSWZ, PBPZ)
+    values (#{jx,jdbcType=VARCHAR}, #{jxmc,jdbcType=VARCHAR}, #{id,jdbcType=VARCHAR}, 
+      #{zjh,jdbcType=VARCHAR}, #{mc,jdbcType=VARCHAR}, #{mce,jdbcType=VARCHAR}, #{dw,jdbcType=VARCHAR}, 
+      #{zylx,jdbcType=VARCHAR}, #{zyx,jdbcType=VARCHAR}, #{swz,jdbcType=VARCHAR}, #{bpz,jdbcType=VARCHAR}, 
+      #{glfs,jdbcType=VARCHAR}, #{jzbz,jdbcType=VARCHAR}, #{wxp,jdbcType=VARCHAR}, #{syfz,jdbcType=VARCHAR}, 
+      #{ccfz,jdbcType=VARCHAR}, #{yfje,jdbcType=DECIMAL}, #{djazs,jdbcType=DECIMAL}, 
+      #{jldw,jdbcType=VARCHAR}, #{pswz,jdbcType=BLOB}, #{pbpz,jdbcType=BLOB})
+  </insert>
+  <insert id="insertSelective" parameterType="com.andawell.material.entity.TJh">
+    insert into T_JH
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="jx != null">
+        JX,
+      </if>
+      <if test="jxmc != null">
+        JXMC,
+      </if>
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="zjh != null">
+        ZJH,
+      </if>
+      <if test="mc != null">
+        MC,
+      </if>
+      <if test="mce != null">
+        MCE,
+      </if>
+      <if test="dw != null">
+        DW,
+      </if>
+      <if test="zylx != null">
+        ZYLX,
+      </if>
+      <if test="zyx != null">
+        ZYX,
+      </if>
+      <if test="swz != null">
+        SWZ,
+      </if>
+      <if test="bpz != null">
+        BPZ,
+      </if>
+      <if test="glfs != null">
+        GLFS,
+      </if>
+      <if test="jzbz != null">
+        JZBZ,
+      </if>
+      <if test="wxp != null">
+        WXP,
+      </if>
+      <if test="syfz != null">
+        SYFZ,
+      </if>
+      <if test="ccfz != null">
+        CCFZ,
+      </if>
+      <if test="yfje != null">
+        YFJE,
+      </if>
+      <if test="djazs != null">
+        DJAZS,
+      </if>
+      <if test="jldw != null">
+        JLDW,
+      </if>
+      <if test="pswz != null">
+        PSWZ,
+      </if>
+      <if test="pbpz != null">
+        PBPZ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="jx != null">
+        #{jx,jdbcType=VARCHAR},
+      </if>
+      <if test="jxmc != null">
+        #{jxmc,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="zjh != null">
+        #{zjh,jdbcType=VARCHAR},
+      </if>
+      <if test="mc != null">
+        #{mc,jdbcType=VARCHAR},
+      </if>
+      <if test="mce != null">
+        #{mce,jdbcType=VARCHAR},
+      </if>
+      <if test="dw != null">
+        #{dw,jdbcType=VARCHAR},
+      </if>
+      <if test="zylx != null">
+        #{zylx,jdbcType=VARCHAR},
+      </if>
+      <if test="zyx != null">
+        #{zyx,jdbcType=VARCHAR},
+      </if>
+      <if test="swz != null">
+        #{swz,jdbcType=VARCHAR},
+      </if>
+      <if test="bpz != null">
+        #{bpz,jdbcType=VARCHAR},
+      </if>
+      <if test="glfs != null">
+        #{glfs,jdbcType=VARCHAR},
+      </if>
+      <if test="jzbz != null">
+        #{jzbz,jdbcType=VARCHAR},
+      </if>
+      <if test="wxp != null">
+        #{wxp,jdbcType=VARCHAR},
+      </if>
+      <if test="syfz != null">
+        #{syfz,jdbcType=VARCHAR},
+      </if>
+      <if test="ccfz != null">
+        #{ccfz,jdbcType=VARCHAR},
+      </if>
+      <if test="yfje != null">
+        #{yfje,jdbcType=DECIMAL},
+      </if>
+      <if test="djazs != null">
+        #{djazs,jdbcType=DECIMAL},
+      </if>
+      <if test="jldw != null">
+        #{jldw,jdbcType=VARCHAR},
+      </if>
+      <if test="pswz != null">
+        #{pswz,jdbcType=BLOB},
+      </if>
+      <if test="pbpz != null">
+        #{pbpz,jdbcType=BLOB},
+      </if>
+    </trim>
+  </insert>
+    <select id="getListByjx" resultType="com.andawell.material.vo.TJhVO">
+      select
+      <include refid="Base_Column_List" />
+      from T_JH
+      where 1=1
+      <if test="query.jx != null">
+        and jx =#{query.jx,jdbcType=BLOB}
+      </if>
+    </select>
+
+</mapper>

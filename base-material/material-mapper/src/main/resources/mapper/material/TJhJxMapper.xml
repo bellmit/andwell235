@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.material.mapper.TJhJxMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.material.entity.TJhJx">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="MCE" jdbcType="VARCHAR" property="mce" />
+    <result column="MC" jdbcType="VARCHAR" property="mc" />
+    <result column="JM" jdbcType="VARCHAR" property="jm" />
+    <result column="PID" jdbcType="VARCHAR" property="pid" />
+    <result column="LB" jdbcType="VARCHAR" property="lb" />
+    <result column="SL" jdbcType="DECIMAL" property="sl" />
+    <result column="SGIN" jdbcType="DECIMAL" property="sgin" />
+    <result column="HTBZ" jdbcType="DECIMAL" property="htbz" />
+  </resultMap>
+
+   <sql id="Base_Column_List">
+    ID, MCE, MC, JM, PID, LB, SL, SGIN,HTBZ
+  </sql>
+
+    <delete id="deleteSqlLiteList">
+    truncate table T_JH_JX
+  </delete>
+
+    <select id="selectMaxPid" resultType="java.lang.String">
+            select max(id)+1 from t_jh_jx where to_number(id) like'__'
+    </select>
+
+    <select id="selectZid" resultType="java.lang.String">
+        select max(id)+1 from t_jh_jx where id like '${pid}__'
+    </select>
+
+    <select id="getSqlLiteList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from T_JH_JX
+    </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from T_JH_JX
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <sql id="queryCondition">
+        <where>
+        1=1
+            <if test="query!=null">
+                <if test="query.sgin !=null">
+                    and SGIN = #{query.sgin,jdbcType=DECIMAL}
+                </if>
+                <if test="query.pid !=null">
+                    and pid = #{query.pid,jdbcType=VARCHAR}
+                </if>
+                <if test="query.ids != null and query.ids.size()!=0">
+                    and T_JH_JX.ID in
+                    <foreach collection="query.ids" item="id" index="index" open="(" close=")" separator=",">
+                        #{id}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+      order by ID
+  </sql>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from T_JH_JX
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.andawell.material.entity.TJhJx">
+    insert into T_JH_JX(ID,MCE,MC,JM,PID,LB,SL,SGIN)
+    values(#{id,jdbcType=VARCHAR},#{mce,jdbcType=VARCHAR},#{mc,jdbcType=VARCHAR},
+      #{jm,jdbcType=VARCHAR},#{pid,jdbcType=VARCHAR},#{lb,jdbcType=VARCHAR},#{sl,jdbcType=DECIMAL},
+      #{sgin,jdbcType=DECIMAL})
+  </insert>
+    <insert id="insertSelective" parameterType="com.andawell.material.entity.TJhJx">
+        insert into T_JH_JX
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="mce != null">
+                MCE,
+            </if>
+            <if test="mc != null">
+                MC,
+            </if>
+            <if test="jm != null">
+                JM,
+            </if>
+            <if test="pid != null">
+                PID,
+            </if>
+            <if test="lb != null">
+                LB,
+            </if>
+            <if test="sl != null">
+                SL,
+            </if>
+            <if test="sgin != null">
+                SGIN,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="mce != null">
+                #{mce,jdbcType=VARCHAR},
+            </if>
+            <if test="mc != null">
+                #{mc,jdbcType=VARCHAR},
+            </if>
+            <if test="jm != null">
+                #{jm,jdbcType=VARCHAR},
+            </if>
+            <if test="pid != null">
+                #{pid,jdbcType=VARCHAR},
+            </if>
+            <if test="lb != null">
+                #{lb,jdbcType=VARCHAR},
+            </if>
+            <if test="sl != null">
+                #{sl,jdbcType=DECIMAL},
+            </if>
+            <if test="sgin != null">
+                #{sgin,jdbcType=DECIMAL},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.andawell.material.entity.TJhJx">
+        update T_JH_JX
+        <set>
+            <if test="mce != null">
+                MCE = #{mce,jdbcType=VARCHAR},
+            </if>
+            <if test="mc != null">
+                MC = #{mc,jdbcType=VARCHAR},
+            </if>
+            <if test="jm != null">
+                JM = #{jm,jdbcType=VARCHAR},
+            </if>
+            <if test="pid != null">
+                PID = #{pid,jdbcType=VARCHAR},
+            </if>
+            <if test="lb != null">
+                LB = #{lb,jdbcType=VARCHAR},
+            </if>
+            <if test="sl != null">
+                SL = #{sl,jdbcType=DECIMAL},
+            </if>
+            <if test="sgin != null">
+                SGIN = #{sgin,jdbcType=DECIMAL},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.andawell.material.entity.TJhJx">
+    update T_JH_JX
+    set MCE = #{mce,jdbcType=VARCHAR},
+      MC = #{mc,jdbcType=VARCHAR},
+      JM = #{jm,jdbcType=VARCHAR},
+      PID = #{pid,jdbcType=VARCHAR},
+      LB = #{lb,jdbcType=VARCHAR},
+      SL = #{sl,jdbcType=DECIMAL},
+      SGIN = #{sgin,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+    <select id="list" resultMap="BaseResultMap">
+        select * from T_JH_JX
+        <include refid="queryCondition"/>
+    </select>
+</mapper>

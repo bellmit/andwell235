@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.material.mapper.TXtDwMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.material.entity.TXtDw">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="MC" jdbcType="VARCHAR" property="mc" />
+    <result column="JC" jdbcType="VARCHAR" property="jc" />
+    <result column="FH" jdbcType="VARCHAR" property="fh" />
+    <result column="LXDZ" jdbcType="VARCHAR" property="lxdz" />
+    <result column="DSN" jdbcType="VARCHAR" property="dsn" />
+    <result column="USERNAME" jdbcType="VARCHAR" property="username" />
+    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    <result column="IP" jdbcType="VARCHAR" property="ip" />
+    <result column="ISTRANS" jdbcType="DECIMAL" property="istrans" />
+    <result column="LX" jdbcType="VARCHAR" property="lx" />
+    <result column="EJM" jdbcType="VARCHAR" property="ejm" />
+    <result column="PID" jdbcType="VARCHAR" property="pid" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, MC, JC, FH, LXDZ, DSN, USERNAME, PASSWORD, IP, ISTRANS, LX, EJM, PID
+  </sql>
+
+  <select id="selectByid" resultType="java.lang.String" resultMap="BaseResultMap">
+     select  <include refid="Base_Column_List" />
+      from t_xt_dw where ID = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByPid" resultType="java.lang.String" resultMap="BaseResultMap">
+    select  <include refid="Base_Column_List" />
+    from t_xt_dw where PID = #{pid,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectMc"  resultType="java.lang.String">
+     select mc from t_xt_dw where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="getSqlLiteList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_xt_dw
+  </select>
+    <delete id="deleteSqlLiteList">
+    truncate table t_xt_dw
+  </delete>
+  <insert id="insertSelective" parameterType="com.andawell.material.entity.TXtDw">
+    insert into T_XT_DW
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="mc != null">
+        MC,
+      </if>
+      <if test="jc != null">
+        JC,
+      </if>
+      <if test="fh != null">
+        FH,
+      </if>
+      <if test="lxdz != null">
+        LXDZ,
+      </if>
+      <if test="dsn != null">
+        DSN,
+      </if>
+      <if test="username != null">
+        USERNAME,
+      </if>
+      <if test="password != null">
+        PASSWORD,
+      </if>
+      <if test="ip != null">
+        IP,
+      </if>
+      <if test="istrans != null">
+        ISTRANS,
+      </if>
+      <if test="lx != null">
+        LX,
+      </if>
+      <if test="ejm != null">
+        EJM,
+      </if>
+      <if test="pid != null">
+        PID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="mc != null">
+        #{mc,jdbcType=VARCHAR},
+      </if>
+      <if test="jc != null">
+        #{jc,jdbcType=VARCHAR},
+      </if>
+      <if test="fh != null">
+        #{fh,jdbcType=VARCHAR},
+      </if>
+      <if test="lxdz != null">
+        #{lxdz,jdbcType=VARCHAR},
+      </if>
+      <if test="dsn != null">
+        #{dsn,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="istrans != null">
+        #{istrans,jdbcType=DECIMAL},
+      </if>
+      <if test="lx != null">
+        #{lx,jdbcType=VARCHAR},
+      </if>
+      <if test="ejm != null">
+        #{ejm,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+<!--业务sql-->
+
+  <sql id="queryCondition">
+    <where>
+    1=1
+      <if test="query!=null">
+        <if test="query.rightLikeId !=null">
+            and id like '${query.rightLikeId}__'
+        </if>
+      </if>
+      order by id
+    </where>
+  </sql>
+
+  <select id="getList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />,
+    t_xt_dw.jc as jm
+    from t_xt_dw
+    <include refid="queryCondition" />
+  </select>
+</mapper>

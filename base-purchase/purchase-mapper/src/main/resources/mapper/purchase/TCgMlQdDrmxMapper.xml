@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.purchase.mapper.TCgMlQdDrmxMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.purchase.entity.TCgMlQdDrmx">
+    <result column="QC_LX" jdbcType="VARCHAR" property="qcLx" />
+    <result column="JX" jdbcType="VARCHAR" property="jx" />
+    <result column="JHMC" jdbcType="VARCHAR" property="jhmc" />
+    <result column="JH" jdbcType="VARCHAR" property="jh" />
+    <result column="JLDWMC" jdbcType="VARCHAR" property="jldwmc" />
+    <result column="DJ" jdbcType="VARCHAR" property="dj" />
+    <result column="CJ" jdbcType="VARCHAR" property="cj" />
+    <result column="JG_YY" jdbcType="VARCHAR" property="jgYy" />
+    <result column="JG_LX" jdbcType="VARCHAR" property="jgLx" />
+    <result column="JG_DW" jdbcType="VARCHAR" property="jgDw" />
+    <result column="BZ" jdbcType="VARCHAR" property="bz" />
+    <result column="ML_BH" jdbcType="VARCHAR" property="mlBh" />
+    <result column="HL" jdbcType="DECIMAL" property="hl" />
+    <result column="BZLB" jdbcType="VARCHAR" property="bzlb" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    QC_LX, JX, JHMC, JH, JLDWMC, DJ, CJ, JG_YY, JG_LX, JG_DW, BZ, ML_BH, HL, BZLB
+  </sql>
+
+  <delete id="deleteAll">
+    delete from T_CG_ML_QD_DRMX
+  </delete>
+
+  <select id="selectCjByMc" parameterType="java.lang.String" resultType="java.lang.String">
+    select id from t_cf  where mc= #{cj,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectHlByMC" parameterType="java.lang.String" resultType="java.math.BigDecimal">
+    select hl  from T_XT_BZLB where mc = #{bzlb,jdbcType=VARCHAR}
+  </select>
+
+  <select id="bzlbByMc" parameterType="java.lang.String" resultType="java.lang.String">
+     select id  from T_XT_BZLB where mc = #{bzlb,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectIdByQcmc" parameterType="java.lang.String" resultType="java.lang.String" >
+    select id from T_XT_QCLX where qc_mc= #{mc,jdbcType=VARCHAR}
+    </select>
+
+  <select id="selectIdByMc" parameterType="java.lang.String" resultType="java.lang.String" >
+    SELECT id FROM T_JH_JX where mc=#{mc,jdbcType=VARCHAR}
+    </select>
+
+  <select id="selectJgIdByMc" parameterType="java.lang.String" resultType="java.lang.String" >
+   SELECT id FROM T_CS_JGLX where mc=#{mc,jdbcType=VARCHAR}
+    </select>
+
+  <select id="selectJgfIdByMc" parameterType="java.lang.String" resultType="java.lang.String" >
+   SELECT id FROM T_XT_JGF where  mc=#{mc,jdbcType=VARCHAR}
+    </select>
+
+  <insert id="insert" parameterType="com.andawell.purchase.entity.TCgMlQdDrmx">
+    insert into T_CG_ML_QD_DRMX (QC_LX, JX, JHMC,
+      JH, JLDWMC, DJ, CJ,
+      JG_YY, JG_LX, JG_DW, BZ,
+      ML_BH, HL, BZLB)
+    values (#{qcLx,jdbcType=VARCHAR}, #{jx,jdbcType=VARCHAR}, #{jhmc,jdbcType=VARCHAR},
+      #{jh,jdbcType=VARCHAR}, #{jldwmc,jdbcType=VARCHAR}, #{dj,jdbcType=VARCHAR}, #{cj,jdbcType=VARCHAR},
+      #{jgYy,jdbcType=VARCHAR}, #{jgLx,jdbcType=VARCHAR}, #{jgDw,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR},
+      #{mlBh,jdbcType=VARCHAR}, #{hl,jdbcType=DECIMAL}, #{bzlb,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.andawell.purchase.entity.TCgMlQdDrmx">
+    insert into T_CG_ML_QD_DRMX
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="qcLx != null">
+        QC_LX,
+      </if>
+      <if test="jx != null">
+        JX,
+      </if>
+      <if test="jhmc != null">
+        JHMC,
+      </if>
+      <if test="jh != null">
+        JH,
+      </if>
+      <if test="jldwmc != null">
+        JLDWMC,
+      </if>
+      <if test="dj != null">
+        DJ,
+      </if>
+      <if test="cj != null">
+        CJ,
+      </if>
+      <if test="jgYy != null">
+        JG_YY,
+      </if>
+      <if test="jgLx != null">
+        JG_LX,
+      </if>
+      <if test="jgDw != null">
+        JG_DW,
+      </if>
+      <if test="bz != null">
+        BZ,
+      </if>
+      <if test="mlBh != null">
+        ML_BH,
+      </if>
+      <if test="hl != null">
+        HL,
+      </if>
+      <if test="bzlb != null">
+        BZLB,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="qcLx != null">
+        #{qcLx,jdbcType=VARCHAR},
+      </if>
+      <if test="jx != null">
+        #{jx,jdbcType=VARCHAR},
+      </if>
+      <if test="jhmc != null">
+        #{jhmc,jdbcType=VARCHAR},
+      </if>
+      <if test="jh != null">
+        #{jh,jdbcType=VARCHAR},
+      </if>
+      <if test="jldwmc != null">
+        #{jldwmc,jdbcType=VARCHAR},
+      </if>
+      <if test="dj != null">
+        #{dj,jdbcType=VARCHAR},
+      </if>
+      <if test="cj != null">
+        #{cj,jdbcType=VARCHAR},
+      </if>
+      <if test="jgYy != null">
+        #{jgYy,jdbcType=VARCHAR},
+      </if>
+      <if test="jgLx != null">
+        #{jgLx,jdbcType=VARCHAR},
+      </if>
+      <if test="jgDw != null">
+        #{jgDw,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null">
+        #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="mlBh != null">
+        #{mlBh,jdbcType=VARCHAR},
+      </if>
+      <if test="hl != null">
+        #{hl,jdbcType=DECIMAL},
+      </if>
+      <if test="bzlb != null">
+        #{bzlb,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+</mapper>

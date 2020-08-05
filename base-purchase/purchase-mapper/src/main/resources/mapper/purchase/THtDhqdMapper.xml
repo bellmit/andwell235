@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.purchase.mapper.THtDhqdMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.purchase.entity.THtDhqd">
+    <result column="HTBH" jdbcType="VARCHAR" property="htbh" />
+    <result column="JX" jdbcType="VARCHAR" property="jx" />
+    <result column="JH" jdbcType="VARCHAR" property="jh" />
+    <result column="DHSL" jdbcType="DECIMAL" property="dhsl" />
+    <result column="DJ" jdbcType="DECIMAL" property="dj" />
+    <result column="ZJ" jdbcType="DECIMAL" property="zj" />
+    <result column="YJD" jdbcType="DECIMAL" property="yjd" />
+    <result column="EJD" jdbcType="DECIMAL" property="ejd" />
+    <result column="SJD" jdbcType="DECIMAL" property="sjd" />
+    <result column="SSJD" jdbcType="DECIMAL" property="ssjd" />
+    <result column="BZ" jdbcType="VARCHAR" property="bz" />
+    <result column="YDSL" jdbcType="DECIMAL" property="ydsl" />
+    <result column="DHRQ" jdbcType="TIMESTAMP" property="dhrq" />
+    <result column="XZ" jdbcType="VARCHAR" property="xz" />
+    <result column="BZLB" jdbcType="VARCHAR" property="bzlb" />
+    <result column="BCDHSL" jdbcType="DECIMAL" property="bcdhsl" />
+    <result column="HL" jdbcType="DECIMAL" property="hl" />
+    <result column="HCLB" jdbcType="VARCHAR" property="hclb" />
+    <result column="SFXSMXS" jdbcType="DECIMAL" property="sfxsmxs" />
+    <result column="ZSMXS" jdbcType="DECIMAL" property="zsmxs" />
+    <result column="ZSMN" jdbcType="DECIMAL" property="zsmn" />
+    <result column="SFQSM" jdbcType="DECIMAL" property="sfqsm" />
+    <result column="DAOHYS" jdbcType="DECIMAL" property="daohys" />
+    <result column="JXQXS" jdbcType="DECIMAL" property="jxqxs" />
+    <result column="JXQN" jdbcType="DECIMAL" property="jxqn" />
+  </resultMap>
+
+
+  <sql id="Base_Column_List">
+    HTBH, JX, JH, DHSL, DJ, ZJ, YJD, EJD, SJD, SSJD, BZ, YDSL, DHRQ, XZ, BZLB, BCDHSL, 
+    HL, HCLB, SFXSMXS, ZSMXS, ZSMN, SFQSM, DAOHYS, JXQXS, JXQN
+  </sql>
+
+
+  <select id="selectByHtbh" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from T_HT_DHQD
+    where HTBH = #{htbh,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from T_HT_DHQD
+    where HTBH = #{htbh,jdbcType=VARCHAR}
+    and JX = #{jx,jdbcType=VARCHAR}
+    and JH = #{jh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from T_HT_DHQD
+    where HTBH = #{htbh,jdbcType=VARCHAR}
+      and JX = #{jx,jdbcType=VARCHAR}
+      and JH = #{jh,jdbcType=VARCHAR}
+  </delete>
+
+    <insert id="insert" parameterType="com.andawell.purchase.entity.THtDhqd">
+    insert into T_HT_DHQD (HTBH, JX, JH, 
+      DHSL, DJ, ZJ, YJD, 
+      EJD, SJD, SSJD, BZ, 
+      YDSL, DHRQ, XZ, BZLB, 
+      BCDHSL, HL, HCLB, SFXSMXS, 
+      ZSMXS, ZSMN, SFQSM, 
+      DAOHYS, JXQXS, JXQN
+      )
+    values (#{htbh,jdbcType=VARCHAR}, #{jx,jdbcType=VARCHAR}, #{jh,jdbcType=VARCHAR}, 
+      #{dhsl,jdbcType=DECIMAL}, #{dj,jdbcType=DECIMAL}, #{zj,jdbcType=DECIMAL}, #{yjd,jdbcType=DECIMAL}, 
+      #{ejd,jdbcType=DECIMAL}, #{sjd,jdbcType=DECIMAL}, #{ssjd,jdbcType=DECIMAL}, #{bz,jdbcType=VARCHAR}, 
+      #{ydsl,jdbcType=DECIMAL}, #{dhrq,jdbcType=TIMESTAMP}, #{xz,jdbcType=VARCHAR}, #{bzlb,jdbcType=VARCHAR}, 
+      #{bcdhsl,jdbcType=DECIMAL}, #{hl,jdbcType=DECIMAL}, #{hclb,jdbcType=VARCHAR}, #{sfxsmxs,jdbcType=DECIMAL}, 
+      #{zsmxs,jdbcType=DECIMAL}, #{zsmn,jdbcType=DECIMAL}, #{sfqsm,jdbcType=DECIMAL}, 
+      #{daohys,jdbcType=DECIMAL}, #{jxqxs,jdbcType=DECIMAL}, #{jxqn,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.andawell.purchase.entity.THtDhqd">
+    insert into T_HT_DHQD
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="htbh != null">
+        HTBH,
+      </if>
+      <if test="jx != null">
+        JX,
+      </if>
+      <if test="jh != null">
+        JH,
+      </if>
+      <if test="dhsl != null">
+        DHSL,
+      </if>
+      <if test="dj != null">
+        DJ,
+      </if>
+      <if test="zj != null">
+        ZJ,
+      </if>
+      <if test="yjd != null">
+        YJD,
+      </if>
+      <if test="ejd != null">
+        EJD,
+      </if>
+      <if test="sjd != null">
+        SJD,
+      </if>
+      <if test="ssjd != null">
+        SSJD,
+      </if>
+      <if test="bz != null">
+        BZ,
+      </if>
+      <if test="ydsl != null">
+        YDSL,
+      </if>
+      <if test="dhrq != null">
+        DHRQ,
+      </if>
+      <if test="xz != null">
+        XZ,
+      </if>
+      <if test="bzlb != null">
+        BZLB,
+      </if>
+      <if test="bcdhsl != null">
+        BCDHSL,
+      </if>
+      <if test="hl != null">
+        HL,
+      </if>
+      <if test="hclb != null">
+        HCLB,
+      </if>
+      <if test="sfxsmxs != null">
+        SFXSMXS,
+      </if>
+      <if test="zsmxs != null">
+        ZSMXS,
+      </if>
+      <if test="zsmn != null">
+        ZSMN,
+      </if>
+      <if test="sfqsm != null">
+        SFQSM,
+      </if>
+      <if test="daohys != null">
+        DAOHYS,
+      </if>
+      <if test="jxqxs != null">
+        JXQXS,
+      </if>
+      <if test="jxqn != null">
+        JXQN,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="htbh != null">
+        #{htbh,jdbcType=VARCHAR},
+      </if>
+      <if test="jx != null">
+        #{jx,jdbcType=VARCHAR},
+      </if>
+      <if test="jh != null">
+        #{jh,jdbcType=VARCHAR},
+      </if>
+      <if test="dhsl != null">
+        #{dhsl,jdbcType=DECIMAL},
+      </if>
+      <if test="dj != null">
+        #{dj,jdbcType=DECIMAL},
+      </if>
+      <if test="zj != null">
+        #{zj,jdbcType=DECIMAL},
+      </if>
+      <if test="yjd != null">
+        #{yjd,jdbcType=DECIMAL},
+      </if>
+      <if test="ejd != null">
+        #{ejd,jdbcType=DECIMAL},
+      </if>
+      <if test="sjd != null">
+        #{sjd,jdbcType=DECIMAL},
+      </if>
+      <if test="ssjd != null">
+        #{ssjd,jdbcType=DECIMAL},
+      </if>
+      <if test="bz != null">
+        #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="ydsl != null">
+        #{ydsl,jdbcType=DECIMAL},
+      </if>
+      <if test="dhrq != null">
+        #{dhrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="xz != null">
+        #{xz,jdbcType=VARCHAR},
+      </if>
+      <if test="bzlb != null">
+        #{bzlb,jdbcType=VARCHAR},
+      </if>
+      <if test="bcdhsl != null">
+        #{bcdhsl,jdbcType=DECIMAL},
+      </if>
+      <if test="hl != null">
+        #{hl,jdbcType=DECIMAL},
+      </if>
+      <if test="hclb != null">
+        #{hclb,jdbcType=VARCHAR},
+      </if>
+      <if test="sfxsmxs != null">
+        #{sfxsmxs,jdbcType=DECIMAL},
+      </if>
+      <if test="zsmxs != null">
+        #{zsmxs,jdbcType=DECIMAL},
+      </if>
+      <if test="zsmn != null">
+        #{zsmn,jdbcType=DECIMAL},
+      </if>
+      <if test="sfqsm != null">
+        #{sfqsm,jdbcType=DECIMAL},
+      </if>
+      <if test="daohys != null">
+        #{daohys,jdbcType=DECIMAL},
+      </if>
+      <if test="jxqxs != null">
+        #{jxqxs,jdbcType=DECIMAL},
+      </if>
+      <if test="jxqn != null">
+        #{jxqn,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.andawell.purchase.entity.THtDhqd">
+    update T_HT_DHQD
+    <set>
+      <if test="dhsl != null">
+        DHSL = #{dhsl,jdbcType=DECIMAL},
+      </if>
+      <if test="dj != null">
+        DJ = #{dj,jdbcType=DECIMAL},
+      </if>
+      <if test="zj != null">
+        ZJ = #{zj,jdbcType=DECIMAL},
+      </if>
+      <if test="yjd != null">
+        YJD = #{yjd,jdbcType=DECIMAL},
+      </if>
+      <if test="ejd != null">
+        EJD = #{ejd,jdbcType=DECIMAL},
+      </if>
+      <if test="sjd != null">
+        SJD = #{sjd,jdbcType=DECIMAL},
+      </if>
+      <if test="ssjd != null">
+        SSJD = #{ssjd,jdbcType=DECIMAL},
+      </if>
+      <if test="bz != null">
+        BZ = #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="ydsl != null">
+        YDSL = #{ydsl,jdbcType=DECIMAL},
+      </if>
+      <if test="dhrq != null">
+        DHRQ = #{dhrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="xz != null">
+        XZ = #{xz,jdbcType=VARCHAR},
+      </if>
+      <if test="bzlb != null">
+        BZLB = #{bzlb,jdbcType=VARCHAR},
+      </if>
+      <if test="bcdhsl != null">
+        BCDHSL = #{bcdhsl,jdbcType=DECIMAL},
+      </if>
+      <if test="hl != null">
+        HL = #{hl,jdbcType=DECIMAL},
+      </if>
+      <if test="hclb != null">
+        HCLB = #{hclb,jdbcType=VARCHAR},
+      </if>
+      <if test="sfxsmxs != null">
+        SFXSMXS = #{sfxsmxs,jdbcType=DECIMAL},
+      </if>
+      <if test="zsmxs != null">
+        ZSMXS = #{zsmxs,jdbcType=DECIMAL},
+      </if>
+      <if test="zsmn != null">
+        ZSMN = #{zsmn,jdbcType=DECIMAL},
+      </if>
+      <if test="sfqsm != null">
+        SFQSM = #{sfqsm,jdbcType=DECIMAL},
+      </if>
+      <if test="daohys != null">
+        DAOHYS = #{daohys,jdbcType=DECIMAL},
+      </if>
+      <if test="jxqxs != null">
+        JXQXS = #{jxqxs,jdbcType=DECIMAL},
+      </if>
+      <if test="jxqn != null">
+        JXQN = #{jxqn,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where HTBH = #{htbh,jdbcType=VARCHAR}
+    and JX = #{jx,jdbcType=VARCHAR}
+    and JH = #{jh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.andawell.purchase.entity.THtDhqd">
+    update T_HT_DHQD
+    set DHSL = #{dhsl,jdbcType=DECIMAL},
+      DJ = #{dj,jdbcType=DECIMAL},
+      ZJ = #{zj,jdbcType=DECIMAL},
+      YJD = #{yjd,jdbcType=DECIMAL},
+      EJD = #{ejd,jdbcType=DECIMAL},
+      SJD = #{sjd,jdbcType=DECIMAL},
+      SSJD = #{ssjd,jdbcType=DECIMAL},
+      BZ = #{bz,jdbcType=VARCHAR},
+      YDSL = #{ydsl,jdbcType=DECIMAL},
+      DHRQ = #{dhrq,jdbcType=TIMESTAMP},
+      XZ = #{xz,jdbcType=VARCHAR},
+      BZLB = #{bzlb,jdbcType=VARCHAR},
+      BCDHSL = #{bcdhsl,jdbcType=DECIMAL},
+      HL = #{hl,jdbcType=DECIMAL},
+      HCLB = #{hclb,jdbcType=VARCHAR},
+      SFXSMXS = #{sfxsmxs,jdbcType=DECIMAL},
+      ZSMXS = #{zsmxs,jdbcType=DECIMAL},
+      ZSMN = #{zsmn,jdbcType=DECIMAL},
+      SFQSM = #{sfqsm,jdbcType=DECIMAL},
+      DAOHYS = #{daohys,jdbcType=DECIMAL},
+      JXQXS = #{jxqxs,jdbcType=DECIMAL},
+      JXQN = #{jxqn,jdbcType=DECIMAL}
+    where HTBH = #{htbh,jdbcType=VARCHAR}
+      and JX = #{jx,jdbcType=VARCHAR}
+      and JH = #{jh,jdbcType=VARCHAR}
+  </update>
+
+
+
+</mapper>

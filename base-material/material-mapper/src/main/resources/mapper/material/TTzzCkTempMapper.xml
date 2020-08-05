@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.material.mapper.TTzzCkTempMapper">
+    <resultMap id="BaseResultMap" type="com.andawell.material.entity.TTzzCkTemp">
+        <result column="JH" jdbcType="VARCHAR" property="jh"/>
+        <result column="XH" jdbcType="VARCHAR" property="xh"/>
+        <result column="SL" jdbcType="DECIMAL" property="sl"/>
+        <result column="DJ" jdbcType="DECIMAL" property="dj"/>
+        <result column="ZJ" jdbcType="DECIMAL" property="zj"/>
+        <result column="CCRQ" jdbcType="TIMESTAMP" property="ccrq"/>
+        <result column="RKRQ" jdbcType="TIMESTAMP" property="rkrq"/>
+        <result column="CJH" jdbcType="VARCHAR" property="cjh"/>
+        <result column="FDJH" jdbcType="VARCHAR" property="fdjh"/>
+        <result column="CKDM" jdbcType="VARCHAR" property="ckdm"/>
+        <result column="JWH" jdbcType="VARCHAR" property="jwh"/>
+        <result column="BZ" jdbcType="VARCHAR" property="bz"/>
+        <result column="DWID" jdbcType="VARCHAR" property="dwid"/>
+        <result column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="MC" jdbcType="VARCHAR" property="mc"/>
+        <result column="DW" jdbcType="VARCHAR" property="dw"/>
+        <result column="WZLB" jdbcType="VARCHAR" property="wzlb"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    JH, XH, SL, DJ, ZJ, CCRQ, RKRQ, CJH, FDJH, CKDM, JWH, BZ, DWID, ID, MC, DW, WZLB
+  </sql>
+
+
+    <insert id="insertSelective" parameterType="com.andawell.material.entity.TTzzCkTemp">
+        insert into T_TZZ_CK_TEMP
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="jh != null">
+                JH,
+            </if>
+            <if test="xh != null">
+                XH,
+            </if>
+            <if test="sl != null">
+                SL,
+            </if>
+            <if test="dj != null">
+                DJ,
+            </if>
+            <if test="zj != null">
+                ZJ,
+            </if>
+            <if test="ccrq != null">
+                CCRQ,
+            </if>
+            <if test="rkrq != null">
+                RKRQ,
+            </if>
+            <if test="cjh != null">
+                CJH,
+            </if>
+            <if test="fdjh != null">
+                FDJH,
+            </if>
+            <if test="ckdm != null">
+                CKDM,
+            </if>
+            <if test="jwh != null">
+                JWH,
+            </if>
+            <if test="bz != null">
+                BZ,
+            </if>
+            <if test="dwid != null">
+                DWID,
+            </if>
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="mc != null">
+                MC,
+            </if>
+            <if test="dw != null">
+                DW,
+            </if>
+            <if test="wzlb != null">
+                WZLB,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="jh != null">
+                #{jh,jdbcType=VARCHAR},
+            </if>
+            <if test="xh != null">
+                #{xh,jdbcType=VARCHAR},
+            </if>
+            <if test="sl != null">
+                #{sl,jdbcType=DECIMAL},
+            </if>
+            <if test="dj != null">
+                #{dj,jdbcType=DECIMAL},
+            </if>
+            <if test="zj != null">
+                #{zj,jdbcType=DECIMAL},
+            </if>
+            <if test="ccrq != null">
+                #{ccrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="rkrq != null">
+                #{rkrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="cjh != null">
+                #{cjh,jdbcType=VARCHAR},
+            </if>
+            <if test="fdjh != null">
+                #{fdjh,jdbcType=VARCHAR},
+            </if>
+            <if test="ckdm != null">
+                #{ckdm,jdbcType=VARCHAR},
+            </if>
+            <if test="jwh != null">
+                #{jwh,jdbcType=VARCHAR},
+            </if>
+            <if test="bz != null">
+                #{bz,jdbcType=VARCHAR},
+            </if>
+            <if test="dwid != null">
+                #{dwid,jdbcType=VARCHAR},
+            </if>
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="mc != null">
+                #{mc,jdbcType=VARCHAR},
+            </if>
+            <if test="dw != null">
+                #{dw,jdbcType=VARCHAR},
+            </if>
+            <if test="wzlb != null">
+                #{wzlb,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <insert id="insertAll" parameterType="com.andawell.material.entity.TTzzCkTemp" useGeneratedKeys="false">
+        insert all
+        <foreach collection="list" item="tTzzCkTemp" index="index">
+            into T_TZZ_CK_TEMP(JH, MC,DW,WZLB,XH,SL,DJ,CCRQ,CJH,FDJH,BZ)
+            values (
+            #{tTzzCkTemp.jh,jdbcType=VARCHAR}
+            ,#{tTzzCkTemp.mc,jdbcType=VARCHAR}
+            ,#{tTzzCkTemp.dw,jdbcType=VARCHAR}
+            ,#{tTzzCkTemp.wzlb,jdbcType=VARCHAR}
+            ,#{tTzzCkTemp.xh,jdbcType=VARCHAR}
+            ,#{tTzzCkTemp.sl,jdbcType=DECIMAL}
+            ,#{tTzzCkTemp.dj,jdbcType=DECIMAL}
+            ,#{tTzzCkTemp.ccrq,jdbcType=TIMESTAMP}
+            ,#{tTzzCkTemp.cjh,jdbcType=VARCHAR}
+            ,#{tTzzCkTemp.fdjh,jdbcType=VARCHAR}
+            ,#{tTzzCkTemp.bz,jdbcType=VARCHAR}
+            )
+        </foreach>
+        select 1 from DUAL
+    </insert>
+    <delete id="deleteAll">
+        delete from T_TZZ_CK_TEMP
+    </delete>
+
+    <select id="getJhAndXh" resultType="java.lang.String">
+    select concat(jh,'+',xh)
+    from T_TZZ_CK_TEMP
+    where 1=1
+  </select>
+
+
+</mapper>

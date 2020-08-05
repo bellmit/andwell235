@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <!-- 父级工程 -->
+    <parent>
+        <groupId>com.andawell</groupId>
+        <artifactId>base</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.andawell</groupId>
+    <artifactId>base-common</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>base-common</name>
+    <description>核心公共模块</description>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>common-log</module>
+        <module>common-security</module>
+        <module>common-tools</module>
+        <module>common-swagger</module>
+        <module>common-entity</module>
+        <module>common-service</module>
+        <module>common-server</module>
+        <module>common-api</module>
+    </modules>
+
+</project>

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.purchase.mapper.TDhJhqdMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.purchase.entity.TDhJhqd">
+    <id column="BH" jdbcType="VARCHAR" property="bh" />
+    <id column="JX" jdbcType="VARCHAR" property="jx" />
+    <id column="JH" jdbcType="VARCHAR" property="jh" />
+    <id column="QCLX" jdbcType="VARCHAR" property="qclx" />
+    <result column="SQSL" jdbcType="DECIMAL" property="sqsl" />
+    <result column="BZ" jdbcType="VARCHAR" property="bz" />
+    <result column="CJRQ" jdbcType="TIMESTAMP" property="cjrq" />
+    <result column="XGRQ" jdbcType="TIMESTAMP" property="xgrq" />
+    <result column="STATUS" jdbcType="DECIMAL" property="status" />
+    <result column="ML_QDID" jdbcType="DECIMAL" property="mlQdid" />
+    <result column="DH_JHSL" jdbcType="DECIMAL" property="dhJhsl" />
+  </resultMap>
+
+  <sql id="queryCondition">
+    <where>
+        <if test="bh!=null and bh.length()>0">
+          and T_DH_JHQD.BH= #{bh}
+        </if>
+        <if test="qclx!=null and qclx.length()>0 ">
+          and T_XT_QCLX.ID= #{qclx}
+        </if>
+
+    </where>
+  </sql>
+
+  <sql id="Base_Column_List">
+    BH, JX, JH, QCLX, SQSL, BZ, CJRQ, XGRQ, STATUS, ML_QDID, DH_JHSL
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from T_DH_JHQD
+    where BH = #{bh,jdbcType=VARCHAR}
+    and JX = #{jx,jdbcType=VARCHAR}
+    and JH = #{jh,jdbcType=VARCHAR}
+  </select>
+    <select id="list"
+            parameterType="com.andawell.purchase.query.TDhJhqdQuery"
+            resultType="com.andawell.purchase.vo.TDhJhqdVO">
+      select T_DH_JHQD.BH,
+      T_DH_JHQD.JX,
+      T_DH_JHQD.JH,
+      T_DH_JHQD.QCLX,
+      T_DH_JHQD.SQSL,
+      T_CG_ML_QD.CJ,
+      T_CG_ML_QD.JG_DW ,
+      T_CG_ML_QD.DJ,
+      T_CG_ML_QD.JG_YY as jgyy,
+      T_CG_ML_QD.JG_LX as jglx,
+      T_CS_JGLX.MC  as jgLxMc,
+      T_JH_JH.MC   as jhmc,
+      T_JH_JX.MC   as jxmc,
+      T_XT_JLDW.MC as jldwmc,
+      T_XT_QCLX.QC_MC as qclxmc,
+      T_CG_ML.ID   as mlid,
+      T_CG_ML_QD.ID as mlQdid,
+      T_CF.MC      as cjmc,
+      T_DH_JHQD.BZ as bz,
+      T_DH_JHQD.DH_JHSL as dhjhsl
+      from T_DH_JHQD
+      LEFT JOIN T_XT_QCLX ON T_XT_QCLX.ID = T_DH_JHQD.QCLX
+      LEFT JOIN T_JH_JH ON T_DH_JHQD.JH = T_JH_JH.ID
+      LEFT JOIN T_XT_JLDW ON T_JH_JH.DW = T_XT_JLDW.ID
+      LEFT JOIN T_JH_JX ON T_DH_JHQD.JX = T_JH_JX.ID
+      LEFT JOIN T_CG_ML ON  T_CG_ML.STATUS=1
+      LEFT JOIN T_CG_ML_QD ON T_CG_ML_QD.ML_BH = T_CG_ML.ML_BH and T_CG_ML_QD.JX = T_DH_JHQD.JX  and T_CG_ML_QD.jh=T_DH_JHQD.JH
+      LEFT JOIN T_CS_JGLX on T_CS_JGLX.ID = T_CG_ML_QD.JG_LX
+      LEFT JOIN T_CF ON T_CF.ID = T_CG_ML_QD.CJ
+      <include refid="queryCondition" />
+
+    </select>
+  <select id="getList" resultType="com.andawell.purchase.entity.TDhJhqd">
+    select
+      T_DH_JHQD.BH, T_DH_JHQD.JX, T_DH_JHQD.JH, T_DH_JHQD.QCLX,
+      T_DH_JHQD.SQSL, T_DH_JHQD.BZ, T_DH_JHQD.CJRQ, T_DH_JHQD.XGRQ, T_DH_JHQD.STATUS,
+      T_DH_JHQD.ML_QDID, T_DH_JHQD.DH_JHSL,
+      T_CF.MC      as cjmc,
+      T_JH_JX.MC   as jxmc,
+      T_JH_JX.HTBZ as htbz,
+      T_JH_JX.JM as jxjm,
+      T_CG_ML_QD.cj,
+      T_CG_ML_QD.dj,
+      T_CG_ML_QD.JG_DW as jgdw,
+      T_CG_ML_QD.hl as hl,
+      T_CG_ML_QD.BZLB as bzlb,
+      T_CS_JGLX.MC as jglxmc,
+      T_CS_JGLX.ID as jglx
+    from T_DH_JHQD
+    LEFT JOIN T_CG_ML_QD ON T_CG_ML_QD.ID = T_DH_JHQD.ML_QDID
+    LEFT JOIN T_CS_JGLX on T_CG_ML_QD.JG_LX=T_CS_JGLX.ID
+    LEFT JOIN T_CF ON T_CF.ID = T_CG_ML_QD.CJ
+    LEFT JOIN T_JH_JX ON T_DH_JHQD.JX = T_JH_JX.ID
+    where T_DH_JHQD.BH = #{bh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from T_DH_JHQD
+    where BH = #{bh,jdbcType=VARCHAR}
+      and JX = #{jx,jdbcType=VARCHAR}
+      and JH = #{jh,jdbcType=VARCHAR}
+  </delete>
+
+  <delete id="deleteByJhBh" parameterType="map">
+    delete from T_DH_JHQD
+    where BH = #{bh,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.andawell.purchase.entity.TDhJhqd">
+    insert into T_DH_JHQD (BH, JX, JH, QCLX,
+      SQSL, BZ, CJRQ, XGRQ,
+      STATUS, ML_QDID, DH_JHSL
+      )
+    values (#{bh,jdbcType=VARCHAR}, #{jx,jdbcType=VARCHAR}, #{jh,jdbcType=VARCHAR}, #{qclx,jdbcType=VARCHAR},
+      #{sqsl,jdbcType=DECIMAL}, #{bz,jdbcType=VARCHAR}, #{cjrq,jdbcType=TIMESTAMP}, #{xgrq,jdbcType=TIMESTAMP},
+      #{status,jdbcType=DECIMAL}, #{mlQdid,jdbcType=DECIMAL}, #{dhJhsl,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.andawell.purchase.entity.TDhJhqd">
+    insert into T_DH_JHQD
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bh != null">
+        BH,
+      </if>
+      <if test="jx != null">
+        JX,
+      </if>
+      <if test="jh != null">
+        JH,
+      </if>
+      <if test="qclx != null">
+        QCLX,
+      </if>
+      <if test="sqsl != null">
+        SQSL,
+      </if>
+      <if test="bz != null">
+        BZ,
+      </if>
+      <if test="cjrq != null">
+        CJRQ,
+      </if>
+      <if test="xgrq != null">
+        XGRQ,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="mlQdid != null">
+        ML_QDID,
+      </if>
+      <if test="dhJhsl != null">
+        DH_JHSL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bh != null">
+        #{bh,jdbcType=VARCHAR},
+      </if>
+      <if test="jx != null">
+        #{jx,jdbcType=VARCHAR},
+      </if>
+      <if test="jh != null">
+        #{jh,jdbcType=VARCHAR},
+      </if>
+      <if test="qclx != null">
+        #{qclx,jdbcType=VARCHAR},
+      </if>
+      <if test="sqsl != null">
+        #{sqsl,jdbcType=DECIMAL},
+      </if>
+      <if test="bz != null">
+        #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="cjrq != null">
+        #{cjrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="xgrq != null">
+        #{xgrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="mlQdid != null">
+        #{mlQdid,jdbcType=DECIMAL},
+      </if>
+      <if test="dhJhsl != null">
+        #{dhJhsl,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.andawell.purchase.entity.TDhJhqd">
+    update T_DH_JHQD
+    <set>
+      <if test="sqsl != null">
+        SQSL = #{sqsl,jdbcType=DECIMAL},
+      </if>
+      <if test="bz != null">
+        BZ = #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="cjrq != null">
+        CJRQ = #{cjrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="xgrq != null">
+        XGRQ = #{xgrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="mlQdid != null">
+        ML_QDID = #{mlQdid,jdbcType=DECIMAL},
+      </if>
+      <if test="dhJhsl != null">
+        DH_JHSL = #{dhJhsl,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where BH = #{bh,jdbcType=VARCHAR}
+    and JX = #{jx,jdbcType=VARCHAR}
+    and JH = #{jh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.andawell.purchase.entity.TDhJhqd">
+    update T_DH_JHQD
+    set SQSL = #{sqsl,jdbcType=DECIMAL},
+      BZ = #{bz,jdbcType=VARCHAR},
+      CJRQ = #{cjrq,jdbcType=TIMESTAMP},
+      XGRQ = #{xgrq,jdbcType=TIMESTAMP},
+      STATUS = #{status,jdbcType=DECIMAL},
+      ML_QDID = #{mlQdid,jdbcType=DECIMAL},
+      DH_JHSL = #{dhJhsl,jdbcType=DECIMAL}
+    where BH = #{bh,jdbcType=VARCHAR}
+      and JX = #{jx,jdbcType=VARCHAR}
+      and JH = #{jh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByBh">
+    update T_DH_JHQD
+    set STATUS = #{status}
+    where BH = #{bh}
+  </update>
+
+</mapper>

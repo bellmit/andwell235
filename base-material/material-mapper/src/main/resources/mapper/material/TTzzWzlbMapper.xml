@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.material.mapper.TTzzWzlbMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.material.entity.TTzzWzlb">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="PID" jdbcType="VARCHAR" property="pid" />
+    <result column="MC" jdbcType="VARCHAR" property="mc" />
+    <result column="JM" jdbcType="VARCHAR" property="jm" />
+  </resultMap>
+
+  <sql id="queryCondition">
+    <where>
+      1=1
+      <if test="query!=null">
+        <if test="query.id!=null and query.id.length()>0">
+          and ID= #{query.id}
+        </if>
+        <if test="query.pid!=null and query.pid.length()>0">
+          and PID = #{query.pid}
+        </if>
+        <if test="query.mc!=null and query.mc.length()>0">
+          and MC= #{query.mc}
+        </if>
+        <if test="query.jm!=null and query.jm.length()>0">
+          and JM = #{query.jm}
+        </if>
+      </if>
+    </where>
+  </sql>
+
+  <sql id="Base_Column_List">
+    ID, PID, MC, JM
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_TZZ_WZLB
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="list" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from T_TZZ_WZLB
+    <include refid="queryCondition"/>
+    and PID is null
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from T_TZZ_WZLB
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.andawell.material.entity.TTzzWzlb">
+    insert into T_TZZ_WZLB (ID, PID, MC, 
+      JM)
+    values (#{id,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, #{mc,jdbcType=VARCHAR}, 
+      #{jm,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.andawell.material.entity.TTzzWzlb">
+    insert into T_TZZ_WZLB
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="pid != null">
+        PID,
+      </if>
+      <if test="mc != null">
+        MC,
+      </if>
+      <if test="jm != null">
+        JM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="mc != null">
+        #{mc,jdbcType=VARCHAR},
+      </if>
+      <if test="jm != null">
+        #{jm,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.andawell.material.entity.TTzzWzlb">
+    update T_TZZ_WZLB
+    <set>
+      <if test="pid != null">
+        PID = #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="mc != null">
+        MC = #{mc,jdbcType=VARCHAR},
+      </if>
+      <if test="jm != null">
+        JM = #{jm,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.andawell.material.entity.TTzzWzlb">
+    update T_TZZ_WZLB
+    set PID = #{pid,jdbcType=VARCHAR},
+      MC = #{mc,jdbcType=VARCHAR},
+      JM = #{jm,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

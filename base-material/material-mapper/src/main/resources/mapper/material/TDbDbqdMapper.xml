@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.material.mapper.TDbDbqdMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.material.entity.TDbDbqd">
+    <id column="DBDH" jdbcType="VARCHAR" property="dbdh" />
+    <id column="JH" jdbcType="VARCHAR" property="jh" />
+    <id column="ZL" jdbcType="VARCHAR" property="zl" />
+    <id column="JX" jdbcType="VARCHAR" property="jx" />
+    <result column="SL" jdbcType="DECIMAL" property="sl" />
+    <result column="BZ" jdbcType="VARCHAR" property="bz" />
+    <result column="BZW" jdbcType="DECIMAL" property="bzw" />
+    <result column="ZCFFRQ" jdbcType="TIMESTAMP" property="zcffrq" />
+    <result column="DJ" jdbcType="DECIMAL" property="dj" />
+    <result column="FFDW" jdbcType="VARCHAR" property="ffdw" />
+    <result column="JSDW" jdbcType="VARCHAR" property="jsdw" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    DBDH, JH, ZL, JX, SL, BZ, BZW, ZCFFRQ, DJ, FFDW, JSDW
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_DB_DBQD
+    where DBDH = #{dbdh,jdbcType=VARCHAR}
+      and JH = #{jh,jdbcType=VARCHAR}
+      and ZL = #{zl,jdbcType=VARCHAR}
+      and JX = #{jx,jdbcType=VARCHAR}
+  </select>
+    <select id="getToteDBSL" resultType="java.lang.Integer">
+      select NVL(SUM(SL),0)
+      from T_DB_DBQD
+      where  DBDH  = (select DBDH from T_DB_DB where clzt ='1' and xfzt='0')
+      and ffdw = #{ffdw}
+      and jx =   #{jx}
+      and jh =   #{jh}
+    </select>
+    <select id="getDBSummber" resultType="java.lang.Integer">
+         select SL
+         from T_DB_DBQD
+         where DBDH =(select DBDH from T_DB_DB where sqdh= #{sqdh} and jx = #{jx})
+         and jh =#{jh}
+         and ffdw = #{ffdw}
+         and jsdw = #{jsdw}
+    </select>
+    <select id="getUpAskList" resultType="com.andawell.material.vo.TDbJgdbVO">
+      select T_DB_DB.DBDH,T_DB_DB.sqdh,T_DB_DB.jsdw,T_DB_DB.rq,T_DB_DB.jx,T_DB_DBQD.jh,T_JH_JH.Mc jhmc,T_XT_JLDW.MC jldwmc,T_DB_DBQD.sl,
+      CASE WHEN sqyy='S1' THEN '缺件'
+      WHEN sqyy='S2' THEN '定检更新'   WHEN sqyy='S3' THEN '故障更新'  ELSE '其他原因' END sqyymc,
+      T_DB_DBQD.sqyy,T_DB_DBQD.zl,T_DB_DBQD.dj
+
+      from T_DB_DBQD
+      LEFT JOIN T_DB_DB on T_DB_DBQD.DBDH = T_DB_DB.DBDH
+      LEFT JOIN T_JH_JH ON T_DB_DBQD.jx = T_JH_JH.Id
+      LEFT JOIN T_XT_JLDW ON T_JH_JH.DW=T_XT_JLDW.ID
+      where 1=1
+      <if test="jx != null">
+        and T_DB_DB.jx =#{jx}
+      </if>
+      <if test="jsdw != null">
+        and T_DB_DBQD.ffdw = #{jsdw}
+      </if>
+      and T_DB_DBQD.sjsq = '1'
+      and T_DB_DBQD.sqzt = '0'
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from T_DB_DBQD
+    where DBDH = #{dbdh,jdbcType=VARCHAR}
+      and JH = #{jh,jdbcType=VARCHAR}
+      and ZL = #{zl,jdbcType=VARCHAR}
+      and JX = #{jx,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.andawell.material.entity.TDbDbqd">
+    insert into T_DB_DBQD (DBDH, JH, ZL, 
+      JX, SL, BZ, BZW, 
+      ZCFFRQ, DJ, FFDW, 
+      JSDW)
+    values (#{dbdh,jdbcType=VARCHAR}, #{jh,jdbcType=VARCHAR}, #{zl,jdbcType=VARCHAR}, 
+      #{jx,jdbcType=VARCHAR}, #{sl,jdbcType=DECIMAL}, #{bz,jdbcType=VARCHAR}, #{bzw,jdbcType=DECIMAL}, 
+      #{zcffrq,jdbcType=TIMESTAMP}, #{dj,jdbcType=DECIMAL}, #{ffdw,jdbcType=VARCHAR}, 
+      #{jsdw,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.andawell.material.entity.TDbDbqd">
+    insert into T_DB_DBQD
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dbdh != null">
+        DBDH,
+      </if>
+      <if test="jh != null">
+        JH,
+      </if>
+      <if test="zl != null">
+        ZL,
+      </if>
+      <if test="jx != null">
+        JX,
+      </if>
+      <if test="sl != null">
+        SL,
+      </if>
+      <if test="bz != null">
+        BZ,
+      </if>
+      <if test="bzw != null">
+        BZW,
+      </if>
+      <if test="zcffrq != null">
+        ZCFFRQ,
+      </if>
+      <if test="dj != null">
+        DJ,
+      </if>
+      <if test="ffdw != null">
+        FFDW,
+      </if>
+      <if test="jsdw != null">
+        JSDW,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dbdh != null">
+        #{dbdh,jdbcType=VARCHAR},
+      </if>
+      <if test="jh != null">
+        #{jh,jdbcType=VARCHAR},
+      </if>
+      <if test="zl != null">
+        #{zl,jdbcType=VARCHAR},
+      </if>
+      <if test="jx != null">
+        #{jx,jdbcType=VARCHAR},
+      </if>
+      <if test="sl != null">
+        #{sl,jdbcType=DECIMAL},
+      </if>
+      <if test="bz != null">
+        #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="bzw != null">
+        #{bzw,jdbcType=DECIMAL},
+      </if>
+      <if test="zcffrq != null">
+        #{zcffrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dj != null">
+        #{dj,jdbcType=DECIMAL},
+      </if>
+      <if test="ffdw != null">
+        #{ffdw,jdbcType=VARCHAR},
+      </if>
+      <if test="jsdw != null">
+        #{jsdw,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.andawell.material.entity.TDbDbqd">
+    update T_DB_DBQD
+    <set>
+      <if test="sl != null">
+        SL = #{sl,jdbcType=DECIMAL},
+      </if>
+      <if test="bz != null">
+        BZ = #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="bzw != null">
+        BZW = #{bzw,jdbcType=DECIMAL},
+      </if>
+      <if test="zcffrq != null">
+        ZCFFRQ = #{zcffrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dj != null">
+        DJ = #{dj,jdbcType=DECIMAL},
+      </if>
+      <if test="ffdw != null">
+        FFDW = #{ffdw,jdbcType=VARCHAR},
+      </if>
+      <if test="jsdw != null">
+        JSDW = #{jsdw,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DBDH = #{dbdh,jdbcType=VARCHAR}
+      and JH = #{jh,jdbcType=VARCHAR}
+      and ZL = #{zl,jdbcType=VARCHAR}
+      and JX = #{jx,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.andawell.material.entity.TDbDbqd">
+    update T_DB_DBQD
+    set SL = #{sl,jdbcType=DECIMAL},
+      BZ = #{bz,jdbcType=VARCHAR},
+      BZW = #{bzw,jdbcType=DECIMAL},
+      ZCFFRQ = #{zcffrq,jdbcType=TIMESTAMP},
+      DJ = #{dj,jdbcType=DECIMAL},
+      FFDW = #{ffdw,jdbcType=VARCHAR},
+      JSDW = #{jsdw,jdbcType=VARCHAR}
+    where DBDH = #{dbdh,jdbcType=VARCHAR}
+      and JH = #{jh,jdbcType=VARCHAR}
+      and ZL = #{zl,jdbcType=VARCHAR}
+      and JX = #{jx,jdbcType=VARCHAR}
+  </update>
+</mapper>

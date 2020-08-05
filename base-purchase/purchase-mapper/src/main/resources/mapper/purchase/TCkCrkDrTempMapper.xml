@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.purchase.mapper.TCkCrkDrTempMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.purchase.entity.TCkCrkDrTemp">
+    <id column="BH" jdbcType="VARCHAR" property="bh" />
+    <id column="DWID" jdbcType="VARCHAR" property="dwid" />
+    <result column="YJ" jdbcType="VARCHAR" property="yj" />
+    <result column="WH" jdbcType="VARCHAR" property="wh" />
+    <result column="YJRQ" jdbcType="TIMESTAMP" property="yjrq" />
+    <result column="LB" jdbcType="VARCHAR" property="lb" />
+    <result column="RQ" jdbcType="TIMESTAMP" property="rq" />
+    <result column="FJLX" jdbcType="VARCHAR" property="fjlx" />
+    <result column="FJJH" jdbcType="VARCHAR" property="fjjh" />
+    <result column="FPH" jdbcType="VARCHAR" property="fph" />
+    <result column="YSFS" jdbcType="VARCHAR" property="ysfs" />
+    <result column="FFDW" jdbcType="VARCHAR" property="ffdw" />
+    <result column="FCR" jdbcType="VARCHAR" property="fcr" />
+    <result column="JSDW" jdbcType="VARCHAR" property="jsdw" />
+    <result column="SRR" jdbcType="VARCHAR" property="srr" />
+    <result column="JSRQ" jdbcType="TIMESTAMP" property="jsrq" />
+    <result column="YSDH" jdbcType="VARCHAR" property="ysdh" />
+    <result column="ZXS" jdbcType="DECIMAL" property="zxs" />
+    <result column="ZXBH" jdbcType="VARCHAR" property="zxbh" />
+    <result column="GZ" jdbcType="VARCHAR" property="gz" />
+    <result column="ZLY" jdbcType="VARCHAR" property="zly" />
+    <result column="FKZR" jdbcType="VARCHAR" property="fkzr" />
+    <result column="PZR" jdbcType="VARCHAR" property="pzr" />
+    <result column="BGY" jdbcType="VARCHAR" property="bgy" />
+    <result column="YSR" jdbcType="VARCHAR" property="ysr" />
+    <result column="CJR" jdbcType="VARCHAR" property="cjr" />
+    <result column="CJRQ" jdbcType="TIMESTAMP" property="cjrq" />
+    <result column="XGR" jdbcType="VARCHAR" property="xgr" />
+    <result column="XGRQ" jdbcType="TIMESTAMP" property="xgrq" />
+    <result column="FFDWMC" jdbcType="VARCHAR" property="ffdwmc" />
+    <result column="JSDWMC" jdbcType="VARCHAR" property="jsdwmc" />
+    <result column="CYDW" jdbcType="VARCHAR" property="cydw" />
+    <result column="HYDH" jdbcType="VARCHAR" property="hydh" />
+    <result column="ZBBH" jdbcType="VARCHAR" property="zbbh" />
+    <result column="RFID" jdbcType="VARCHAR" property="rfid" />
+    <result column="YSID" jdbcType="VARCHAR" property="ysid" />
+    <result column="HZSJ" jdbcType="TIMESTAMP" property="hzsj" />
+    <result column="HZJSR" jdbcType="VARCHAR" property="hzjsr" />
+    <result column="HZZT" jdbcType="VARCHAR" property="hzzt" />
+    <result column="QCLB" jdbcType="VARCHAR" property="qclb" />
+    <result column="CRKLX" jdbcType="VARCHAR" property="crklx" />
+    <result column="JFRQ" jdbcType="TIMESTAMP" property="jfrq" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    BH, DWID, YJ, WH, YJRQ, LB, RQ, FJLX, FJJH, FPH, YSFS, FFDW, FCR, JSDW, SRR, JSRQ, 
+    YSDH, ZXS, ZXBH, GZ, ZLY, FKZR, PZR, BGY, YSR, CJR, CJRQ, XGR, XGRQ, FFDWMC, JSDWMC, 
+    CYDW, HYDH, ZBBH, RFID, YSID, HZSJ, HZJSR, HZZT, QCLB, CRKLX, JFRQ
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_CK_CRK_DR_TEMP
+    where BH = #{bh,jdbcType=VARCHAR}
+      and DWID = #{dwid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from T_CK_CRK_DR_TEMP
+    where BH = #{bh,jdbcType=VARCHAR}
+      and DWID = #{dwid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.andawell.purchase.entity.TCkCrkDrTemp">
+    insert into T_CK_CRK_DR_TEMP (BH, DWID, YJ, 
+      WH, YJRQ, LB, RQ, 
+      FJLX, FJJH, FPH, YSFS, 
+      FFDW, FCR, JSDW, SRR, 
+      JSRQ, YSDH, ZXS, 
+      ZXBH, GZ, ZLY, FKZR, 
+      PZR, BGY, YSR, CJR, 
+      CJRQ, XGR, XGRQ, 
+      FFDWMC, JSDWMC, CYDW, 
+      HYDH, ZBBH, RFID, YSID, 
+      HZSJ, HZJSR, HZZT, 
+      QCLB, CRKLX, JFRQ
+      )
+    values (#{bh,jdbcType=VARCHAR}, #{dwid,jdbcType=VARCHAR}, #{yj,jdbcType=VARCHAR}, 
+      #{wh,jdbcType=VARCHAR}, #{yjrq,jdbcType=TIMESTAMP}, #{lb,jdbcType=VARCHAR}, #{rq,jdbcType=TIMESTAMP}, 
+      #{fjlx,jdbcType=VARCHAR}, #{fjjh,jdbcType=VARCHAR}, #{fph,jdbcType=VARCHAR}, #{ysfs,jdbcType=VARCHAR}, 
+      #{ffdw,jdbcType=VARCHAR}, #{fcr,jdbcType=VARCHAR}, #{jsdw,jdbcType=VARCHAR}, #{srr,jdbcType=VARCHAR}, 
+      #{jsrq,jdbcType=TIMESTAMP}, #{ysdh,jdbcType=VARCHAR}, #{zxs,jdbcType=DECIMAL}, 
+      #{zxbh,jdbcType=VARCHAR}, #{gz,jdbcType=VARCHAR}, #{zly,jdbcType=VARCHAR}, #{fkzr,jdbcType=VARCHAR}, 
+      #{pzr,jdbcType=VARCHAR}, #{bgy,jdbcType=VARCHAR}, #{ysr,jdbcType=VARCHAR}, #{cjr,jdbcType=VARCHAR}, 
+      #{cjrq,jdbcType=TIMESTAMP}, #{xgr,jdbcType=VARCHAR}, #{xgrq,jdbcType=TIMESTAMP}, 
+      #{ffdwmc,jdbcType=VARCHAR}, #{jsdwmc,jdbcType=VARCHAR}, #{cydw,jdbcType=VARCHAR}, 
+      #{hydh,jdbcType=VARCHAR}, #{zbbh,jdbcType=VARCHAR}, #{rfid,jdbcType=VARCHAR}, #{ysid,jdbcType=VARCHAR}, 
+      #{hzsj,jdbcType=TIMESTAMP}, #{hzjsr,jdbcType=VARCHAR}, #{hzzt,jdbcType=VARCHAR}, 
+      #{qclb,jdbcType=VARCHAR}, #{crklx,jdbcType=VARCHAR}, #{jfrq,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.andawell.purchase.entity.TCkCrkDrTemp">
+    insert into T_CK_CRK_DR_TEMP
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bh != null">
+        BH,
+      </if>
+      <if test="dwid != null">
+        DWID,
+      </if>
+      <if test="yj != null">
+        YJ,
+      </if>
+      <if test="wh != null">
+        WH,
+      </if>
+      <if test="yjrq != null">
+        YJRQ,
+      </if>
+      <if test="lb != null">
+        LB,
+      </if>
+      <if test="rq != null">
+        RQ,
+      </if>
+      <if test="fjlx != null">
+        FJLX,
+      </if>
+      <if test="fjjh != null">
+        FJJH,
+      </if>
+      <if test="fph != null">
+        FPH,
+      </if>
+      <if test="ysfs != null">
+        YSFS,
+      </if>
+      <if test="ffdw != null">
+        FFDW,
+      </if>
+      <if test="fcr != null">
+        FCR,
+      </if>
+      <if test="jsdw != null">
+        JSDW,
+      </if>
+      <if test="srr != null">
+        SRR,
+      </if>
+      <if test="jsrq != null">
+        JSRQ,
+      </if>
+      <if test="ysdh != null">
+        YSDH,
+      </if>
+      <if test="zxs != null">
+        ZXS,
+      </if>
+      <if test="zxbh != null">
+        ZXBH,
+      </if>
+      <if test="gz != null">
+        GZ,
+      </if>
+      <if test="zly != null">
+        ZLY,
+      </if>
+      <if test="fkzr != null">
+        FKZR,
+      </if>
+      <if test="pzr != null">
+        PZR,
+      </if>
+      <if test="bgy != null">
+        BGY,
+      </if>
+      <if test="ysr != null">
+        YSR,
+      </if>
+      <if test="cjr != null">
+        CJR,
+      </if>
+      <if test="cjrq != null">
+        CJRQ,
+      </if>
+      <if test="xgr != null">
+        XGR,
+      </if>
+      <if test="xgrq != null">
+        XGRQ,
+      </if>
+      <if test="ffdwmc != null">
+        FFDWMC,
+      </if>
+      <if test="jsdwmc != null">
+        JSDWMC,
+      </if>
+      <if test="cydw != null">
+        CYDW,
+      </if>
+      <if test="hydh != null">
+        HYDH,
+      </if>
+      <if test="zbbh != null">
+        ZBBH,
+      </if>
+      <if test="rfid != null">
+        RFID,
+      </if>
+      <if test="ysid != null">
+        YSID,
+      </if>
+      <if test="hzsj != null">
+        HZSJ,
+      </if>
+      <if test="hzjsr != null">
+        HZJSR,
+      </if>
+      <if test="hzzt != null">
+        HZZT,
+      </if>
+      <if test="qclb != null">
+        QCLB,
+      </if>
+      <if test="crklx != null">
+        CRKLX,
+      </if>
+      <if test="jfrq != null">
+        JFRQ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bh != null">
+        #{bh,jdbcType=VARCHAR},
+      </if>
+      <if test="dwid != null">
+        #{dwid,jdbcType=VARCHAR},
+      </if>
+      <if test="yj != null">
+        #{yj,jdbcType=VARCHAR},
+      </if>
+      <if test="wh != null">
+        #{wh,jdbcType=VARCHAR},
+      </if>
+      <if test="yjrq != null">
+        #{yjrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lb != null">
+        #{lb,jdbcType=VARCHAR},
+      </if>
+      <if test="rq != null">
+        #{rq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fjlx != null">
+        #{fjlx,jdbcType=VARCHAR},
+      </if>
+      <if test="fjjh != null">
+        #{fjjh,jdbcType=VARCHAR},
+      </if>
+      <if test="fph != null">
+        #{fph,jdbcType=VARCHAR},
+      </if>
+      <if test="ysfs != null">
+        #{ysfs,jdbcType=VARCHAR},
+      </if>
+      <if test="ffdw != null">
+        #{ffdw,jdbcType=VARCHAR},
+      </if>
+      <if test="fcr != null">
+        #{fcr,jdbcType=VARCHAR},
+      </if>
+      <if test="jsdw != null">
+        #{jsdw,jdbcType=VARCHAR},
+      </if>
+      <if test="srr != null">
+        #{srr,jdbcType=VARCHAR},
+      </if>
+      <if test="jsrq != null">
+        #{jsrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ysdh != null">
+        #{ysdh,jdbcType=VARCHAR},
+      </if>
+      <if test="zxs != null">
+        #{zxs,jdbcType=DECIMAL},
+      </if>
+      <if test="zxbh != null">
+        #{zxbh,jdbcType=VARCHAR},
+      </if>
+      <if test="gz != null">
+        #{gz,jdbcType=VARCHAR},
+      </if>
+      <if test="zly != null">
+        #{zly,jdbcType=VARCHAR},
+      </if>
+      <if test="fkzr != null">
+        #{fkzr,jdbcType=VARCHAR},
+      </if>
+      <if test="pzr != null">
+        #{pzr,jdbcType=VARCHAR},
+      </if>
+      <if test="bgy != null">
+        #{bgy,jdbcType=VARCHAR},
+      </if>
+      <if test="ysr != null">
+        #{ysr,jdbcType=VARCHAR},
+      </if>
+      <if test="cjr != null">
+        #{cjr,jdbcType=VARCHAR},
+      </if>
+      <if test="cjrq != null">
+        #{cjrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="xgr != null">
+        #{xgr,jdbcType=VARCHAR},
+      </if>
+      <if test="xgrq != null">
+        #{xgrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ffdwmc != null">
+        #{ffdwmc,jdbcType=VARCHAR},
+      </if>
+      <if test="jsdwmc != null">
+        #{jsdwmc,jdbcType=VARCHAR},
+      </if>
+      <if test="cydw != null">
+        #{cydw,jdbcType=VARCHAR},
+      </if>
+      <if test="hydh != null">
+        #{hydh,jdbcType=VARCHAR},
+      </if>
+      <if test="zbbh != null">
+        #{zbbh,jdbcType=VARCHAR},
+      </if>
+      <if test="rfid != null">
+        #{rfid,jdbcType=VARCHAR},
+      </if>
+      <if test="ysid != null">
+        #{ysid,jdbcType=VARCHAR},
+      </if>
+      <if test="hzsj != null">
+        #{hzsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hzjsr != null">
+        #{hzjsr,jdbcType=VARCHAR},
+      </if>
+      <if test="hzzt != null">
+        #{hzzt,jdbcType=VARCHAR},
+      </if>
+      <if test="qclb != null">
+        #{qclb,jdbcType=VARCHAR},
+      </if>
+      <if test="crklx != null">
+        #{crklx,jdbcType=VARCHAR},
+      </if>
+      <if test="jfrq != null">
+        #{jfrq,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.andawell.purchase.entity.TCkCrkDrTemp">
+    update T_CK_CRK_DR_TEMP
+    <set>
+      <if test="yj != null">
+        YJ = #{yj,jdbcType=VARCHAR},
+      </if>
+      <if test="wh != null">
+        WH = #{wh,jdbcType=VARCHAR},
+      </if>
+      <if test="yjrq != null">
+        YJRQ = #{yjrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lb != null">
+        LB = #{lb,jdbcType=VARCHAR},
+      </if>
+      <if test="rq != null">
+        RQ = #{rq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fjlx != null">
+        FJLX = #{fjlx,jdbcType=VARCHAR},
+      </if>
+      <if test="fjjh != null">
+        FJJH = #{fjjh,jdbcType=VARCHAR},
+      </if>
+      <if test="fph != null">
+        FPH = #{fph,jdbcType=VARCHAR},
+      </if>
+      <if test="ysfs != null">
+        YSFS = #{ysfs,jdbcType=VARCHAR},
+      </if>
+      <if test="ffdw != null">
+        FFDW = #{ffdw,jdbcType=VARCHAR},
+      </if>
+      <if test="fcr != null">
+        FCR = #{fcr,jdbcType=VARCHAR},
+      </if>
+      <if test="jsdw != null">
+        JSDW = #{jsdw,jdbcType=VARCHAR},
+      </if>
+      <if test="srr != null">
+        SRR = #{srr,jdbcType=VARCHAR},
+      </if>
+      <if test="jsrq != null">
+        JSRQ = #{jsrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ysdh != null">
+        YSDH = #{ysdh,jdbcType=VARCHAR},
+      </if>
+      <if test="zxs != null">
+        ZXS = #{zxs,jdbcType=DECIMAL},
+      </if>
+      <if test="zxbh != null">
+        ZXBH = #{zxbh,jdbcType=VARCHAR},
+      </if>
+      <if test="gz != null">
+        GZ = #{gz,jdbcType=VARCHAR},
+      </if>
+      <if test="zly != null">
+        ZLY = #{zly,jdbcType=VARCHAR},
+      </if>
+      <if test="fkzr != null">
+        FKZR = #{fkzr,jdbcType=VARCHAR},
+      </if>
+      <if test="pzr != null">
+        PZR = #{pzr,jdbcType=VARCHAR},
+      </if>
+      <if test="bgy != null">
+        BGY = #{bgy,jdbcType=VARCHAR},
+      </if>
+      <if test="ysr != null">
+        YSR = #{ysr,jdbcType=VARCHAR},
+      </if>
+      <if test="cjr != null">
+        CJR = #{cjr,jdbcType=VARCHAR},
+      </if>
+      <if test="cjrq != null">
+        CJRQ = #{cjrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="xgr != null">
+        XGR = #{xgr,jdbcType=VARCHAR},
+      </if>
+      <if test="xgrq != null">
+        XGRQ = #{xgrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ffdwmc != null">
+        FFDWMC = #{ffdwmc,jdbcType=VARCHAR},
+      </if>
+      <if test="jsdwmc != null">
+        JSDWMC = #{jsdwmc,jdbcType=VARCHAR},
+      </if>
+      <if test="cydw != null">
+        CYDW = #{cydw,jdbcType=VARCHAR},
+      </if>
+      <if test="hydh != null">
+        HYDH = #{hydh,jdbcType=VARCHAR},
+      </if>
+      <if test="zbbh != null">
+        ZBBH = #{zbbh,jdbcType=VARCHAR},
+      </if>
+      <if test="rfid != null">
+        RFID = #{rfid,jdbcType=VARCHAR},
+      </if>
+      <if test="ysid != null">
+        YSID = #{ysid,jdbcType=VARCHAR},
+      </if>
+      <if test="hzsj != null">
+        HZSJ = #{hzsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hzjsr != null">
+        HZJSR = #{hzjsr,jdbcType=VARCHAR},
+      </if>
+      <if test="hzzt != null">
+        HZZT = #{hzzt,jdbcType=VARCHAR},
+      </if>
+      <if test="qclb != null">
+        QCLB = #{qclb,jdbcType=VARCHAR},
+      </if>
+      <if test="crklx != null">
+        CRKLX = #{crklx,jdbcType=VARCHAR},
+      </if>
+      <if test="jfrq != null">
+        JFRQ = #{jfrq,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where BH = #{bh,jdbcType=VARCHAR}
+      and DWID = #{dwid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.andawell.purchase.entity.TCkCrkDrTemp">
+    update T_CK_CRK_DR_TEMP
+    set YJ = #{yj,jdbcType=VARCHAR},
+      WH = #{wh,jdbcType=VARCHAR},
+      YJRQ = #{yjrq,jdbcType=TIMESTAMP},
+      LB = #{lb,jdbcType=VARCHAR},
+      RQ = #{rq,jdbcType=TIMESTAMP},
+      FJLX = #{fjlx,jdbcType=VARCHAR},
+      FJJH = #{fjjh,jdbcType=VARCHAR},
+      FPH = #{fph,jdbcType=VARCHAR},
+      YSFS = #{ysfs,jdbcType=VARCHAR},
+      FFDW = #{ffdw,jdbcType=VARCHAR},
+      FCR = #{fcr,jdbcType=VARCHAR},
+      JSDW = #{jsdw,jdbcType=VARCHAR},
+      SRR = #{srr,jdbcType=VARCHAR},
+      JSRQ = #{jsrq,jdbcType=TIMESTAMP},
+      YSDH = #{ysdh,jdbcType=VARCHAR},
+      ZXS = #{zxs,jdbcType=DECIMAL},
+      ZXBH = #{zxbh,jdbcType=VARCHAR},
+      GZ = #{gz,jdbcType=VARCHAR},
+      ZLY = #{zly,jdbcType=VARCHAR},
+      FKZR = #{fkzr,jdbcType=VARCHAR},
+      PZR = #{pzr,jdbcType=VARCHAR},
+      BGY = #{bgy,jdbcType=VARCHAR},
+      YSR = #{ysr,jdbcType=VARCHAR},
+      CJR = #{cjr,jdbcType=VARCHAR},
+      CJRQ = #{cjrq,jdbcType=TIMESTAMP},
+      XGR = #{xgr,jdbcType=VARCHAR},
+      XGRQ = #{xgrq,jdbcType=TIMESTAMP},
+      FFDWMC = #{ffdwmc,jdbcType=VARCHAR},
+      JSDWMC = #{jsdwmc,jdbcType=VARCHAR},
+      CYDW = #{cydw,jdbcType=VARCHAR},
+      HYDH = #{hydh,jdbcType=VARCHAR},
+      ZBBH = #{zbbh,jdbcType=VARCHAR},
+      RFID = #{rfid,jdbcType=VARCHAR},
+      YSID = #{ysid,jdbcType=VARCHAR},
+      HZSJ = #{hzsj,jdbcType=TIMESTAMP},
+      HZJSR = #{hzjsr,jdbcType=VARCHAR},
+      HZZT = #{hzzt,jdbcType=VARCHAR},
+      QCLB = #{qclb,jdbcType=VARCHAR},
+      CRKLX = #{crklx,jdbcType=VARCHAR},
+      JFRQ = #{jfrq,jdbcType=TIMESTAMP}
+    where BH = #{bh,jdbcType=VARCHAR}
+      and DWID = #{dwid,jdbcType=VARCHAR}
+  </update>
+</mapper>

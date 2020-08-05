@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.material.mapper.TWxNlqdMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.material.entity.TWxNlqd">
+    <id column="PID" jdbcType="DECIMAL" property="pid" />
+    <id column="CFID" jdbcType="VARCHAR" property="cfid" />
+    <result column="WXLB" jdbcType="VARCHAR" property="wxlb" />
+    <result column="SBMC" jdbcType="VARCHAR" property="sbmc" />
+    <result column="SBXH" jdbcType="VARCHAR" property="sbxh" />
+    <result column="SBZK" jdbcType="VARCHAR" property="sbzk" />
+    <result column="ZCCJ" jdbcType="VARCHAR" property="zccj" />
+    <result column="JLZQ" jdbcType="VARCHAR" property="jlzq" />
+    <result column="ZLMC" jdbcType="VARCHAR" property="zlmc" />
+    <result column="ZLBC" jdbcType="VARCHAR" property="zlbc" />
+    <result column="ZJH" jdbcType="VARCHAR" property="zjh" />
+    <result column="NBBH" jdbcType="VARCHAR" property="nbbh" />
+    <result column="ZLLY" jdbcType="VARCHAR" property="zlly" />
+    <result column="SKZT" jdbcType="VARCHAR" property="skzt" />
+    <result column="GZHJ" jdbcType="VARCHAR" property="gzhj" />
+    <result column="BJLY" jdbcType="VARCHAR" property="bjly" />
+    <result column="BZ" jdbcType="VARCHAR" property="bz" />
+    <result column="SXBL" jdbcType="DECIMAL" property="sxbl" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    PID, CFID, WXLB, SBMC, SBXH, SBZK, ZCCJ, JLZQ, ZLMC, ZLBC, ZJH, NBBH, ZLLY, SKZT, 
+    GZHJ, BJLY, BZ, SXBL
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_WX_NLQD
+    where PID = #{pid,jdbcType=DECIMAL}
+      and CFID = #{cfid,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPId" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from T_WX_NLQD
+    where PID = #{pid,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from T_WX_NLQD
+    where PID = #{pid,jdbcType=DECIMAL}
+      and CFID = #{cfid,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.andawell.material.entity.TWxNlqd">
+    insert into T_WX_NLQD (PID, CFID, WXLB, 
+      SBMC, SBXH, SBZK, ZCCJ, 
+      JLZQ, ZLMC, ZLBC, ZJH, 
+      NBBH, ZLLY, SKZT, GZHJ, 
+      BJLY, BZ, SXBL)
+    values (#{pid,jdbcType=DECIMAL}, #{cfid,jdbcType=VARCHAR}, #{wxlb,jdbcType=VARCHAR}, 
+      #{sbmc,jdbcType=VARCHAR}, #{sbxh,jdbcType=VARCHAR}, #{sbzk,jdbcType=VARCHAR}, #{zccj,jdbcType=VARCHAR}, 
+      #{jlzq,jdbcType=VARCHAR}, #{zlmc,jdbcType=VARCHAR}, #{zlbc,jdbcType=VARCHAR}, #{zjh,jdbcType=VARCHAR}, 
+      #{nbbh,jdbcType=VARCHAR}, #{zlly,jdbcType=VARCHAR}, #{skzt,jdbcType=VARCHAR}, #{gzhj,jdbcType=VARCHAR}, 
+      #{bjly,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR}, #{sxbl,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.andawell.material.entity.TWxNlqd">
+    insert into T_WX_NLQD
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pid != null">
+        PID,
+      </if>
+      <if test="cfid != null">
+        CFID,
+      </if>
+      <if test="wxlb != null">
+        WXLB,
+      </if>
+      <if test="sbmc != null">
+        SBMC,
+      </if>
+      <if test="sbxh != null">
+        SBXH,
+      </if>
+      <if test="sbzk != null">
+        SBZK,
+      </if>
+      <if test="zccj != null">
+        ZCCJ,
+      </if>
+      <if test="jlzq != null">
+        JLZQ,
+      </if>
+      <if test="zlmc != null">
+        ZLMC,
+      </if>
+      <if test="zlbc != null">
+        ZLBC,
+      </if>
+      <if test="zjh != null">
+        ZJH,
+      </if>
+      <if test="nbbh != null">
+        NBBH,
+      </if>
+      <if test="zlly != null">
+        ZLLY,
+      </if>
+      <if test="skzt != null">
+        SKZT,
+      </if>
+      <if test="gzhj != null">
+        GZHJ,
+      </if>
+      <if test="bjly != null">
+        BJLY,
+      </if>
+      <if test="bz != null">
+        BZ,
+      </if>
+      <if test="sxbl != null">
+        SXBL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pid != null">
+        #{pid,jdbcType=DECIMAL},
+      </if>
+      <if test="cfid != null">
+        #{cfid,jdbcType=VARCHAR},
+      </if>
+      <if test="wxlb != null">
+        #{wxlb,jdbcType=VARCHAR},
+      </if>
+      <if test="sbmc != null">
+        #{sbmc,jdbcType=VARCHAR},
+      </if>
+      <if test="sbxh != null">
+        #{sbxh,jdbcType=VARCHAR},
+      </if>
+      <if test="sbzk != null">
+        #{sbzk,jdbcType=VARCHAR},
+      </if>
+      <if test="zccj != null">
+        #{zccj,jdbcType=VARCHAR},
+      </if>
+      <if test="jlzq != null">
+        #{jlzq,jdbcType=VARCHAR},
+      </if>
+      <if test="zlmc != null">
+        #{zlmc,jdbcType=VARCHAR},
+      </if>
+      <if test="zlbc != null">
+        #{zlbc,jdbcType=VARCHAR},
+      </if>
+      <if test="zjh != null">
+        #{zjh,jdbcType=VARCHAR},
+      </if>
+      <if test="nbbh != null">
+        #{nbbh,jdbcType=VARCHAR},
+      </if>
+      <if test="zlly != null">
+        #{zlly,jdbcType=VARCHAR},
+      </if>
+      <if test="skzt != null">
+        #{skzt,jdbcType=VARCHAR},
+      </if>
+      <if test="gzhj != null">
+        #{gzhj,jdbcType=VARCHAR},
+      </if>
+      <if test="bjly != null">
+        #{bjly,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null">
+        #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="sxbl != null">
+        #{sxbl,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.andawell.material.entity.TWxNlqd">
+    update T_WX_NLQD
+    <set>
+      <if test="wxlb != null">
+        WXLB = #{wxlb,jdbcType=VARCHAR},
+      </if>
+      <if test="sbmc != null">
+        SBMC = #{sbmc,jdbcType=VARCHAR},
+      </if>
+      <if test="sbxh != null">
+        SBXH = #{sbxh,jdbcType=VARCHAR},
+      </if>
+      <if test="sbzk != null">
+        SBZK = #{sbzk,jdbcType=VARCHAR},
+      </if>
+      <if test="zccj != null">
+        ZCCJ = #{zccj,jdbcType=VARCHAR},
+      </if>
+      <if test="jlzq != null">
+        JLZQ = #{jlzq,jdbcType=VARCHAR},
+      </if>
+      <if test="zlmc != null">
+        ZLMC = #{zlmc,jdbcType=VARCHAR},
+      </if>
+      <if test="zlbc != null">
+        ZLBC = #{zlbc,jdbcType=VARCHAR},
+      </if>
+      <if test="zjh != null">
+        ZJH = #{zjh,jdbcType=VARCHAR},
+      </if>
+      <if test="nbbh != null">
+        NBBH = #{nbbh,jdbcType=VARCHAR},
+      </if>
+      <if test="zlly != null">
+        ZLLY = #{zlly,jdbcType=VARCHAR},
+      </if>
+      <if test="skzt != null">
+        SKZT = #{skzt,jdbcType=VARCHAR},
+      </if>
+      <if test="gzhj != null">
+        GZHJ = #{gzhj,jdbcType=VARCHAR},
+      </if>
+      <if test="bjly != null">
+        BJLY = #{bjly,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null">
+        BZ = #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="sxbl != null">
+        SXBL = #{sxbl,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where PID = #{pid,jdbcType=DECIMAL}
+      and CFID = #{cfid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.andawell.material.entity.TWxNlqd">
+    update T_WX_NLQD
+    set WXLB = #{wxlb,jdbcType=VARCHAR},
+      SBMC = #{sbmc,jdbcType=VARCHAR},
+      SBXH = #{sbxh,jdbcType=VARCHAR},
+      SBZK = #{sbzk,jdbcType=VARCHAR},
+      ZCCJ = #{zccj,jdbcType=VARCHAR},
+      JLZQ = #{jlzq,jdbcType=VARCHAR},
+      ZLMC = #{zlmc,jdbcType=VARCHAR},
+      ZLBC = #{zlbc,jdbcType=VARCHAR},
+      ZJH = #{zjh,jdbcType=VARCHAR},
+      NBBH = #{nbbh,jdbcType=VARCHAR},
+      ZLLY = #{zlly,jdbcType=VARCHAR},
+      SKZT = #{skzt,jdbcType=VARCHAR},
+      GZHJ = #{gzhj,jdbcType=VARCHAR},
+      BJLY = #{bjly,jdbcType=VARCHAR},
+      BZ = #{bz,jdbcType=VARCHAR},
+      SXBL = #{sxbl,jdbcType=DECIMAL}
+    where PID = #{pid,jdbcType=DECIMAL}
+      and CFID = #{cfid,jdbcType=VARCHAR}
+  </update>
+
+
+  <select id="selectByQuery" resultType="com.andawell.material.entity.TWxNlqd">
+    select
+    <include refid="Base_Column_List" />
+    from T_WX_NLQD
+  </select>
+
+  <sql id="queryCondition">
+    <where>
+      <if test="query!=null">
+        <if test="query.pid != null">
+          and T_WX_NL.PID = #{query.pid}
+        </if>
+      </if>
+    </where>
+  </sql>
+</mapper>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.material.mapper.TXtCgfMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.material.entity.TXtCgf">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="DWMC" jdbcType="VARCHAR" property="dwmc" />
+    <result column="DZ" jdbcType="VARCHAR" property="dz" />
+    <result column="DH" jdbcType="VARCHAR" property="dh" />
+    <result column="KHMC" jdbcType="VARCHAR" property="khmc" />
+    <result column="KHYH" jdbcType="VARCHAR" property="khyh" />
+    <result column="YHZH" jdbcType="VARCHAR" property="yhzh" />
+  </resultMap>
+
+
+  <select id="Bh" resultType="java.lang.String">
+    select max(id) from T_XT_CGF
+  </select>
+
+  <select id="selectDwmc" resultType="java.lang.Integer">
+    select count(*) from T_XT_CGF  where DWMC=#{dwmc,jdbcType=VARCHAR}
+  </select>
+
+  <sql id="Base_Column_List">
+    ID, DWMC, DZ, DH, KHMC, KHYH, YHZH
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_XT_CGF
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from T_XT_CGF
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.andawell.material.entity.TXtCgf">
+    insert into T_XT_CGF (ID, DWMC, DZ, 
+      DH, KHMC, KHYH, YHZH
+      )
+    values (#{id,jdbcType=VARCHAR}, #{dwmc,jdbcType=VARCHAR}, #{dz,jdbcType=VARCHAR}, 
+      #{dh,jdbcType=VARCHAR}, #{khmc,jdbcType=VARCHAR}, #{khyh,jdbcType=VARCHAR}, #{yhzh,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.andawell.material.entity.TXtCgf">
+    insert into T_XT_CGF
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="dwmc != null">
+        DWMC,
+      </if>
+      <if test="dz != null">
+        DZ,
+      </if>
+      <if test="dh != null">
+        DH,
+      </if>
+      <if test="khmc != null">
+        KHMC,
+      </if>
+      <if test="khyh != null">
+        KHYH,
+      </if>
+      <if test="yhzh != null">
+        YHZH,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="dwmc != null">
+        #{dwmc,jdbcType=VARCHAR},
+      </if>
+      <if test="dz != null">
+        #{dz,jdbcType=VARCHAR},
+      </if>
+      <if test="dh != null">
+        #{dh,jdbcType=VARCHAR},
+      </if>
+      <if test="khmc != null">
+        #{khmc,jdbcType=VARCHAR},
+      </if>
+      <if test="khyh != null">
+        #{khyh,jdbcType=VARCHAR},
+      </if>
+      <if test="yhzh != null">
+        #{yhzh,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.andawell.material.entity.TXtCgf">
+    update T_XT_CGF
+    <set>
+      <if test="dwmc != null">
+        DWMC = #{dwmc,jdbcType=VARCHAR},
+      </if>
+      <if test="dz != null">
+        DZ = #{dz,jdbcType=VARCHAR},
+      </if>
+      <if test="dh != null">
+        DH = #{dh,jdbcType=VARCHAR},
+      </if>
+      <if test="khmc != null">
+        KHMC = #{khmc,jdbcType=VARCHAR},
+      </if>
+      <if test="khyh != null">
+        KHYH = #{khyh,jdbcType=VARCHAR},
+      </if>
+      <if test="yhzh != null">
+        YHZH = #{yhzh,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.andawell.material.entity.TXtCgf">
+    update T_XT_CGF
+    set DWMC = #{dwmc,jdbcType=VARCHAR},
+      DZ = #{dz,jdbcType=VARCHAR},
+      DH = #{dh,jdbcType=VARCHAR},
+      KHMC = #{khmc,jdbcType=VARCHAR},
+      KHYH = #{khyh,jdbcType=VARCHAR},
+      YHZH = #{yhzh,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

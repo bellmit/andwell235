@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andawell.material.mapper.TXhpCrkqdMapper">
+  <resultMap id="BaseResultMap" type="com.andawell.material.entity.TXhpCrkqd">
+    <id column="BH" jdbcType="VARCHAR" property="bh" />
+    <id column="PCH" jdbcType="VARCHAR" property="pch" />
+    <id column="MC" jdbcType="VARCHAR" property="mc" />
+    <id column="GG" jdbcType="VARCHAR" property="gg" />
+    <result column="RQ" jdbcType="TIMESTAMP" property="rq" />
+    <result column="DW" jdbcType="VARCHAR" property="dw" />
+    <result column="DJ" jdbcType="DECIMAL" property="dj" />
+    <result column="SL" jdbcType="DECIMAL" property="sl" />
+    <result column="LB" jdbcType="VARCHAR" property="lb" />
+    <result column="JYR" jdbcType="VARCHAR" property="jyr" />
+    <result column="JHR" jdbcType="VARCHAR" property="jhr" />
+    <result column="JSR" jdbcType="VARCHAR" property="jsr" />
+    <result column="KGY" jdbcType="VARCHAR" property="kgy" />
+    <result column="LYR" jdbcType="VARCHAR" property="lyr" />
+    <result column="BZ" jdbcType="VARCHAR" property="bz" />
+    <result column="CKDM" jdbcType="VARCHAR" property="ckdm" />
+    <result column="JWH" jdbcType="VARCHAR" property="jwh" />
+    <result column="YXQ" jdbcType="TIMESTAMP" property="yxq" />
+    <result column="HCLB" jdbcType="VARCHAR" property="hclb" />
+    <result column="DWID" jdbcType="VARCHAR" property="dwid" />
+    <result column="TZS" jdbcType="DECIMAL" property="tzs" />
+    <result column="SYDW" jdbcType="VARCHAR" property="sydw" />
+    <result column="LYLB" jdbcType="VARCHAR" property="lylb" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    BH, PCH, MC, GG, RQ, DW, DJ, SL, LB, JYR, JHR, JSR, KGY, LYR, BZ, CKDM, JWH, YXQ, 
+    HCLB, DWID, TZS, SYDW, LYLB
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_XHP_CRKQD
+    where BH = #{bh,jdbcType=VARCHAR}
+      and PCH = #{pch,jdbcType=VARCHAR}
+      and MC = #{mc,jdbcType=VARCHAR}
+      and GG = #{gg,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from T_XHP_CRKQD
+    where BH = #{bh,jdbcType=VARCHAR}
+      and PCH = #{pch,jdbcType=VARCHAR}
+      and MC = #{mc,jdbcType=VARCHAR}
+      and GG = #{gg,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.andawell.material.entity.TXhpCrkqd">
+    insert into T_XHP_CRKQD (BH, PCH, MC,
+      GG, RQ, DW, DJ, 
+      SL, LB, JYR, JHR, 
+      JSR, KGY, LYR, BZ, 
+      CKDM, JWH, YXQ, HCLB, 
+      DWID, TZS, SYDW, LYLB
+      )
+    values (#{bh,jdbcType=VARCHAR}, #{pch,jdbcType=VARCHAR}, #{mc,jdbcType=VARCHAR},
+      #{gg,jdbcType=VARCHAR}, #{rq,jdbcType=TIMESTAMP}, #{dw,jdbcType=VARCHAR}, #{dj,jdbcType=DECIMAL}, 
+      #{sl,jdbcType=DECIMAL}, #{lb,jdbcType=VARCHAR}, #{jyr,jdbcType=VARCHAR}, #{jhr,jdbcType=VARCHAR}, 
+      #{jsr,jdbcType=VARCHAR}, #{kgy,jdbcType=VARCHAR}, #{lyr,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR}, 
+      #{ckdm,jdbcType=VARCHAR}, #{jwh,jdbcType=VARCHAR}, #{yxq,jdbcType=TIMESTAMP}, #{hclb,jdbcType=VARCHAR}, 
+      #{dwid,jdbcType=VARCHAR}, #{tzs,jdbcType=DECIMAL}, #{sydw,jdbcType=VARCHAR}, #{lylb,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.andawell.material.entity.TXhpCrkqd">
+    insert into T_XHP_CRKQD
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bh != null">
+        BH,
+      </if>
+      <if test="pch != null">
+        PCH,
+      </if>
+      <if test="mc != null">
+        MC,
+      </if>
+      <if test="gg != null">
+        GG,
+      </if>
+      <if test="rq != null">
+        RQ,
+      </if>
+      <if test="dw != null">
+        DW,
+      </if>
+      <if test="dj != null">
+        DJ,
+      </if>
+      <if test="sl != null">
+        SL,
+      </if>
+      <if test="lb != null">
+        LB,
+      </if>
+      <if test="jyr != null">
+        JYR,
+      </if>
+      <if test="jhr != null">
+        JHR,
+      </if>
+      <if test="jsr != null">
+        JSR,
+      </if>
+      <if test="kgy != null">
+        KGY,
+      </if>
+      <if test="lyr != null">
+        LYR,
+      </if>
+      <if test="bz != null">
+        BZ,
+      </if>
+      <if test="ckdm != null">
+        CKDM,
+      </if>
+      <if test="jwh != null">
+        JWH,
+      </if>
+      <if test="yxq != null">
+        YXQ,
+      </if>
+      <if test="hclb != null">
+        HCLB,
+      </if>
+      <if test="dwid != null">
+        DWID,
+      </if>
+      <if test="tzs != null">
+        TZS,
+      </if>
+      <if test="sydw != null">
+        SYDW,
+      </if>
+      <if test="lylb != null">
+        LYLB,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bh != null">
+        #{bh,jdbcType=VARCHAR},
+      </if>
+      <if test="pch != null">
+        #{pch,jdbcType=VARCHAR},
+      </if>
+      <if test="mc != null">
+        #{mc,jdbcType=VARCHAR},
+      </if>
+      <if test="gg != null">
+        #{gg,jdbcType=VARCHAR},
+      </if>
+      <if test="rq != null">
+        #{rq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dw != null">
+        #{dw,jdbcType=VARCHAR},
+      </if>
+      <if test="dj != null">
+        #{dj,jdbcType=DECIMAL},
+      </if>
+      <if test="sl != null">
+        #{sl,jdbcType=DECIMAL},
+      </if>
+      <if test="lb != null">
+        #{lb,jdbcType=VARCHAR},
+      </if>
+      <if test="jyr != null">
+        #{jyr,jdbcType=VARCHAR},
+      </if>
+      <if test="jhr != null">
+        #{jhr,jdbcType=VARCHAR},
+      </if>
+      <if test="jsr != null">
+        #{jsr,jdbcType=VARCHAR},
+      </if>
+      <if test="kgy != null">
+        #{kgy,jdbcType=VARCHAR},
+      </if>
+      <if test="lyr != null">
+        #{lyr,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null">
+        #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="ckdm != null">
+        #{ckdm,jdbcType=VARCHAR},
+      </if>
+      <if test="jwh != null">
+        #{jwh,jdbcType=VARCHAR},
+      </if>
+      <if test="yxq != null">
+        #{yxq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hclb != null">
+        #{hclb,jdbcType=VARCHAR},
+      </if>
+      <if test="dwid != null">
+        #{dwid,jdbcType=VARCHAR},
+      </if>
+      <if test="tzs != null">
+        #{tzs,jdbcType=DECIMAL},
+      </if>
+      <if test="sydw != null">
+        #{sydw,jdbcType=VARCHAR},
+      </if>
+      <if test="lylb != null">
+        #{lylb,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.andawell.material.entity.TXhpCrkqd">
+    update T_XHP_CRKQD
+    <set>
+      <if test="rq != null">
+        RQ = #{rq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dw != null">
+        DW = #{dw,jdbcType=VARCHAR},
+      </if>
+      <if test="dj != null">
+        DJ = #{dj,jdbcType=DECIMAL},
+      </if>
+      <if test="sl != null">
+        SL = #{sl,jdbcType=DECIMAL},
+      </if>
+      <if test="lb != null">
+        LB = #{lb,jdbcType=VARCHAR},
+      </if>
+      <if test="jyr != null">
+        JYR = #{jyr,jdbcType=VARCHAR},
+      </if>
+      <if test="jhr != null">
+        JHR = #{jhr,jdbcType=VARCHAR},
+      </if>
+      <if test="jsr != null">
+        JSR = #{jsr,jdbcType=VARCHAR},
+      </if>
+      <if test="kgy != null">
+        KGY = #{kgy,jdbcType=VARCHAR},
+      </if>
+      <if test="lyr != null">
+        LYR = #{lyr,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null">
+        BZ = #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="ckdm != null">
+        CKDM = #{ckdm,jdbcType=VARCHAR},
+      </if>
+      <if test="jwh != null">
+        JWH = #{jwh,jdbcType=VARCHAR},
+      </if>
+      <if test="yxq != null">
+        YXQ = #{yxq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hclb != null">
+        HCLB = #{hclb,jdbcType=VARCHAR},
+      </if>
+      <if test="dwid != null">
+        DWID = #{dwid,jdbcType=VARCHAR},
+      </if>
+      <if test="tzs != null">
+        TZS = #{tzs,jdbcType=DECIMAL},
+      </if>
+      <if test="sydw != null">
+        SYDW = #{sydw,jdbcType=VARCHAR},
+      </if>
+      <if test="lylb != null">
+        LYLB = #{lylb,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where BH = #{bh,jdbcType=VARCHAR}
+      and PCH = #{pch,jdbcType=VARCHAR}
+      and MC = #{mc,jdbcType=VARCHAR}
+      and GG = #{gg,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.andawell.material.entity.TXhpCrkqd">
+    update T_XHP_CRKQD
+    set RQ = #{rq,jdbcType=TIMESTAMP},
+      DW = #{dw,jdbcType=VARCHAR},
+      DJ = #{dj,jdbcType=DECIMAL},
+      SL = #{sl,jdbcType=DECIMAL},
+      LB = #{lb,jdbcType=VARCHAR},
+      JYR = #{jyr,jdbcType=VARCHAR},
+      JHR = #{jhr,jdbcType=VARCHAR},
+      JSR = #{jsr,jdbcType=VARCHAR},
+      KGY = #{kgy,jdbcType=VARCHAR},
+      LYR = #{lyr,jdbcType=VARCHAR},
+      BZ = #{bz,jdbcType=VARCHAR},
+      CKDM = #{ckdm,jdbcType=VARCHAR},
+      JWH = #{jwh,jdbcType=VARCHAR},
+      YXQ = #{yxq,jdbcType=TIMESTAMP},
+      HCLB = #{hclb,jdbcType=VARCHAR},
+      DWID = #{dwid,jdbcType=VARCHAR},
+      TZS = #{tzs,jdbcType=DECIMAL},
+      SYDW = #{sydw,jdbcType=VARCHAR},
+      LYLB = #{lylb,jdbcType=VARCHAR}
+    where BH = #{bh,jdbcType=VARCHAR}
+      and PCH = #{pch,jdbcType=VARCHAR}
+      and MC = #{mc,jdbcType=VARCHAR}
+      and GG = #{gg,jdbcType=VARCHAR}
+  </update>
+
+  <select id="maxWh" resultType="java.lang.String">
+    select max(WH) from t_xhp_crk where wh like'${jm}%'
+  </select>
+
+  <select id="maxBh" resultType="java.lang.String">
+    select max(BH) from t_xhp_crk where bh like'${jm}%'
+  </select>
+
+</mapper>

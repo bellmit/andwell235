@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE generatorConfiguration  
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+	<classPathEntry location="D:\maven3.6\myRepository\com\oracle\ojdbc6\11.2/ojdbc6-11.2.jar"></classPathEntry>
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+
+		<!-- 项目中添加LombokPlugin类，用于实现添加lombok注释，不生成set,get方法，如果需要生成就把以下plugin注释即可，这也是与这个逆向工程的特点 -->
+		<plugin type="org.mybatis.generator.plugins.LombokPlugin">
+			<property name="hasLombok" value="true" />
+		</plugin>
+
+		<commentGenerator>
+			<property name="suppressDate" value="true" />
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<!--ORACLE数据库链接URL，用户名、密码 -->
+		<!--<jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
+			connectionURL="jdbc:oracle:thin:@10.25.66.163:1521:orcl" userId="xgc"
+			password="xgc666">
+		</jdbcConnection>-->
+		<!-- postgresql数据库 -->
+		<!-- <jdbcConnection driverClass="org.postgresql.Driver" connectionURL="jdbc:postgresql://localhost:5432/postgres" 
+			userId="root" password="root"> -->
+		<!-- </jdbcConnection> -->
+
+		<!-- mysql数据库 ，数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+		 <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
+		 connectionURL="jdbc:oracle:thin:@192.168.1.101:1521:orcl"
+		 userId="AW235A" password="AW235A">
+		 </jdbcConnection>
+
+		<!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
+           NUMERIC 类型解析为java.math.BigDecimal -->
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- targetProject:生成domain实体类的位置 -->
+		<javaModelGenerator targetPackage="com.andawell.material.entity"
+			targetProject="./src/main/java">
+			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="enableSubPackages" value="false" />
+			<!-- 从数据库返回的值被清理前后的空格 -->
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<!-- targetProject:mapper映射文件生成的位置 -->
+		<sqlMapGenerator targetPackage="/mapper/material"
+			targetProject="./src/main/resources">
+			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+
+		<!-- targetPackage：mapper接口生成的位置 -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.andawell.material.mapper" targetProject="./src/main/java">
+			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator>
+
+		<!-- schema="ntswl" 如果明确的知道数据库就一个用户，就不用写这个配置> -->
+		<!--<table tableName="b_yd_wavespeed" enableCountByExample="false" enableUpdateByExample="false" 
+			enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table> -->
+
+		<!-- 方法一：要生成的表 tableName是数据库中的表名或视图名 -->
+		<!--<table schema="" tableName="SYS_ROLE" domainObjectName="SysRole"> </table>-->
+
+
+		<!-- 方法二：不生成带有Example的辅助类 ，功能相比弱一些-->
+		<table schema="" tableName="T_JH_JX">
+		</table>
+
+	</context>
+</generatorConfiguration>  
